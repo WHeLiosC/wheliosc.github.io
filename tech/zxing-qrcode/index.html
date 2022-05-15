@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>利用ZXing工具生成二维码以及解析二维码 | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="今天突然想到二维码是如何存储信息的，手画二维码是否可行呢。于是就开始各种搜索，最终自己也利用Google的ZXing工具完成了一个生成二维码和解析二维码的简单程序。" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/zxing-qrcode/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2018-09-06T18:40:52+08:00",
+        "dateModified": "2022-05-05T07:49:12+08:00",
+        "url": "https://wheliosc.github.io/tech/zxing-qrcode/",
+        "headline": "利用ZXing工具生成二维码以及解析二维码",
+        "description": "今天突然想到二维码是如何存储信息的，手画二维码是否可行呢。于是就开始各种搜索，最终自己也利用Google的ZXing工具完成了一个生成二维码和解析二维码的简单程序。",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  5150 ,
+        "image": ["https://wheliosc.github.io/qrcode-example.jpg","https://wheliosc.github.io/table-1.jpg","https://wheliosc.github.io/example.jpg","https://wheliosc.github.io/table-2.jpg","https://wheliosc.github.io/img-1.jpg","https://wheliosc.github.io/img-2.jpg","https://wheliosc.github.io/img-3.jpg","https://wheliosc.github.io/table-e.1.jpg","https://wheliosc.github.io/v8qrcode.jpg","https://wheliosc.github.io/timing-pattern.jpg","https://wheliosc.github.io/formation-info.jpg","https://wheliosc.github.io/doble-mask.jpg","https://wheliosc.github.io/Mask.jpg","https://wheliosc.github.io/test-result.webp"],
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="利用ZXing工具生成二维码以及解析二维码" />
+<meta property="og:description" content="今天突然想到二维码是如何存储信息的，手画二维码是否可行呢。于是就开始各种搜索，最终自己也利用Google的ZXing工具完成了一个生成二维码和解析二维码的简单程序。" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/zxing-qrcode/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/qrcode-example.jpg" />
+<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-09-06T18:40:52&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-05T07:49:12&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">利用ZXing工具生成二维码以及解析二维码</h1>
+
+            
+
+            
+                <div class="post-description p-summary">今天突然想到二维码是如何存储信息的，手画二维码是否可行呢。于是就开始各种搜索，最终自己也利用Google的ZXing工具完成了一个生成二维码和解析二维码的简单程序。</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2018-09-06T18:40:52&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2018.9.6</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;5150</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <div class="post-body e-content">
+                <p></p>
+<h2 id="二维码生成原理即工作原理"><a href="#二维码生成原理即工作原理" class="anchor-link">#</a>二维码生成原理（即工作原理）</h2>
+<p>二维码官方叫版本 Version。Version 1 是 21 x 21 的矩阵，Version 2 是 25 x 25 的矩阵，Version 3 是 29 的尺寸，每增加一个 version，就会增加 4 的尺寸，公式是：(V-1)*4 + 21（V是版本号） 最高 Version 40，(40-1)*4+21 = 177，所以最高是 177 x 177 的正方形。</p>
+<p>下面是一个二维码的样例：</p>
+<p><img src="qrcode-example.jpg" alt="二维码样例"></p>
+<p>1、定位图案</p>
+<p>Position Detection Pattern 是定位图案，用于标记二维码的矩形大小。这三个定位图案有白边叫 Separators for Postion Detection Patterns。之所以三个而不是四个意思就是三个就可以标识一个矩形了。</p>
+<p>Timing Patterns 也是用于定位的。原因是二维码有 40 种尺寸，尺寸过大了后需要有根标准线，不然扫描的时候可能会扫歪了。</p>
+<p>Alignment Patterns 只有 Version 2 以上（包括 Version 2）的二维码需要这个东东，同样是为了定位用的。</p>
+<p>2、功能性数据</p>
+<p>Format Information 存在于所有的尺寸中，用于存放一些格式化数据的。</p>
+<p>Version Information 在 &gt;= Version 7 以上，需要预留两块 3 x 6 的区域存放一些版本信息。</p>
+<p>数据码和纠错码</p>
+<p>除了上述的那些地方，剩下的地方存放 Data Code 数据码 和 Error Correction Code 纠错码。</p>
+<p>3、数据编码</p>
+<p>QR 码支持如下的编码：</p>
+<p>Numeric mode 数字编码，从 0 到 9。如果需要编码的数字的个数不是 3 的倍数，那么，最后剩下的 1 或 2 位数会被转成 4 或 7 bits，则其它的每 3 位数字会被编成 10，12，14 bits，编成多长还要看二维码的尺寸（下面有一个表 Table 1 说明了这点）</p>
+<p>Alphanumeric mode 字符编码。包括 <code>0-9</code>，大写的 <code>A-Z</code>（没有小写），以及符号 <code>$ % * + – . / :</code> 包括空格。这些字符会映射成一个字符索引表。如下所示：（其中的 SP 是空格，Char 是字符，Value 是其索引值） 编码的过程是把字符两两分组，然后转成下表的45进制，然后转成11bits的二进制，如果最后有一个落单的，那就转成 6 bits 的二进制。而编码模式和 字符的个数需要根据不同的 Version 尺寸编成 9, 11 或 13 个二进制（如下表 Table 1）</p>
+<p><img src="table-1.jpg" alt="Table 1"></p>
+<p>Byte mode, 字节编码，可以是 0-255 的 ISO-8859-1 字符。有些二维码的扫描器可以自动检测是否是 UTF-8 的编码。</p>
+<p>Kanji mode 这是日文编码，也是双字节编码。同样，也可以用于中文编码。日文和汉字的编码会减去一个 值。如：在 0X8140 to 0X9FFC 中的字符会减去 8140，在 0XE040 到 0XEBBF 中的字符要减去 0XC140，然后把前两位拿出来乘以 0XC0，然后再加上后两位，最 后转成 13 bit 的编码。如下图示例：</p>
+<p><img src="example.jpg" alt=""></p>
+<p>Extended Channel Interpretation (ECI) mode 主要用于特殊的字符集。并不是所有的扫描器都支持这种编码。</p>
+<p>Structured Append mode 用于混合编码，也就是说，这个二维码中包含了多种编码格式。</p>
+<p>FNC1 mode 这种编码方式主要是给一些特殊的工业或行业用的。比如 GS1 条形码之类的。</p>
+<p>简单起见，后面三种不会在本文中讨论。</p>
+<p>下面两张表中，</p>
+<p>Table 2 是各个编码格式的“编号”，这个东西要写在 Format Information 中。注：中文是 1101</p>
+<p>Table 3 表示了，不同版本（尺寸）的二维码，对于，数字，字符，字节和 Kanji 模式下，对于单个编码的2进制的位数。（在二维码的规格说明书中，有各种各样的编码规范表，后面还会提到）</p>
+<p><img src="table-2.jpg" alt=""></p>
+<p>示例一：数字编码</p>
+<p>在 Version 1 的尺寸下，纠错级别为 H 的情况下，编码：01234567</p>
+<p>把上述数字分成三组: 012 345 67</p>
+<p>把他们转成二进制:  012 转成 0000001100；  345 转成 0101011001；  67 转成 1000011。</p>
+<p>把这三个二进制串起来: 0000001100 0101011001 1000011</p>
+<p>把数字的个数转成二进制 (version 1-H是10 bits ): 8个数字的二进制是 0000001000</p>
+<p>把数字编码的标志0001和第4步的编码加到前面:  0001 0000001000 0000001100 0101011001 1000011</p>
+<p>示例二：字符编码</p>
+<p>在 Version 1 的尺寸下，纠错级别为 H 的情况下，编码: AC-42</p>
+<ol>
+<li>
+<p>从字符索引表中找到 AC-42 这五个字条的索引 (10,12,41,4,2)</p>
+</li>
+<li>
+<p>两两分组: (10,12) (41,4) (2)</p>
+</li>
+<li>
+<p>把每一组转成11bits的二进制:</p>
+<p>(10,12) 10*45+12 等于 462 转成 00111001110</p>
+<p>(41,4) 41*45+4 等于 1849 转成 11100111001</p>
+<p>(2) 等于 2 转成 000010</p>
+</li>
+<li>
+<p>把这些二进制连接起来：00111001110 11100111001 000010</p>
+</li>
+<li>
+<p>把字符的个数转成二进制 (Version 1-H为9 bits ): 5个字符，5转成 000000101</p>
+</li>
+<li>
+<p>在头上加上编码标识 0010 和第5步的个数编码:  0010 000000101 00111001110 11100111001 000010</p>
+</li>
+</ol>
+<p>结束符和补齐符</p>
+<p>假如我们有个 HELLO WORLD 的字符串要编码，根据上面的示例二，我们可以得到下面的编码，</p>
+<p>编码</p>
+<p>字符数</p>
+<p>HELLO WORLD的编码</p>
+<p>0010    000001011    01100001011 01111000110 10001011100 10110111000 10011010100 001101</p>
+<p>我们还要加上结束符：</p>
+<p>编码</p>
+<p>字符数</p>
+<p>HELLO WORLD的编码</p>
+<p>结束</p>
+<p>0010    000001011    01100001011 01111000110 10001011100 10110111000 10011010100 001101    0000</p>
+<p>按 8 bits 重排</p>
+<p>如果所有的编码加起来不是8个倍数我们还要在后面加上足够的 0，比如上面一共有 78 个 bits，所以，我们还要加上 2 个 0，然后按 8 个 bits 分好组：</p>
+<p>00100000   01011011   00001011   01111000   11010001   01110010   11011100   01001101   01000011   01000000</p>
+<p>补齐码（Padding Bytes）</p>
+<p>最后，如果如果还没有达到我们最大的bits数的限制，我们还要加一些补齐码（Padding Bytes），Padding Bytes就是重复下面的两个bytes：11101100 00010001 （这两个二进制转成十进制是236和17，我也不知道为什么，只知道Spec上是这么写的）关于每一个Version的每一种纠错级别的最大Bits限 制，可以参看QR Code Spec的第28页到32页的Table-7一表。</p>
+<p>假设我们需要编码的是Version 1的Q纠错级，那么，其最大需要104个bits，而我们上面只有80个bits，所以，还需要24个bits，也就是需要3个Padding Bytes，我们就添加三个，于是得到下面的编码：</p>
+<p>00100000 01011011 00001011 01111000 11010001 01110010 11011100 01001101 01000011 01000000 11101100 00010001 11101100</p>
+<p>纠错码</p>
+<p>上面我们说到了一些纠错级别，Error Correction Code Level，二维码中有四种级别的纠错，这就是为什么二维码有残缺还能扫出来，也就是为什么有人在二维码的中心位置加入图标。</p>
+<p>错误修正容量</p>
+<p>L水平    7%的字码可被修正</p>
+<p>M水平    15%的字码可被修正</p>
+<p>Q水平    25%的字码可被修正</p>
+<p>H水平    30%的字码可被修正</p>
+<p>那么，QR是怎么对数据码加上纠错码的？首先，我们需要对数据码进行分组，也就是分成不同的Block，然后对各个Block进行纠错编码，对于如何分组，我们可以查看QR Code Spec的第33页到44页的Table-13到Table-22的定义表。注意最后两列：</p>
+<p>Number of Error Code Correction Blocks ：需要分多少个块。</p>
+<p>Error Correction Code Per Blocks：每一个块中的code个数，所谓的code的个数，也就是有多少个8bits的字节。</p>
+<p><img src="img-1.jpg" alt=""></p>
+<p>举个例子：上述的Version 5 + Q纠错级：需要4个Blocks（2个Blocks为一组，共两组），头一组的两个Blocks中各15个bits数据 + 各 9个bits的纠错码（注：表中的codewords就是一个8bits的byte）（再注：最后一例中的（c, k, r ）的公式为：c = k + 2 * r，因为后脚注解释了：纠错码的容量小于纠错码的一半）</p>
+<p>对每个块的纠错码</p>
+<p>1    1    67 85 70 134 87 38 85 194 119 50 6 18 6 103 38    213 199 11 45 115 247 241 223 229 248 154 117 154 111 86 161 111 39</p>
+<p>2    246 246 66 7 118 134 242 7 38 86 22 198 199 146 6    87 204 96 60 202 182 124 157 200 134 27 129 209 17 163 163 120 133</p>
+<p>2    1    182 230 247 119 50 7 118 134 87 38 82 6 134 151 50 7    148 116 177 212 76 133 75 242 238 76 195 230 189 10 108 240 192 141</p>
+<p>2    70 247 118 86 194 6 151 50 16 236 17 236 17 236 17 236    235 159 5 173 24 147 59 33 106 40 255 172 82 2 131 32 178 236</p>
+<p>注：二维码的纠错码主要是通过Reed-Solomon error correction（里 德-所罗门纠错算法）来实现的。对于这个算法，对于我来说是相当的复杂，里面有很多的数学计算，最终编码。</p>
+<p>穿插放置</p>
+<p>二维码的混乱技术还没有玩完，它还要把数据码和纠错码的各个codewords交替放在一起。如何交替呢，规则如下：</p>
+<p>对于数据码：把每个块的第一个codewords先拿出来按顺度排列好，然后再取第一块的第二个，如此类推。如：上述示例中的Data Codewords如下：</p>
+<p>块 1    67    85    70    134    87    38    85    194    119    50    6    18    6    103    38</p>
+<p>块 2    246    246    66    7    118    134    242    7    38    86    22    198    199    146    6</p>
+<p>块 3    182    230    247    119    50    7    118    134    87    38    82    6    134    151    50    7</p>
+<p>块 4    70    247    118    86    194    6    151    50    16    236    17    236    17    236    17    236</p>
+<p>我们先取第一列的：67， 246， 182， 70</p>
+<p>然后再取第二列的：67， 246， 182， 70， 85，246，230 ，247</p>
+<p>如此类推：67， 246， 182， 70， 85，246，230 ，247 ………  ……… ，38，6，50，17，7，236</p>
+<p>对于纠错码，也是一样：</p>
+<p>块 1    213    199    11    45    115    247    241    223    229    248    154    117    154    111    86    161    111    39</p>
+<p>块 2    87    204    96    60    202    182    124    157    200    134    27    129    209    17    163    163    120    133</p>
+<p>块 3    148    116    177    212    76    133    75    242    238    76    195    230    189    10    108    240    192    141</p>
+<p>块 4    235    159    5    173    24    147    59    33    106    40    255    172    82    2    131    32    178    236</p>
+<p>和数据码取的一样，得到：213，87，148，235，199，204，116，159，…… …… 39，133，141，236</p>
+<p>然后，再把这两组放在一起（纠错码放在数据码之后）得到：</p>
+<p>67, 246, 182, 70, 85, 246, 230, 247, 70, 66, 247, 118, 134, 7, 119, 86, 87, 118, 50, 194, 38, 134, 7, 6, 85, 242, 118, 151, 194, 7, 134, 50, 119, 38, 87, 16, 50, 86, 38, 236, 6, 22, 82, 17, 18, 198, 6, 236, 6, 199, 134, 17, 103, 146, 151, 236, 38, 6, 50, 17, 7, 236, 213, 87, 148, 235, 199, 204, 116, 159, 11, 96, 177, 5, 45, 60, 212, 173, 115, 202, 76, 24, 247, 182, 133, 147, 241, 124, 75, 59, 223, 157, 242, 33, 229, 200, 238, 106, 248, 134, 76, 40, 154, 27, 195, 255, 117, 129, 230, 172, 154, 209, 189, 82, 111, 17, 10, 2, 86, 163, 108, 131, 161, 163, 240, 32, 111, 120, 192, 178, 39, 133, 141, 236</p>
+<p>Remainder Bits</p>
+<p>最后再加上Reminder Bits，对于某些Version的QR，上面的还不够长度，还要加上Remainder Bits，比如：上述的5Q版的二维码，还要加上7个bits，Remainder Bits加零就好了。关于哪些Version需要多少个Remainder bit，可以参看QR Code Spec的第15页的Table-1的定义表。</p>
+<p>4、画二维码图</p>
+<p>Position Detection Pattern</p>
+<p>首先，先把Position Detection图案画在三个角上。</p>
+<p><img src="img-2.jpg" alt=""></p>
+<p>Alignment Pattern</p>
+<p>然后，再把Alignment图案画上</p>
+<p><img src="img-3.jpg" alt=""></p>
+<p>关于Alignment的位置，可以查看QR Code Spec的第81页的Table-E.1的定义表（下表是不完全表格）</p>
+<p><img src="table-e.1.jpg" alt=""></p>
+<p>下图是根据上述表格中的Version8的一个例子（6，24，42）</p>
+<p><img src="v8qrcode.jpg" alt=""></p>
+<p>Timing Pattern</p>
+<p>接下来是Timing Pattern的线（这个不用多说了）</p>
+<p><img src="timing-pattern.jpg" alt=""></p>
+<p>Format Information</p>
+<p>再接下来是Formation Information，下图中的蓝色部分。</p>
+<p><img src="formation-info.jpg" alt=""></p>
+<p>Format Information是一个15个bits的信息，每一个bit的位置如下图所示：（注意图中的Dark Module，那是永远出现的）</p>
+<p><img src="doble-mask.jpg" alt=""></p>
+<p>这 15 个 bits 中包括：</p>
+<p>5 个数据bits：其中，2 个 bits 用于表示使用什么样的 Error Correction Level， 3 个 bits 表示使用什么样的 Mask</p>
+<p>10 个纠错 bits。主要通过 BCH Code 来计算</p>
+<p>然后 15 个 bits 还要与 101010000010010 做 XOR 操作。这样就保证不会因为我们选用了 00 的纠错级别，以及 000 的 Mask，从重造成全部为白色，这会增加我们的扫描器的图像识别的困难。</p>
+<p>下面是一个示例：</p>
+<p>关于 Error Correction Level 如下表所示：</p>
+<p>关于 Mask 图案如后面的 Table 23 所示。</p>
+<p>Version Information</p>
+<p>再接下来是Version Information（版本 7 以后需要这个编码），下图中的蓝色部分。</p>
+<p>Version Information一共是 18 个 bits，其中包括 6 个 bits 的版本号以及 12 个 bits 的纠错码，下面是一个示例：</p>
+<p>而其填充位置如下：</p>
+<p>数据和数据纠错码</p>
+<p>然后是填接我们的最终编码，最终编码的填充方式如下：从左下角开始沿着红线填我们的各个 bits，1 是黑色，0 是白色。如果遇到了上面的非数据区，则绕开或跳过。</p>
+<p>5、掩码图案</p>
+<p>这样下来，图就填好了，但是，也许那些点并不均衡，所以还要做 Masking 操作 QR 的 Spec 中说了，QR 有 8 个 Mask 可以使用，如下所示：其中，各个 mask 的公式在各个图下面。所谓 mask，说白了，就是和上面生成的图做 XOR 操作。Mask 只会和数据区进行 XOR，不会影响功能区。</p>
+<p>其 Mask 的标识码如下所示：（其中的 i,j 分别对应于上图的 x,y）</p>
+<p><img src="Mask.jpg" alt=""></p>
+<p>Mask 过后的二维码就成最终的图了。</p>
+<p>（以上内容来源于网络）</p>
+<h2 id="二-编码实现"><a href="#二-编码实现" class="anchor-link">#</a>二、 编码实现</h2>
+<p>首先，我们需要下载 Google 的 ZXing 库。</p>
+<p>下载地址：https://github.com/zxing/zxing</p>
+<p>根据内容创建二维码</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">	<span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * TODO 根据给定的内容生成二维码
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param content        二维码内容
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param logoImagePath  logo图标的路径
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param needCompressed 是否需要压缩logo
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return 生成的二维码
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @throws IOException
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @throws WriterException
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kd">static</span> <span class="n">BufferedImage</span> <span class="nf">createImage</span><span class="o">(</span><span class="n">String</span> <span class="n">content</span><span class="o">,</span> <span class="n">String</span> <span class="n">logoImagePath</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">needCompressed</span><span class="o">)</span> 
+</span></span><span class="line"><span class="cl">            <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">WriterException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HashMap</span> <span class="n">hints</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">EncodeHintType</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hints</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">EncodeHintType</span><span class="o">.</span><span class="na">ERROR_CORRECTION</span><span class="o">,</span> <span class="n">ErrorCorrectionLevel</span><span class="o">.</span><span class="na">H</span><span class="o">);</span>  <span class="c1">// 纠错等级
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">hints</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">EncodeHintType</span><span class="o">.</span><span class="na">CHARACTER_SET</span><span class="o">,</span> <span class="n">CHARSET</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hints</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">EncodeHintType</span><span class="o">.</span><span class="na">MARGIN</span><span class="o">,</span> <span class="n">1</span><span class="o">);</span>  <span class="c1">// 二维码两边空白区域大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">BitMatrix</span> <span class="n">bitMatrix</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MultiFormatWriter</span><span class="o">().</span><span class="na">encode</span><span class="o">(</span><span class="n">content</span><span class="o">,</span> <span class="n">BarcodeFormat</span><span class="o">.</span><span class="na">QR_CODE</span><span class="o">,</span> <span class="n">QRCODE_SIZE</span><span class="o">,</span> <span class="n">QRCODE_SIZE</span><span class="o">,</span> <span class="n">hints</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="n">bitMatrix</span><span class="o">.</span><span class="na">getHeight</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="n">bitMatrix</span><span class="o">.</span><span class="na">getWidth</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">BufferedImage</span> <span class="n">image</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedImage</span><span class="o">(</span><span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">,</span> <span class="n">BufferedImage</span><span class="o">.</span><span class="na">TYPE_INT_RGB</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">width</span><span class="o">;</span> <span class="n">x</span><span class="o">++)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">height</span><span class="o">;</span> <span class="n">y</span><span class="o">++)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">image</span><span class="o">.</span><span class="na">setRGB</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">bitMatrix</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="o">?</span> <span class="n">0xFF000000</span> <span class="o">:</span> <span class="n">0xFFFFFFFF</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">logoImagePath</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="s">&#34;&#34;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">logoImagePath</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">image</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 如果有logo，则插入logo图片
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">QRCode</span><span class="o">.</span><span class="na">InsertImage</span><span class="o">(</span><span class="n">image</span><span class="o">,</span> <span class="n">logoImagePath</span><span class="o">,</span> <span class="n">needCompressed</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">image</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>如果有 logo 则将 logo 插入到二维码中</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">	<span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * TODO 插入logo图片
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param sourceImage 原图片
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param logoImagePath logo图片所在的路径
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param needCompressed 是否需要压缩
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @throws IOException
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">InsertImage</span><span class="o">(</span><span class="n">BufferedImage</span> <span class="n">sourceImage</span><span class="o">,</span> <span class="n">String</span> <span class="n">logoImagePath</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">needCompressed</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">logoImagePath</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(!</span><span class="n">file</span><span class="o">.</span><span class="na">exists</span><span class="o">()){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;logo文件不存在！\n&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Image</span> <span class="n">src</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="na">getWidth</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="na">getHeight</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 压缩二维码图片
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">needCompressed</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">width</span> <span class="o">&gt;</span> <span class="n">LOGO_WIDTH</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">width</span> <span class="o">=</span> <span class="n">LOGO_WIDTH</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">height</span> <span class="o">&gt;</span> <span class="n">LOGO_HEIGHT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">height</span> <span class="o">=</span> <span class="n">LOGO_HEIGHT</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">Image</span> <span class="n">image</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="na">getScaledInstance</span><span class="o">(</span><span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">,</span> <span class="n">Image</span><span class="o">.</span><span class="na">SCALE_SMOOTH</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">BufferedImage</span> <span class="n">tag</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedImage</span><span class="o">(</span><span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">,</span> <span class="n">BufferedImage</span><span class="o">.</span><span class="na">TYPE_INT_RGB</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Graphics</span> <span class="n">g</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="na">getGraphics</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">g</span><span class="o">.</span><span class="na">drawImage</span><span class="o">(</span><span class="n">image</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">g</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>  <span class="c1">// 释放占有的资源
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">src</span> <span class="o">=</span> <span class="n">image</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 直观的理解：Graphics2D 就相当于画笔，而BufferedImage 就是画笔绘制的结果。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 插入logo
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Graphics2D</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">sourceImage</span><span class="o">.</span><span class="na">createGraphics</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="o">(</span><span class="n">QRCODE_SIZE</span> <span class="o">-</span> <span class="n">width</span><span class="o">)</span> <span class="o">/</span> <span class="n">2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="o">(</span><span class="n">QRCODE_SIZE</span> <span class="o">-</span> <span class="n">height</span><span class="o">)</span> <span class="o">/</span> <span class="n">2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">graph</span><span class="o">.</span><span class="na">drawImage</span><span class="o">(</span><span class="n">src</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Shape</span> <span class="n">shape</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RoundRectangle2D</span><span class="o">.</span><span class="na">Float</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">width</span><span class="o">,</span> <span class="n">width</span><span class="o">,</span> <span class="n">6</span><span class="o">,</span> <span class="n">6</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">graph</span><span class="o">.</span><span class="na">setStroke</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicStroke</span><span class="o">(</span><span class="n">3f</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">graph</span><span class="o">.</span><span class="na">draw</span><span class="o">(</span><span class="n">shape</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">graph</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>解码过程</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">	<span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * TODO 解析二维码内容
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param file 二维码
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return 二维码包含的信息
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @throws Exception
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">decode</span><span class="o">(</span><span class="n">File</span> <span class="n">file</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">BufferedImage</span> <span class="n">image</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">image</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">image</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">BufferedImageLuminanceSource</span> <span class="n">source</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedImageLuminanceSource</span><span class="o">(</span><span class="n">image</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">BinaryBitmap</span> <span class="n">bitmap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BinaryBitmap</span><span class="o">(</span><span class="k">new</span> <span class="n">HybridBinarizer</span><span class="o">(</span><span class="n">source</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HashMap</span> <span class="n">hints</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">DecodeHintType</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hints</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">DecodeHintType</span><span class="o">.</span><span class="na">CHARACTER_SET</span><span class="o">,</span> <span class="n">CHARSET</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Result</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MultiFormatReader</span><span class="o">().</span><span class="na">decode</span><span class="o">(</span><span class="n">bitmap</span><span class="o">,</span> <span class="n">hints</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">resultStr</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">getText</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">resultStr</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>测试结果</p>
+<p><img src="test-result.webp" alt="测试结果"></p>
+<p>源码地址：https://github.com/Wheliosc/ZXing-QRCode</p>
+<p>开发环境：idea 2018.2</p>
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-05 07:49:12 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-05</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-05</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/tech/lexical-analysis/" class="related-link">词法分析器</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/java-learn-note-3/" class="related-link">java学习笔记 [3] 继承 &amp; 多态篇</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/java-learn-note-2/" class="related-link">java学习笔记 [2] 数组 &amp; 运算符 &amp; 权限篇</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/java-learn-note-1/" class="related-link">java学习笔记 [1] 数据类型 &amp; 函数篇</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/java-series-catalogue/" class="related-link">java学习笔记 全系列内容提要篇</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/java/" rel="tag" class="post-tag-link">#java</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/python-data-structure/" rel="prev">&lt; [Python learning] 数据结构</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/java-learn-note-3/" rel="next">java学习笔记 [3] 继承 &amp; 多态篇 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

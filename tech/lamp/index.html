@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>LAMP | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="Linux &#43; Apache &#43; Mysql &#43; PHP" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/lamp/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2021-08-30T14:15:21+08:00",
+        "dateModified": "2022-05-03T22:23:51+08:00",
+        "url": "https://wheliosc.github.io/tech/lamp/",
+        "headline": "LAMP",
+        "description": "Linux + Apache + Mysql + PHP",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  675 ,
+        "image": "https://wheliosc.github.io/icons/favicon.png",
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary" />
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="LAMP" />
+<meta property="og:description" content="Linux &#43; Apache &#43; Mysql &#43; PHP" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/lamp/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2021-08-30T14:15:21&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-03T22:23:51&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">LAMP</h1>
+
+            
+
+            
+                <div class="post-description p-summary">Linux + Apache + Mysql + PHP</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2021-08-30T14:15:21&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2021.8.30</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;675</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:安装-apache" href="#安装-apache">安装 Apache</a>
+      <ol>
+        <li><a id="contents:安装-apache-1" href="#安装-apache-1">安装 Apache</a></li>
+        <li><a id="contents:设置全局-server-name-消除警告" href="#设置全局-server-name-消除警告">设置全局 Server Name 消除警告</a></li>
+        <li><a id="contents:调整防火墙" href="#调整防火墙">调整防火墙</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:安装-mysql" href="#安装-mysql">安装 MySQL</a></li>
+    <li><a id="contents:安装-php" href="#安装-php">安装 PHP</a>
+      <ol>
+        <li><a id="contents:安装-php-1" href="#安装-php-1">安装 PHP</a></li>
+        <li><a id="contents:测试-php-处理" href="#测试-php-处理">测试 PHP 处理</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:使用-let-加密保护-apache" href="#使用-let-加密保护-apache">使用 Let 加密保护 Apache</a>
+      <ol>
+        <li><a id="contents:安装-let-的加密客户端" href="#安装-let-的加密客户端">安装 Let 的加密客户端</a></li>
+        <li><a id="contents:设置-ssl-证书" href="#设置-ssl-证书">设置 SSL 证书</a></li>
+        <li><a id="contents:自动续订" href="#自动续订">自动续订</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:参考" href="#参考">参考</a></li>
+  </ol>
+</nav><div class="post-body e-content">
+                <p></p>
+<h2 id="安装-apache"><a href="#安装-apache" class="anchor-link">#</a><a href="#contents:安装-apache" class="headings">安装 Apache</a></h2>
+<h3 id="安装-apache-1"><a href="#安装-apache-1" class="anchor-link">#</a><a href="#contents:安装-apache-1" class="headings">安装 Apache</a></h3>
+<pre tabindex="0"><code>sudo apt update
+sudo apt install apache2
+</code></pre><h3 id="设置全局-server-name-消除警告"><a href="#设置全局-server-name-消除警告" class="anchor-link">#</a><a href="#contents:设置全局-server-name-消除警告" class="headings">设置全局 Server Name 消除警告</a></h3>
+<p>使用下面的语句检查配置时会有警告信息：</p>
+<pre tabindex="0"><code>sudo apache2ctl configtest
+</code></pre><p>打开 apache2.conf 文件：</p>
+<pre tabindex="0"><code>sudo vim /etc/apache2/apache2.conf
+</code></pre><p>在文件的最后一行添加：</p>
+<pre tabindex="0"><code>ServerName server_domain_or_public_IP
+</code></pre><p>测试是否还有警告信息：</p>
+<pre tabindex="0"><code>sudo apache2ctl configtest
+</code></pre><p>重启Apache使修改生效：</p>
+<pre tabindex="0"><code>sudo systemctl restart apache2
+</code></pre><h3 id="调整防火墙"><a href="#调整防火墙" class="anchor-link">#</a><a href="#contents:调整防火墙" class="headings">调整防火墙</a></h3>
+<p>确保 ufw 有 Apache 的应用配置文件，能够看到 Apache, Apache Full, Apache Secure：</p>
+<pre tabindex="0"><code>sudo ufw app list
+</code></pre><p>如果查看 Apache Full 的应用配置文件，应该看到它允许到 80 和 443 端口流量：</p>
+<pre tabindex="0"><code>sudo ufw app info &#34;Apache Full&#34;
+</code></pre><p>允许进入流量：</p>
+<pre tabindex="0"><code>sudo ufw allow in &#34;Apache Full&#34;
+</code></pre><p>测试，如果可以看到默认页面则成功：</p>
+<pre tabindex="0"><code>http://your_server_IP_address
+</code></pre><h2 id="安装-mysql"><a href="#安装-mysql" class="anchor-link">#</a><a href="#contents:安装-mysql" class="headings">安装 MySQL</a></h2>
+<pre tabindex="0"><code>sudo apt update
+sudo apt install mysql-server
+</code></pre><p>安装完成后，运行一个简单的安全脚本，它将删除一些危险的默认值并锁定对数据库系统的访问，运行以下命令启动交互式脚本：</p>
+<pre tabindex="0"><code>mysql_secure_installation
+</code></pre><p>登录数据库：</p>
+<pre tabindex="0"><code>mysql -u root -p
+</code></pre><h2 id="安装-php"><a href="#安装-php" class="anchor-link">#</a><a href="#contents:安装-php" class="headings">安装 PHP</a></h2>
+<h3 id="安装-php-1"><a href="#安装-php-1" class="anchor-link">#</a><a href="#contents:安装-php-1" class="headings">安装 PHP</a></h3>
+<pre tabindex="0"><code>sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql
+</code></pre><p>(可选)改变客户端从服务器查找文件顺序：</p>
+<pre tabindex="0"><code>sudo vim /etc/apache2/mods-enabled/dir.conf
+</code></pre><p>原：</p>
+<pre tabindex="0"><code>&lt;IfModule mod_dir.c&gt;
+    DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
+&lt;/IfModule&gt;
+</code></pre><p>改为：</p>
+<pre tabindex="0"><code>&lt;IfModule mod_dir.c&gt;
+    DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+&lt;/IfModule&gt;
+</code></pre><p>重启 Apache 服务生效：</p>
+<pre tabindex="0"><code>sudo systemctl restart apache2
+</code></pre><p>使用下面的命令可以查看 Apache 状态：</p>
+<pre tabindex="0"><code>sudo systemctl status apache2 
+</code></pre><p>安装额外模块：</p>
+<p>分页查看 PHP 模块和库的可用选项，使用箭头键向上和向下滚动，按 q 退出</p>
+<pre tabindex="0"><code>apt-cache search php- | less
+</code></pre><p>查看某个包的长描述</p>
+<pre tabindex="0"><code>apt-cache show package_name
+</code></pre><p>安装某个(些)包：</p>
+<pre tabindex="0"><code>apt install package_name package_name2 package_name3 ...
+</code></pre><h3 id="测试-php-处理"><a href="#测试-php-处理" class="anchor-link">#</a><a href="#contents:测试-php-处理" class="headings">测试 PHP 处理</a></h3>
+<pre tabindex="0"><code>sudo vim /var/www/html/info.php
+</code></pre><p>在文件中写一段 PHP 代码：</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nx">phpinfo</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>访问：</p>
+<pre tabindex="0"><code>http://your_server_IP_address/info.php
+</code></pre><p>删除测试文件：</p>
+<pre tabindex="0"><code>sudo rm /var/www/html/info.php
+</code></pre><h2 id="使用-let-加密保护-apache"><a href="#使用-let-加密保护-apache" class="anchor-link">#</a><a href="#contents:使用-let-加密保护-apache" class="headings">使用 Let 加密保护 Apache</a></h2>
+<h3 id="安装-let-的加密客户端"><a href="#安装-let-的加密客户端" class="anchor-link">#</a><a href="#contents:安装-let-的加密客户端" class="headings">安装 Let 的加密客户端</a></h3>
+<pre tabindex="0"><code>sudo add-apt-repository ppa:certbot/certbot
+sudo apt update
+sudo apt install python-certbot-apache
+</code></pre><h3 id="设置-ssl-证书"><a href="#设置-ssl-证书" class="anchor-link">#</a><a href="#contents:设置-ssl-证书" class="headings">设置 SSL 证书</a></h3>
+<p>对于单个域</p>
+<pre tabindex="0"><code>sudo certbot --apache -d example.com
+</code></pre><p>对于多个域，第一个参数为基本域，后面的为子域名或者别名</p>
+<pre tabindex="0"><code>sudo certbot --apache -d example.com -d www.example.com
+</code></pre><p>生成的证书文件位置 <code>/etc/letsencrypt/live</code>。链接验证 SSL 证书的状态（不要忘记将 example.com 替换为您的基本域）</p>
+<pre tabindex="0"><code>https://www.ssllabs.com/ssltest/analyze.html?d=example.com&amp;latest
+</code></pre><h3 id="自动续订"><a href="#自动续订" class="anchor-link">#</a><a href="#contents:自动续订" class="headings">自动续订</a></h3>
+<p>加密证书只有 90 天有效期，之后需要续订。下面是自动续订</p>
+<pre tabindex="0"><code>sudo certbot renew --dry-run
+</code></pre><h2 id="参考"><a href="#参考" class="anchor-link">#</a><a href="#contents:参考" class="headings">参考</a></h2>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-16-04" target="_blank" rel="noopener">How To Install Linux, Apache, MySQL, PHP (LAMP) stack on Ubuntu 16.04</a></p>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-16-04" target="_blank" rel="noopener">How To Secure Apache with Let's Encrypt on Ubuntu 16.04</a></p>
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-03 22:23:51 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-03</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-03</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/tech/ubuntu-install-tensorflow/" class="related-link">Ubuntu18.04 安装 tensorflow</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/double-system-install/" class="related-link">双系统安装 Ubuntu18.04</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/double-system-uninstall/" class="related-link">双系统卸载</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/linux/" rel="tag" class="post-tag-link">#linux</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/sparse-matrix/" rel="prev">&lt; 稀疏矩阵</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/ml-dm/" rel="next">机器学习与数据挖掘 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

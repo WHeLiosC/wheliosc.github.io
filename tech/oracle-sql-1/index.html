@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>Oracle SQL 练习题 1 | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="Oracle 数据库的上机练习题 1" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/oracle-sql-1/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2019-03-15T12:12:08+08:00",
+        "dateModified": "2022-05-08T20:16:46+08:00",
+        "url": "https://wheliosc.github.io/tech/oracle-sql-1/",
+        "headline": "Oracle SQL 练习题 1",
+        "description": "Oracle 数据库的上机练习题 1",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  4335 ,
+        "image": "https://wheliosc.github.io/icons/favicon.png",
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary" />
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="Oracle SQL 练习题 1" />
+<meta property="og:description" content="Oracle 数据库的上机练习题 1" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/oracle-sql-1/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2019-03-15T12:12:08&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-08T20:16:46&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">Oracle SQL 练习题 1</h1>
+
+            
+
+            
+                <div class="post-description p-summary">Oracle 数据库的上机练习题 1</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2019-03-15T12:12:08&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2019.3.15</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;4335</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <div class="post-body e-content">
+                <p></p>
+<h2 id="sql-ddldml"><a href="#sql-ddldml" class="anchor-link">#</a>SQL DDL&amp;DML</h2>
+<p><strong>对表 copy_emp 进行：</strong></p>
+<p>1）在表 copy_emp 中插入数据，要求 sal 字段插入空值，部门号 50，参加工作时间为 2000 年 1 月 1 日，其他字段随意</p>
+<p>2）在表 copy_emp 中插入数据，要求把 emp 表中部门号为 10 号部门的员工信息插入</p>
+<p>3）修改 copy_emp 表中数据，要求 10 号部门所有员工涨 20% 的工资</p>
+<p>4）修改 copy_emp 表中 sal 为空的记录，工资修改为平均工资</p>
+<p>5）把工资为平均工资的员工，工资修改为空</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 建表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">copy_emp</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">empno</span><span class="w"> </span><span class="nb">number</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">ename</span><span class="w"> </span><span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">hiredate</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">sysdate</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">deptno</span><span class="w"> </span><span class="nb">number</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">sal</span><span class="w"> </span><span class="nb">number</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 插入数据 sal字段插入空值，部门号50，参加工作时间为2000年1月1日，其他字段随意
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">copy_emp</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">7555</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ahui&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">to_date</span><span class="p">(</span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;yyyy-mm-dd&#39;</span><span class="p">),</span><span class="mi">50</span><span class="p">,</span><span class="k">null</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 插入数据，要求把emp表中部门号为10号部门的员工信息插入
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">insert</span><span class="w"> </span><span class="k">all</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">into</span><span class="w"> </span><span class="n">copy_emp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">values</span><span class="p">(</span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">hiredate</span><span class="p">,</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">hiredate</span><span class="p">,</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 10号部门所有员工涨20%的工资
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">update</span><span class="w"> </span><span class="n">copy_emp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 修改copy_emp表中sal为空的记录，工资修改为平均工资
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">update</span><span class="w"> </span><span class="n">copy_emp</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">sal</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">copy_emp</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 把工资为平均工资的员工，工资修改为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">update</span><span class="w"> </span><span class="n">copy_emp</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">sal</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">copy_emp</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 删除工资为空的员工信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">copy_emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p><strong>对表 class2 和 student2 进行：</strong></p>
+<p>1）添加三个班级信息为：</p>
+<pre><code>1，JAVA1班，null
+
+2，JAVA2班，null
+    
+3，JAVA3班，null
+</code></pre>
+<p>2）添加学生信息如下：‘A001’,‘张三’,‘男’,‘01-5月-05’,100,1</p>
+<p>3）添加学生信息如下：'A002','MIKE','男','1905-05-06',10</p>
+<p>4）插入部分学生信息： 'A003','JOHN','女’</p>
+<p>5）将A001学生性别修改为'女‘</p>
+<p>6）将A001学生信息修改如下：性别为男，生日设置为1980-04-01</p>
+<p>7）将生日为空的学生班级修改为Java3班</p>
+<p>8）请使用一条SQL语句，使用子查询，更新班级表中每个班级的人数字段</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 建表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">student2</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="c1">--学生表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">xh</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="c1">--学号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">xm</span><span class="w"> </span><span class="n">varchar2</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="c1">--姓名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sex</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="c1">--性别
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">birthday</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span><span class="c1">--出生日期
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sal</span><span class="w"> </span><span class="nb">number</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="c1">--奖学金
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">studentcid</span><span class="w"> </span><span class="nb">number</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="c1">--学生班级号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">Create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">class2</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="c1">--班级表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">classid</span><span class="w"> </span><span class="nb">number</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="c1">--班级编号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">cname</span><span class="w"> </span><span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="c1">--班级名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ccount</span><span class="w"> </span><span class="nb">number</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="c1">--班级人数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 插入
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">class2</span><span class="p">(</span><span class="n">classid</span><span class="p">,</span><span class="n">cname</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;JAVA1班&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">class2</span><span class="p">(</span><span class="n">classid</span><span class="p">,</span><span class="n">cname</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;JAVA2班&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">class2</span><span class="p">(</span><span class="n">classid</span><span class="p">,</span><span class="n">cname</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;JAVA3班&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student2</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;A001&#39;</span><span class="p">,</span><span class="s1">&#39;张三&#39;</span><span class="p">,</span><span class="s1">&#39;男&#39;</span><span class="p">,</span><span class="s1">&#39;01-5月-05&#39;</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student2</span><span class="p">(</span><span class="n">xh</span><span class="p">,</span><span class="n">xm</span><span class="p">,</span><span class="n">sex</span><span class="p">,</span><span class="n">birthday</span><span class="p">,</span><span class="n">sal</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;A002&#39;</span><span class="p">,</span><span class="s1">&#39;MIKE&#39;</span><span class="p">,</span><span class="s1">&#39;男&#39;</span><span class="p">,</span><span class="n">to_date</span><span class="p">(</span><span class="s1">&#39;1905-05-06&#39;</span><span class="p">,</span><span class="s1">&#39;yyyy-mm-dd&#39;</span><span class="p">),</span><span class="mi">10</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student2</span><span class="p">(</span><span class="n">xh</span><span class="p">,</span><span class="n">xm</span><span class="p">,</span><span class="n">sex</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;A003&#39;</span><span class="p">,</span><span class="s1">&#39;JOHN&#39;</span><span class="p">,</span><span class="s1">&#39;女&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 将A001学生性别修改为&#39;女‘
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 将A001学生信息修改如下：性别为男，生日设置为1980-04-01
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">update</span><span class="w"> </span><span class="n">student2</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">sex</span><span class="o">=</span><span class="s1">&#39;女&#39;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">xh</span><span class="o">=</span><span class="s1">&#39;A001&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">student2</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">sex</span><span class="o">=</span><span class="s1">&#39;男&#39;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">xh</span><span class="o">=</span><span class="s1">&#39;A001&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">student2</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">birthday</span><span class="o">=</span><span class="n">to_date</span><span class="p">(</span><span class="s1">&#39;1980-04-01&#39;</span><span class="p">,</span><span class="s1">&#39;yyyy-mm-dd&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">xh</span><span class="o">=</span><span class="s1">&#39;A001&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 将生日为空的学生班级修改为Java3班
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">update</span><span class="w"> </span><span class="n">student2</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">studentcid</span><span class="o">=</span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">classid</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">class2</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">class2</span><span class="p">.</span><span class="n">cname</span><span class="o">=</span><span class="s1">&#39;JAVA3班&#39;</span><span class="p">)</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">birthday</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 请使用一条SQL语句，使用子查询，更新班级表中每个班级的人数字段
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">Update</span><span class="w"> </span><span class="n">CLASS2</span><span class="w"> </span><span class="n">c2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">Set</span><span class="w"> </span><span class="n">ccount</span><span class="o">=</span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                 </span><span class="k">from</span><span class="w"> </span><span class="n">student2</span><span class="w"> </span><span class="n">s2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                 </span><span class="k">where</span><span class="w"> </span><span class="n">c2</span><span class="p">.</span><span class="n">classid</span><span class="o">=</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">studentcid</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>1）创建表 date_test,包含列 d，类型为 date 型。试向 date_test 表中插入两条记录，一条当前系统日期记录，一条记录为 “1998-08-18”。</p>
+<p>2）试为 date_test 表增加一列 g，数据类型字符类型，长度 2， 默认值“女”。</p>
+<p>3）试修改 date_test 表，g 列数据类型为定长字符型 10 位。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 插入日期类型数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">DATE_TEST</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="n">to_date</span><span class="p">(</span><span class="s1">&#39;1998-08-18&#39;</span><span class="p">,</span><span class="s1">&#39;YYYY-MM-DD&#39;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">DATE_TEST</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="n">to_date</span><span class="p">(</span><span class="n">sysdate</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 增加列并设置默认值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">DATE_TEST</span><span class="w"> </span><span class="k">add</span><span class="p">(</span><span class="w"> </span><span class="k">G</span><span class="w">  </span><span class="nb">char</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;女&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 修改列数据类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">DATE_TEST</span><span class="w"> </span><span class="k">modify</span><span class="p">(</span><span class="k">G</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><h2 id="单表查询"><a href="#单表查询" class="anchor-link">#</a>单表查询</h2>
+<p>1）查询入职时间在 1982-7-9 之后，并且不从事 SALESMAN 工作的员工姓名、入职时间、职位。</p>
+<p>2）查询员工姓名的第三个字母是a的员工姓名。</p>
+<p>3）查询除了 10、20 号部门以外的员工姓名、部门编号。</p>
+<p>4）查询部门号为 30 号员工的信息，先按工资降序排序，再按姓名升序排序。</p>
+<p>5）查询没有上级的员工(经理号为空)的员工姓名。</p>
+<p>6）查询工资大于等于 4500 并且部门为 10 或者 20 的员工的姓名\工资、部门编号。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 查询入职时间在1982-7-9之后，并且不从事SALESMAN工作的员工姓名、入职时间、职位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">hiredate</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">hiredate</span><span class="o">&gt;</span><span class="n">to_date</span><span class="p">(</span><span class="s1">&#39;1982-07-09&#39;</span><span class="p">,</span><span class="s1">&#39;yyyy-mm-dd&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;SALESMAN&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 查询员工姓名的第三个字母是A的员工姓名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">ename</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;__A%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 查询除了10、20号部门以外的员工姓名、部门编号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">deptno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="o">!=</span><span class="mi">10</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">deptno</span><span class="o">!=</span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 查询部门号为30号员工的信息，先按工资降序排序，再按姓名升序排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="o">=</span><span class="mi">30</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="k">desc</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="w"> </span><span class="k">asc</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 查询没有上级的员工(经理号为空)的员工姓名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">mgr</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 查询工资大于等于4500并且部门为10或者20的员工的姓名\工资、部门编号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="p">,</span><span class="w"> </span><span class="n">deptno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">sal</span><span class="o">&gt;=</span><span class="mi">4500</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">deptno</span><span class="o">=</span><span class="mi">10</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">deptno</span><span class="o">=</span><span class="mi">20</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><h2 id="多表查询"><a href="#多表查询" class="anchor-link">#</a>多表查询</h2>
+<p><strong>创建如下表结构</strong></p>
+<pre tabindex="0"><code>学生基本信息表 Student
+
+Studentid --主键,学号
+
+StudentName --学生姓名
+
+StudentSex  --学生性别
+</code></pre><pre tabindex="0"><code>课程信息表 Subject
+
+SubjectID --主键，课程编号
+
+SubjectName--课程名
+</code></pre><pre tabindex="0"><code>成绩表 Grade
+
+Studentid --联合主键,学生编号
+
+SubjectID --联合主键,课程编号
+
+Grade --成绩
+</code></pre><p><strong>添加如下数据</strong></p>
+<pre tabindex="0"><code>学生信息：
+
+101,&#39;张三&#39;,&#39;男&#39;
+
+102,&#39;李云&#39;,&#39;女&#39;
+
+103,&#39;小明&#39;,&#39;男&#39;
+
+104,&#39;李四&#39;,&#39;男&#39;
+</code></pre><pre tabindex="0"><code>课程信息：
+
+&#39;A01&#39;,&#39;C++&#39;
+
+&#39;A02&#39;,&#39;ASP&#39;
+
+&#39;A03&#39;,&#39;JAVA&#39;
+</code></pre><pre tabindex="0"><code>成绩信息：
+
+101,&#39;A01&#39;,59
+
+101,&#39;A02&#39;,72
+
+101,&#39;A03&#39;,90
+
+102,&#39;A01&#39;,75
+
+102,&#39;A02&#39;,91
+
+103,&#39;A01&#39;,71
+</code></pre><p><strong>查询如下信息</strong></p>
+<p>1）学号 学生姓名 课程名称 成绩 （要全部学生信息）</p>
+<p>2）学号 学生姓名 课程名称 成绩（只显示每科最高分）</p>
+<p>3）学号 学生姓名 课程名称 成绩 （成绩大于 60 时的显示及格，小于 60 时的显示不及格）</p>
+<p>4）学号 学生姓名 （查询出选课超过1门以上学生的信息）</p>
+<p>5）查询成绩大于 90 分为优秀的人数</p>
+<p>6）求男生里面分数最高的那个同学的姓名，课程名，成绩</p>
+<p>7）求没有成绩的学生姓名</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 添加数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">STUDENT</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;101&#39;</span><span class="p">,</span><span class="s1">&#39;张三&#39;</span><span class="p">,</span><span class="s1">&#39;男&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">STUDENT</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;102&#39;</span><span class="p">,</span><span class="s1">&#39;李云&#39;</span><span class="p">,</span><span class="s1">&#39;女&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">STUDENT</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;103&#39;</span><span class="p">,</span><span class="s1">&#39;小明&#39;</span><span class="p">,</span><span class="s1">&#39;男&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">STUDENT</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;104&#39;</span><span class="p">,</span><span class="s1">&#39;李四&#39;</span><span class="p">,</span><span class="s1">&#39;男&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">SUBJECT</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;A01&#39;</span><span class="p">,</span><span class="s1">&#39;C++&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">SUBJECT</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;A02&#39;</span><span class="p">,</span><span class="s1">&#39;ASP&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">SUBJECT</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;A03&#39;</span><span class="p">,</span><span class="s1">&#39;JAVA&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">GRADETABLE</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;101&#39;</span><span class="p">,</span><span class="s1">&#39;A01&#39;</span><span class="p">,</span><span class="mi">59</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">GRADETABLE</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;101&#39;</span><span class="p">,</span><span class="s1">&#39;A02&#39;</span><span class="p">,</span><span class="mi">72</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">GRADETABLE</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;101&#39;</span><span class="p">,</span><span class="s1">&#39;A03&#39;</span><span class="p">,</span><span class="mi">90</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">GRADETABLE</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;102&#39;</span><span class="p">,</span><span class="s1">&#39;A01&#39;</span><span class="p">,</span><span class="mi">75</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">GRADETABLE</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;102&#39;</span><span class="p">,</span><span class="s1">&#39;A02&#39;</span><span class="p">,</span><span class="mi">91</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">GRADETABLE</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;103&#39;</span><span class="p">,</span><span class="s1">&#39;A01&#39;</span><span class="p">,</span><span class="mi">71</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 学号 学生姓名 课程名称 成绩 （要全部学生信息）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentid</span><span class="p">,</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentname</span><span class="p">,</span><span class="w"> </span><span class="n">su</span><span class="p">.</span><span class="n">subjectname</span><span class="p">,</span><span class="w"> </span><span class="n">gr</span><span class="p">.</span><span class="n">grade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">STUDENT</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">GRADETABLE</span><span class="w"> </span><span class="n">gr</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">gr</span><span class="p">.</span><span class="n">studentid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentid</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">subject</span><span class="w"> </span><span class="n">su</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">gr</span><span class="p">.</span><span class="n">subjectid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">su</span><span class="p">.</span><span class="n">subjectid</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 学号 学生姓名 课程名称 成绩（只显示每科最高分）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentid</span><span class="p">,</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentname</span><span class="p">,</span><span class="w"> </span><span class="n">su</span><span class="p">.</span><span class="n">subjectname</span><span class="p">,</span><span class="w"> </span><span class="n">tab</span><span class="p">.</span><span class="n">grade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="n">st</span><span class="p">,</span><span class="w"> </span><span class="n">subject</span><span class="w"> </span><span class="n">su</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">studentid</span><span class="p">,</span><span class="w"> </span><span class="n">subjectid</span><span class="p">,</span><span class="w"> </span><span class="n">grade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="k">from</span><span class="w"> </span><span class="n">gradetable</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="k">where</span><span class="w"> </span><span class="p">(</span><span class="n">subjectid</span><span class="p">,</span><span class="n">grade</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">subjectid</span><span class="p">,</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="k">from</span><span class="w"> </span><span class="n">gradetable</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">subjectid</span><span class="p">))</span><span class="w"> </span><span class="n">tab</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tab</span><span class="p">.</span><span class="n">studentid</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">su</span><span class="p">.</span><span class="n">subjectid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tab</span><span class="p">.</span><span class="n">subjectid</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 学号 学生姓名 课程名称 成绩 （成绩大于60时的显示及格，小于60时的显示不及格）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentid</span><span class="p">,</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentname</span><span class="p">,</span><span class="w"> </span><span class="n">su</span><span class="p">.</span><span class="n">subjectname</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">decode</span><span class="p">(</span><span class="n">sign</span><span class="p">(</span><span class="n">gr</span><span class="p">.</span><span class="n">grade</span><span class="o">-</span><span class="mi">60</span><span class="p">),</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;不及格&#39;</span><span class="p">,</span><span class="s1">&#39;及格&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">是否及格</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">GRADETABLE</span><span class="w"> </span><span class="n">gr</span><span class="p">,</span><span class="n">STUDENT</span><span class="w"> </span><span class="n">st</span><span class="p">,</span><span class="w"> </span><span class="n">subject</span><span class="w"> </span><span class="n">su</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">gr</span><span class="p">.</span><span class="n">studentid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentid</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">gr</span><span class="p">.</span><span class="n">subjectid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">su</span><span class="p">.</span><span class="n">subjectid</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 学号 学生姓名 （查询出选课超过1门以上学生的信息）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentid</span><span class="p">,</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">gradetable</span><span class="w"> </span><span class="n">gr</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">STUDENTID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gr</span><span class="p">.</span><span class="n">STUDENTID</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">STUDENTID</span><span class="p">,</span><span class="n">st</span><span class="p">.</span><span class="n">studentname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">having</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 查询成绩大于90分为优秀的人数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">gradetable</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">studentid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">having</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">90</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 求男生里面分数最高的那个同学的姓名，课程名，成绩
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentname</span><span class="p">,</span><span class="w"> </span><span class="n">su</span><span class="p">.</span><span class="n">subjectname</span><span class="p">,</span><span class="w"> </span><span class="n">gr</span><span class="p">.</span><span class="n">grade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="n">st</span><span class="p">,</span><span class="w"> </span><span class="n">subject</span><span class="w"> </span><span class="n">su</span><span class="p">,</span><span class="w"> </span><span class="n">gradetable</span><span class="w"> </span><span class="n">gr</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gr</span><span class="p">.</span><span class="n">studentid</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">su</span><span class="p">.</span><span class="n">subjectid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gr</span><span class="p">.</span><span class="n">subjectid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">and</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">studentsex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;男&#39;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">and</span><span class="w"> </span><span class="n">gr</span><span class="p">.</span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">studentid</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">studentsex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;男&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">natural</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">gradetable</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 求没有成绩的学生姓名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">studentname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="n">s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">studentid</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">gr</span><span class="p">.</span><span class="n">studentid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                          </span><span class="k">from</span><span class="w"> </span><span class="n">gradetable</span><span class="w"> </span><span class="n">gr</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div>
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-08 20:16:46 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-08</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-08</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/tech/oracle-sql/" class="related-link">SQL 语言与 Oracle 数据库</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/oracle-design-and-store/" class="related-link">数据库设计与 Oracle 存储结构</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/oracle-sql-4/" class="related-link">Oracle SQL 练习题 4</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/oracle-sql-3/" class="related-link">Oracle SQL 练习题 3</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/oracle-sql-2/" class="related-link">Oracle SQL 练习题 2</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag" class="post-tag-link">#数据库</a> <a href="/tags/oracle/" rel="tag" class="post-tag-link">#oracle</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/css-basic/" rel="prev">&lt; CSS-层叠样式表</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/html-basic-tag/" rel="next">HTML 基本标签 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

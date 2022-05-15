@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>软件测试与质量保证 | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="结构性测试、功能性测试、集成测试、系统测试方法与质量保证" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/software-testing/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2019-06-19T16:45:19+08:00",
+        "dateModified": "2022-05-04T17:27:52+08:00",
+        "url": "https://wheliosc.github.io/tech/software-testing/",
+        "headline": "软件测试与质量保证",
+        "description": "结构性测试、功能性测试、集成测试、系统测试方法与质量保证",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  5288 ,
+        "image": ["https://wheliosc.github.io/QA.png","https://wheliosc.github.io/V-Model.png","https://wheliosc.github.io/decision-table.png","https://wheliosc.github.io/description-of-coverage.png","https://wheliosc.github.io/top-to-down.png","https://wheliosc.github.io/bottom-to-up.png","https://wheliosc.github.io/sandwich.png","https://wheliosc.github.io/verify.png","https://wheliosc.github.io/CMMI.jpg"],
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="软件测试与质量保证" />
+<meta property="og:description" content="结构性测试、功能性测试、集成测试、系统测试方法与质量保证" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/software-testing/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/QA.png" />
+<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2019-06-19T16:45:19&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-04T17:27:52&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">软件测试与质量保证</h1>
+
+            
+
+            
+                <div class="post-description p-summary">结构性测试、功能性测试、集成测试、系统测试方法与质量保证</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2019-06-19T16:45:19&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2019.6.19</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;5288</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:测试概述" href="#测试概述">测试概述</a>
+      <ol>
+        <li><a id="contents:基本定义" href="#基本定义">基本定义</a></li>
+        <li><a id="contents:质量控制与质量保证" href="#质量控制与质量保证">质量控制与质量保证</a></li>
+        <li><a id="contents:qa-的构成与活动" href="#qa-的构成与活动">QA 的构成与活动</a></li>
+        <li><a id="contents:质量成本构成" href="#质量成本构成">质量成本构成</a></li>
+        <li><a id="contents:软件测试的目的与原则" href="#软件测试的目的与原则">软件测试的目的与原则</a></li>
+        <li><a id="contents:测试用例" href="#测试用例">测试用例</a></li>
+        <li><a id="contents:v-模型" href="#v-模型">V 模型</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:功能性测试" href="#功能性测试">功能性测试</a>
+      <ol>
+        <li><a id="contents:边界值测试" href="#边界值测试">边界值测试</a>
+          <ol>
+            <li><a id="contents:边界值分析" href="#边界值分析">边界值分析</a></li>
+            <li><a id="contents:健壮性测试" href="#健壮性测试">健壮性测试</a></li>
+            <li><a id="contents:最坏情况测试" href="#最坏情况测试">最坏情况测试</a></li>
+            <li><a id="contents:边界值分析的局限性" href="#边界值分析的局限性">边界值分析的局限性</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:等价类测试" href="#等价类测试">等价类测试</a>
+          <ol>
+            <li><a id="contents:强等价类与弱等价类" href="#强等价类与弱等价类">强等价类与弱等价类</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:基于决策表的测试" href="#基于决策表的测试">基于决策表的测试</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:结构性测试" href="#结构性测试">结构性测试</a>
+      <ol>
+        <li><a id="contents:路径测试" href="#路径测试">路径测试</a>
+          <ol>
+            <li><a id="contents:程序图" href="#程序图">程序图</a></li>
+            <li><a id="contents:dd-路径" href="#dd-路径">DD-路径</a></li>
+            <li><a id="contents:dd-路径图" href="#dd-路径图">DD-路径图</a></li>
+            <li><a id="contents:测试覆盖指标" href="#测试覆盖指标">测试覆盖指标</a></li>
+            <li><a id="contents:基路径测试" href="#基路径测试">基路径测试</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a id="contents:集成测试" href="#集成测试">集成测试</a>
+      <ol>
+        <li><a id="contents:基于分解的集成" href="#基于分解的集成">基于分解的集成</a>
+          <ol>
+            <li><a id="contents:大棒集成big-bang" href="#大棒集成big-bang">大棒集成（Big Bang）</a></li>
+            <li><a id="contents:自顶向下集成" href="#自顶向下集成">自顶向下集成</a></li>
+            <li><a id="contents:自底向上集成" href="#自底向上集成">自底向上集成</a></li>
+            <li><a id="contents:三明治集成" href="#三明治集成">三明治集成</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:基于调用图的集成" href="#基于调用图的集成">基于调用图的集成</a>
+          <ol>
+            <li><a id="contents:成对集成" href="#成对集成">成对集成</a></li>
+            <li><a id="contents:相邻集成" href="#相邻集成">相邻集成</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:基于路径的集成" href="#基于路径的集成">基于路径的集成</a>
+          <ol>
+            <li><a id="contents:mm-路径" href="#mm-路径">MM-路径</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a id="contents:系统测试" href="#系统测试">系统测试</a>
+      <ol>
+        <li><a id="contents:线程thread级别" href="#线程thread级别">线程（Thread）级别</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:质量保证" href="#质量保证">质量保证</a>
+      <ol>
+        <li><a id="contents:评审review" href="#评审review">评审（Review）</a>
+          <ol>
+            <li><a id="contents:管理评审management-review" href="#管理评审management-review">管理评审（Management Review）</a></li>
+            <li><a id="contents:技术评审technical-review" href="#技术评审technical-review">技术评审（Technical Review）</a></li>
+            <li><a id="contents:审查inspection" href="#审查inspection">审查（Inspection）</a></li>
+            <li><a id="contents:走查walkthrough" href="#走查walkthrough">走查（Walkthrough）</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:层次关系" href="#层次关系">层次关系</a></li>
+        <li><a id="contents:制定测试计划的步骤" href="#制定测试计划的步骤">制定测试计划的步骤</a></li>
+        <li><a id="contents:质量度量指标" href="#质量度量指标">质量度量指标</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:cmmi" href="#cmmi">CMMI</a>
+      <ol>
+        <li><a id="contents:cmmi的五个级别" href="#cmmi的五个级别">CMMI的五个级别</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav><div class="post-body e-content">
+                <p></p>
+<h2 id="测试概述"><a href="#测试概述" class="anchor-link">#</a><a href="#contents:测试概述" class="headings">测试概述</a></h2>
+<h3 id="基本定义"><a href="#基本定义" class="anchor-link">#</a><a href="#contents:基本定义" class="headings">基本定义</a></h3>
+<p>错误（Error）：产生错误结果的人为行为。A human action that produces an incorrect result.</p>
+<p>缺陷（fault）：计算机程序中不正确的步骤、过程或数据定义。缺陷是错误（Error）的结果/表现。</p>
+<p>失效（failure）：系统或组件不能在规定的性能要求内执行其所需的功能。缺陷执行时会发生失效。</p>
+<blockquote>
+<p>The term failure refers to a behavioral deviation from the user requirement or the product specification; fault refers to an underlying condition within a software that causes certain failure(s) to occur; while error refers to a missing or incorrect human action resulting in certain fault(s) being injected into a software.The term “defect” generally refers to some problem with the software, either with its external behavior or with its internal characteristics.</p>
+</blockquote>
+<p>错误（Error）、缺陷（fault）和失效（failure）统称为 defect（或者说是 bug）。</p>
+<h3 id="质量控制与质量保证"><a href="#质量控制与质量保证" class="anchor-link">#</a><a href="#contents:质量控制与质量保证" class="headings">质量控制与质量保证</a></h3>
+<p>质量控制（Quality Control）：旨在评估开发或制造产品质量的一系列活动。“扣留”任何不符合条件的产品。</p>
+<p>质量保证（Quality Assurance）：通过在整个开发和制造过程/阶段中执行的各种活动，最大限度地降低保证质量的成本。</p>
+<ul>
+<li>Preventing the causes of errors</li>
+<li>Detecting faults</li>
+<li>Correcting failures</li>
+</ul>
+<p>QA 和 QC 服务于不同的对象，QC 的活动是 QA 的活动的一部分。</p>
+<h3 id="qa-的构成与活动"><a href="#qa-的构成与活动" class="anchor-link">#</a><a href="#contents:qa-的构成与活动" class="headings">QA 的构成与活动</a></h3>
+<p><img src="QA.png" alt="QA的构成与活动"></p>
+<h3 id="质量成本构成"><a href="#质量成本构成" class="anchor-link">#</a><a href="#contents:质量成本构成" class="headings">质量成本构成</a></h3>
+<ul>
+<li>
+<p>Costs of Control</p>
+<ul>
+<li>Prevention costs</li>
+<li>Appraisal costs（评估成本）</li>
+</ul>
+</li>
+<li>
+<p>Costs of Failure</p>
+<ul>
+<li>Internal failure costs</li>
+<li>external failure costs</li>
+</ul>
+</li>
+</ul>
+<h3 id="软件测试的目的与原则"><a href="#软件测试的目的与原则" class="anchor-link">#</a><a href="#contents:软件测试的目的与原则" class="headings">软件测试的目的与原则</a></h3>
+<p>软件测试在软件质量保证活动中起着核心作用。通过运行软件系统或执行其指定的功能，测试人员可以确定观察到的系统行为是否符合其规范或要求。如果两者之间存在差异，可以采取后续行动来定位和消除软件代码中的相关问题，这也可能包括修改软件设计。</p>
+<p>因此，通过测试来检测和消除缺陷有助于减少交付软件产品中的缺陷数量，从而帮助实现质量目标。即使没有观察到任何差异，也可以将特定实例累积为证据，以证明软件按指定方式运行。因此，测试是确保和证明软件质量最常用的手段。</p>
+<ul>
+<li>所有测试都应该可以追溯到客户要求。</li>
+<li>测试应该在测试开始之前很久就要计划好。</li>
+<li>Pareto 原则（80％ 的错误可能在 20％ 的代码中找到）适用于软件测试。</li>
+<li>测试应该从小开始，然后进展到大。</li>
+<li>彻底的测试是不可能的。</li>
+<li>为了最有效，测试应由独立的第三方进行。</li>
+</ul>
+<h3 id="测试用例"><a href="#测试用例" class="anchor-link">#</a><a href="#contents:测试用例" class="headings">测试用例</a></h3>
+<p>软件测试的本质是为要测试的项目确定一组测试用例。</p>
+<p>测试用例是描述输入、操作或事件以及预期响应的文档，用于确定应用程序的功能是否正常工作。</p>
+<p>测试用例应包含诸如测试用例标识符、测试用例名称、目标、测试条件/设置、输入数据要求、步骤和预期结果等详细信息。</p>
+<h3 id="v-模型"><a href="#v-模型" class="anchor-link">#</a><a href="#contents:v-模型" class="headings">V 模型</a></h3>
+<p><img src="V-Model.png" alt="V 模型"></p>
+<h2 id="功能性测试"><a href="#功能性测试" class="anchor-link">#</a><a href="#contents:功能性测试" class="headings">功能性测试</a></h2>
+<h3 id="边界值测试"><a href="#边界值测试" class="anchor-link">#</a><a href="#contents:边界值测试" class="headings">边界值测试</a></h3>
+<h4 id="边界值分析"><a href="#边界值分析" class="anchor-link">#</a><a href="#contents:边界值分析" class="headings">边界值分析</a></h4>
+<p>关注输入域，不适合强类型语言。</p>
+<p>基于“单缺陷”假设，即：失效（failure）极少是由两个（或多个）缺陷的同时发生引起的。</p>
+<p>具体方法：对于多个输入，假设一个变量是导致 failure 的，其他变量取固定值（5 种情况：最大值 max、最小值 min、中间值 mid、比最大值小一点 max-、比最小值大一点 min+）。</p>
+<p>假设一个程序有 n 个输入，则测试用例数：$5 \times n - (n-1) = 4n + 1$，其中 $n-1$ 为重复用例数。</p>
+<h4 id="健壮性测试"><a href="#健壮性测试" class="anchor-link">#</a><a href="#contents:健壮性测试" class="headings">健壮性测试</a></h4>
+<p>健壮性测试是边界值分析的一种简单拓展，除了变量的五个边界值分析取值，还要增加略超过最大值（max+）和略小于最小值（min-）的取值，即每个变量取7个值。</p>
+<p>健壮性测试的主要价值在于强制注意异常处理。</p>
+<h4 id="最坏情况测试"><a href="#最坏情况测试" class="anchor-link">#</a><a href="#contents:最坏情况测试" class="headings">最坏情况测试</a></h4>
+<p>多缺陷假设，即假设失效（failure）是由多个变量引起的。取可能值的笛卡尔乘积，n 变量最坏情况测试下的测试用例数为 $5^{n}$，在健壮最坏情况测试下的测试用例数为 $7^{n}$。</p>
+<h4 id="边界值分析的局限性"><a href="#边界值分析的局限性" class="anchor-link">#</a><a href="#contents:边界值分析的局限性" class="headings">边界值分析的局限性</a></h4>
+<p>如果被测程序是多个<strong>独立变量</strong>的函数，这些变量受<strong>物理量</strong>的限制，则很适合边界值分析。</p>
+<p>物理变量比如温度、压力、空气速度、迎角、负载等，物理边界很重要；与之相对的是逻辑变量，比如说 PIN 和电话号码等。</p>
+<h3 id="等价类测试"><a href="#等价类测试" class="anchor-link">#</a><a href="#contents:等价类测试" class="headings">等价类测试</a></h3>
+<p>使用等价类作为功能性测试的基础有两个动机：进行完备的测试，同时希望避免冗余。</p>
+<p>等价类构成一个集合的分区，该集合是相互不相交的子集的集合，这些子集的并集是整个集合。</p>
+<p>单缺陷假设和多缺陷假设产生弱等价类测试和强等价类测试之分，针对是否进行无效数据的处理产生健壮与一般等价类测试之分。</p>
+<ul>
+<li>弱一般等价类测试：单缺陷假设，不考虑异常区域</li>
+<li>强一般等价类测试：多缺陷假设，不考虑异常区域</li>
+<li>弱健壮等价类测试：单缺陷假设，要考虑异常区域</li>
+<li>强健壮等价类测试：多缺陷假设，要考虑异常区域</li>
+</ul>
+<h4 id="强等价类与弱等价类"><a href="#强等价类与弱等价类" class="anchor-link">#</a><a href="#contents:强等价类与弱等价类" class="headings">强等价类与弱等价类</a></h4>
+<p>弱等价类：每个等价类都覆盖一次即可，测试用例数与输入变量的最多的划分一致，如第一个输入划分了 3 个等价类，第二个输入划分了 4 个等价类，则测试用例数为 4 个。</p>
+<p>强等价类：每一个输入的等价类都要进行组合，如第一个输入划分了 3 个等价类，第二个输入划分了 4 个等价类，则测试用例数为 $3 \times 4 = 12$ 个。</p>
+<h3 id="基于决策表的测试"><a href="#基于决策表的测试" class="anchor-link">#</a><a href="#contents:基于决策表的测试" class="headings">基于决策表的测试</a></h3>
+<p>在所有功能性测试的方法中，基于决策表的测试方法是最严格的，因为决策表具有逻辑严格性。</p>
+<p>决策表分为条件桩，条件条目，行动桩，行动条目四部分。</p>
+<p><img src="decision-table.png" alt="三角形问题的决策表"></p>
+<h2 id="结构性测试"><a href="#结构性测试" class="anchor-link">#</a><a href="#contents:结构性测试" class="headings">结构性测试</a></h2>
+<p>也叫做白盒测试、透明盒测试。基于被测程序的源代码，而不是基于定义。</p>
+<h3 id="路径测试"><a href="#路径测试" class="anchor-link">#</a><a href="#contents:路径测试" class="headings">路径测试</a></h3>
+<h4 id="程序图"><a href="#程序图" class="anchor-link">#</a><a href="#contents:程序图" class="headings">程序图</a></h4>
+<p>给定采用命令式程序设计语言编写的一段程序，其程序图是一种有向图，图中的节点表示语句片段，边表示控制流。对于给定的程序，可以使用多种不同的程序图，所有这些程序图都可以简化为唯一的 DD-路径图。</p>
+<h4 id="dd-路径"><a href="#dd-路径" class="anchor-link">#</a><a href="#contents:dd-路径" class="headings">DD-路径</a></h4>
+<p>DD-路径（decision-to-decision）是从程序图中获得的链，其中链是初始节点和终端节点不同的路径，并且每个节点的内度为1，外度为1。初始节点与链中的其他节点2-连接（单向可达），不会存在 1-连接或 3-连接。</p>
+<p>相关定义：</p>
+<ul>
+<li>内度（入度）：将该节点作为终止节点的不同边的条数。</li>
+<li>外度（出度）：将该节点作为开始节点的不同边的条数。</li>
+<li>路径：有向路径是一系列边，使得对于该序列中的所有相邻边对偶 $e_i, e_j$ 来说，第一条边的终止节点是第二条边的开始节点。</li>
+<li>半路径：有向半路径是一系列边，使得对于该序列中至少有一个相邻边对偶 $e_i, e_j$ 来说，第一条边的开始节点是第二条边的开始节点，或第一条边的终止节点是第二条边的终止节点。</li>
+<li>0-连接：对于有向图中的两个节点 $n_i,n_j$，当且仅当 $n_i$ 和 $n_j$ 之间没有路径。</li>
+<li>1-连接：对于有向图中的两个节点 $n_i,n_j$，当且仅当 $n_i$ 和 $n_j$ 之间有一条半路径，但是没有路径。</li>
+<li>2-连接：对于有向图中的两个节点 $n_i,n_j$，当且仅当 $n_i$ 和 $n_j$ 之间有一条路径。</li>
+<li>3-连接：对于有向图中的两个节点 $n_i,n_j$，当且仅当从 $n_i$ 到 $n_j$ 有一条路径，并且从 $n_j$ 到 $n_i$ 有一条路径。</li>
+</ul>
+<h4 id="dd-路径图"><a href="#dd-路径图" class="anchor-link">#</a><a href="#contents:dd-路径图" class="headings">DD-路径图</a></h4>
+<p>给定采用命令式程序设计语言编写的一段程序，其 DD-路径图是有向图，图中的节点表示程序图的 DD-路径，边表示连接 DD-路径之间的控制流。</p>
+<h4 id="测试覆盖指标"><a href="#测试覆盖指标" class="anchor-link">#</a><a href="#contents:测试覆盖指标" class="headings">测试覆盖指标</a></h4>
+<ul>
+<li>语句覆盖：选择足够多的测试数据，使被测程序中<strong>每个语句至少执行一次</strong></li>
+<li>判定覆盖：不仅每个语句必须至少执行一次，而且每个判定的每种可能的结果都应该至少执行一次，也就是<strong>每个判定的每个分支都至少执行一次</strong></li>
+<li>条件覆盖：不仅每个语句至少执行一次，而且使<strong>判定表达式</strong>中的<strong>每个条件都取到各种可能的结果</strong></li>
+<li>判定/条件覆盖：选取足够多的测试数据，使得判定表达式中的每个条件都取到各种可能的值，而且每个判定表达式也都取到各种可能的结果</li>
+<li>条件组合覆盖：条件组合覆盖是更强的逻辑覆盖标准，它要求选取足够多的测试数据，使得每个判定表达式中条件的各种可能组合都至少出现一次，但不一定每条路径都执行到</li>
+<li>路径覆盖：使程序的每条可能路径都至少执行一次（如果程序图中有环，则要求每个环至少经过一次）。路径覆盖是覆盖率最高的一种覆盖技术。</li>
+</ul>
+<p>条件覆盖通常比判定覆盖强，因为它使判定达式中每个条件都取到了两个不同的结果，判定覆盖却只关心整个判定表达式的值。但是，也可能有相反的情况。</p>
+<p><img src="description-of-coverage.png" alt="测试覆盖指标"></p>
+<h4 id="基路径测试"><a href="#基路径测试" class="anchor-link">#</a><a href="#contents:基路径测试" class="headings">基路径测试</a></h4>
+<h2 id="集成测试"><a href="#集成测试" class="anchor-link">#</a><a href="#contents:集成测试" class="headings">集成测试</a></h2>
+<h3 id="基于分解的集成"><a href="#基于分解的集成" class="anchor-link">#</a><a href="#contents:基于分解的集成" class="headings">基于分解的集成</a></h3>
+<p>给定分解树所需集成测试会话数： 会话 = 节点 - 叶子节点 + 边。</p>
+<h4 id="大棒集成big-bang"><a href="#大棒集成big-bang" class="anchor-link">#</a><a href="#contents:大棒集成big-bang" class="headings">大棒集成（Big Bang）</a></h4>
+<p>所有组件一次组装和测试。缺点是当发现失效时，没有多少线索能够用来帮助确定缺陷的位置。</p>
+<h4 id="自顶向下集成"><a href="#自顶向下集成" class="anchor-link">#</a><a href="#contents:自顶向下集成" class="headings">自顶向下集成</a></h4>
+<p>自顶向下集成从主程序（树根）开始。所有被主程序调用的下层单元都作为“桩”出现，桩就是模拟被调用单元的一次性代码。</p>
+<p>提供了主程序的所有桩后，可开始测试主程序，就像它是一个独立单元一样。（这是第一个会话，主程序+桩）。在确信主程序逻辑正确之后，将逐渐采用实际代码取代这些桩。</p>
+<p><img src="top-to-down.png" alt="自顶向下"></p>
+<p>在最上层，要开发第一层分解中四个组件的桩，共有四个集成过程，在每个过程中，每次用一个已完成的子程序去替代一个桩，直到完整测试整个系统。自顶向下集成采用功能分解树的广度优先遍历策略。</p>
+<p>优点：测试用例可以根据系统的功能（功能需求）来定义。结构技术也可用于顶层的单元。
+缺点：编写桩可能很困难，尤其是在参数传递很复杂的情况下，桩必须允许测试所有可能的条件。桩模块数 = 节点数 - 1。</p>
+<h4 id="自底向上集成"><a href="#自底向上集成" class="anchor-link">#</a><a href="#contents:自底向上集成" class="headings">自底向上集成</a></h4>
+<p>自底向上的集成策略首先侧重于测试最低级别的单元（即分解树叶的单元）。从分解树的叶开始，并用特别编写的驱动器测试。大多数系统在接近叶时都有相当高的扇出数，因此在自底向上集成顺序中，不需要同样数量的驱动器，不过代价是驱动器模块都比较复杂。</p>
+<p><img src="bottom-to-up.png" alt="自底向上"></p>
+<p>驱动器数 = 节点数 - 叶子节点数。</p>
+<h4 id="三明治集成"><a href="#三明治集成" class="anchor-link">#</a><a href="#contents:三明治集成" class="headings">三明治集成</a></h4>
+<p>三明治集成是自顶向下和自底向上集成的组合。如果通过分解树考虑三明治集成，则只需要在子树上真正进行大爆炸集成。桩和驱动器的开发工作都比较小，不过代价是作为大爆炸集成的后果，在一定程度上增加了定位缺陷的难度。</p>
+<p><img src="sandwich.png" alt="三明治"></p>
+<h3 id="基于调用图的集成"><a href="#基于调用图的集成" class="anchor-link">#</a><a href="#contents:基于调用图的集成" class="headings">基于调用图的集成</a></h3>
+<p>基本思想是用调用图代替分解树。</p>
+<p>调用图是一个定向标记的图，其中节点表示功能单元，边表示调用事件或特定的资源请求。</p>
+<h4 id="成对集成"><a href="#成对集成" class="anchor-link">#</a><a href="#contents:成对集成" class="headings">成对集成</a></h4>
+<p>对调用图的每条边有一个集成测试会话。</p>
+<h4 id="相邻集成"><a href="#相邻集成" class="anchor-link">#</a><a href="#contents:相邻集成" class="headings">相邻集成</a></h4>
+<p>图中节点的邻居是边从给定节点引出的节点集合。在有向图中，节点邻居包括所有直接前驱结点和所有直接后继节点。</p>
+<p>内部节点 = 节点 - （源节点 + 汇节点）</p>
+<p>邻居 = 内部节点 + 源节点</p>
+<p>综合上面的公式得到：邻居 = 节点 - 汇节点</p>
+<ul>
+<li>汇节点：出度为0的节点</li>
+<li>源节点：入度为0的节点</li>
+</ul>
+<h3 id="基于路径的集成"><a href="#基于路径的集成" class="anchor-link">#</a><a href="#contents:基于路径的集成" class="headings">基于路径的集成</a></h3>
+<h4 id="mm-路径"><a href="#mm-路径" class="anchor-link">#</a><a href="#contents:mm-路径" class="headings">MM-路径</a></h4>
+<p>MM-路径是穿插出现模块执行路径和消息的序列。MM-路径永远不是可行执行路径，并且这些路径要跨越单元边界。节点表示模块执行路径，边表示消息。对于传统（过程）软件，MM-路径永远从主程序中开始，在主程序中结束。</p>
+<p>相关定义：</p>
+<ul>
+<li>程序源节点：程序执行开始或重新开始处的语句片段。</li>
+<li>程序汇节点：程序执行结束处的语句片段。</li>
+<li>模块执行路径：以源节点开始、以汇节点结束的一系列语句，中间没有插入汇节点。</li>
+<li>消息：一种程序设计语言机制，通过这种机制一个单元将控制转移给另一个单元。</li>
+</ul>
+<h2 id="系统测试"><a href="#系统测试" class="anchor-link">#</a><a href="#contents:系统测试" class="headings">系统测试</a></h2>
+<h3 id="线程thread级别"><a href="#线程thread级别" class="anchor-link">#</a><a href="#contents:线程thread级别" class="headings">线程（Thread）级别</a></h3>
+<ul>
+<li>单元级线程被理解为指令的执行时间路径或流程图上的某个路径。</li>
+<li>集成级线程是实现某些原子函数的mm路径序列。表示为模块执行和消息的序列。</li>
+<li>系统级线程是原子系统函数（ASF）的序列。</li>
+</ul>
+<p>原子系统功能是一种在系统层可以观察得到的端口输入与输出事件的行动。</p>
+<p>线程提供了三个测试级别的统一视图：</p>
+<ul>
+<li>单元测试测试单个功能</li>
+<li>集成测试检查单元之间的交互</li>
+<li>系统测试检查ASF之间的交互。</li>
+</ul>
+<h2 id="质量保证"><a href="#质量保证" class="anchor-link">#</a><a href="#contents:质量保证" class="headings">质量保证</a></h2>
+<h3 id="评审review"><a href="#评审review" class="anchor-link">#</a><a href="#contents:评审review" class="headings">评审（Review）</a></h3>
+<p>对产品或项目状态进行评估，以确定与计划结果的差异并提出改进建议。</p>
+<h4 id="管理评审management-review"><a href="#管理评审management-review" class="anchor-link">#</a><a href="#contents:管理评审management-review" class="headings">管理评审（Management Review）</a></h4>
+<p>“管理评审的目的是<strong>监测进度，确定计划和进度的状态，确认需求及其系统分配，或评估用于实现适用性的管理方法的有效性</strong>”。</p>
+<p>它们支持有关软件项目期间所需更改和纠正措施的决策。管理评审确定计划、进度和要求的充分性，并监控其进度或不一致性。这些评审可以对产品进行，例如<strong>审计报告、进度报告、V&amp;V报告和许多类型的计划</strong>，包括风险管理、项目管理、软件配置管理、软件安全和风险评估等。</p>
+<h4 id="技术评审technical-review"><a href="#技术评审technical-review" class="anchor-link">#</a><a href="#contents:技术评审technical-review" class="headings">技术评审（Technical Review）</a></h4>
+<p>“技术评审的目的是<strong>评估软件产品，以确定其是否适合预期用途。目的是识别与批准的规范和标准的差异。结果应向管理层提供证据，确认（或不确认）产品符合规范、符合标准，并控制变更</strong>”。</p>
+<p>在技术评审中必须建立特定的角色：决策者、评审负责人、记录员和技术人员，以支持评审活动。技术审查要求强制投入：</p>
+<ul>
+<li>目标陈述</li>
+<li>特定的软件产品</li>
+<li>具体项目管理计划</li>
+<li>与此产品关联的问题列表</li>
+<li>技术评审程序</li>
+</ul>
+<p>小组遵循审查程序。技术合格的人员提供产品概述，并在一个或多个会议期间进行检查。技术评审应在评审中列出的所有活动完成后完成。</p>
+<h4 id="审查inspection"><a href="#审查inspection" class="anchor-link">#</a><a href="#contents:审查inspection" class="headings">审查（Inspection）</a></h4>
+<p>目的：检测和识别软件产品异常</p>
+<p>与评审的两个重要区别：</p>
+<ol>
+<li>对审查组成员担任管理职务的个人，不得参加审查。</li>
+<li>审查由一名接受审查技术培训的公正的协助者领导。</li>
+</ol>
+<p>审查总是涉及到中间产品或最终产品的作者，而其他的评审可能不会。</p>
+<p>审查会议通常持续几个小时，而技术评审通常范围更广，时间更长。</p>
+<p>审查退出标准：</p>
+<ol>
+<li>不接受或最轻微的返工</li>
+<li>接受返工验证</li>
+<li>复验</li>
+</ol>
+<p><img src="verify.png" alt="审查过程"></p>
+<h4 id="走查walkthrough"><a href="#走查walkthrough" class="anchor-link">#</a><a href="#contents:走查walkthrough" class="headings">走查（Walkthrough）</a></h4>
+<p>目的：</p>
+<ul>
+<li>评估软件产品</li>
+<li>有时用于教育观众</li>
+</ul>
+<p>主要目标：</p>
+<ul>
+<li>发现异常</li>
+<li>改进软件产品</li>
+<li>考虑替代实施</li>
+<li>评估是否符合标准和规范</li>
+</ul>
+<p>走查与审查类似，但通常不太正式。</p>
+<h3 id="层次关系"><a href="#层次关系" class="anchor-link">#</a><a href="#contents:层次关系" class="headings">层次关系</a></h3>
+<p>SQA 计划包括主要测试计划和评审计划，主要测试计划包括单元测试计划、集成测试计划、系统测试计划和验收测试计划，评审计划包括审查和走查。</p>
+<h3 id="制定测试计划的步骤"><a href="#制定测试计划的步骤" class="anchor-link">#</a><a href="#contents:制定测试计划的步骤" class="headings">制定测试计划的步骤</a></h3>
+<ul>
+<li>确定测试需求</li>
+<li>评估风险</li>
+<li>制定测试策略</li>
+<li>明确测试中的关键活动(WBS)</li>
+<li>估计测试成本和工作量</li>
+<li>定义角色和确定资源</li>
+<li>确定进度, 创建时间表</li>
+<li>生成测试计划</li>
+</ul>
+<h3 id="质量度量指标"><a href="#质量度量指标" class="anchor-link">#</a><a href="#contents:质量度量指标" class="headings">质量度量指标</a></h3>
+<p>缺陷密度-&gt;缺陷个数：优先级（严重性）
+缺陷趋势-&gt;缺陷个数：时间
+缺陷龄期-&gt;缺陷存在周期</p>
+<h2 id="cmmi"><a href="#cmmi" class="anchor-link">#</a><a href="#contents:cmmi" class="headings">CMMI</a></h2>
+<h3 id="cmmi的五个级别"><a href="#cmmi的五个级别" class="anchor-link">#</a><a href="#contents:cmmi的五个级别" class="headings">CMMI的五个级别</a></h3>
+<p><img src="CMMI.jpg" alt="CMMI"></p>
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-04 17:27:52 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-04</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-04</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" rel="tag" class="post-tag-link">#软件测试</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/ubuntu-install-tensorflow/" rel="prev">&lt; Ubuntu18.04 安装 tensorflow</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/oracle-sql/" rel="next">SQL 语言与 Oracle 数据库 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha256-gPJfuwTULrEAAcI3X4bALVU/2qBU+QY/TpoD3GO+Exw=" crossorigin="anonymous">
+<script>
+    if (typeof renderMathInElement === 'undefined') {
+        var getScript = (options) => {
+            var script = document.createElement('script');
+            script.defer = true;
+            script.crossOrigin = 'anonymous';
+            Object.keys(options).forEach((key) => {
+                script[key] = options[key];
+            });
+            document.body.appendChild(script);
+        };
+        getScript({
+            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js',
+            integrity: 'sha256-YTW9cMncW/ZQMhY69KaUxIa2cPTxV87Uh627Gf5ODUw=',
+            onload: () => {
+                getScript({
+                    src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js',
+                    integrity: 'sha256-yzSfYeVsWJ1x+2g8CYHsB/Mn7PcSp8122k5BM4T3Vxw=',
+                    onload: () => {
+                        getScript({
+                            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js',
+                            integrity: 'sha256-fxJzNV6hpc8tgW8tF0zVobKa71eTCRGTgxFXt1ZpJNM=',
+                            onload: () => {
+                                renderKaTex();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } else {
+        renderKaTex();
+    }
+    function renderKaTex() {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+            }
+        );
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

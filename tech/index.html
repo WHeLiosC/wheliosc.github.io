@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>Tech | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="记录自己学过的东西" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "datePublished": "2018-06-04T15:13:43+00:00",
+        "dateModified": "2022-05-08T20:26:43+08:00",
+        "url": "https://wheliosc.github.io/tech/",
+        "name": "Tech",
+        "description": "记录自己学过的东西",
+        "image": "https://wheliosc.github.io/icons/favicon.png",
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary" />
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="Tech" />
+<meta property="og:description" content="记录自己学过的东西" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
+    <meta property="og:type" content="website" />
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner list">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+        <main class="main list" id="main">
+            <div class="main-inner">
+                <div class="content list-group">
+                    
+                        
+                            <h1 class="list-title">Tech</h1>
+                        
+                        
+                    
+
+                    
+
+                    
+                    
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                                
+                                    
+                                
+                            
+                        
+                    
+
+                    
+
+                    
+                    
+
+                    
+                    
+                    
+                        
+                        
+                            
+                            
+                        
+                        
+                        
+                        
+                            
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                            
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                            
+                            
+                        
+                        
+                        <h2 class="list-year">二〇二一<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="icon chinese-zodiac"><path d="M910 658q-6-7-26-26-21-18-39-40-19-21-27-41-13-32-48-55-35-22-45-12-7 4-18 5-20 3-138-4-1 0-4-1t-9 0h-12q-6 0-13 2-4 1-13 4-3 1-5 2-3 2-5 5-3 5-6 13 0 5 2 15 1 9-2 35-3 25-10 47-8 21-31 43-24 21-54 33-53 16-99 17t-64-3q-19-4-19-7-3 35-9 104-4 78 9 86 11 6 28-18 17-25 39-64 9-16 26-48 16 2 62 8-1 4-2 14-2 18-7 72-2 18-2 35 0 18 3 21 8 4 22 3 15-1 34-36t25-94q2 1 5 1 5 0 14 1 11 1 22 1 10 0 25 2 16 2 28 1t27 2q16 3 25 1t18 0q10 2 12 1-1 18-2 55 3 50 21 49 8 0 11-19 4-20 6-49 2-30 3-38 40-6 62-11v7q0 4-1 15t0 22q1 10 0 24-1 15 2 24t3 17 5 11 14-4q8-6 20-25 12-20 21-50 8-31 13-80t-1-113q1 0 4 1 7 6 16 29 4 10 8 16 3 6 7 19 4 12 10 18t12 15q6 10 14 11 5 0 15 2 8 1 18-6 0 1 1-5l3-12q2-7 4-15v-6q0-6-2-12-2-9-6-15zm-670 8q24 3 47 5 41 6 72 2 16-2 30-7 40-13 62-39 2-1 6-4 3-2 6-6 2-2 5-6 2-2 5-8 8-17 9-32t0-29q-1-13-10-25-9-13-11-20t-10-14q-1 0-1-1-1-27-1-44 18-3 29-12 11-10 12-18 0-5-15-16-9-7-29-21l-15-10q0-13-5-32-5-18-17-27-6-6-12-6t-8 3l-3 3q-4 54-93 59-20 1-34-13-14-15-16-31-1-5-2-15-35 0-60 65 0 2-2 5-9 1-19 4-10 4-19 8-5 2-15 8-7 4-10 7l-4 2q7 12 23 24 17 11 28 17t12 4 3 1 3 0q-10 34-20 52-26 10-39 28t-8 50q4 24 16 40t28 27q15 10 27 13 8 2 23 6 8 2 16 3t16 0zm-18-57q-8-8-7-29 1-20 19-15 24 7 5 44-8 2-17 0zm143-148q1 0 2 1t0 1q-1 7-3 19-3-1-12-2-19-5-12-18 7-12 20-6zm-21 104q18-24 26 15 0 5 2 15-5 12-19 17 0-1-2-2-11-5-14-18-3-12 7-27zm-76-85q-3 4-25 7-4-12-4-24 5 0 9-1 15-5 20 4 5 8 0 14z"/></svg></h2>
+                        
+                            <ul class="list-part">
+        
+            <li class="list-item">
+                <a href="/tech/sparse-matrix/" class="list-item-title">稀疏矩阵</a>
+                <time datetime="2021-09-03T17:31:35&#43;08:00" class="list-item-time">9 月 3 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/lamp/" class="list-item-title">LAMP</a>
+                <time datetime="2021-08-30T14:15:21&#43;08:00" class="list-item-time">8 月 30 日</time>
+            </li>
+        
+        
+    </ul>
+
+
+                        
+                    
+                        
+                        
+                            
+                            
+                        
+                        
+                        
+                        
+                            
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                            
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                            
+                            
+                        
+                        
+                        <h2 class="list-year">二〇二〇<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="icon chinese-zodiac"><path d="M675 908q7-10 17-29 10-18 28-69 17-52 15-98t-35-102q-32-56-106-95-54-15-69-8-5 3-6 8 0 5 18 39 17 33 36 74 20 41 25 85t-15 72q-47 0-88-35-21-18-34-46-1-2-4-4t-11-10q-7-8-17-9t-22 0q-13 1-28 12-88 69-76 98 2 5 8 18l25 50q6 13 7 20t-1 11q-3 2-58 4-56 2-70 9-26 16-7 33 25 22 131 30 46 4 75 0 28-4 39-14 10-10 13-21 3-10 3-25 0-16 4-22 12-21 27-19 14 2 19 23 1 5 1 15t2 17q2 6 5 18 3 10 10 15 6 5 18 10t29 5q24 0 68 6 44 7 72 6t37-12q20-18-28-44-34-16-57-16zm236-249q-11-30-24-55-14-26-26-40-8-9-23-27-12-12-19-18t-11-16q-4-9-4-16t8-21q14-19 43-55 39-57 22-62-3 1-7 2t-15 8-20 12q-10 5-23 17-13 11-22 20-10 9-20 25-10 15-13 27-3 13-2 30 1 18 11 34 13 24 39 53 15 17 44 49 18 21 29 44 10 24 3 53-8 28-43 61-19 19-95 24-2 1-4 3t-5 9q-1 3-4 10-1 3 5 10t18 5q16 1 40-3 23-4 52-16 28-12 48-34 19-21 28-53 2-10 2-22 0-25-12-58zM330 322q30 13 52 4l4-2q18-9 27-25 24-53 0-73-14-13-29-18-15-4-26-2-10 2-19 7-9 4-14 8-1 1-3 5-12 14-17 32-5 17 1 37 6 19 24 27zm-34 241q-46 90-66 116-10 14-17 36-7 23-6 43 1 21 15 25 8 3 20-2 11-5 22-13 11-9 26-23 9-9 26-27 13-12 28-30 22-26 44-34 23-8 41-2t37 29q87 110 106 79 7-13 2-49-3-23-8-46-5-22-11-41-6-18-13-33l-15-27q-7-13-13-22-6-8-11-18t-8-12q0-4 1-10t4-19q3-14 3-28v-26q0-14-5-24-1-1-2-3 6 1 14 1t15 2q31 2 54-6 22-8 32-25 11-16 15-32 4-17 3-32t-5-25q-22-48-99-54-3 0-7-1t-15 1-21 3q-9 1-20 12-11 12-17 22-21 46-9 84-81-35-166-10-57 17-80 39-22 21-24 42-12 0-16 2-17 4-27 11t-12 15q-1 2-1 4 0 6 7 15 21 22 62 18 2 3 5 8t16 16q12 10 23 21t33 19q22 7 40 11zm35-164q7 4 13 7t12 10q-10 10-25 18h-1q0-1-2-1t-4-1-7 0q-4 1-7-1t-8-1-9 0q20-41 38-31z"/></svg></h2>
+                        
+                            <ul class="list-part">
+        
+            <li class="list-item">
+                <a href="/tech/ml-dm/" class="list-item-title">机器学习与数据挖掘</a>
+                <time datetime="2020-12-19T21:03:16&#43;08:00" class="list-item-time">12 月 19 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/springboot-deploy/" class="list-item-title">SpringBoot 项目部署到服务器</a>
+                <time datetime="2020-04-14T17:33:22&#43;08:00" class="list-item-time">4 月 14 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/vue-project-deploy/" class="list-item-title">Vue 项目部署到服务器上</a>
+                <time datetime="2020-04-13T15:58:56&#43;08:00" class="list-item-time">4 月 13 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/springboot-create-project/" class="list-item-title">SpringBoot 项目开发</a>
+                <time datetime="2020-04-10T09:03:44&#43;08:00" class="list-item-time">4 月 10 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/ubuntu-install-tensorflow/" class="list-item-title">Ubuntu18.04 安装 tensorflow</a>
+                <time datetime="2020-03-30T18:04:08&#43;08:00" class="list-item-time">3 月 30 日</time>
+            </li>
+        
+        
+    </ul>
+
+
+                        
+                    
+                        
+                        
+                            
+                            
+                        
+                        
+                        
+                        
+                            
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                            
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                            
+                            
+                        
+                        
+                        <h2 class="list-year">二〇一九<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="icon chinese-zodiac"><path d="M558 775q-7 17-4 28 3 12 15 13 9 2 19-8 10-11 14-28 4-18-6-36-9 0-25 12-9 10-13 19zm358-229q-4-7-8-10-2-2-6-5-2-2-6 0t-6 2q-2 1-4 4-1 2-4 7-1 1-1 3t2 6q2 3 9-1 10-4 10 7-1 14-13 16h-3q-3-20-38-48-53-44-153-46H562q-1 2-3 4t-3 11-4 16q-3 6 2 17t8 15q19 21 35 55 16 33 15 66v71q0 11 1 32 1 20 4 29 4 10 7 12l2 2 10 5q4 1 11-1t15-8q7-7 15-25t16-43q18 1 55 3v7q0 4 1 17 1 12 5 19t10 15q6 9 17 5 15-2 18-14t0-25q-3-14 1-28 5-13 9 11 1 10 3 31 1 9 2 11 1 6 8 9t18-1q10-4 13-14 4-8 4-27 0-18 5-43 5-24 22-50 8-10 9-39 1-28-4-35l18-9q14-8 13-21 0-7-4-15zM593 688q6-30 3-55-3-24-13-44-11-19-19-31-8-13-17-19-3-2-7-7-3-36-11-63-7-28-17-43-10-16-17-24-8-8-15-11l-6-3q8-53-18-58h-3q-3 0-7 1-5 2-10 5-5 4-9 9t-9 10-7 8-7 9q-35 0-141-2-3-11-8-18t-10-6q-2-1-4-1-7-1-12 1t-8 8-4 11-1 13q0 9 1 12t1 10q0 1 1 3h1v9q0 6 3 11-10 13-16 32-6 20-9 38-3 19-4 38-1 20-6 32-4 12-9 18-2 3-19 20-10 9-29 27-11 12-19 29-8 16-8 28v3q8 51 57 80 49 45 142 60 32 5 60 5 52 0 90-17 121-36 140-128zm-163 9q-2 0-3-1t-2-1-3-2-3-1q-5-10-2-30 3-19 15-14 13 4 19 9 5 5 3 11t-5 12q-4 5-11 10t-8 7zm-7-243q10 0 16 25-5 25-19 25-7-1-12-13v-1q-1-2-2-8-2-6 0-12 1-7 5-11t12-5zm-116-3q9 3 9 30-17 50-32 7-1-17 7-29 8-11 16-8zm-51 260q-5-10-8-23-3-14 2-24t19-9q15 1 20 10t1 18l-3 9h1q-15 21-32 19z"/></svg></h2>
+                        
+                            <ul class="list-part">
+        
+            <li class="list-item">
+                <a href="/tech/software-testing/" class="list-item-title">软件测试与质量保证</a>
+                <time datetime="2019-06-19T16:45:19&#43;08:00" class="list-item-time">6 月 19 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/oracle-sql/" class="list-item-title">SQL 语言与 Oracle 数据库</a>
+                <time datetime="2019-04-21T14:41:27&#43;08:00" class="list-item-time">4 月 21 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/oracle-design-and-store/" class="list-item-title">数据库设计与 Oracle 存储结构</a>
+                <time datetime="2019-04-21T13:41:52&#43;08:00" class="list-item-time">4 月 21 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/oracle-sql-4/" class="list-item-title">Oracle SQL 练习题 4</a>
+                <time datetime="2019-04-10T16:20:50&#43;08:00" class="list-item-time">4 月 10 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/sort/" class="list-item-title">排序</a>
+                <time datetime="2019-03-28T19:42:41&#43;08:00" class="list-item-time">3 月 28 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/oracle-sql-3/" class="list-item-title">Oracle SQL 练习题 3</a>
+                <time datetime="2019-03-27T15:31:26&#43;08:00" class="list-item-time">3 月 27 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/oracle-sql-2/" class="list-item-title">Oracle SQL 练习题 2</a>
+                <time datetime="2019-03-24T19:44:12&#43;08:00" class="list-item-time">3 月 24 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/css-positioning/" class="list-item-title">CSS-positioning</a>
+                <time datetime="2019-03-16T19:57:24&#43;08:00" class="list-item-time">3 月 16 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/css-basic/" class="list-item-title">CSS-层叠样式表</a>
+                <time datetime="2019-03-15T16:25:48&#43;08:00" class="list-item-time">3 月 15 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/oracle-sql-1/" class="list-item-title">Oracle SQL 练习题 1</a>
+                <time datetime="2019-03-15T12:12:08&#43;08:00" class="list-item-time">3 月 15 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/html-basic-tag/" class="list-item-title">HTML 基本标签</a>
+                <time datetime="2019-03-10T13:52:02&#43;08:00" class="list-item-time">3 月 10 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/double-angle-formula/" class="list-item-title">二倍角公式</a>
+                <time datetime="2019-03-10T12:37:12&#43;08:00" class="list-item-time">3 月 10 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/python-collection/" class="list-item-title">Python 内置模块 Collections</a>
+                <time datetime="2019-01-24T11:23:06&#43;08:00" class="list-item-time">1 月 24 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/hexo-problem/" class="list-item-title">hexo 问题记录(持续更新...)</a>
+                <time datetime="2019-01-17T17:29:58&#43;08:00" class="list-item-time">1 月 17 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/the-zen-of-python/" class="list-item-title">The Zen of Pyhton(Python 之禅)</a>
+                <time datetime="2019-01-15T14:01:43&#43;08:00" class="list-item-time">1 月 15 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/software-engineering-4/" class="list-item-title">软件工程[4] 总体设计</a>
+                <time datetime="2019-01-08T15:52:58&#43;08:00" class="list-item-time">1 月 8 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/software-engineering-3/" class="list-item-title">软件工程[3] 需求分析</a>
+                <time datetime="2019-01-08T12:37:06&#43;08:00" class="list-item-time">1 月 8 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/depreciation/" class="list-item-title">Depreciation</a>
+                <time datetime="2019-01-06T14:33:23&#43;08:00" class="list-item-time">1 月 6 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/payback-period-and-ae-analysis/" class="list-item-title">Payback period and AE analysis</a>
+                <time datetime="2019-01-04T18:42:56&#43;08:00" class="list-item-time">1 月 4 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/economic-equivalence/" class="list-item-title">Economic Equivalence Computation</a>
+                <time datetime="2019-01-03T19:26:28&#43;08:00" class="list-item-time">1 月 3 日</time>
+            </li>
+        
+        
+    </ul>
+
+
+                        
+                    
+                        
+                        
+                            
+                            
+                        
+                        
+                        
+                        
+                            
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                            
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                            
+                            
+                        
+                        
+                        <h2 class="list-year">二〇一八<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="icon chinese-zodiac"><path d="M346 553q-4 17-17 70 38-1 66-9 13-4 27-10 16-8 34-21 31-22 91-68 32-25 53-59 22-33 31-65t12-58q3-25 3-44 0-5-1-15 10-3 20-8 9-5 15-9 4-3 11-9 3-2 10-9-24-24-47-34-22-9-37-4-14 5-26 13-12 7-18 17-1 3-5 8h-20q-24-13-63-16t-64 0q-9 1-26 3-4-25-17-35t-29-8q-15 2-30 7-14 5-25 11-4 3-10 7 2 24 43 24-8 97-58 133-8-1-24-2-13-1-18-3h-6q-4-12-9-21-5-10-11-13-4-1-12-5-5-2-8-1h-3q-17 1-26 23-10 21-11 51v5q0 27 10 55 10 31 27 54 39 45 168 45zm99-222q1-11 6-16 4-5 11-8h2l1 1q5 3 8 11t3 16v8q-3 11-19 17-13-6-12-29zm-95-12q10-7 18-2 7 5 8 31 0 15-22 23h-5q-1-3-4-14-2-7-2-15 0-9 1-14t6-9zm-33 252q-17-1-68-5-24 34-25 53 0 3-1 8-1 6 0 11 1 4-1 9t1 10 3 8 5 8q6 6 8 4 2-1 12 0 10 2 15-3 25-9 37-34 12-26 13-48 1-7 1-21zm276-74l-9 12q-6 7-26 26-19 20-43 37-23 17-58 37-35 19-74 32-61 142-77 181-8 21-12 34-4 12-9 33-5 22-3 35 2 14 11 23 18 15 61-47 43-63 68-121l15 9q-7 12-16 31-9 18-24 56-14 38-10 54 8 35 29 36 33 1 67-92 7-18 21-55 0 2 2 7 1 4 6 18 5 15 12 26t22 26q14 14 33 23 1-5 4-16 2-9 6-18 4-8 10-18t13-20q8-9 17-17t21-11q13-3 27-4t32 6q-4 0-12 1t-25 6q-18 5-31 15-13 11-25 33-11 23-9 50h-3q-2 1-8 2l-12 4q-4 1-14 4-8 2-15 5t-14 5-12 6q-4 4-9 7t-3 7q0 6 1 10 1 5 6 9t16 8q10 4 29 5 20 1 47 1 28 0 70-5t97-10q36-5 44-45 9-40-4-82-12-42-27-68-5-8-23-30-17-21-38-45-20-23-44-54-23-31-43-57-19-27-36-57-16-29-19-48zm312 184q-8 9-23 19-16 10-30 18-10 6-29 17-14 8-23 10-3 2-8 5 11 4 20 22 9 17 10 29 1 13 3 15 8 2 13 2t7-1q1-1 3-1 60-27 60-98 0-9-1-19 0-6-2-18z"/></svg></h2>
+                        
+                            <ul class="list-part">
+        
+            <li class="list-item">
+                <a href="/tech/cost-of-capital/" class="list-item-title">Cost of Capital</a>
+                <time datetime="2018-12-31T18:19:59&#43;08:00" class="list-item-time">12 月 31 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/interest-rate/" class="list-item-title">Interest Rate</a>
+                <time datetime="2018-12-31T13:24:00&#43;08:00" class="list-item-time">12 月 31 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/software-engineering-2/" class="list-item-title">软件工程[2] 可行性研究</a>
+                <time datetime="2018-12-25T17:29:59&#43;08:00" class="list-item-time">12 月 25 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/software-engineering-1/" class="list-item-title">软件工程[1] 软件工程学概述</a>
+                <time datetime="2018-12-25T15:26:34&#43;08:00" class="list-item-time">12 月 25 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/mysql-navicat-installation/" class="list-item-title">Mysql 8.0.13+Navicat 12.1.11安装记录</a>
+                <time datetime="2018-12-19T17:24:23&#43;08:00" class="list-item-time">12 月 19 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/intermediate-language-representation/" class="list-item-title">中间语言表示</a>
+                <time datetime="2018-12-10T18:14:56&#43;08:00" class="list-item-time">12 月 10 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/computation-of-l-attribute-definition/" class="list-item-title">L 属性定义的计算</a>
+                <time datetime="2018-12-09T20:27:43&#43;08:00" class="list-item-time">12 月 9 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/organization-and-management-of-runtime-storage-space/" class="list-item-title">运行时存储空间的组织与管理</a>
+                <time datetime="2018-12-09T20:24:55&#43;08:00" class="list-item-time">12 月 9 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/syntax-directed-definition/" class="list-item-title">语法制导的定义</a>
+                <time datetime="2018-12-05T20:08:57&#43;08:00" class="list-item-time">12 月 5 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/bottom-up-parsing/" class="list-item-title">自下而上的语法分析</a>
+                <time datetime="2018-12-01T21:50:25&#43;08:00" class="list-item-time">12 月 1 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/top-down-parsing/" class="list-item-title">自上而下的语法分析</a>
+                <time datetime="2018-11-28T18:31:50&#43;08:00" class="list-item-time">11 月 28 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/uml-include-extend/" class="list-item-title">用例图中拓展(extend)和包含(include)的区别</a>
+                <time datetime="2018-11-27T18:02:30&#43;08:00" class="list-item-time">11 月 27 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/nfa-and-dfa/" class="list-item-title">由 NFA 转 DFA 以及 DFA 的化简</a>
+                <time datetime="2018-11-25T20:34:34&#43;08:00" class="list-item-time">11 月 25 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/first-follow-set/" class="list-item-title">FISRT 集和 FOLLOW 集</a>
+                <time datetime="2018-11-25T20:34:34&#43;08:00" class="list-item-time">11 月 25 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/python-tkinter/" class="list-item-title">Pyhton GUI 编程之 tkinter</a>
+                <time datetime="2018-11-16T20:47:28&#43;08:00" class="list-item-time">11 月 16 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/network-information-security/" class="list-item-title">网络与信息安全复习</a>
+                <time datetime="2018-11-04T22:27:37&#43;08:00" class="list-item-time">11 月 4 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/python-syntax/" class="list-item-title">[Python learning] 词法结构</a>
+                <time datetime="2018-10-17T15:05:28&#43;08:00" class="list-item-time">10 月 17 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/double-system-install/" class="list-item-title">双系统安装 Ubuntu18.04</a>
+                <time datetime="2018-10-01T14:24:25&#43;08:00" class="list-item-time">10 月 1 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/lexical-analysis/" class="list-item-title">词法分析器</a>
+                <time datetime="2018-10-01T14:18:20&#43;08:00" class="list-item-time">10 月 1 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/double-system-uninstall/" class="list-item-title">双系统卸载</a>
+                <time datetime="2018-09-23T20:38:58&#43;08:00" class="list-item-time">9 月 23 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/python-data-structure/" class="list-item-title">[Python learning] 数据结构</a>
+                <time datetime="2018-09-22T09:53:58&#43;08:00" class="list-item-time">9 月 22 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/zxing-qrcode/" class="list-item-title">利用ZXing工具生成二维码以及解析二维码</a>
+                <time datetime="2018-09-06T18:40:52&#43;08:00" class="list-item-time">9 月 6 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/java-learn-note-3/" class="list-item-title">java学习笔记 [3] 继承 &amp; 多态篇</a>
+                <time datetime="2018-08-06T13:36:10&#43;08:00" class="list-item-time">8 月 6 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/java-learn-note-2/" class="list-item-title">java学习笔记 [2] 数组 &amp; 运算符 &amp; 权限篇</a>
+                <time datetime="2018-07-08T17:53:51&#43;08:00" class="list-item-time">7 月 8 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/github-gitee-sshkey/" class="list-item-title">Gitee(码云)、Github 同时配置 ssh key</a>
+                <time datetime="2018-07-06T21:25:17&#43;08:00" class="list-item-time">7 月 6 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/java-learn-note-1/" class="list-item-title">java学习笔记 [1] 数据类型 &amp; 函数篇</a>
+                <time datetime="2018-07-03T19:30:01&#43;08:00" class="list-item-time">7 月 3 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/java-series-catalogue/" class="list-item-title">java学习笔记 全系列内容提要篇</a>
+                <time datetime="2018-07-01T14:34:25&#43;08:00" class="list-item-time">7 月 1 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/database-paradigm/" class="list-item-title">数据库设计范式</a>
+                <time datetime="2018-06-27T14:40:33&#43;08:00" class="list-item-time">6 月 27 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/database-sql-basic/" class="list-item-title">数据库练习题(基础)</a>
+                <time datetime="2018-06-13T11:32:31&#43;08:00" class="list-item-time">6 月 13 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/python-hello-world/" class="list-item-title">[Python learning] 从 Hello world! 开始</a>
+                <time datetime="2018-06-06T18:40:37&#43;08:00" class="list-item-time">6 月 6 日</time>
+            </li>
+        
+            <li class="list-item">
+                <a href="/tech/hello-world/" class="list-item-title">Hello World</a>
+                <time datetime="2018-06-04T15:44:10&#43;08:00" class="list-item-time">6 月 4 日</time>
+            </li>
+        
+        
+    </ul>
+
+
+                        
+                    
+                </div>
+            </div>
+        </main>
+    
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

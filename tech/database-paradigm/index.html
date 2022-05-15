@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>数据库设计范式 | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="学习数据库，个人感觉设计范式是比较重要也是比较难的一部分，于是自己做了一些总结" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/database-paradigm/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2018-06-27T14:40:33+08:00",
+        "dateModified": "2022-05-08T20:26:14+08:00",
+        "url": "https://wheliosc.github.io/tech/database-paradigm/",
+        "headline": "数据库设计范式",
+        "description": "学习数据库，个人感觉设计范式是比较重要也是比较难的一部分，于是自己做了一些总结",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  1418 ,
+        "image": ["https://wheliosc.github.io/BCNF.jpg","https://wheliosc.github.io/3NF-1.jpg","https://wheliosc.github.io/3NF-2.GIF"],
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="数据库设计范式" />
+<meta property="og:description" content="学习数据库，个人感觉设计范式是比较重要也是比较难的一部分，于是自己做了一些总结" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/database-paradigm/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/BCNF.jpg" />
+<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-06-27T14:40:33&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-08T20:26:14&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">数据库设计范式</h1>
+
+            
+
+            
+                <div class="post-description p-summary">学习数据库，个人感觉设计范式是比较重要也是比较难的一部分，于是自己做了一些总结</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2018-06-27T14:40:33&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2018.6.27</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;1418</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:第一范式1nf" href="#第一范式1nf">第一范式(1NF)</a></li>
+    <li><a id="contents:第二范式2nf" href="#第二范式2nf">第二范式(2NF)</a>
+      <ol>
+        <li><a id="contents:平凡依赖和非平凡依赖" href="#平凡依赖和非平凡依赖">平凡依赖和非平凡依赖</a></li>
+        <li><a id="contents:完全依赖和部分依赖" href="#完全依赖和部分依赖">完全依赖和部分依赖</a></li>
+        <li><a id="contents:传递依赖" href="#传递依赖">传递依赖</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:第三范式3nf" href="#第三范式3nf">第三范式(3NF)</a></li>
+    <li><a id="contents:bc-范式bcnf" href="#bc-范式bcnf">BC 范式(BCNF)</a></li>
+    <li><a id="contents:bcnf-分解算法" href="#bcnf-分解算法">BCNF 分解算法</a></li>
+    <li><a id="contents:3nf-分解算法" href="#3nf-分解算法">3NF 分解算法</a></li>
+    <li><a id="contents:参考" href="#参考">参考</a></li>
+  </ol>
+</nav><div class="post-body e-content">
+                <p></p>
+<h2 id="第一范式1nf"><a href="#第一范式1nf" class="anchor-link">#</a><a href="#contents:第一范式1nf" class="headings">第一范式(1NF)</a></h2>
+<blockquote>
+<p>定义：如果关系模式R的所有属性的域都是原子的，那么称关系模式 R 属于第一范式。</p>
+</blockquote>
+<p>通俗的讲，第一范式就是属性不可再分。比如地址属性，可以再分为省、市、县等属性，所以在这种情况下，地址属性所在的关系模式就不符合第一范式。</p>
+<h2 id="第二范式2nf"><a href="#第二范式2nf" class="anchor-link">#</a><a href="#contents:第二范式2nf" class="headings">第二范式(2NF)</a></h2>
+<blockquote>
+<p>定义：若 R 满足第一范式，且每一个非主属性完全函数依赖于主码，则R满足第二范式。</p>
+</blockquote>
+<p>这里首先补充函数依赖的知识</p>
+<h3 id="平凡依赖和非平凡依赖"><a href="#平凡依赖和非平凡依赖" class="anchor-link">#</a><a href="#contents:平凡依赖和非平凡依赖" class="headings">平凡依赖和非平凡依赖</a></h3>
+<p>如果 A-&gt;B，A 是 B 的超集，则称此函数依赖为平凡的。</p>
+<p>🌰：A-&gt;A   AB-&gt;A    ABC-&gt;AB 都是平凡依赖（此处的 A、B、C 为原子属性）</p>
+<p>非平凡依赖就是不包含自己或包含自己的集决定自己的函数依赖。</p>
+<h3 id="完全依赖和部分依赖"><a href="#完全依赖和部分依赖" class="anchor-link">#</a><a href="#contents:完全依赖和部分依赖" class="headings">完全依赖和部分依赖</a></h3>
+<p>函数依赖 A-&gt;B 称为部分依赖的条件是存在 A 的真子集 C 使得 C-&gt;B。即 A 中的一部分就可以决定 B，不需要所有的属性来决定 B。</p>
+<p>反之，需要 A 中所有的属性才能来决定 B，缺一不可，那么 A-&gt;B 就是一个完全依赖。</p>
+<h3 id="传递依赖"><a href="#传递依赖" class="anchor-link">#</a><a href="#contents:传递依赖" class="headings">传递依赖</a></h3>
+<p>如果 A、B 是两个属性集，存在 A-&gt;B，如果 c 是一个属性，并且 c 不属于 A 或 B，并且存在 B-&gt;c，那么 c 就传递依赖于 A。</p>
+<p>根据 2NF 的定义，我们可以知道，单属性主键的关系模式一定符合第二范式。</p>
+<h2 id="第三范式3nf"><a href="#第三范式3nf" class="anchor-link">#</a><a href="#contents:第三范式3nf" class="headings">第三范式(3NF)</a></h2>
+<blockquote>
+<p>定义：对于 F*(F 的闭包)中所有形如 A-&gt;B 的函数依赖（其中 A、B 都包含于 R），以下至少一项成立：</p>
+<p>· A-&gt;B是一个平凡的函数依赖</p>
+<p>· A是R的一个超码</p>
+<p>· B-A中的每个属性c都包含于R的一个候选码中</p>
+</blockquote>
+<p>简单的说，若 R 满足第二范式，且每一个非主属性都不传递函数依赖于主码，则R满足第三范式。</p>
+<p>即不存在如下依赖关系：</p>
+<p>　　 关键字段 → 非关键字段x → 非关键字段 y</p>
+<p>🌰 假定学生关系表为 Student(学号, 姓名, 年龄, 所在学院, 学院地点, 学院电话)，关键字为单一关键字&quot;学号&quot;，因为存在如下决定关系：</p>
+<p>　　 (学号) → (姓名, 年龄, 所在学院, 学院地点, 学院电话)</p>
+<p>　　 这个数据库是符合 2NF 的，但是不符合 3NF，因为存在如下决定关系：</p>
+<p>　　 (学号) → (所在学院) → (学院地点, 学院电话)</p>
+<p>　　 即存在非关键字段&quot;学院地点&quot;、&quot;学院电话&quot;对关键字段&quot;学号&quot;的传递函数依赖。</p>
+<h2 id="bc-范式bcnf"><a href="#bc-范式bcnf" class="anchor-link">#</a><a href="#contents:bc-范式bcnf" class="headings">BC 范式(BCNF)</a></h2>
+<blockquote>
+<p>定义：若 R 满足第三范式，且每一个主属性都不部分函数依赖或传递函数依赖于主码，则 R 满足第三范式。</p>
+<p>· 每一个决定属性集（因素）都包含（候选）码</p>
+<p>· R中的所有属性（主，非主属性）都完全函数依赖于码</p>
+</blockquote>
+<p>🌰 假设仓库管理关系表为 StorehouseManage (仓库 ID, 存储物品 ID, 管理员 ID, 数量)，且有一个管理员只在一个仓库工作；一个仓库可以存储多种物品。这个数据库表中存在如下决定关系：</p>
+<p>　　 (仓库 ID, 存储物品 ID) →(管理员 ID, 数量)</p>
+<p>　　 (管理员 ID, 存储物品 ID) → (仓库 ID, 数量)</p>
+<p>　　 所以，(仓库 ID, 存储物品 ID)和(管理员 ID, 存储物品 ID)都是 StorehouseManage 的候选关键字，表中的唯一非关键字段为数量，它是符合第三范式的。但是，由于存在如下决定关系：</p>
+<p>　　 (仓库 ID) → (管理员 ID)</p>
+<p>　　 (管理员 ID) → (仓库 ID)  即存在关键字段决定关键字段的情况，所以其不符合 BCNF 范式。</p>
+<p>3NF 的“不彻底”性表现在可能存在主属性对码的部分依赖和传递依赖。</p>
+<h2 id="bcnf-分解算法"><a href="#bcnf-分解算法" class="anchor-link">#</a><a href="#contents:bcnf-分解算法" class="headings">BCNF 分解算法</a></h2>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="err">有违反</span> <span class="n">BCNF</span> <span class="err">的函数依赖</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">找出违反</span> <span class="n">BCNF</span> <span class="err">的函数依赖</span> <span class="n">A</span><span class="o">-&gt;</span><span class="n">B</span><span class="err">；</span>
+</span></span><span class="line"><span class="cl">    <span class="err">先计算</span> <span class="n">A</span> <span class="err">的闭包，且用</span> <span class="n">A</span> <span class="err">的闭包</span><span class="p">(</span><span class="err">除去</span> <span class="n">A</span><span class="p">)</span><span class="err">替换</span> <span class="n">B</span><span class="err">，并将其分解为</span> <span class="p">{</span><span class="n">A</span><span class="o">+</span><span class="p">}</span> <span class="err">和</span> <span class="p">{</span><span class="n">AU</span><span class="p">(</span><span class="n">R</span><span class="o">-</span><span class="p">(</span><span class="n">A</span><span class="o">+</span><span class="p">)};</span>   <span class="c1">//比如 A-&gt;B ，而 {A}+={A,B,C}，则用 A-&gt;BC 替换 A-&gt;B;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="err">求出分解后的关系满足的投影</span> <span class="n">FD</span> <span class="err">集合；</span>
+</span></span><span class="line"><span class="cl">    <span class="err">再看分解后的关系的</span> <span class="n">FD</span> <span class="err">集合是否满足</span> <span class="n">BCNF</span><span class="err">，如果不满足，则继续分解</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>🌰
+<img src="BCNF.jpg" alt=""></p>
+<h2 id="3nf-分解算法"><a href="#3nf-分解算法" class="anchor-link">#</a><a href="#contents:3nf-分解算法" class="headings">3NF 分解算法</a></h2>
+<p><img src="3NF-1.jpg" alt=""></p>
+<p><img src="3NF-2.GIF" alt=""></p>
+<h2 id="参考"><a href="#参考" class="anchor-link">#</a><a href="#contents:参考" class="headings">参考</a></h2>
+<p><a href="https://blog.csdn.net/xiazdong/article/details/7517438" target="_blank" rel="noopener">分解算法参考博客</a></p>
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-08 20:26:14 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-08</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-08</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/tech/database-sql-basic/" class="related-link">数据库练习题(基础)</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/oracle-sql/" class="related-link">SQL 语言与 Oracle 数据库</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/oracle-design-and-store/" class="related-link">数据库设计与 Oracle 存储结构</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/oracle-sql-4/" class="related-link">Oracle SQL 练习题 4</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/oracle-sql-3/" class="related-link">Oracle SQL 练习题 3</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag" class="post-tag-link">#数据库</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/java-series-catalogue/" rel="prev">&lt; java学习笔记 全系列内容提要篇</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/database-sql-basic/" rel="next">数据库练习题(基础) &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

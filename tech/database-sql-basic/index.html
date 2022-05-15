@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>数据库练习题(基础) | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="近期要数据库考试了，复习一波，题还是很基础的~" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/database-sql-basic/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2018-06-13T11:32:31+08:00",
+        "dateModified": "2022-05-08T20:26:43+08:00",
+        "url": "https://wheliosc.github.io/tech/database-sql-basic/",
+        "headline": "数据库练习题(基础)",
+        "description": "近期要数据库考试了，复习一波，题还是很基础的~",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  7221 ,
+        "image": "https://wheliosc.github.io/icons/favicon.png",
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary" />
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="数据库练习题(基础)" />
+<meta property="og:description" content="近期要数据库考试了，复习一波，题还是很基础的~" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/database-sql-basic/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-06-13T11:32:31&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-08T20:26:43&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">数据库练习题(基础)</h1>
+
+            
+
+            
+                <div class="post-description p-summary">近期要数据库考试了，复习一波，题还是很基础的~</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2018-06-13T11:32:31&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2018.6.13</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;7221</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:一基本表的定义与删除" href="#一基本表的定义与删除">一、基本表的定义与删除</a></li>
+    <li><a id="contents:二修改表结构" href="#二修改表结构">二、修改表结构</a></li>
+    <li><a id="contents:三数据查询功能" href="#三数据查询功能">三、数据查询功能</a></li>
+    <li><a id="contents:四多表查询" href="#四多表查询">四、多表查询</a></li>
+    <li><a id="contents:五嵌套子查询" href="#五嵌套子查询">五、嵌套子查询</a></li>
+    <li><a id="contents:六自查询" href="#六自查询">六、自查询</a></li>
+    <li><a id="contents:七更新数据" href="#七更新数据">七、更新数据</a></li>
+    <li><a id="contents:八删除数据" href="#八删除数据">八、删除数据</a></li>
+  </ol>
+</nav><div class="post-body e-content">
+                <p></p>
+<h2 id="一基本表的定义与删除"><a href="#一基本表的定义与删除" class="anchor-link">#</a><a href="#contents:一基本表的定义与删除" class="headings">一、基本表的定义与删除</a></h2>
+<p>T1.</p>
+<p>用 SQL 语句创建如下三张表：学生（Student）,课程表（Course）,和学生选课表（SC）,这三张表的结构如表 1-1 到表 1-3 所示。</p>
+<p>表1-1 Student 表结构</p>
+<p>|列名|说明|数据类型|约束|
+|:-|:-||:-|:-|
+|Sno|学号|字符串|长度为7，主码|
+|Sname|姓名|字符串|长度为10，非空|
+|Ssex|性别|字符串|长度为2，取‘男’或‘女’|
+|Sage|年龄|整数|取值15~45|
+|Sdept|所在系|字符串|长度为20	默认为‘计算机系’|</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">Student</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Sno</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Sname</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Ssex</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">check</span><span class="p">(</span><span class="n">Ssex</span><span class="o">=</span><span class="s1">&#39;男&#39;</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">Ssex</span><span class="o">=</span><span class="s1">&#39;女&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Sage</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">check</span><span class="p">(</span><span class="n">Sage</span><span class="o">&gt;=</span><span class="mi">15</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;=</span><span class="mi">45</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Sdept</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">default</span><span class="p">(</span><span class="s1">&#39;计算机系&#39;</span><span class="p">));</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>表1-2 Course 表结构</p>
+<p>|列名|说明|数据类型|约束|
+|:-|:-||:-|:-|
+|Cno|课程号|字符串|长度为10，主码|
+|Cname|课程名|字符串|长度为20，非空|
+|Ccredit|学分|整数|取值大于0|
+|Semster|学期|整数|取值大于0|
+|Cperiod|学时|整数|取值大于0|</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">Course</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Cno</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Cname</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Ccredit</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">check</span><span class="p">(</span><span class="n">Ccredit</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Semster</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">check</span><span class="p">(</span><span class="n">Semster</span><span class="w"> </span><span class="o">&gt;</span><span class="mi">0</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Cperiodint</span><span class="w"> </span><span class="k">check</span><span class="p">(</span><span class="n">Cperiod</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>表1-3 SC 表结构</p>
+<p>表1-2 Course 表结构</p>
+<p>|列名|说明|数据类型|约束|
+|:-|:-||:-|:-|
+|Sno|学号|字符串|长度为7，主码，参照Student的外码|
+|Cno|课程名|字符串|长度为10，主码，参照Course|
+|Grade|成绩|整数|取值0~100|</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">SC</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Sno</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Cno</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Grade</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">check</span><span class="p">(</span><span class="n">Grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="mi">0</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="o">&lt;=</span><span class="mi">100</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="n">Cno</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">Sno</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">Student</span><span class="p">(</span><span class="n">Sno</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">Cno</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">Course</span><span class="p">(</span><span class="n">Cno</span><span class="p">));</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>PS:</p>
+<p>外码(键): 一个关系模式(r1)可能在它的属性中包含另一个关系模式(r2)的主码,这个属性在 r1 上称作参照 r2 的外码。关系 r1 称为外码依赖的参照关系，关系 r2 称为外码的被参照关系。FK 一定来自另一个表的 PK，FK 是 PK 的子集。</p>
+<p>如果外键或者主键要求命名，请使用以下语法</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">constraint</span><span class="w"> </span><span class="n">pk_Student_Sno</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">Sno</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">constraint</span><span class="w"> </span><span class="n">fk_Student_Sno</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">Sno</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">Student</span><span class="p">(</span><span class="n">Sno</span><span class="p">)</span><span class="o">//</span><span class="n">SC表</span><span class="err">，参照表后边的属性可以省略</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>已有表，添加外键</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">fk_Student_Sno</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">Sno</span><span class="p">)</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">references</span><span class="w"> </span><span class="n">Student</span><span class="p">(</span><span class="n">Sno</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><hr>
+<h2 id="二修改表结构"><a href="#二修改表结构" class="anchor-link">#</a><a href="#contents:二修改表结构" class="headings">二、修改表结构</a></h2>
+<p>T2.</p>
+<p>为 SC 表添加“选课类别”列，此列的定义为 XKLB char(4)</p>
+<pre tabindex="0"><code>alter table SC add XKLB char(4);
+</code></pre><p>T3.</p>
+<p>将新添加的 XKLB 的类型修改为 char(6)</p>
+<pre tabindex="0"><code>alter table SC alter column XKLB char(6);
+</code></pre><p>T4.</p>
+<p>删除 Course 表的 Cperiod 列</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">Course</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">Cperiod</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T5.</p>
+<p>重命名 Student 表的 Ssex 列为 sex</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">EXEC</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;Student.Ssex&#39;</span><span class="p">,</span><span class="s1">&#39;sex&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><hr>
+<h2 id="三数据查询功能"><a href="#三数据查询功能" class="anchor-link">#</a><a href="#contents:三数据查询功能" class="headings">三、数据查询功能</a></h2>
+<p>表3-1 Student表数据</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th style="text-align:left">Sno</th>
+<th style="text-align:left">Sname</th>
+<th style="text-align:left">Ssex</th>
+<th style="text-align:left">Sage</th>
+<th style="text-align:left">Sdept</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">9512101</td>
+<td style="text-align:left">李勇</td>
+<td style="text-align:left">男</td>
+<td style="text-align:left">19</td>
+<td style="text-align:left">计算机系</td>
+</tr>
+<tr>
+<td style="text-align:left">9512102</td>
+<td style="text-align:left">刘晨</td>
+<td style="text-align:left">男</td>
+<td style="text-align:left">20</td>
+<td style="text-align:left">计算机系</td>
+</tr>
+<tr>
+<td style="text-align:left">9512103</td>
+<td style="text-align:left">王敏</td>
+<td style="text-align:left">女</td>
+<td style="text-align:left">20</td>
+<td style="text-align:left">计算机系</td>
+</tr>
+<tr>
+<td style="text-align:left">9521101</td>
+<td style="text-align:left">张立</td>
+<td style="text-align:left">男</td>
+<td style="text-align:left">22</td>
+<td style="text-align:left">信息系</td>
+</tr>
+<tr>
+<td style="text-align:left">9521102</td>
+<td style="text-align:left">吴宾</td>
+<td style="text-align:left">女</td>
+<td style="text-align:left">21</td>
+<td style="text-align:left">信息系</td>
+</tr>
+<tr>
+<td style="text-align:left">9521103</td>
+<td style="text-align:left">张海</td>
+<td style="text-align:left">男</td>
+<td style="text-align:left">20</td>
+<td style="text-align:left">信息系</td>
+</tr>
+<tr>
+<td style="text-align:left">9531101</td>
+<td style="text-align:left">钱小平</td>
+<td style="text-align:left">女</td>
+<td style="text-align:left">18</td>
+<td style="text-align:left">数学系</td>
+</tr>
+<tr>
+<td style="text-align:left">9531102</td>
+<td style="text-align:left">王大力</td>
+<td style="text-align:left">男</td>
+<td style="text-align:left">19</td>
+<td style="text-align:left">数学系</td>
+</tr>
+</tbody>
+</table></div>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">values</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9512101&#39;</span><span class="p">,</span><span class="s1">&#39;李勇&#39;</span><span class="p">,</span><span class="s1">&#39;男&#39;</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="s1">&#39;计算机系&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9512102&#39;</span><span class="p">,</span><span class="s1">&#39;刘晨&#39;</span><span class="p">,</span><span class="s1">&#39;男&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;计算机系&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9512103&#39;</span><span class="p">,</span><span class="s1">&#39;王敏&#39;</span><span class="p">,</span><span class="s1">&#39;女&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;计算机系&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9521101&#39;</span><span class="p">,</span><span class="s1">&#39;张立&#39;</span><span class="p">,</span><span class="s1">&#39;男&#39;</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="s1">&#39;信息系&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9521102&#39;</span><span class="p">,</span><span class="s1">&#39;吴宾&#39;</span><span class="p">,</span><span class="s1">&#39;女&#39;</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="s1">&#39;信息系&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9521103&#39;</span><span class="p">,</span><span class="s1">&#39;张海&#39;</span><span class="p">,</span><span class="s1">&#39;男&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;信息系&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9531101&#39;</span><span class="p">,</span><span class="s1">&#39;钱小平&#39;</span><span class="p">,</span><span class="s1">&#39;女&#39;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="s1">&#39;数学系&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9531102&#39;</span><span class="p">,</span><span class="s1">&#39;王大力&#39;</span><span class="p">,</span><span class="s1">&#39;男&#39;</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="s1">&#39;数学系&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>表3-2 Course 表数据</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th style="text-align:left">Cno</th>
+<th style="text-align:left">Cname</th>
+<th style="text-align:left">Ccredit</th>
+<th style="text-align:left">Semster</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">C01</td>
+<td style="text-align:left">计算机文化学</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">C02</td>
+<td style="text-align:left">VB</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">C03</td>
+<td style="text-align:left">计算机网络</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">7</td>
+</tr>
+<tr>
+<td style="text-align:left">C04</td>
+<td style="text-align:left">数据库基础</td>
+<td style="text-align:left">6</td>
+<td style="text-align:left">6</td>
+</tr>
+<tr>
+<td style="text-align:left">C05</td>
+<td style="text-align:left">高等数学</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">C06</td>
+<td style="text-align:left">数据结构</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">4</td>
+</tr>
+</tbody>
+</table></div>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">Course</span><span class="p">(</span><span class="n">Cno</span><span class="p">,</span><span class="n">Cname</span><span class="p">,</span><span class="n">Ccredit</span><span class="p">,</span><span class="n">Semster</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">values</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;C01&#39;</span><span class="p">,</span><span class="s1">&#39;计算机文化学&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;C02&#39;</span><span class="p">,</span><span class="s1">&#39;VB&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;C03&#39;</span><span class="p">,</span><span class="s1">&#39;计算机网络&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;C04&#39;</span><span class="p">,</span><span class="s1">&#39;数据库基础&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;C05&#39;</span><span class="p">,</span><span class="s1">&#39;高等数学&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;C06&#39;</span><span class="p">,</span><span class="s1">&#39;数据结构&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>表3-3 SC 表数据</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th style="text-align:left">Sno</th>
+<th style="text-align:left">Cno</th>
+<th style="text-align:left">Grade</th>
+<th style="text-align:left">XKLB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">9512101</td>
+<td style="text-align:left">c01</td>
+<td style="text-align:left">90</td>
+<td style="text-align:left">必修</td>
+</tr>
+<tr>
+<td style="text-align:left">9512101</td>
+<td style="text-align:left">c02</td>
+<td style="text-align:left">86</td>
+<td style="text-align:left">选修</td>
+</tr>
+<tr>
+<td style="text-align:left">9512101</td>
+<td style="text-align:left">c06</td>
+<td style="text-align:left"><NULL></td>
+<td style="text-align:left">必修</td>
+</tr>
+<tr>
+<td style="text-align:left">9512102</td>
+<td style="text-align:left">c02</td>
+<td style="text-align:left">78</td>
+<td style="text-align:left">选修</td>
+</tr>
+<tr>
+<td style="text-align:left">9512102</td>
+<td style="text-align:left">c04</td>
+<td style="text-align:left">66</td>
+<td style="text-align:left">必修</td>
+</tr>
+<tr>
+<td style="text-align:left">9521102</td>
+<td style="text-align:left">c01</td>
+<td style="text-align:left">82</td>
+<td style="text-align:left">选修</td>
+</tr>
+<tr>
+<td style="text-align:left">9521102</td>
+<td style="text-align:left">c02</td>
+<td style="text-align:left">75</td>
+<td style="text-align:left">选修</td>
+</tr>
+<tr>
+<td style="text-align:left">9521102</td>
+<td style="text-align:left">c04</td>
+<td style="text-align:left">92</td>
+<td style="text-align:left">必修</td>
+</tr>
+<tr>
+<td style="text-align:left">9521102</td>
+<td style="text-align:left">c05</td>
+<td style="text-align:left">50</td>
+<td style="text-align:left">必修</td>
+</tr>
+<tr>
+<td style="text-align:left">9521103</td>
+<td style="text-align:left">c02</td>
+<td style="text-align:left">68</td>
+<td style="text-align:left">选修</td>
+</tr>
+<tr>
+<td style="text-align:left">9521103</td>
+<td style="text-align:left">c06</td>
+<td style="text-align:left"><NULL></td>
+<td style="text-align:left">必修</td>
+</tr>
+<tr>
+<td style="text-align:left">9531101</td>
+<td style="text-align:left">c01</td>
+<td style="text-align:left">80</td>
+<td style="text-align:left">选修</td>
+</tr>
+<tr>
+<td style="text-align:left">9531101</td>
+<td style="text-align:left">c05</td>
+<td style="text-align:left">95</td>
+<td style="text-align:left">必修</td>
+</tr>
+<tr>
+<td style="text-align:left">9531102</td>
+<td style="text-align:left">c05</td>
+<td style="text-align:left">85</td>
+<td style="text-align:left">必修</td>
+</tr>
+</tbody>
+</table></div>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">SC</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">values</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9512101&#39;</span><span class="p">,</span><span class="s1">&#39;c01&#39;</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="s1">&#39;必修&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9512101&#39;</span><span class="p">,</span><span class="s1">&#39;c02&#39;</span><span class="p">,</span><span class="mi">86</span><span class="p">,</span><span class="s1">&#39;选修&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9512101&#39;</span><span class="p">,</span><span class="s1">&#39;c06&#39;</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="s1">&#39;必修&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9512102&#39;</span><span class="p">,</span><span class="s1">&#39;c02&#39;</span><span class="p">,</span><span class="mi">78</span><span class="p">,</span><span class="s1">&#39;选修&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9512102&#39;</span><span class="p">,</span><span class="s1">&#39;c04&#39;</span><span class="p">,</span><span class="mi">66</span><span class="p">,</span><span class="s1">&#39;必修&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9521102&#39;</span><span class="p">,</span><span class="s1">&#39;c01&#39;</span><span class="p">,</span><span class="mi">82</span><span class="p">,</span><span class="s1">&#39;选修&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9521102&#39;</span><span class="p">,</span><span class="s1">&#39;c02&#39;</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span><span class="s1">&#39;选修&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9521102&#39;</span><span class="p">,</span><span class="s1">&#39;c04&#39;</span><span class="p">,</span><span class="mi">92</span><span class="p">,</span><span class="s1">&#39;必修&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9521102&#39;</span><span class="p">,</span><span class="s1">&#39;c05&#39;</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="s1">&#39;必修&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9521103&#39;</span><span class="p">,</span><span class="s1">&#39;c02&#39;</span><span class="p">,</span><span class="mi">68</span><span class="p">,</span><span class="s1">&#39;选修&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9521103&#39;</span><span class="p">,</span><span class="s1">&#39;c06&#39;</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="s1">&#39;必修&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9531101&#39;</span><span class="p">,</span><span class="s1">&#39;c01&#39;</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="s1">&#39;选修&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9531101&#39;</span><span class="p">,</span><span class="s1">&#39;c05&#39;</span><span class="p">,</span><span class="mi">95</span><span class="p">,</span><span class="s1">&#39;必修&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;9531102&#39;</span><span class="p">,</span><span class="s1">&#39;c05&#39;</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="s1">&#39;必修&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T6.</p>
+<p>查询全体学生的学号与姓名</p>
+<pre tabindex="0"><code>select Sno,Sname 
+from Student;
+</code></pre><p>T7.</p>
+<p>查询全体学生的姓名，学号和所在系</p>
+<pre tabindex="0"><code>select Sno,Sname,Sdept 
+from Student;
+</code></pre><p>T8.</p>
+<p>查询全体学生的所有信息（三张表以上的关联查询）</p>
+<pre tabindex="0"><code>select *
+from Student left join SC on Student.Sno=SC.Sno left join Course on SC.Cno=Course.Cno
+</code></pre><p>T9.</p>
+<p>查询全体学生的姓名及其出生年份</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="mi">2018</span><span class="o">-</span><span class="n">Sage</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s1">&#39;出生年份&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T10.</p>
+<p>查询全体学生的姓名和出生年份，并在出生年份列前加入一个列，此列的每行数据均为“Year of Birth”常量值</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="s1">&#39;Year of Birth&#39;</span><span class="p">,</span><span class="mi">2018</span><span class="o">-</span><span class="n">Sage</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s1">&#39;出生年份&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T11.</p>
+<p>在选课表（SC）中查询有哪些学生选修了课程，并列出学生的学号</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">distinct</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T12.</p>
+<p>查询计算机系全体学生的姓名</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;计算机系&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T13.</p>
+<p>查询所有年龄在20岁以下的学生的姓名及年龄</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sage</span><span class="o">&lt;</span><span class="mi">20</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T14.</p>
+<p>查询考试成绩不及格的学生的姓名</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="n">SC</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Grade</span><span class="o">&lt;</span><span class="mi">60</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T15.</p>
+<p>查询年龄在20~23岁之间的学生的姓名，所在系和年龄</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sdept</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">23</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T16.</p>
+<p>查询年龄不在20~23之间的学生的姓名，所在系和年龄</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sdept</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">23</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T17.</p>
+<p>查询信息系，数学系和计算机系学生的姓名和性别</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Ssex</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;信息系&#39;</span><span class="p">,</span><span class="s1">&#39;数学系&#39;</span><span class="p">,</span><span class="s1">&#39;计算机系&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T18.</p>
+<p>查询既不属于信息系，数学系，也不属于计算机系的学生的姓名和性别</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Ssex</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;信息系&#39;</span><span class="p">,</span><span class="s1">&#39;数学系&#39;</span><span class="p">,</span><span class="s1">&#39;计算机系&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T19.</p>
+<p>查询学生表中姓“张”的学生的详细信息</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;张%&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T20.</p>
+<p>查询学生表中姓“张”，姓“李”和姓“刘”的学生的情况</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;张%&#39;</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;李%&#39;</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;刘%&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>使用下边的这种写法更加简便</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;[张李刘]%&#39;</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T21.</p>
+<p>查询名字中第2个字为“小”或“大”字的学生的姓名和学号</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;_[小大]%&#39;</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T22.</p>
+<p>查询所有不姓“刘”的学生的姓名</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;刘%&#39;</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T23.</p>
+<p>从学生表中查询学号的最后一位不是2，3，5的学生的情况</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%[235]&#39;</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T24.</p>
+<p>查询无考试成绩的学生的学号和相应的课程号</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Cno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T25.</p>
+<p>查询所有有考试成绩的学生的学号和课程号</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Cno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T26.</p>
+<p>查询计算机系年龄在20岁以下的学生的姓名</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;计算机系&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Sage</span><span class="o">&lt;</span><span class="mi">20</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T27.</p>
+<p>将学生按年龄升序排序</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">asc</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T28.</p>
+<p>查询选修了课程“c02”的学生的学号及其成绩，查询结果按成绩降序排列</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Grade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;C02&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">desc</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T29.</p>
+<p>查询全体学生的信息，查询结果按所在系的系名升序排列，同一系的学生按年龄降序排列</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">Sdept</span><span class="p">,</span><span class="n">Sage</span><span class="w"> </span><span class="k">desc</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T30.</p>
+<p>统计学生总人数</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T31.</p>
+<p>统计选修了选修课程的学生的人数</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">Sno</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">XKLB</span><span class="o">=</span><span class="s1">&#39;选修&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T32.</p>
+<p>计算学号为9512101的学生的考试总成绩之和</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="s1">&#39;9512101&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T33.</p>
+<p>计算课程“c01”的学生的考试平均成绩</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;C01&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T34.</p>
+<p>查询选修了课程“c01”的学生的最高分和最低分</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">Grade</span><span class="p">),</span><span class="k">min</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;C01&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T35.</p>
+<p>统计每门课程的选课人数，列出课程号和人数</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Cno</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="n">Sno</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s1">&#39;选课人数&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">Cno</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T36.</p>
+<p>查询每名学生的选课门数和平均成绩</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="n">Cno</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s1">&#39;选课门数&#39;</span><span class="p">,</span><span class="k">avg</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s1">&#39;平均成绩&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T37.</p>
+<p>查询选修了3门以上课程的学生的学号</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">having</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">Cno</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">3</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T38.</p>
+<p>查询选课门数等于或大于4门的学生的平均成绩和选课门数</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="k">avg</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s1">&#39;平均成绩&#39;</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s1">&#39;选课门数&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">having</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">4</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><hr>
+<h2 id="四多表查询"><a href="#四多表查询" class="anchor-link">#</a><a href="#contents:四多表查询" class="headings">四、多表查询</a></h2>
+<p>T39.</p>
+<p>查询每个学生的情况及其选课的情况</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">outer</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T40.</p>
+<p>查询计算机系学生的选课情况，要求列出学生的名字，所修课的课程号和成绩</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Cno</span><span class="p">,</span><span class="n">Grade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">Sc</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;计算机系&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T41.</p>
+<p>查询信息系选修VB课程的学生的成绩，要求列出学生姓名，课程名和成绩</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Cname</span><span class="p">,</span><span class="n">Grade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="n">SC</span><span class="p">,</span><span class="n">Course</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Cno</span><span class="o">=</span><span class="n">Course</span><span class="p">.</span><span class="n">Cno</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">sdept</span><span class="o">=</span><span class="s1">&#39;信息系&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Cname</span><span class="o">=</span><span class="s1">&#39;VB&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Cname</span><span class="p">,</span><span class="n">Grade</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">Course</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Course</span><span class="p">.</span><span class="n">Cno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Cno</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;信息系&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Cname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;VB&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T42.</p>
+<p>查询所有选修了VB课程的学生的情况，要求列出学生姓名和所在的系</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sdept</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">Course</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Course</span><span class="p">.</span><span class="n">Cno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Cno</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Cname</span><span class="o">=</span><span class="s1">&#39;VB&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T43.</p>
+<p>查询与刘晨在同一个系学习的学生的姓名和所在系</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sdept</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">Sdept</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">             </span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">             </span><span class="k">where</span><span class="w"> </span><span class="n">Sname</span><span class="o">=</span><span class="s1">&#39;刘晨&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">Sname</span><span class="p">,</span><span class="n">s2</span><span class="p">.</span><span class="n">Sdept</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span><span class="n">Student</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">s2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">s1</span><span class="p">.</span><span class="n">Sname</span><span class="o">=</span><span class="s1">&#39;刘晨&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">Sname</span><span class="w"> </span><span class="o">!=</span><span class="s1">&#39;刘晨&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">s1</span><span class="p">.</span><span class="n">Sdept</span><span class="o">=</span><span class="n">s2</span><span class="p">.</span><span class="n">Sdept</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T44.</p>
+<p>查询学生的选课情况，包括选修课程的学生和没有修课的学生</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T45.</p>
+<p>查询数学系成绩在80分以上的学生的学号，姓名</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;数学系&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Grade</span><span class="o">&gt;</span><span class="mi">80</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T46.</p>
+<p>查询计算机系考试成绩最高的学生的姓名</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;计算机系&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Grade</span><span class="o">=</span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                 </span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">								 </span><span class="k">Group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">Sdept</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">								 </span><span class="k">having</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;计算机系&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><hr>
+<h2 id="五嵌套子查询"><a href="#五嵌套子查询" class="anchor-link">#</a><a href="#contents:五嵌套子查询" class="headings">五、嵌套子查询</a></h2>
+<p>(T43)</p>
+<p>T47.</p>
+<p>查询成绩大于90分的学生的学号和姓名</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="k">where</span><span class="w"> </span><span class="n">Grade</span><span class="o">&gt;</span><span class="mi">90</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T48.</p>
+<p>查询选修了“数据库基础”课程的学生的学号和姓名</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="k">where</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">Cno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                            </span><span class="k">from</span><span class="w"> </span><span class="n">Course</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                            </span><span class="k">where</span><span class="w"> </span><span class="n">Cname</span><span class="o">=</span><span class="s1">&#39;数据库基础&#39;</span><span class="p">))</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T49.</p>
+<p>查询选修了刘晨没有选修的课程的学生的学号和所在系</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Sdept</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="k">where</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">Cno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="k">where</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                           </span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                           </span><span class="k">where</span><span class="w"> </span><span class="n">Sname</span><span class="o">=</span><span class="s1">&#39;刘晨&#39;</span><span class="p">)))</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T50.</p>
+<p>查询选修了课程“c02”且成绩高于此课程的平均成绩的学生的学号和成绩</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Grade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;C02&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Grade</span><span class="o">&gt;</span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                           </span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                           </span><span class="k">where</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;C02&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T51.</p>
+<p>查询选修了课程“c01”的学生姓名</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="k">where</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;C01&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="k">where</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;C01&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>PS.一般来说，在SQL中in子查询都可以用exists代替。EXISTS子查询可以看成是一个独立的查询系统，只为了获取真假逻辑值，EXISTS子查询与外查询查询的表是两个完全独立的毫无关系的表，当我们在子查询中添加了Sno关联之后，EXISTS子查询与外查询查询的表就统一了，是二者组合组建的虚表，是同一个表（这样当子查询查询到虚表中当前行的Cno为C01时，则将虚表当前行中对应的Sname查询到了）.
+　　重点在于Sno关联之上，添加Sno关联，数据库会先将两张表通过Sno关联组合成一张虚表，所有的查询操作都在这张虚表上完成。</p>
+<hr>
+<h2 id="六自查询"><a href="#六自查询" class="anchor-link">#</a><a href="#contents:六自查询" class="headings">六、自查询</a></h2>
+<p>T52.查询所有成绩大于C01课程最高成绩的学生的学号</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">SC2</span><span class="p">.</span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">SC1</span><span class="p">,</span><span class="n">SC</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">SC2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">SC1</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC2</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">SC1</span><span class="p">.</span><span class="n">Cno</span><span class="o">=</span><span class="n">SC2</span><span class="p">.</span><span class="n">Cno</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">SC2</span><span class="p">.</span><span class="n">Grade</span><span class="o">&gt;</span><span class="k">all</span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">Grade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                                            </span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                                            </span><span class="k">where</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;C01&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><hr>
+<h2 id="七更新数据"><a href="#七更新数据" class="anchor-link">#</a><a href="#contents:七更新数据" class="headings">七、更新数据</a></h2>
+<p>T53.</p>
+<p>将所有学生的年龄加1</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">update</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">Sage</span><span class="o">=</span><span class="n">Sage</span><span class="o">+</span><span class="mi">1</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T54.</p>
+<p>将“9512101”学生的年龄改为21岁</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">update</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">Sage</span><span class="o">=</span><span class="mi">21</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="s1">&#39;9512101&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T55.</p>
+<p>将计算机系学生的成绩加5分</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">update</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="n">Grade</span><span class="o">=</span><span class="n">Grade</span><span class="o">+</span><span class="mi">5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="k">where</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;计算机系&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><hr>
+<h2 id="八删除数据"><a href="#八删除数据" class="anchor-link">#</a><a href="#contents:八删除数据" class="headings">八、删除数据</a></h2>
+<p>T56.</p>
+<p>删除所有学生的选课记录</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T57.</p>
+<p>删除所有不及格学生的选课记录</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Grade</span><span class="o">&lt;</span><span class="mi">60</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>T58.</p>
+<p>删除计算机系不及格学生的选课记录</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">Grade</span><span class="o">&lt;</span><span class="mi">60</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                           </span><span class="k">from</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                           </span><span class="k">where</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;计算机系&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><hr>
+<p>数据来源于网络，整理@lihui</p>
+<p>测试代码：</p>
+<p><a href="https://Liyzy.github.io/2018/06/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A0%E9%A2%98%28%E6%AF%94%E8%BE%83%E5%9F%BA%E7%A1%80%29/create_table.sql" target="_blank" rel="noopener">建表代码</a></p>
+<p><a href="http://Liyzy.github.io/2018/06/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A0%E9%A2%98%28%E6%AF%94%E8%BE%83%E5%9F%BA%E7%A1%80%29/T.sql" target="_blank" rel="noopener">题目代码</a></p>
+<p>测试环境：SQL Server 2017</p>
+<hr>
+<p>考试结束了，烤糊了😭...附上题目留与后人吧</p>
+<p><strong>2017-2018学年大连理工大学软件学院数据库考试题目说明</strong></p>
+<p><font color=#0099ff>20分 </font>   10个选择（比较简单，复习注意概念，比如DBS，DB，DBMS都是什么。其中有两个有关事务的题，即第十二章内容，分别是ACID的四个性质内容和结束事务并回滚的语句是什么问题）</p>
+<p><font color=#0099ff>50分 </font>     4个关系代数，6个SQL，一个5分。考了not exists和not in 相互转换, not exists…except结构,  标量子查询，分组聚集的内容（懵的一匹@_@）</p>
+<p><font color=#0099ff>10分 </font>     范式分解 属性闭包和候选码（6分），判断第几范式（2分），BCNF分解（2分）</p>
+<p><font color=#0099ff>20分 </font>     ER图 画ER图（10分），转换成关系模式（10分）。</p>
+<p>（回忆版）商店记录商品信息和客户信息，商品信息包括商品编号、名称、单价等，客户信息包括客户编号、客户姓名、电话等。一个顾客可以购买多个商品，一件商品可以购买不同数量，一次性的购物记录在一个购物单里，商品销售时价格可以调整。要求商店可以查询一个客户的消费记录和消费总额。根据题意设计ER图，可以自己添加必要属性。</p>
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-08 20:26:43 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-08</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-08</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/tech/database-paradigm/" class="related-link">数据库设计范式</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/oracle-sql/" class="related-link">SQL 语言与 Oracle 数据库</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/oracle-design-and-store/" class="related-link">数据库设计与 Oracle 存储结构</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/oracle-sql-4/" class="related-link">Oracle SQL 练习题 4</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/oracle-sql-3/" class="related-link">Oracle SQL 练习题 3</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag" class="post-tag-link">#数据库</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/database-paradigm/" rel="prev">&lt; 数据库设计范式</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/python-hello-world/" rel="next">[Python learning] 从 Hello world! 开始 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

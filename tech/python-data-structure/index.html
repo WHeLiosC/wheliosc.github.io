@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>[Python learning] 数据结构 | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="这是Python学习的课上笔记，主要内容有数据结构" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/python-data-structure/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2018-09-22T09:53:58+08:00",
+        "dateModified": "2022-05-03T22:36:20+08:00",
+        "url": "https://wheliosc.github.io/tech/python-data-structure/",
+        "headline": "[Python learning] 数据结构",
+        "description": "这是Python学习的课上笔记，主要内容有数据结构",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  4117 ,
+        "image": "https://wheliosc.github.io/icons/favicon.png",
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary" />
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="[Python learning] 数据结构" />
+<meta property="og:description" content="这是Python学习的课上笔记，主要内容有数据结构" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/python-data-structure/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-09-22T09:53:58&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-03T22:36:20&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">[Python learning] 数据结构</h1>
+
+            
+
+            
+                <div class="post-description p-summary">这是Python学习的课上笔记，主要内容有数据结构</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2018-09-22T09:53:58&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2018.9.22</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;4117</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:python-简单介绍" href="#python-简单介绍">Python 简单介绍</a></li>
+    <li><a id="contents:python-数据类型" href="#python-数据类型">Python 数据类型</a>
+      <ol>
+        <li><a id="contents:常量" href="#常量">常量</a></li>
+        <li><a id="contents:变量" href="#变量">变量</a></li>
+        <li><a id="contents:数据类型" href="#数据类型">数据类型</a>
+          <ol>
+            <li><a id="contents:分为两大类内置数据类型自定义数据类型" href="#分为两大类内置数据类型自定义数据类型">分为两大类：内置数据类型、自定义数据类型</a></li>
+            <li><a id="contents:内置的-type-函数可以用来查询变量所指的对象类型" href="#内置的-type-函数可以用来查询变量所指的对象类型">内置的 type() 函数可以用来查询变量所指的对象类型</a></li>
+            <li><a id="contents:int-类型" href="#int-类型">int 类型</a></li>
+            <li><a id="contents:float-类型" href="#float-类型">float 类型</a></li>
+            <li><a id="contents:复数数据类型-虚部必须用-j" href="#复数数据类型-虚部必须用-j">复数数据类型 虚部必须用 j</a></li>
+            <li><a id="contents:bool-类型" href="#bool-类型">bool 类型</a></li>
+            <li><a id="contents:string类型" href="#string类型">String类型</a>
+              <ol>
+                <li><a id="contents:表现形式" href="#表现形式">表现形式</a></li>
+                <li><a id="contents:字符串拼接与重复" href="#字符串拼接与重复">字符串拼接与重复</a></li>
+                <li><a id="contents:转义字符" href="#转义字符">转义字符</a></li>
+                <li><a id="contents:str-对象" href="#str-对象">str 对象</a></li>
+                <li><a id="contents:字符串索引" href="#字符串索引">字符串索引</a></li>
+                <li><a id="contents:字符串截取子串" href="#字符串截取子串">字符串截取子串</a></li>
+              </ol>
+            </li>
+            <li><a id="contents:列表" href="#列表">列表</a>
+              <ol>
+                <li><a id="contents:列表的创建方式" href="#列表的创建方式">列表的创建方式</a>
+                  <ol>
+                    <li><a id="contents:字面量" href="#字面量">字面量</a></li>
+                    <li><a id="contents:对象" href="#对象">对象</a></li>
+                    <li><a id="contents:推导式" href="#推导式">推导式</a></li>
+                  </ol>
+                </li>
+                <li><a id="contents:列表的操作" href="#列表的操作">列表的操作</a>
+                  <ol>
+                    <li><a id="contents:索引访问" href="#索引访问">索引访问</a></li>
+                    <li><a id="contents:删除列表中的元素" href="#删除列表中的元素">删除列表中的元素</a></li>
+                    <li><a id="contents:求长度最大值最小值和" href="#求长度最大值最小值和">求长度、最大值、最小值、和</a></li>
+                    <li><a id="contents:切片" href="#切片">切片</a></li>
+                    <li><a id="contents:连接与重复" href="#连接与重复">连接与重复</a></li>
+                    <li><a id="contents:成员关系操作" href="#成员关系操作">成员关系操作</a></li>
+                    <li><a id="contents:比较运算" href="#比较运算">比较运算</a></li>
+                    <li><a id="contents:列表的排序" href="#列表的排序">列表的排序</a></li>
+                    <li><a id="contents:any和all" href="#any和all">any()和all()</a></li>
+                    <li><a id="contents:列表的拆分" href="#列表的拆分">列表的拆分</a></li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li><a id="contents:元组" href="#元组">元组</a>
+              <ol>
+                <li><a id="contents:定义与声明" href="#定义与声明">定义与声明</a></li>
+                <li><a id="contents:元组的操作" href="#元组的操作">元组的操作</a>
+                  <ol>
+                    <li><a id="contents:元组的排序" href="#元组的排序">元组的排序</a></li>
+                    <li><a id="contents:元组的拆分" href="#元组的拆分">元组的拆分</a></li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li><a id="contents:字典" href="#字典">字典</a>
+              <ol>
+                <li><a id="contents:字面量-1" href="#字面量-1">字面量</a></li>
+                <li><a id="contents:字典对象" href="#字典对象">字典对象</a></li>
+                <li><a id="contents:fromkeys" href="#fromkeys">fromkeys()</a></li>
+                <li><a id="contents:推导式-1" href="#推导式-1">推导式</a></li>
+                <li><a id="contents:得到键对应的值" href="#得到键对应的值">得到键对应的值</a></li>
+                <li><a id="contents:添加键值对" href="#添加键值对">添加键值对</a></li>
+                <li><a id="contents:合并" href="#合并">合并</a></li>
+                <li><a id="contents:删除" href="#删除">删除</a></li>
+              </ol>
+            </li>
+            <li><a id="contents:集合" href="#集合">集合</a>
+              <ol>
+                <li><a id="contents:字面量-2" href="#字面量-2">字面量</a></li>
+                <li><a id="contents:对象-1" href="#对象-1">对象</a></li>
+                <li><a id="contents:推导式-2" href="#推导式-2">推导式</a></li>
+                <li><a id="contents:交并差集" href="#交并差集">交并差集</a></li>
+                <li><a id="contents:合并-1" href="#合并-1">合并</a></li>
+                <li><a id="contents:拷贝" href="#拷贝">拷贝</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav><div class="post-body e-content">
+                <p></p>
+<h2 id="python-简单介绍"><a href="#python-简单介绍" class="anchor-link">#</a><a href="#contents:python-简单介绍" class="headings">Python 简单介绍</a></h2>
+<blockquote>
+<p>作为一种<em>解释型语言</em>，Python 的设计哲学强调代码的可读性和简洁的语法（尤其是使用空格缩进划分代码块，而非使用大括号或者关键词）。</p>
+<p>与 Scheme、Ruby、Perl、Tcl 等动态类型编程语言一样，Python 拥有<em>动态类型</em>系统和垃圾回收功能，能够自动管理内存使用，并且支持多种编程范式，包括面向对象、命令式、函数式和过程式编程。其本身拥有一个巨大而广泛的标准库。</p>
+<p>Python是完全物件导向的语言。函数、模组、数字、字串都是物件。并且完全支持继承、重载、派生、多重继承，有益于增强原始码的复用性。Python 支持重载运算符，因此 Python 也支持泛型设计。</p>
+<p>Python 编译器本身也可以被集成到其它需要脚本语言的程式内。因此，有很多人把 Python 作为一种*“胶水语言”*使用。使用 Python 将其他语言编写的程式进行集成和封装。</p>
+<p>Python 属于<em>动态类型语言</em>，动态类型语言是在运行期间检查数据的类型，不得不保持描述变量值的实际类型标记，程序在每次操作变量时，需要执行数据依赖分支，而静态类型语言相对于动态类型语言，在声明变量时已经指定了数据类型和表示方法，根据这一原理导致 Python 相对于 C、Visual Basic 等静态类型语言来说<em>运行速度较慢</em>。</p>
+<p>摘录自 Wikipedia</p>
+</blockquote>
+<h2 id="python-数据类型"><a href="#python-数据类型" class="anchor-link">#</a><a href="#contents:python-数据类型" class="headings">Python 数据类型</a></h2>
+<h3 id="常量"><a href="#常量" class="anchor-link">#</a><a href="#contents:常量" class="headings">常量</a></h3>
+<p>Python 中没有关键字表示常量，用大写来代表这是一个常量。例如 <code>NUM=5</code>，<code>NUM</code> 就是一个常量。因此，在编写 Python 代码时，要严格区分大小写。</p>
+<h3 id="变量"><a href="#变量" class="anchor-link">#</a><a href="#contents:变量" class="headings">变量</a></h3>
+<p>Python 中变量声明不需要声明变量类型。</p>
+<p>但是，Python 是一种强类型语言，不能因此而判断 Python 是弱类型的。</p>
+<p><strong>Python 是动态的、强类型的语言。</strong></p>
+<p><a href="https://wiki.Python.org/moin/Why%20is%20Python%20a%20dynamic%20language%20and%20also%20a%20strongly%20typed%20language" target="_blank" rel="noopener">Why is Python a dynamic language and also a strongly typed language？</a></p>
+<h3 id="数据类型"><a href="#数据类型" class="anchor-link">#</a><a href="#contents:数据类型" class="headings">数据类型</a></h3>
+<h4 id="分为两大类内置数据类型自定义数据类型"><a href="#分为两大类内置数据类型自定义数据类型" class="anchor-link">#</a><a href="#contents:分为两大类内置数据类型自定义数据类型" class="headings">分为两大类：内置数据类型、自定义数据类型</a></h4>
+<p>内置数据类型分为：数值、序列、集合、字典、特殊、其他</p>
+<p>数值数据类型：整数、浮点数、布尔、复数</p>
+<p>序列数据类型：字符串、元组、字节序列、列表、字节数组</p>
+<p>集合数据类型：集、不可变集</p>
+<h4 id="内置的-type-函数可以用来查询变量所指的对象类型"><a href="#内置的-type-函数可以用来查询变量所指的对象类型" class="anchor-link">#</a><a href="#contents:内置的-type-函数可以用来查询变量所指的对象类型" class="headings">内置的 type() 函数可以用来查询变量所指的对象类型</a></h4>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"> <span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mi">4</span><span class="o">+</span><span class="mi">3</span><span class="n">j</span>
+</span></span><span class="line"><span class="cl"> <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;int&#39;</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;float&#39;</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;bool&#39;</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;complex&#39;</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h4 id="int-类型"><a href="#int-类型" class="anchor-link">#</a><a href="#contents:int-类型" class="headings">int 类型</a></h4>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">myInt</span> <span class="o">=</span> <span class="mi">5</span> 
+</span></span><span class="line"><span class="cl"><span class="n">myInt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">#int对象方式</span>
+</span></span><span class="line"><span class="cl"><span class="nb">int</span><span class="p">(</span><span class="mf">5.4</span><span class="p">)</span> <span class="c1">#自动类型转换</span>
+</span></span><span class="line"><span class="cl"><span class="nb">int</span><span class="p">(</span><span class="s2">&#34;123&#34;</span><span class="p">)</span> <span class="c1">#自动类型转换</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#二进制以0b开头，八进制以0开头，十六进制以0x开头</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h4 id="float-类型"><a href="#float-类型" class="anchor-link">#</a><a href="#contents:float-类型" class="headings">float 类型</a></h4>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">myFloat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">myFloat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1">#自动类型转换，输出结果4.0</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h4 id="复数数据类型-虚部必须用-j"><a href="#复数数据类型-虚部必须用-j" class="anchor-link">#</a><a href="#contents:复数数据类型-虚部必须用-j" class="headings">复数数据类型 虚部必须用 j</a></h4>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="n">j</span> <span class="c1">#不可写成1+j</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0</span><span class="o">+</span><span class="mi">0</span><span class="n">j</span> <span class="c1">#0不能省略</span>
+</span></span><span class="line"><span class="cl"><span class="nb">complex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#其中1为实部，2为虚部</span>
+</span></span><span class="line"><span class="cl"><span class="n">c1</span><span class="o">=</span><span class="nb">complex</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="c1">#输出c1为6+0j,等同于complex(6,0) complex(6,)</span>
+</span></span><span class="line"><span class="cl"><span class="n">c2</span><span class="o">=</span><span class="nb">complex</span><span class="p">(</span><span class="mf">2.1</span><span class="p">,</span><span class="mf">3.2</span><span class="p">)</span> <span class="c1">#实部与虚部可以为浮点数</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#real:复数的实部 imag:复数的虚部  c2.real输出结果2.1,c2.imag输出结果3.2</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h4 id="bool-类型"><a href="#bool-类型" class="anchor-link">#</a><a href="#contents:bool-类型" class="headings">bool 类型</a></h4>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">True False开头首字母必须大写
+</span></span></span><span class="line"><span class="cl"><span class="s2">bool对象 bool(False)
+</span></span></span><span class="line"><span class="cl"><span class="s2">bool(0),bool(0.0) 结果为False,任何非零均为True例如   bool(&#39;0&#39;),bool(5),bool(2.3),bool(&#34;abc&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h4 id="string类型"><a href="#string类型" class="anchor-link">#</a><a href="#contents:string类型" class="headings">String类型</a></h4>
+<h5 id="表现形式"><a href="#表现形式" class="anchor-link">#</a><a href="#contents:表现形式" class="headings">表现形式</a></h5>
+<p><code>&quot;abc&quot;</code>， <code>'abc'</code>， <code>'''abc'''</code>， <code>&quot;&quot;&quot;abc&quot;&quot;&quot;</code>， 前两个表示一行，后两个表示可以跨行。</p>
+<h5 id="字符串拼接与重复"><a href="#字符串拼接与重复" class="anchor-link">#</a><a href="#contents:字符串拼接与重复" class="headings">字符串拼接与重复</a></h5>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="s2">&#34;abc&#34;</span><span class="o">+</span><span class="s1">&#39;def&#39;</span>  <span class="c1">#使用+进行字符串连接</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;abcdef&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="s2">&#34;abc&#34;</span> <span class="s1">&#39;def&#39;</span>  <span class="c1">#默认自动连接</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;abcdef&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="s2">&#34;abc&#34;</span><span class="o">*</span><span class="mi">2</span>  <span class="c1"># *表示重复，*后的整数表示重复次数</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;abcabc&#39;</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="转义字符"><a href="#转义字符" class="anchor-link">#</a><a href="#contents:转义字符" class="headings">转义字符</a></h5>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th style="text-align:center">转义字符</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\n</td>
+<td style="text-align:center">换行</td>
+</tr>
+<tr>
+<td style="text-align:center">\r</td>
+<td style="text-align:center">回车</td>
+</tr>
+<tr>
+<td style="text-align:center">\t</td>
+<td style="text-align:center">水平制表符</td>
+</tr>
+<tr>
+<td style="text-align:center">\v</td>
+<td style="text-align:center">垂直制表符</td>
+</tr>
+<tr>
+<td style="text-align:center">\b</td>
+<td style="text-align:center">退格</td>
+</tr>
+<tr>
+<td style="text-align:center">\f</td>
+<td style="text-align:center">换页</td>
+</tr>
+</tbody>
+</table></div>
+<p>使用 <code>r</code> 或 <code>R</code> 为开头的字符串成为原始字符串，其中包含的任何字符都不可进行转义。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">myStr</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;abc\n&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">myStr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;abc</span><span class="se">\n</span><span class="s1">&#39;</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="str-对象"><a href="#str-对象" class="anchor-link">#</a><a href="#contents:str-对象" class="headings">str 对象</a></h5>
+<p><code>str()</code></p>
+<p><code>str(.14)</code> 输出结果为 <code>'0.14'</code> ，浮点数前导 0 可省略，隐式类型转换。</p>
+<h5 id="字符串索引"><a href="#字符串索引" class="anchor-link">#</a><a href="#contents:字符串索引" class="headings">字符串索引</a></h5>
+<p>Python 中的字符串有两种索引方式，第一种是从左往右，从 0 开始依次增加；第二种是从右往左，从 -1 开始依次减少。</p>
+<p><strong>注意，没有单独的字符类型，一个字符就是长度为 1 的字符串。</strong></p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">word</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">P</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="n">P</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="字符串截取子串"><a href="#字符串截取子串" class="anchor-link">#</a><a href="#contents:字符串截取子串" class="headings">字符串截取子串</a></h5>
+<p>用冒号分隔两个索引，形式为变量[头下标:尾下标]。</p>
+<p>截取的范围是前闭后开的，并且两个索引都可以省略：</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;ilovePython&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;love&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[:]</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;ilovePython&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">5</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;Python&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:</span><span class="o">-</span><span class="mi">6</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;love&#39;</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>Python 字符串不能被改变。向一个索引位置赋值，比如 <code>word[0] = 'm'</code> 会导致错误。</p>
+<h4 id="列表"><a href="#列表" class="anchor-link">#</a><a href="#contents:列表" class="headings">列表</a></h4>
+<h5 id="列表的创建方式"><a href="#列表的创建方式" class="anchor-link">#</a><a href="#contents:列表的创建方式" class="headings">列表的创建方式</a></h5>
+<h6 id="字面量"><a href="#字面量" class="anchor-link">#</a><a href="#contents:字面量" class="headings">字面量</a></h6>
+<p><code>[x1,x2,x3,x4,...,xn]</code></p>
+<p>列表中元素类型可以不同，如 <code>[1, 2, 3, 'q', True]</code></p>
+<p>列表中的元素可以是表达式，如</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">list</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span><span class="mi">8</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h6 id="对象"><a href="#对象" class="anchor-link">#</a><a href="#contents:对象" class="headings">对象</a></h6>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">list1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>  <span class="c1">#空列表</span>
+</span></span><span class="line"><span class="cl"><span class="n">list2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&#34;abcd&#34;</span><span class="p">)</span>  <span class="c1">#结果[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">list3</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>  <span class="c1">#结果[0, 1, 2]</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h6 id="推导式"><a href="#推导式" class="anchor-link">#</a><a href="#contents:推导式" class="headings">推导式</a></h6>
+<p>使用非常简单的表达式满足特定的列表</p>
+<p><code>表达式　for 变量　in 序列</code></p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">list4</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">list4</span><span class="p">)</span>   <span class="c1">#结果[1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+</span></span><span class="line"><span class="cl"><span class="n">list5</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list4</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>  <span class="c1">#结果[4, 16, 36, 64]</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="列表的操作"><a href="#列表的操作" class="anchor-link">#</a><a href="#contents:列表的操作" class="headings">列表的操作</a></h5>
+<p>列表的操作包括：索引、切片、连接、重复、成员关系、比较、求长度、最大值、最小值等</p>
+<h6 id="索引访问"><a href="#索引访问" class="anchor-link">#</a><a href="#contents:索引访问" class="headings">索引访问</a></h6>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">list6</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">list6</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">list6</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1">#结果１　３</span>
+</span></span><span class="line"><span class="cl"><span class="n">list6</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1">#list中的值可以改变，此时list6为[10, 2, 3]</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h6 id="删除列表中的元素"><a href="#删除列表中的元素" class="anchor-link">#</a><a href="#contents:删除列表中的元素" class="headings">删除列表中的元素</a></h6>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">list7</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>  <span class="c1">#[1,2,3,4,5]</span>
+</span></span><span class="line"><span class="cl"><span class="k">del</span> <span class="n">list7</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1">#[1,3,4,5]</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h6 id="求长度最大值最小值和"><a href="#求长度最大值最小值和" class="anchor-link">#</a><a href="#contents:求长度最大值最小值和" class="headings">求长度、最大值、最小值、和</a></h6>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">list８</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>  <span class="c1">#[1,2,3,4,5,6]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="n">list8</span><span class="p">)</span>  <span class="c1">#6</span>
+</span></span><span class="line"><span class="cl"><span class="nb">min</span><span class="p">(</span><span class="n">list8</span><span class="p">)</span>  <span class="c1">#1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">max</span><span class="p">(</span><span class="n">list8</span><span class="p">)</span>  <span class="c1">#6</span>
+</span></span><span class="line"><span class="cl"><span class="nb">sum</span><span class="p">(</span><span class="n">list8</span><span class="p">)</span>  <span class="c1">#21</span>
+</span></span><span class="line"><span class="cl"><span class="n">list9</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="n">list9</span><span class="p">)</span>  <span class="c1">#6</span>
+</span></span><span class="line"><span class="cl"><span class="nb">max</span><span class="p">(</span><span class="n">list9</span><span class="p">)</span>  <span class="c1">#TypeError: unorderable types: str() &gt; int(), min和sum同样错误。</span>
+</span></span><span class="line"><span class="cl"><span class="n">list10</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>  <span class="c1">#可以算len,max,min，但不能求和</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Python 2.7.15中测试结果如下</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">max</span><span class="p">(</span><span class="n">list1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;a&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">min</span><span class="p">(</span><span class="n">list1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">(</span><span class="n">list1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="ne">TypeError</span><span class="p">:</span> <span class="n">unsupported</span> <span class="n">operand</span> <span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="o">+</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span> <span class="ow">and</span> <span class="s1">&#39;str&#39;</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h6 id="切片"><a href="#切片" class="anchor-link">#</a><a href="#contents:切片" class="headings">切片</a></h6>
+<p><code>s[i:j]</code>：从索引 i 开始，到j结束，左闭右开。省略 i 从 0 开始，省略 j 到结尾结束</p>
+<p><code>s[i:j:k]</code>：k 表示步长</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">temp</span> <span class="o">=</span> <span class="n">list1</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>  <span class="c1"># 结果[2, 4, 6]</span>
+</span></span><span class="line"><span class="cl"><span class="n">list1</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># list1变为[2,3,4,5,6,7]</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h6 id="连接与重复"><a href="#连接与重复" class="anchor-link">#</a><a href="#contents:连接与重复" class="headings">连接与重复</a></h6>
+<p>连接 <code>+</code>，重复 <code>*</code></p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">list3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">list2</span><span class="o">+</span><span class="n">list3</span><span class="p">)</span>  <span class="c1"># 结果[1, 2, 3, 3, 4, 5],只连接不去重</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">list2</span><span class="p">)</span>  <span class="c1"># 结果[1, 2, 3, 1, 2, 3]</span>
+</span></span><span class="line"><span class="cl"><span class="n">list2</span> <span class="o">+=</span> <span class="n">list3</span>  <span class="c1"># 结果[1, 2, 3, 3, 4, 5],等价于list2 = list2 + list3</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h6 id="成员关系操作"><a href="#成员关系操作" class="anchor-link">#</a><a href="#contents:成员关系操作" class="headings">成员关系操作</a></h6>
+<p>判断一个元素是否在列表中：<code>in</code> 和<code>not in</code></p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="mi">7</span> <span class="ow">in</span> <span class="n">list1</span><span class="p">)</span>  <span class="c1"># False</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="mi">3</span> <span class="ow">in</span> <span class="n">list1</span><span class="p">)</span>  <span class="c1"># True</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">list1</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>  <span class="c1"># 3  计算某一个元素在列表中出现的次数</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">list1</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>  <span class="c1"># 2 查找某个元素在给定范围内第一次出现的索引,例子中范围为[2,6)</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h6 id="比较运算"><a href="#比较运算" class="anchor-link">#</a><a href="#contents:比较运算" class="headings">比较运算</a></h6>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">list3</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">list4</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">list1</span> <span class="o">==</span> <span class="n">list2</span><span class="p">)</span>  <span class="c1"># True</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">list3</span> <span class="o">&gt;</span> <span class="n">list2</span><span class="p">)</span>   <span class="c1"># True</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">list3</span> <span class="o">&gt;</span> <span class="n">list4</span><span class="p">)</span>   <span class="c1"># False</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 从第一个元素开始比较</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h6 id="列表的排序"><a href="#列表的排序" class="anchor-link">#</a><a href="#contents:列表的排序" class="headings">列表的排序</a></h6>
+<p><code>sorted(list1))</code></p>
+<h6 id="any和all"><a href="#any和all" class="anchor-link">#</a><a href="#contents:any和all" class="headings">any()和all()</a></h6>
+<p><code>any()</code>：列表中是否有元素为 True</p>
+<p><code>all()</code>：列表中的元素是否都为 True</p>
+<h6 id="列表的拆分"><a href="#列表的拆分" class="anchor-link">#</a><a href="#contents:列表的拆分" class="headings">列表的拆分</a></h6>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="n">list1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>  <span class="c1"># 结果１　２　３　４</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#　应保证前面的变量数与列表的长度相同</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h4 id="元组"><a href="#元组" class="anchor-link">#</a><a href="#contents:元组" class="headings">元组</a></h4>
+<h5 id="定义与声明"><a href="#定义与声明" class="anchor-link">#</a><a href="#contents:定义与声明" class="headings">定义与声明</a></h5>
+<p>定值表，用来存储不变值表</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span>         <span class="c1"># 表示元组</span>
+</span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>       <span class="c1"># 表示元组</span>
+</span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="p">()</span>              <span class="c1"># 表示空元组</span>
+</span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>              <span class="c1"># 表示只有一个元素的元组，必须有逗号</span>
+</span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># 错误写法，只能有一个参数</span>
+</span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span><span class="c1"># 正确写法</span>
+</span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="s2">&#34;abcd&#34;</span><span class="p">)</span>   <span class="c1"># 结果为（&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;）</span>
+</span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># 结果为(2,4,6,8)</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="元组的操作"><a href="#元组的操作" class="anchor-link">#</a><a href="#contents:元组的操作" class="headings">元组的操作</a></h5>
+<p>索引访问、切片、连接、重复、成员关系、最大值、最小值、和、长度、排序等，与列表的操作类似，可以进行对比。一些内容不作赘述。</p>
+<h6 id="元组的排序"><a href="#元组的排序" class="anchor-link">#</a><a href="#contents:元组的排序" class="headings">元组的排序</a></h6>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">tuple1</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">tuple1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">tuple1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">tuple1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果为</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>  <span class="c1"># 输出的是列表</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># 原元组没有变化</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h6 id="元组的拆分"><a href="#元组的拆分" class="anchor-link">#</a><a href="#contents:元组的拆分" class="headings">元组的拆分</a></h6>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">tuple1</span> 
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>      <span class="c1"># 结果为 2 4 6</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">tuple1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>      <span class="c1"># 结果为 2 1 9</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 元组的拆分前面变量的个数必须与元组元素个数相等。如果元组元素个数过多，可以使用*代表多个变量</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">_</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">tuple1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span>      <span class="c1"># 结果为 1 9 [4, 6]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 没有意义的命名可以使用临时变量下划线(_)表示。输出临时变量，只会保留最后一个。</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h4 id="字典"><a href="#字典" class="anchor-link">#</a><a href="#contents:字典" class="headings">字典</a></h4>
+<h5 id="字面量-1"><a href="#字面量-1" class="anchor-link">#</a><a href="#contents:字面量-1" class="headings">字面量</a></h5>
+<p><code>{键:值,键:值,键:值,键:值,}</code></p>
+<h5 id="字典对象"><a href="#字典对象" class="anchor-link">#</a><a href="#contents:字典对象" class="headings">字典对象</a></h5>
+<p><code>dict()</code></p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="p">([[</span><span class="s1">&#39;优&#39;</span><span class="p">,</span><span class="mi">90</span><span class="p">],[</span><span class="s1">&#39;良&#39;</span><span class="p">,</span><span class="mi">80</span><span class="p">]]))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="p">(((</span><span class="s1">&#39;优&#39;</span><span class="p">,</span><span class="mi">90</span><span class="p">),(</span><span class="s1">&#39;良&#39;</span><span class="p">,</span><span class="mi">80</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;优&#39;</span><span class="p">,</span><span class="s1">&#39;良&#39;</span><span class="p">],[</span><span class="mi">90</span><span class="p">,</span><span class="mi">80</span><span class="p">])))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果均为 {&#39;优&#39;: 90, &#39;良&#39;: 80}</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict1</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="s2">&#34;apple&#34;</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="s2">&#34;banane&#34;</span><span class="p">)</span>  <span class="c1"># {&#39;a&#39;:&#39;apple&#39;, &#39;b&#39;:&#39;banane&#39;}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="fromkeys"><a href="#fromkeys" class="anchor-link">#</a><a href="#contents:fromkeys" class="headings">fromkeys()</a></h5>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">dict2</span> <span class="o">=</span> <span class="p">{}</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">([</span><span class="s1">&#39;优&#39;</span><span class="p">,</span><span class="s1">&#39;良&#39;</span><span class="p">],</span><span class="s2">&#34;大于70分&#34;</span><span class="p">)</span>  <span class="c1"># {&#39;优&#39;: &#39;大于70分&#39;, &#39;良&#39;: &#39;大于70分&#39;}</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict3</span> <span class="o">=</span> <span class="p">{}</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">([</span><span class="s1">&#39;优&#39;</span><span class="p">,</span><span class="s1">&#39;良&#39;</span><span class="p">])</span>  <span class="c1"># {&#39;优&#39;: None, &#39;良&#39;: None}</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict4</span> <span class="o">=</span> <span class="p">{}</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">([</span><span class="s1">&#39;优&#39;</span><span class="p">,</span><span class="s1">&#39;良&#39;</span><span class="p">],</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># {&#39;优&#39;: None, &#39;良&#39;: None}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="推导式-1"><a href="#推导式-1" class="anchor-link">#</a><a href="#contents:推导式-1" class="headings">推导式</a></h5>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">dict5</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)}</span> <span class="c1"># {1:1,2:4,3:9,4:16}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="得到键对应的值"><a href="#得到键对应的值" class="anchor-link">#</a><a href="#contents:得到键对应的值" class="headings">得到键对应的值</a></h5>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">dict2</span><span class="p">[</span><span class="s1">&#39;优&#39;</span><span class="p">]</span>  <span class="c1"># 大于70分</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;优&#39;</span><span class="p">)</span>  <span class="c1"># 大于70分</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;秀&#39;</span><span class="p">)</span>  <span class="c1"># 没有反应，也没有报错</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;秀&#39;</span><span class="p">,</span><span class="s1">&#39;自定义错误提示&#39;</span><span class="p">)</span>  <span class="c1"># 如果有“秀”对应的值，则输出对应的值；否则输出后面的提示信息</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;优&#39;</span><span class="p">,</span> <span class="s1">&#39;自定义错误提示&#39;</span><span class="p">)</span>  <span class="c1"># 大于70分</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict2</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>  <span class="c1"># 获取所有的键值对</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict2</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>  <span class="c1"># 返回所有的键值</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict2</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>  <span class="c1">#返回所有的值</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="添加键值对"><a href="#添加键值对" class="anchor-link">#</a><a href="#contents:添加键值对" class="headings">添加键值对</a></h5>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">dict1</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cat</span>  <span class="c1"># {&#39;a&#39;:&#39;apple&#39;, &#39;b&#39;:&#39;banane&#39;, &#39;c&#39;:&#39;cat&#39;} 没有则添加</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict1</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">allen</span>  <span class="c1"># {&#39;a&#39;:&#39;allen&#39;, &#39;b&#39;:&#39;banane&#39;} 有则修改</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="合并"><a href="#合并" class="anchor-link">#</a><a href="#contents:合并" class="headings">合并</a></h5>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">dict6</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;No1&#39;</span><span class="p">:</span><span class="s1">&#39;java&#39;</span><span class="p">,</span><span class="s1">&#39;No2&#39;</span><span class="p">:</span><span class="s1">&#39;Python&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict7</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;No3&#39;</span><span class="p">:</span><span class="s1">&#39;C++&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict8</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;No2&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict6</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dict7</span><span class="p">)</span>  <span class="c1"># dict6为{&#39;No1&#39;: &#39;java&#39;, &#39;No2&#39;: &#39;Python&#39;, &#39;No3&#39;: &#39;C++&#39;}</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict6</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dict8</span><span class="p">)</span>  <span class="c1"># dict6为{&#39;No1&#39;:&#39;java&#39;,&#39;No2&#39;:&#39;C&#39;， &#39;No3&#39;: &#39;C++&#39;}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="删除"><a href="#删除" class="anchor-link">#</a><a href="#contents:删除" class="headings">删除</a></h5>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="k">del</span><span class="p">(</span><span class="n">dict6</span><span class="p">[</span><span class="s1">&#39;No2&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">dict6</span><span class="p">)</span>  <span class="c1"># {&#39;No1&#39;: &#39;java&#39;， &#39;No3&#39;: &#39;C++&#39;}</span>
+</span></span><span class="line"><span class="cl"><span class="k">del</span> <span class="n">dict6</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">dict6</span><span class="p">)</span>  <span class="c1"># 报错，未定义dict1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">dict6</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;No2&#39;</span><span class="p">,</span><span class="s1">&#39;自定义错误提示&#39;</span><span class="p">)</span>  <span class="c1"># 存在则删除；不存在输出自定义错误提示，即参数二</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict9</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;No1&#39;</span><span class="p">:</span><span class="s1">&#39;java&#39;</span><span class="p">,</span><span class="s1">&#39;No2&#39;</span><span class="p">:</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span><span class="s1">&#39;No3&#39;</span><span class="p">:</span><span class="s1">&#39;C++&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict9</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span>  <span class="c1"># 从后往前删除，每次删除一个。先删除No3,再删除No2...</span>
+</span></span><span class="line"><span class="cl"><span class="n">dict9</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>  <span class="c1"># dict9为 {}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h4 id="集合"><a href="#集合" class="anchor-link">#</a><a href="#contents:集合" class="headings">集合</a></h4>
+<p>可变集合(set) 不可变集合(frozenset)，没有顺序，没有重复元素。</p>
+<h5 id="字面量-2"><a href="#字面量-2" class="anchor-link">#</a><a href="#contents:字面量-2" class="headings">字面量</a></h5>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">})</span>  <span class="c1"># {1, 2, 3, 4}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">})</span>  <span class="c1"># {1, 2, 4}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="kc">True</span><span class="p">})</span>   <span class="c1"># {1}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="kc">False</span><span class="p">})</span>  <span class="c1"># {False, 1}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="对象-1"><a href="#对象-1" class="anchor-link">#</a><a href="#contents:对象-1" class="headings">对象</a></h5>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">set1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>    <span class="c1"># {&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;o&#39;}</span>
+</span></span><span class="line"><span class="cl"><span class="n">set2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>  <span class="c1"># {1, 2, 3, 4}</span>
+</span></span><span class="line"><span class="cl"><span class="n">set3</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>  <span class="c1"># {1, 2, 3, 4}</span>
+</span></span><span class="line"><span class="cl"><span class="n">set4</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="mi">1</span><span class="p">,[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]))</span><span class="c1"># 错误</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="推导式-2"><a href="#推导式-2" class="anchor-link">#</a><a href="#contents:推导式-2" class="headings">推导式</a></h5>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="p">{</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)}</span>  <span class="c1"># {16, 1, 4, 9}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="交并差集"><a href="#交并差集" class="anchor-link">#</a><a href="#contents:交并差集" class="headings">交并差集</a></h5>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">set5</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">set6</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">set5</span> <span class="o">|</span> <span class="n">set6</span>  <span class="c1"># 并集 {1, 2, 3, 4, 5, 6} </span>
+</span></span><span class="line"><span class="cl"><span class="n">set5</span> <span class="o">&amp;</span> <span class="n">set6</span>  <span class="c1"># 交集 {3, 4} </span>
+</span></span><span class="line"><span class="cl"><span class="n">set5</span> <span class="o">-</span> <span class="n">set6</span>  <span class="c1"># 差集 {1, 2} </span>
+</span></span><span class="line"><span class="cl"><span class="n">set5</span> <span class="o">^</span> <span class="n">set6</span>  <span class="c1"># 对称差集 {1, 2, 5, 6}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="合并-1"><a href="#合并-1" class="anchor-link">#</a><a href="#contents:合并-1" class="headings">合并</a></h5>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">set5</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">set6</span><span class="p">)</span>  <span class="c1"># {1,2,3,4,5,6}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h5 id="拷贝"><a href="#拷贝" class="anchor-link">#</a><a href="#contents:拷贝" class="headings">拷贝</a></h5>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">set7</span> <span class="o">=</span> <span class="n">set6</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div>
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-03 22:36:20 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-03</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-03</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/tech/python-tkinter/" class="related-link">Pyhton GUI 编程之 tkinter</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/python-syntax/" class="related-link">[Python learning] 词法结构</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/python-hello-world/" class="related-link">[Python learning] 从 Hello world! 开始</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/python-collection/" class="related-link">Python 内置模块 Collections</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/the-zen-of-python/" class="related-link">The Zen of Pyhton(Python 之禅)</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/python/" rel="tag" class="post-tag-link">#python</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/double-system-uninstall/" rel="prev">&lt; 双系统卸载</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/zxing-qrcode/" rel="next">利用ZXing工具生成二维码以及解析二维码 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

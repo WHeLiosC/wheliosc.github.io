@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>软件工程[1] 软件工程学概述 | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="主要内容有软件危机、软件生命周期和8种典型的软件过程模型" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/software-engineering-1/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2018-12-25T15:26:34+08:00",
+        "dateModified": "2022-05-03T22:37:41+08:00",
+        "url": "https://wheliosc.github.io/tech/software-engineering-1/",
+        "headline": "软件工程[1] 软件工程学概述",
+        "description": "主要内容有软件危机、软件生命周期和8种典型的软件过程模型",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  3559 ,
+        "image": ["https://wheliosc.github.io/waterfall-model.png","https://wheliosc.github.io/Rapid-Prototype-Model.jpg","https://wheliosc.github.io/Incremental-Model.jpg","https://wheliosc.github.io/Spiral-Model.png","https://wheliosc.github.io/Fountain-Model.png","https://wheliosc.github.io/RUP.jpg"],
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="软件工程[1] 软件工程学概述" />
+<meta property="og:description" content="主要内容有软件危机、软件生命周期和8种典型的软件过程模型" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/software-engineering-1/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/waterfall-model.png" />
+<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-12-25T15:26:34&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-03T22:37:41&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">软件工程[1] 软件工程学概述</h1>
+
+            
+
+            
+                <div class="post-description p-summary">主要内容有软件危机、软件生命周期和8种典型的软件过程模型</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2018-12-25T15:26:34&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2018.12.25</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;3559</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:软件危机" href="#软件危机">软件危机</a>
+      <ol>
+        <li><a id="contents:介绍" href="#介绍">介绍</a></li>
+        <li><a id="contents:产生原因" href="#产生原因">产生原因</a></li>
+        <li><a id="contents:消除的途径" href="#消除的途径">消除的途径</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:软件生命周期" href="#软件生命周期">软件生命周期</a>
+      <ol>
+        <li><a id="contents:问题定义" href="#问题定义">问题定义</a></li>
+        <li><a id="contents:可行性研究" href="#可行性研究">可行性研究</a></li>
+        <li><a id="contents:需求分析" href="#需求分析">需求分析</a></li>
+        <li><a id="contents:总体设计" href="#总体设计">总体设计</a></li>
+        <li><a id="contents:详细设计" href="#详细设计">详细设计</a></li>
+        <li><a id="contents:编码和单元测试" href="#编码和单元测试">编码和单元测试</a></li>
+        <li><a id="contents:综合测试" href="#综合测试">综合测试</a></li>
+        <li><a id="contents:运行维护" href="#运行维护">运行维护</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:软件过程" href="#软件过程">软件过程</a>
+      <ol>
+        <li><a id="contents:瀑布模型waterfall-model" href="#瀑布模型waterfall-model">瀑布模型(Waterfall Model)</a></li>
+        <li><a id="contents:快速原型模型rapid-prototype-model" href="#快速原型模型rapid-prototype-model">快速原型模型(Rapid Prototype Model)</a></li>
+        <li><a id="contents:增量模型incremental-model" href="#增量模型incremental-model">增量模型(Incremental Model)</a></li>
+        <li><a id="contents:螺旋模型spiral-model" href="#螺旋模型spiral-model">螺旋模型(Spiral Model)</a></li>
+        <li><a id="contents:喷泉模型fountain-model" href="#喷泉模型fountain-model">喷泉模型(Fountain Model)</a></li>
+        <li><a id="contents:rup-rational-unified-process" href="#rup-rational-unified-process">RUP (Rational Unified Process)</a></li>
+        <li><a id="contents:敏捷过程与极限编程agile-software-process--xp" href="#敏捷过程与极限编程agile-software-process--xp">敏捷过程与极限编程（Agile Software Process &amp; XP）</a></li>
+        <li><a id="contents:微软过程msf" href="#微软过程msf">微软过程（MSF）</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav><div class="post-body e-content">
+                <p></p>
+<h2 id="软件危机"><a href="#软件危机" class="anchor-link">#</a><a href="#contents:软件危机" class="headings">软件危机</a></h2>
+<h3 id="介绍"><a href="#介绍" class="anchor-link">#</a><a href="#contents:介绍" class="headings">介绍</a></h3>
+<p>在计算机软件的开发和维护过程中所遇到的一系列严重问题。软件危机包含下述两方面的问题：如何开发软件，以满足对软件日益增长的需求；如何维护数量不断膨胀的已有软件。</p>
+<h3 id="产生原因"><a href="#产生原因" class="anchor-link">#</a><a href="#contents:产生原因" class="headings">产生原因</a></h3>
+<p>与软件本身特点有关：</p>
+<ul>
+<li>缺乏“可见性”，管理和控制软件开发过程相当困难。</li>
+<li>不可能测试出全部错误，软件维护意味着改正或修改原来的设计，使得软件较难维护。</li>
+<li>规模庞大，在技术和管理上异常复杂和困难。</li>
+</ul>
+<p>与软件开发与维护的方法不正确有关：</p>
+<ul>
+<li>忽视软件需求分析的重要性。</li>
+<li>轻视软件维护。</li>
+</ul>
+<h3 id="消除的途径"><a href="#消除的途径" class="anchor-link">#</a><a href="#contents:消除的途径" class="headings">消除的途径</a></h3>
+<ul>
+<li>对计算机软件正确认识：软件是<strong>程序</strong>、<strong>数据</strong>及相关<strong>文档</strong>的完整集合。</li>
+<li>既要有技术措施(方法和工具)，又要有科学的组织管理措施
+<ul>
+<li>严密管理，良好组织，发扬团队精神</li>
+<li>推广使用在实践中总结出来的开发软件的成功的技术和方法，并且研究探索更好更有效的技术和方法，尽快消除错误概念和做法</li>
+<li>开发和使用更好的软件工具</li>
+</ul>
+</li>
+</ul>
+<h2 id="软件生命周期"><a href="#软件生命周期" class="anchor-link">#</a><a href="#contents:软件生命周期" class="headings">软件生命周期</a></h2>
+<p>软件生命周期由软件定义（包括问题定义、可行性研究和需求分析三个阶段）、软件开发（包括总体设计、详细设计、编码及单元测试和综合测试四个阶段，前两个阶段又称为系统设计，后两个阶段又称为系统实现）和运行（软件）维护 3 个时期组成。</p>
+<h3 id="问题定义"><a href="#问题定义" class="anchor-link">#</a><a href="#contents:问题定义" class="headings">问题定义</a></h3>
+<p>“要解决的问题是什么” ——问题性质、工程目标、工程规模</p>
+<h3 id="可行性研究"><a href="#可行性研究" class="anchor-link">#</a><a href="#contents:可行性研究" class="headings">可行性研究</a></h3>
+<p>“上一个阶段所确定的问题是否有行得通的解决办法” ——技术、经济、操作、法律、社会效益等方面</p>
+<h3 id="需求分析"><a href="#需求分析" class="anchor-link">#</a><a href="#contents:需求分析" class="headings">需求分析</a></h3>
+<p>“目标系统必须做什么” ——经用户确认的系统逻辑模型以及规格说明书</p>
+<h3 id="总体设计"><a href="#总体设计" class="anchor-link">#</a><a href="#contents:总体设计" class="headings">总体设计</a></h3>
+<p>“概括地回答怎样实现目标系统?” ——实现目标系统的几种可能的方案；确定程序由哪些模块组成以及模块间的关系（体系结构）</p>
+<h3 id="详细设计"><a href="#详细设计" class="anchor-link">#</a><a href="#contents:详细设计" class="headings">详细设计</a></h3>
+<p>“应该怎样具体地实现这个系统” ——详细设计每个模块；确定实现模块功能所需的算法和数据结构</p>
+<h3 id="编码和单元测试"><a href="#编码和单元测试" class="anchor-link">#</a><a href="#contents:编码和单元测试" class="headings">编码和单元测试</a></h3>
+<p>写出正确的、容易理解、容易维护的程序模块
+单元测试：对编写出的每个程序模块进行测试</p>
+<h3 id="综合测试"><a href="#综合测试" class="anchor-link">#</a><a href="#contents:综合测试" class="headings">综合测试</a></h3>
+<p>通过各种类型的测试(及相应的调试)使软件达到预定的要求。最基本的测试是集成测试和验收测试。必要时可以用现场测试或平行运行进一步测试检验。保留正式的文档把测试计划、详细测试方案及实际测试结果保存，作为软件配置的一部分。</p>
+<h3 id="运行维护"><a href="#运行维护" class="anchor-link">#</a><a href="#contents:运行维护" class="headings">运行维护</a></h3>
+<ul>
+<li>改正性维护。诊断和改正在使用过程中发现的软件错误。</li>
+<li>适应性维护。适应性修改软件以适应环境的变化。</li>
+<li>完善性维护。根据用户的要求改进或扩充软件使它更完善。</li>
+<li>预防性维护。修改软件为将来的维护活动预先做准备。</li>
+</ul>
+<h2 id="软件过程"><a href="#软件过程" class="anchor-link">#</a><a href="#contents:软件过程" class="headings">软件过程</a></h2>
+<h3 id="瀑布模型waterfall-model"><a href="#瀑布模型waterfall-model" class="anchor-link">#</a><a href="#contents:瀑布模型waterfall-model" class="headings">瀑布模型(Waterfall Model)</a></h3>
+<p><img src="waterfall-model.png" alt="Waterfall Model"></p>
+<p><strong>传统的瀑布模型开发软件特点：</strong></p>
+<ul>
+<li>
+<p>阶段间具有顺序性和依赖性</p>
+<ul>
+<li>前一阶段完成后才能开始后一阶段的工作。</li>
+<li>前一阶段输出作为后一阶段输入，只有前一阶段有正确输出时，后一阶段才有可能正确结果。（实际上不可避免地会犯错误，因此实际的瀑布模型是带反馈环的）</li>
+</ul>
+</li>
+<li>
+<p>推迟实现的观点</p>
+<ul>
+<li>可避免急于求成而导致的返工。</li>
+<li>将系统分析与逻辑设计同物理实现清楚分开开来。</li>
+<li>尽可能推迟程序的物理实现。</li>
+</ul>
+</li>
+<li>
+<p>质量保证的观点（文档驱动的模型）</p>
+<ul>
+<li>每个阶段都必须完成和提交规定的文档，否则则认为该阶段任务未完成。</li>
+<li>每个阶段结束前都要对所完成的文档进行严格评审，以尽早发现问题，纠正错误。</li>
+</ul>
+</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ul>
+<li>提供了一种规范，使得分析、设计、编码、测试与维护工作可以在该规范的指导下有序地展开，避免了软件开发、维护过程中的随意状态。</li>
+<li>对于需求确定、不随时间发生变化的项目，瀑布模型仍然是一种可以考虑采用的过程模型。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>完全依赖静态文档，不适应需求经常发生变更的环境。</li>
+<li>瀑布倒流导致开发成本高。</li>
+<li>只有到项目的开发晚期才能够得到程序的可运行版本，因疏忽而导致的错误要到检验运行时才能发现，造成经济、时间的损失。</li>
+<li>出现“阻塞”状态，导致开发周期长。</li>
+</ul>
+<h3 id="快速原型模型rapid-prototype-model"><a href="#快速原型模型rapid-prototype-model" class="anchor-link">#</a><a href="#contents:快速原型模型rapid-prototype-model" class="headings">快速原型模型(Rapid Prototype Model)</a></h3>
+<p><img src="Rapid-Prototype-Model.jpg" alt="Rapid Prototype Model"></p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>不带”反馈环“，线性顺序开发。</li>
+<li>快速原型的本质是“快速”，尽可能使用快速开发工具尽快地建造出原型系统，以加速软件开发过程，节约软件开发成本。</li>
+<li>原型的用途是获知用户的真正需求，一旦需求确定了，原型将被完全或部分抛弃。</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ul>
+<li>减少由于需求的不明确而带来的开发风险。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>不适用于大型复杂系统的开发。</li>
+<li>缺乏规范化的文档，内部结构可能不够好。</li>
+</ul>
+<h3 id="增量模型incremental-model"><a href="#增量模型incremental-model" class="anchor-link">#</a><a href="#contents:增量模型incremental-model" class="headings">增量模型(Incremental Model)</a></h3>
+<p><img src="Incremental-Model.jpg" alt="Incremental Model"></p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>任务或功能模块驱动，可以分阶段提交产品。</li>
+<li>每个构件由多个相互作用的模块构成，并且能够完成特定的功能。</li>
+<li>第一个增量构件往往实现软件的基本需求，提供最核心的功能。</li>
+<li>然后以”滚雪球“的方式逐步扩充系统功能。</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ul>
+<li>较短时间内提交可以部分工作的产品，对用户起到镇静剂的作用。</li>
+<li>减少全新产品带给客户的冲击。</li>
+<li>重要功能被首先交付使用，可以得到更多测试。</li>
+<li>由于将一个大系统分解为多个小系统，这就等于将一个大风险分解为多个小风险，从而降低了开发难度和开发风险。</li>
+<li>人员分配灵活，在项目开始不用投入大量的人力资源。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>集成新的增量构件时，必须保证不破坏原有系统。（需要开放式架构）</li>
+</ul>
+<h3 id="螺旋模型spiral-model"><a href="#螺旋模型spiral-model" class="anchor-link">#</a><a href="#contents:螺旋模型spiral-model" class="headings">螺旋模型(Spiral Model)</a></h3>
+<p><img src="Spiral-Model.png" alt="Spiral Model"></p>
+<p>使用原型和风险分析相结合来尽量降低风险，可以理解为在每个阶段之前都增加了风险分析过程的快速原型模型。</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>对可选方案和约束条件的强调有利于已有软件的重用。</li>
+<li>支持用户需求的动态变化。</li>
+<li>有助于已有软件的重用。</li>
+<li>有助于把软件质量作为软件开发的重要目标。</li>
+<li>减少了过多/过少测试带来的风险。</li>
+<li>维护作为开发的一个周期，与开发没有本质区别。</li>
+<li>风险驱动型：风险过大时能及时终止项目。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>风险驱动：需要专业的风险评估人员。</li>
+<li>过多的迭代次数会增加项目成本，延迟提交时间。</li>
+<li>很难让用户确信这种演化方法的结果是可以控制的。由于建设周期长，而软件技术发展比较快，所以经常出现软件开发完毕后，和当前的技术水平有了较大的差距，无法满足当前用户需求。</li>
+</ul>
+<h3 id="喷泉模型fountain-model"><a href="#喷泉模型fountain-model" class="anchor-link">#</a><a href="#contents:喷泉模型fountain-model" class="headings">喷泉模型(Fountain Model)</a></h3>
+<p><img src="Fountain-Model.png" alt="Fountain Model"></p>
+<ul>
+<li>以用户需求为动力，以对象为驱动的模型，是典型的面向对象生命周期模型。</li>
+<li>体现了面向对象软件开发过程迭代和无缝的特性
+<ul>
+<li>圆圈重叠：活动之间存在交迭。</li>
+<li>OO 方法在概念和表示方法上的一致性保证了各项开发活动间的无缝过渡。</li>
+<li>向下箭头：阶段内的迭代（求精）。</li>
+<li>各项活动无明显边界，可同步进行。（为避免活动开发过分无序，应把“线性过程” （快速原型模型或如图中的中轴线）作为总目标）</li>
+</ul>
+</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ul>
+<li>各个阶段没有明显的界限，开发人员可以同步进行开发，提高了软件项目开发效率，节省了开发时间。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>各个开发阶段是重叠的，因此在开发过程中需要大量的开发人员，因此不利于项目的管理。</li>
+<li>要求严格管理文档，使得审核的难度加大，尤其是可能随时加入各种信息。</li>
+</ul>
+<h3 id="rup-rational-unified-process"><a href="#rup-rational-unified-process" class="anchor-link">#</a><a href="#contents:rup-rational-unified-process" class="headings">RUP (Rational Unified Process)</a></h3>
+<p><img src="RUP.jpg" alt="RUP"></p>
+<p>(1) 9 个核心工作流，前 6 个为核心过程工作流程，后 3 个为核心支持工作流程。</p>
+<p>(2) 把软件生命周期划分为四个连续的阶段：初始阶段、精化阶段、构建阶段和移交阶段。</p>
+<p>(3) 强调采用迭代和渐增的方式来开发软件。</p>
+<p>(4) 采用 UML 语言描述软件开发过程。</p>
+<p>(5) 有功能强大的软件工具 Rational Rose 支撑。</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>在开发早期或中期，用户需求可以变化。</li>
+<li>在迭代之初，它不要求有一个相近的产品原型。</li>
+<li>模型的适用范围很广，几乎适用于所有的项目开发。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>要求项目组成员具有很高的水平并掌握先进的开发工具。</li>
+</ul>
+<h3 id="敏捷过程与极限编程agile-software-process--xp"><a href="#敏捷过程与极限编程agile-software-process--xp" class="anchor-link">#</a><a href="#contents:敏捷过程与极限编程agile-software-process--xp" class="headings">敏捷过程与极限编程（Agile Software Process &amp; XP）</a></h3>
+<p>敏捷宣言：</p>
+<ul>
+<li>个体和互动高于流程和工具</li>
+<li>工作的软件高于面面俱到的文档</li>
+<li>客户合作高于合同谈判</li>
+<li>响应变化高于遵循计划</li>
+</ul>
+<p>敏捷开发的特点：</p>
+<ul>
+<li>渐增式。短周期、小版本渐进交付。</li>
+<li>协作。业务人员和开发人员长期紧密地在一起工作和交流。</li>
+<li>简单易懂。方法本身易学、易修改和易存档。</li>
+<li>适配性。即使在最后时刻也能够处理需求变化。</li>
+</ul>
+<p><strong>XP 的优点：</strong></p>
+<ul>
+<li>由于采用简单策略，不需要长期计划和复杂管理，因而<strong>开发周期短</strong>。</li>
+<li>由于采用迭代增量开发、反馈修正和反复测试的方法，因而<strong>软件质量有保证</strong>。</li>
+<li>由于适应用户需求的变化，因而<strong>与用户关系和蔼</strong>。</li>
+</ul>
+<blockquote>
+<p>（1）重视客户的参与；（2）重视团队合作和沟通；（3）制定计划前做出合理预测；（4）让编程人员参与软件功能的管理；（5）重视质量；（6）简单设计；（7）高频率的重新设计和重构；（8）高频率及全面的测试；（9）递增开发；（10）连续的过程评估；（11）对过去的工作持续不断的检查。</p>
+</blockquote>
+<p><strong>XP的缺点：</strong></p>
+<blockquote>
+<p>（1）以代码为中心，忽略了设计；（2）缺乏设计文档，局限于小规模项目；（3）对已完成工作的检查步骤缺乏清晰的结构；（4）质量保证依赖于测试；（5）缺乏质量规划；（6）没有提供数据的收集和使用的指导；（7）开发过程不详细；（8）全新的管理手法带来的认同度问题；（9）缺乏过渡时的必要支持。</p>
+</blockquote>
+<h3 id="微软过程msf"><a href="#微软过程msf" class="anchor-link">#</a><a href="#contents:微软过程msf" class="headings">微软过程（MSF）</a></h3>
+<p>MSF = RUP + Agile</p>
+<p>微软过程软件生命周期：规划阶段、设计阶段、开发阶段、完成开发工作、准备好可发布版本。</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>模   型 名 称</th>
+<th>优    点</th>
+<th>缺    点</th>
+<th>适   用 范 围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>瀑布模型</td>
+<td>简单好学</td>
+<td>逆转性差</td>
+<td>面向过程开发</td>
+</tr>
+<tr>
+<td>2</td>
+<td>增量模型</td>
+<td>可以分阶段提交</td>
+<td>有时用户不同意</td>
+<td>系统可拆卸和组装</td>
+</tr>
+<tr>
+<td>3</td>
+<td>迭代模型</td>
+<td>需求可变</td>
+<td>风险大</td>
+<td>有高素质软件团队</td>
+</tr>
+<tr>
+<td>4</td>
+<td>原型模型</td>
+<td>开发速度快</td>
+<td>不利于创新</td>
+<td>已有产品的原型</td>
+</tr>
+<tr>
+<td>5</td>
+<td>螺旋模型</td>
+<td>需求可变</td>
+<td>建设周期长</td>
+<td>庞大、复杂、高风险项目</td>
+</tr>
+<tr>
+<td>6</td>
+<td>喷泉模型</td>
+<td>提高开发效率</td>
+<td>不利于项目的管理</td>
+<td>面向对象开发</td>
+</tr>
+<tr>
+<td>7</td>
+<td>XP模型</td>
+<td>提高开发效率</td>
+<td>不适合大团队、大项目</td>
+<td>小团队，小项目</td>
+</tr>
+</tbody>
+</table></div>
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-03 22:37:41 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-03</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-03</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/tech/software-engineering-2/" class="related-link">软件工程[2] 可行性研究</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/uml-include-extend/" class="related-link">用例图中拓展(extend)和包含(include)的区别</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/software-engineering-4/" class="related-link">软件工程[4] 总体设计</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/software-engineering-3/" class="related-link">软件工程[3] 需求分析</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag" class="post-tag-link">#软件工程</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/software-engineering-2/" rel="prev">&lt; 软件工程[2] 可行性研究</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/mysql-navicat-installation/" rel="next">Mysql 8.0.13+Navicat 12.1.11安装记录 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

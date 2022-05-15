@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>网络与信息安全复习 | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="网络与信息安全复习笔记" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/network-information-security/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2018-11-04T22:27:37+08:00",
+        "dateModified": "2022-05-06T11:39:56+08:00",
+        "url": "https://wheliosc.github.io/tech/network-information-security/",
+        "headline": "网络与信息安全复习",
+        "description": "网络与信息安全复习笔记",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  9740 ,
+        "image": ["https://wheliosc.github.io/ECB.jpg","https://wheliosc.github.io/CBC.jpg","https://wheliosc.github.io/CFB.jpg","https://wheliosc.github.io/OFB.jpg","https://wheliosc.github.io/CTR.jpg","https://wheliosc.github.io/Euler-function.jpg","https://wheliosc.github.io/RSA.jpg","https://wheliosc.github.io/public-release.png","https://wheliosc.github.io/publicly-accessible-directories.png","https://wheliosc.github.io/public-key-authorization.png","https://wheliosc.github.io/public-key-certificate.png","https://wheliosc.github.io/traditional-key-distribution.png","https://wheliosc.github.io/man-in-the-middle-attack.png","https://wheliosc.github.io/mid-attack.jpg","https://wheliosc.github.io/symmetric-encryption.png","https://wheliosc.github.io/FCS.png","https://wheliosc.github.io/public-key-encryption.png","https://wheliosc.github.io/MAC.png","https://wheliosc.github.io/Hash1.PNG","https://wheliosc.github.io/digital-signature.PNG"],
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="网络与信息安全复习" />
+<meta property="og:description" content="网络与信息安全复习笔记" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/network-information-security/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/ECB.jpg" />
+<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-11-04T22:27:37&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-06T11:39:56&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">网络与信息安全复习</h1>
+
+            
+
+            
+                <div class="post-description p-summary">网络与信息安全复习笔记</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2018-11-04T22:27:37&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2018.11.4</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;9740</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:第一章" href="#第一章">第一章</a>
+      <ol>
+        <li><a id="contents:安全攻击分类" href="#安全攻击分类">安全攻击分类</a></li>
+        <li><a id="contents:安全服务" href="#安全服务">安全服务</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:第二章" href="#第二章">第二章</a>
+      <ol>
+        <li><a id="contents:理论安全与实际安全" href="#理论安全与实际安全">理论安全与实际安全</a></li>
+        <li><a id="contents:密码体制" href="#密码体制">密码体制</a>
+          <ol>
+            <li><a id="contents:对称密码体制与非对称密码体制" href="#对称密码体制与非对称密码体制">对称密码体制与非对称密码体制</a></li>
+            <li><a id="contents:序列密码体制和分组密码体制" href="#序列密码体制和分组密码体制">序列密码体制和分组密码体制</a></li>
+            <li><a id="contents:确定型密码体制和概率型密码体制" href="#确定型密码体制和概率型密码体制">确定型密码体制和概率型密码体制</a></li>
+            <li><a id="contents:单向函数型密码体制和双向变换型密码体制" href="#单向函数型密码体制和双向变换型密码体制">单向函数型密码体制和双向变换型密码体制</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:现代密码学的基本原则" href="#现代密码学的基本原则">现代密码学的基本原则</a></li>
+        <li><a id="contents:对加密系统的要求" href="#对加密系统的要求">对加密系统的要求</a></li>
+        <li><a id="contents:对加密信息的攻击类型" href="#对加密信息的攻击类型">对加密信息的攻击类型</a></li>
+        <li><a id="contents:代换与置换" href="#代换与置换">代换与置换</a></li>
+        <li><a id="contents:隐写术" href="#隐写术">隐写术</a></li>
+        <li><a id="contents:一次一密" href="#一次一密">一次一密</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:第三章" href="#第三章">第三章</a>
+      <ol>
+        <li><a id="contents:流密码与分组密码" href="#流密码与分组密码">流密码与分组密码</a></li>
+        <li><a id="contents:扩散和混淆" href="#扩散和混淆">扩散和混淆</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:第四章" href="#第四章">第四章</a>
+      <ol>
+        <li><a id="contents:同余" href="#同余">同余</a></li>
+        <li><a id="contents:模运算" href="#模运算">模运算</a></li>
+        <li><a id="contents:乘法逆元" href="#乘法逆元">乘法逆元</a></li>
+        <li><a id="contents:欧几里得算法与拓展欧几里得算法" href="#欧几里得算法与拓展欧几里得算法">欧几里得算法与拓展欧几里得算法</a>
+          <ol>
+            <li><a id="contents:欧几里得算法" href="#欧几里得算法">欧几里得算法</a></li>
+            <li><a id="contents:拓展欧几里得算法" href="#拓展欧几里得算法">拓展欧几里得算法</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a id="contents:第五章" href="#第五章">第五章</a>
+      <ol>
+        <li><a id="contents:双重-des" href="#双重-des">双重 DES</a></li>
+        <li><a id="contents:三重-des" href="#三重-des">三重 DES</a>
+          <ol>
+            <li><a id="contents:使用两个密钥的三重-des" href="#使用两个密钥的三重-des">使用两个密钥的三重 DES</a></li>
+            <li><a id="contents:使用三个密钥的三重-des" href="#使用三个密钥的三重-des">使用三个密钥的三重 DES</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:分组密码的工作模式" href="#分组密码的工作模式">分组密码的工作模式</a>
+          <ol>
+            <li><a id="contents:电子密码本模式-ecb" href="#电子密码本模式-ecb">电子密码本模式 ECB</a></li>
+            <li><a id="contents:密文分组链接模式-cbc" href="#密文分组链接模式-cbc">密文分组链接模式 CBC</a></li>
+            <li><a id="contents:密文反馈模式-cfb" href="#密文反馈模式-cfb">密文反馈模式 CFB</a></li>
+            <li><a id="contents:输出反馈模式-ofb" href="#输出反馈模式-ofb">输出反馈模式 OFB</a></li>
+            <li><a id="contents:计数器模式-ctr" href="#计数器模式-ctr">计数器模式 CTR</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a id="contents:第八章" href="#第八章">第八章</a>
+      <ol>
+        <li><a id="contents:费马定理" href="#费马定理">费马定理</a></li>
+        <li><a id="contents:欧拉函数" href="#欧拉函数">欧拉函数</a>
+          <ol>
+            <li><a id="contents:欧拉函数定理" href="#欧拉函数定理">欧拉函数定理</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:欧拉定理" href="#欧拉定理">欧拉定理</a></li>
+        <li><a id="contents:中国剩余定理" href="#中国剩余定理">中国剩余定理</a>
+          <ol>
+            <li><a id="contents:一种-crt-的表示形式" href="#一种-crt-的表示形式">一种 CRT 的表示形式</a></li>
+            <li><a id="contents:计算例子" href="#计算例子">计算例子</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a id="contents:第九章" href="#第九章">第九章</a>
+      <ol>
+        <li><a id="contents:对称密码与非对称密码" href="#对称密码与非对称密码">对称密码与非对称密码</a>
+          <ol>
+            <li><a id="contents:对称密码体制的问题" href="#对称密码体制的问题">对称密码体制的问题</a></li>
+            <li><a id="contents:非对称密码体制的基本特点" href="#非对称密码体制的基本特点">非对称密码体制的基本特点</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:公钥密码体制的应用" href="#公钥密码体制的应用">公钥密码体制的应用</a></li>
+        <li><a id="contents:rsa" href="#rsa">RSA</a>
+          <ol>
+            <li><a id="contents:算法流程" href="#算法流程">算法流程</a></li>
+            <li><a id="contents:需要满足的条件" href="#需要满足的条件">需要满足的条件</a></li>
+            <li><a id="contents:证明" href="#证明">证明</a></li>
+            <li><a id="contents:可能的攻击方式" href="#可能的攻击方式">可能的攻击方式</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a id="contents:第十章" href="#第十章">第十章</a>
+      <ol>
+        <li><a id="contents:几种公钥分配方法" href="#几种公钥分配方法">几种公钥分配方法</a>
+          <ol>
+            <li><a id="contents:公开发布" href="#公开发布">公开发布</a></li>
+            <li><a id="contents:公开可访问的目录" href="#公开可访问的目录">公开可访问的目录</a></li>
+            <li><a id="contents:公钥授权" href="#公钥授权">公钥授权</a></li>
+            <li><a id="contents:公钥证书" href="#公钥证书">公钥证书</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:公钥密码分配传统密码体制密码" href="#公钥密码分配传统密码体制密码">公钥密码分配传统密码体制密码</a></li>
+        <li><a id="contents:diffie-hellman-密钥交换" href="#diffie-hellman-密钥交换">Diffie-Hellman 密钥交换</a>
+          <ol>
+            <li><a id="contents:流程" href="#流程">流程</a></li>
+            <li><a id="contents:安全性" href="#安全性">安全性</a></li>
+            <li><a id="contents:中间人攻击" href="#中间人攻击">中间人攻击</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:elgamal-概率密码系统" href="#elgamal-概率密码系统">ELGamal 概率密码系统</a>
+          <ol>
+            <li><a id="contents:流程-1" href="#流程-1">流程</a></li>
+            <li><a id="contents:效率及安全性" href="#效率及安全性">效率及安全性</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a id="contents:第十一章" href="#第十一章">第十一章</a>
+      <ol>
+        <li><a id="contents:消息认证" href="#消息认证">消息认证</a></li>
+        <li><a id="contents:消息认证函数" href="#消息认证函数">消息认证函数</a>
+          <ol>
+            <li><a id="contents:消息加密" href="#消息加密">消息加密</a></li>
+            <li><a id="contents:消息认证码-mac" href="#消息认证码-mac">消息认证码 MAC</a></li>
+            <li><a id="contents:散列函数-hash" href="#散列函数-hash">散列函数 HASH</a></li>
+            <li><a id="contents:hash-函数提供的消息认证方式" href="#hash-函数提供的消息认证方式">Hash 函数提供的消息认证方式</a></li>
+            <li><a id="contents:hash-函数提供的数字签名方式" href="#hash-函数提供的数字签名方式">Hash 函数提供的数字签名方式</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a id="contents:第十三章" href="#第十三章">第十三章</a>
+      <ol>
+        <li><a id="contents:数字签名概述" href="#数字签名概述">数字签名概述</a>
+          <ol>
+            <li><a id="contents:数字签名实现方法" href="#数字签名实现方法">数字签名实现方法</a></li>
+            <li><a id="contents:数字签名的要求" href="#数字签名的要求">数字签名的要求</a></li>
+            <li><a id="contents:数字签名与消息认证的区别" href="#数字签名与消息认证的区别">数字签名与消息认证的区别</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:直接数字签名" href="#直接数字签名">直接数字签名</a></li>
+        <li><a id="contents:elgamal-数字签名方案" href="#elgamal-数字签名方案">ELGamal 数字签名方案</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav><div class="post-body e-content">
+                <p></p>
+<h2 id="第一章"><a href="#第一章" class="anchor-link">#</a><a href="#contents:第一章" class="headings">第一章</a></h2>
+<h3 id="安全攻击分类"><a href="#安全攻击分类" class="anchor-link">#</a><a href="#contents:安全攻击分类" class="headings">安全攻击分类</a></h3>
+<p>被动攻击：信息内容泄露、流量分析</p>
+<p>主动攻击：伪装、重播、消息修改、拒绝服务</p>
+<h3 id="安全服务"><a href="#安全服务" class="anchor-link">#</a><a href="#contents:安全服务" class="headings">安全服务</a></h3>
+<p>认证：保证通信的真实性。确保通信双方的身份是可信的。</p>
+<p>访问控制：防止资源非授权使用</p>
+<p>数据保密性：防止传输消息受到<strong>被动攻击</strong>。</p>
+<p>数据完整性：与<strong>主动攻击</strong>有关，检测而不是阻止。</p>
+<p>不可否认性：防止通信方对通信行为的否认，包括源不可否认性和宿不可否认性。</p>
+<p>可用性：系统或系统资源能够按照要求根据系统性能规范被授权系统的实体访问和使用。</p>
+<h2 id="第二章"><a href="#第二章" class="anchor-link">#</a><a href="#contents:第二章" class="headings">第二章</a></h2>
+<h3 id="理论安全与实际安全"><a href="#理论安全与实际安全" class="anchor-link">#</a><a href="#contents:理论安全与实际安全" class="headings">理论安全与实际安全</a></h3>
+<p>理论安全：攻击者无论截获多少密文，都无法得到足够的信息来唯一地决定明文。香农证明只有一次一密才能达到理论安全，不实用。</p>
+<p>实际安全（计算安全）：在有限的资源内，攻击者都不能通过系统的分析方法来破解系统。</p>
+<h3 id="密码体制"><a href="#密码体制" class="anchor-link">#</a><a href="#contents:密码体制" class="headings">密码体制</a></h3>
+<h4 id="对称密码体制与非对称密码体制"><a href="#对称密码体制与非对称密码体制" class="anchor-link">#</a><a href="#contents:对称密码体制与非对称密码体制" class="headings">对称密码体制与非对称密码体制</a></h4>
+<p>对称密码：加密密钥和解密密钥相同，或者一个密钥可以从另一个导出，能加密就能解密，加密能力和解密能力是结合在一起的，开放性差。</p>
+<p>非对称密码：加密密钥和解密密钥不相同，从一个密钥导出另一个密钥是计算上不可行的，加密能力和解密能力是分开的，开放性好。</p>
+<h4 id="序列密码体制和分组密码体制"><a href="#序列密码体制和分组密码体制" class="anchor-link">#</a><a href="#contents:序列密码体制和分组密码体制" class="headings">序列密码体制和分组密码体制</a></h4>
+<p>序列密码：密文不仅与最初给定的算法和密钥有关，同时也与明文位置有关(是所处位置的函数)。</p>
+<p>分组密码：经过加密所得到的密文仅与给定的密码算法和密钥有关，与被处理的明文数据在整个明文中的位置无关。</p>
+<h4 id="确定型密码体制和概率型密码体制"><a href="#确定型密码体制和概率型密码体制" class="anchor-link">#</a><a href="#contents:确定型密码体制和概率型密码体制" class="headings">确定型密码体制和概率型密码体制</a></h4>
+<p>确定型密码:当明文和密钥确定后，密文也就唯一地确定了。</p>
+<p>概率密码：当明文和密钥确定后，密文通过客观随机因素从一个密文集合中产生，密文形式不确定。</p>
+<h4 id="单向函数型密码体制和双向变换型密码体制"><a href="#单向函数型密码体制和双向变换型密码体制" class="anchor-link">#</a><a href="#contents:单向函数型密码体制和双向变换型密码体制" class="headings">单向函数型密码体制和双向变换型密码体制</a></h4>
+<p>单向函数型密码体制：适用于不需要解密的场合，容易将明文加密成密文，如哈希函数。</p>
+<p>双向变换型密码体制：可以进行可逆的加密、解密变换。</p>
+<h3 id="现代密码学的基本原则"><a href="#现代密码学的基本原则" class="anchor-link">#</a><a href="#contents:现代密码学的基本原则" class="headings">现代密码学的基本原则</a></h3>
+<p>设计加密系统时，总是假定密码算法是可以公开的，需要保密的是密钥。一个密码系统的安全性不在算法的保密，而在于密钥，即 Kerckhoff 原则。</p>
+<h3 id="对加密系统的要求"><a href="#对加密系统的要求" class="anchor-link">#</a><a href="#contents:对加密系统的要求" class="headings">对加密系统的要求</a></h3>
+<p>系统应该是实际安全的(practical secure)，截获密文或已知明文－密文对时，要决定密钥或任意明文在计算上是不可行的。</p>
+<p>加密解密算法适用于密钥空间中的所有元素。</p>
+<p>系统易于实现，使用方便。</p>
+<p>系统的安全性不依赖于对加密体制或加密算法的保密，而依赖于密钥。</p>
+<p>系统的使用不应使通信网络的效率过分降低。</p>
+<h3 id="对加密信息的攻击类型"><a href="#对加密信息的攻击类型" class="anchor-link">#</a><a href="#contents:对加密信息的攻击类型" class="headings">对加密信息的攻击类型</a></h3>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>攻击类型</th>
+<th>攻击者持有的信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>唯密文攻击</td>
+<td>加密算法、待解密密文</td>
+</tr>
+<tr>
+<td>已知明文攻击</td>
+<td>加密算法 、待解密密文、与待解密密文（同一密钥加密）的明密文对</td>
+</tr>
+<tr>
+<td>选择明文攻击</td>
+<td>加密算法 、待解密密文、攻击者选择的明文及对应的（同一密钥加密）密文</td>
+</tr>
+<tr>
+<td>选择密文攻击</td>
+<td>加密算法 、待解密密文、攻击者选择的（同一密钥加密）密文及对应的明文</td>
+</tr>
+<tr>
+<td>选择文本攻击</td>
+<td>加密算法 、待解密密文、攻击者选择的（同一密钥加密）密文及对应的明文、攻击者选择的明文及对应的（同一密钥加密）密文</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="代换与置换"><a href="#代换与置换" class="anchor-link">#</a><a href="#contents:代换与置换" class="headings">代换与置换</a></h3>
+<p>代换法是将明文字母替换成其他字母、数字或符号的加密方法。如果把明文看成是二进制序列的话，代换就是用密文位串来代换明文位串。代换法改变明文内容的表示形式，保持内容元素之间相对位置不变。由于语言的冗余性（即字母单词使用频率的统计特性），单表代换虽然密钥空间很大，但并不安全。</p>
+<p>置换法是改变明文内容元素的相对位置，保持内容的表现形式不变。通过重新安排消息字母的位置来隐藏明文信息，而不是用其他字母来代换明文字母。这种方法是很容易破译的，因为密文拥有与明文一样的字母频率统计特性。</p>
+<h3 id="隐写术"><a href="#隐写术" class="anchor-link">#</a><a href="#contents:隐写术" class="headings">隐写术</a></h3>
+<p>隐写术不是加密技术。比如将信息通过改变像素内容隐藏到图片中，不可见的墨水等。</p>
+<h3 id="一次一密"><a href="#一次一密" class="anchor-link">#</a><a href="#contents:一次一密" class="headings">一次一密</a></h3>
+<p>两个限制：产生大规模随机密钥有实际困难、密钥的分配和保护无法保证</p>
+<h2 id="第三章"><a href="#第三章" class="anchor-link">#</a><a href="#contents:第三章" class="headings">第三章</a></h2>
+<h3 id="流密码与分组密码"><a href="#流密码与分组密码" class="anchor-link">#</a><a href="#contents:流密码与分组密码" class="headings">流密码与分组密码</a></h3>
+<p>流密码：每次加密数据流的一位或一个字节。</p>
+<p>分组密码：将一个明文分组作为一个整体进行加密，并且一般得到等长的密文。</p>
+<h3 id="扩散和混淆"><a href="#扩散和混淆" class="anchor-link">#</a><a href="#contents:扩散和混淆" class="headings">扩散和混淆</a></h3>
+<p>扩散：明文统计特征消散在密文中。可以通过让多个明文数字影响一个密文数字，或者每个明文数字可以影响多个密文数字。</p>
+<p>混淆：使密文和加密密钥之间的统计关系尽量复杂。</p>
+<blockquote>
+<p>Confusion means that each binary digit (bit) of the ciphertext should depend on several parts of the key, obscuring the connections between the two.</p>
+<p>Diffusion means that if we change a single bit of the plaintext, then (statistically) half of the bits in the ciphertext should change, and similarly, if we change one bit of the ciphertext, then approximately one half of the plaintext bits should change. Since a bit can have only two states, when they are all re-evaluated and changed from one seemingly random position to another, half of the bits will have changed state.</p>
+<p>In Shannon's original definitions, confusion refers to making the relationship between the ciphertext and the symmetric key as complex and involved as possible; diffusion refers to dissipating the statistical structure of plaintext over the bulk of ciphertext. This complexity is generally implemented through a well-defined and repeatable series of substitutions and permutations. Substitution refers to the replacement of certain components (usually bits) with other components, following certain rules. Permutation refers to manipulation of the order of bits according to some algorithm. To be effective, any non-uniformity of plaintext bits needs to be redistributed across much larger structures in the ciphertext, making that non-uniformity much harder to detect.</p>
+</blockquote>
+<h2 id="第四章"><a href="#第四章" class="anchor-link">#</a><a href="#contents:第四章" class="headings">第四章</a></h2>
+<h3 id="同余"><a href="#同余" class="anchor-link">#</a><a href="#contents:同余" class="headings">同余</a></h3>
+<p>给定整数 $a, b$ 及 $n≠0$, 当且仅当 $a-b=kn$ 时，$a$ 与 $b$ 在模 $n$ 时同余，记为 $a≡b\ mod\ n$ 或 $a≡nb$。</p>
+<p>如果 $n|(a-b)$, 则 $a≡b\ mod\ n$。</p>
+<h3 id="模运算"><a href="#模运算" class="anchor-link">#</a><a href="#contents:模运算" class="headings">模运算</a></h3>
+<p>$$(a1\ op\ a2)\ mod\ n =[(a1\ mod\ n )]\ op\ (a2\ mod\ n)]\ mod\ n$$</p>
+<h3 id="乘法逆元"><a href="#乘法逆元" class="anchor-link">#</a><a href="#contents:乘法逆元" class="headings">乘法逆元</a></h3>
+<p>如果一个整数与 $n$ 互素，那么它在 $Z_n$ 中存在一个乘法逆元。</p>
+<p>对于任何一般的模数 $n$，如果 $a$ 与 $n$ 互素，那么用乘数 $a$ 作用到 $Z_n$ (即 $0,1,2,...,n-1$) 然后模 $n$ 会得到完整的 $Z_n$ (元素顺序可能不同，也可以叫做 $Z_n$ 的一个置换)。</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>Z8</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>乘以 5</td>
+<td>0</td>
+<td>5</td>
+<td>10</td>
+<td>15</td>
+<td>20</td>
+<td>25</td>
+<td>30</td>
+<td>35</td>
+</tr>
+<tr>
+<td>剩余类</td>
+<td>0</td>
+<td>5</td>
+<td>2</td>
+<td>7</td>
+<td>4</td>
+<td>1</td>
+<td>6</td>
+<td>3</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="欧几里得算法与拓展欧几里得算法"><a href="#欧几里得算法与拓展欧几里得算法" class="anchor-link">#</a><a href="#contents:欧几里得算法与拓展欧几里得算法" class="headings">欧几里得算法与拓展欧几里得算法</a></h3>
+<h4 id="欧几里得算法"><a href="#欧几里得算法" class="anchor-link">#</a><a href="#contents:欧几里得算法" class="headings">欧几里得算法</a></h4>
+<p>又称辗转相除法。欧几里德定理：$gcd(a, b) = gcd(b , a \% b)$</p>
+<h4 id="拓展欧几里得算法"><a href="#拓展欧几里得算法" class="anchor-link">#</a><a href="#contents:拓展欧几里得算法" class="headings">拓展欧几里得算法</a></h4>
+<p>对于不完全为 $0$ 的非负整数 $a，b$，$gcd(a，b)$表示 $a，b$ 的最大公约数，必然存在整数对 $x，y$，使得 $gcd（a，b）=ax+by$。</p>
+<h2 id="第五章"><a href="#第五章" class="anchor-link">#</a><a href="#contents:第五章" class="headings">第五章</a></h2>
+<h3 id="双重-des"><a href="#双重-des" class="anchor-link">#</a><a href="#contents:双重-des" class="headings">双重 DES</a></h3>
+<p>因为对单重 DES 进行<strong>穷举攻击</strong>是可行的（密钥长度仅有 56 位）。</p>
+<p>双重 DES 存在着<strong>中间相遇攻击</strong>。</p>
+<p>$C = E_{K2}(E_{K1}(P))， P = D_{K1}(D_{K2}(C))$，因为$X = E_{K1}(P) = D_{K2}(C)$，用所有可能的密钥加密明文 $P$ 并把结果存储起来，然后用所有可能的密钥解密密文 $C$，寻找匹配的 $X$ 值，因此复杂度只有 $O(2^{56})$。攻击单重 DES 复杂度为 $O(2^{55})$。</p>
+<h3 id="三重-des"><a href="#三重-des" class="anchor-link">#</a><a href="#contents:三重-des" class="headings">三重 DES</a></h3>
+<h4 id="使用两个密钥的三重-des"><a href="#使用两个密钥的三重-des" class="anchor-link">#</a><a href="#contents:使用两个密钥的三重-des" class="headings">使用两个密钥的三重 DES</a></h4>
+<p>$$C=E_{K1}[D_{K2}[E_{K1}[P]]$$</p>
+<p>如果 $K1=K2$，那么就变成了单重 DES，从而实现对单重 DES 的兼容。</p>
+<h4 id="使用三个密钥的三重-des"><a href="#使用三个密钥的三重-des" class="anchor-link">#</a><a href="#contents:使用三个密钥的三重-des" class="headings">使用三个密钥的三重 DES</a></h4>
+<p>$$C = E_{K3}[D_{K2}[E_{K1}[P]]]$$</p>
+<p>如果 $K1=K2$ 或者是 $K2=K3$，那么就变成了单重 DES，从而实现对单重 DES 的兼容。</p>
+<h3 id="分组密码的工作模式"><a href="#分组密码的工作模式" class="anchor-link">#</a><a href="#contents:分组密码的工作模式" class="headings">分组密码的工作模式</a></h3>
+<p>分组密码的安全不仅和秘钥长度有关还和分组长度有关。</p>
+<h4 id="电子密码本模式-ecb"><a href="#电子密码本模式-ecb" class="anchor-link">#</a><a href="#contents:电子密码本模式-ecb" class="headings">电子密码本模式 ECB</a></h4>
+<p>明文分成 64 的分组进行加密，必要时填充，每个分组用同一密钥加密，相同明文分组加密得相同密文。</p>
+<p>ECB 模式特别适合数据较少的情况，如安全传输 DES 密钥。</p>
+<p>一段明文消息中若有几个相同的明文组，则密文也将出现几个相同的片段。</p>
+<p>对于很长的消息，ECB 是不安全的，如果消息是非常结构化的，密码分析可能利用其结构特征来破解。</p>
+<p>ECB 的弱点来源于其加密过的密文分组是互相独立的。</p>
+<p><img src="ECB.jpg" alt="ECB"></p>
+<p>优点：操作简单，易于实现；分组独立，可以并行加密；传输错误不会传播。</p>
+<p>缺点：掩盖不了明文结构信息，可以进行统计分析攻击。</p>
+<h4 id="密文分组链接模式-cbc"><a href="#密文分组链接模式-cbc" class="anchor-link">#</a><a href="#contents:密文分组链接模式-cbc" class="headings">密文分组链接模式 CBC</a></h4>
+<p>加密输入是当前明文分组和前一密文分组的异或，形成一条链，使用相同的密钥， 这样每个明文分组的加密函数输入与明文分组之间不再有固定的关系。</p>
+<p>每个密文分组依赖于所有明文分组。</p>
+<p>发送方和接收方需要共享初始向量 Initial Value(IV)。如果 IV 被明文传送，则攻击者可以预先改变 IV 中的某些位，则接收者收到的 P1 也就相应改变了。因此，IV 必须是一个固定的值或者使用伪随机数、计数器 IV 用<strong>ECB 方式</strong>在消息之前加密传送。</p>
+<p>在消息的最后，还要处理不够长度的分组进行填充。</p>
+<p>明文消息中的任何一点变化都会影响所有的密文分组。</p>
+<p><img src="CBC.jpg" alt="CBC"></p>
+<p>优点：能掩盖明文结构信息，保证相同密文可得不同明文，安全性好于 ECB；适合传输长度较长的报文。</p>
+<p>缺点：不可并行；传递错误，即一个分组错误导致后续分组均错误；初始向量 IV 的选取比较复杂。</p>
+<h4 id="密文反馈模式-cfb"><a href="#密文反馈模式-cfb" class="anchor-link">#</a><a href="#contents:密文反馈模式-cfb" class="headings">密文反馈模式 CFB</a></h4>
+<p>可以视为流密码，不再要求报文被填充成整个分组，可以实时运行，如果要传输一个字符流，每个字符都可以使用面向字符的流密码加密后立即传输。</p>
+<p>加密：加密函数的输入是一个 64 位的移位寄存器，产生初始向量 IV。加密函数高端 s 位与明文 P1 的第一单元异或，产生 s 位密文 C1 进入移位寄存器低端，继续加密，与 P2 输入异或，如此重复直到所有明文单元都完成加密。</p>
+<p>解密：采用相同方案，但是<strong>使用加密函数</strong>而非解密函数。</p>
+<p>设 $MSB_s(X)$ 表示 X 的最左边 s 位。则</p>
+<p>$$C1=P1 \bigoplus MSB_s[E(K,IV)]$$</p>
+<p>从而有 $P1=C1 \bigoplus MSB_s[E(K,IV)]$</p>
+<p>如果在传输过程中某一个分组的密文发生改变，则会影响到这个分组及其后的分组的明文正确性。</p>
+<p><img src="CFB.jpg" alt="CFB"></p>
+<p>优点：可以实时运行，及时加密小于分组大小的数据；隐藏了明文结构。</p>
+<p>缺点：不可并行；传输错误会扩散。</p>
+<h4 id="输出反馈模式-ofb"><a href="#输出反馈模式-ofb" class="anchor-link">#</a><a href="#contents:输出反馈模式-ofb" class="headings">输出反馈模式 OFB</a></h4>
+<p>结构上类似 CFB，但是 OFB 中加密函数输出被反馈回移位寄存器，CFB 中是密文单元被反馈回移位寄存器（对比两个图，可以看到反馈位置是不同的）。优点是传输中的比特差错不会传播，缺点是比 CFB 更容易受报文流篡改攻击。OFB 的 IV 必须是时变值。</p>
+<p>OFB 的一个优点是，传输过程中在某位上发生的错误不会影响到其他位。比如，C1 中有 1 位发生了错误，只会影响到 P1 的恢复，后续的明文单元不受影响。</p>
+<p>OFB 的缺点是，抗消息流篡改攻击的能力不如 CFB。即密文中的某位取反，恢复出的明文相应位也取反。</p>
+<p><img src="OFB.jpg" alt="OFB"></p>
+<p>优点：可以实时运行，及时加密小于分组大小的数据；隐藏了明文结构；传输过程中在某位上发生的错误不会影响到其他位。</p>
+<p>缺点：不可以并行；比 CFB 更容易受报文流篡改攻击。</p>
+<h4 id="计数器模式-ctr"><a href="#计数器模式-ctr" class="anchor-link">#</a><a href="#contents:计数器模式-ctr" class="headings">计数器模式 CTR</a></h4>
+<p>与 OFB 很像，但是加密的是计数器的值而不是任何反馈回来的值。每一个明文分组都必须使用一个不同的密钥和计数器值，决不要重复使用。</p>
+<ul>
+<li>
+<p>高效、可以做<strong>并行</strong>加密</p>
+</li>
+<li>
+<p>对高速链路的突发数据加密尤其有效</p>
+</li>
+<li>
+<p>可以对被加密的分组进行随机存取</p>
+</li>
+<li>
+<p>安全、简洁</p>
+</li>
+<li>
+<p>不需要填充</p>
+</li>
+</ul>
+<p><img src="CTR.jpg" alt="CTR"></p>
+<h2 id="第八章"><a href="#第八章" class="anchor-link">#</a><a href="#contents:第八章" class="headings">第八章</a></h2>
+<h3 id="费马定理"><a href="#费马定理" class="anchor-link">#</a><a href="#contents:费马定理" class="headings">费马定理</a></h3>
+<p>若 $p$ 是素数, $a$ 是正整数且不能被 $p$ 整除, 则 $a^{p-1}\ mod\ p=1$</p>
+<p>证明：</p>
+<p>对于 $X=\lbrace a\ mod\ p,2a\ mod\ p,…, (p-1)a\ mod\ p\rbrace$</p>
+<p>$\because a$ 是正整数且不能被 $p$ 整除</p>
+<p>$\therefore X$ 内的元素均大于零</p>
+<p>假设 $ja≡ka(modp)$，其中 $1\leqslant j&lt;k\leqslant p-1$</p>
+<p>$\because a$ 与 $p$ 互素</p>
+<p>$\therefore$ 两边可以把 $a$ 消去，则推出 $j ≡ k(mod p)$，与假设矛盾</p>
+<p>也就是说，$X$ 内的元素均为正整数且互不相等</p>
+<p>$\because \lbrace a\ mod\ p, 2a\ mod\ p, ..., (p-1)a\ mod\ p\rbrace$ 是 $\lbrace 1, 2, ..., (p-1)\rbrace$ 的置换形</p>
+<p>$\therefore (a \times 2a \times ... \times (p-1)a) ≡ (1 \times 2  \times ... \times (p-1))\ (mod\ p)≡ (p-1)!\ (mod\ p)$</p>
+<p>$\because a \times 2a \times ... \times (p-1)a = (p-1)!a^{p-1}$，即 $(p-1)!a^{p-1} ≡ (p-1)!\ (mod\ p)$</p>
+<p>两边去掉 $(p-1)!$，即得 $a^{p-1}\mod\ p = 1$</p>
+<h3 id="欧拉函数"><a href="#欧拉函数" class="anchor-link">#</a><a href="#contents:欧拉函数" class="headings">欧拉函数</a></h3>
+<p>$\varphi (n)$ 是比 $n$ 小且与 $n$ 互素的正整数的个数，定义 $\varphi (1)=1$。</p>
+<p><img src="Euler-function.jpg" alt="欧拉函数"></p>
+<h4 id="欧拉函数定理"><a href="#欧拉函数定理" class="anchor-link">#</a><a href="#contents:欧拉函数定理" class="headings">欧拉函数定理</a></h4>
+<p>$p$ 和 $q$ 是素数, $n=p\times q, \varphi (n)= \varphi (p)\varphi (q)=(p-1)(q-1)$</p>
+<p>证明：</p>
+<p>考虑余数集合 $\lbrace 0, 1, …, (pq-1)\rbrace$ 中不与 $n$ 互素的余数集合是 $\lbrace p, 2p, …, (q-1)p\rbrace , \lbrace q, 2q, …, (p-1)q\rbrace$，</p>
+<p>所以 $\varphi (n)= (pq-1)-[(q-1)+(p-1)]=pq-(p+q)+1= (p-1)(q-1)=\varphi (p)\varphi (q)$</p>
+<h3 id="欧拉定理"><a href="#欧拉定理" class="anchor-link">#</a><a href="#contents:欧拉定理" class="headings">欧拉定理</a></h3>
+<p>对任意互素的 $a$ 与 $n$，$a^{\varphi (n)} \equiv 1\ (mod\ n)$</p>
+<p>证明：</p>
+<p>若 $n$ 为素数，则根据 $\varphi (n)=n-1$ 和 $a^{p-1}\ mod\ p=1$ 可知成立。但这是不完全的证明。</p>
+<p>考虑集合 $R= \lbrace x_1,x_2,...,x_{\varphi (n)} \rbrace$,每一个元素都有 $gcd(x_i,n)=1$。</p>
+<p>令 $S=\lbrace (ax_1\ mod\ n),(ax_2\ mod\ n),...,(ax_{\varphi (n)}\ mod\ n)\rbrace$</p>
+<p>$S$ 是 $R$ 的一个置换，因为</p>
+<p>(1) $a$ 与 $n$ 互素，且 $x_i$ 与 $n$ 互素，所以 $ax_i$ 必与 $n$ 互素，这样 $S$ 中所有元素均小于 $n$ 且与 $n$ 互素。</p>
+<p>(2) $S$ 中没有重复元素，因为如果 $ax_i\equiv ax_j(modn)$，则 $x_i=x_j$，显然不成立。</p>
+<p>$\prod_{i=1}^{\varphi (n)}(ax_imodn)=\prod_{i=1}^{\varphi (n)}x_i$</p>
+<p>$\prod_{i=1}^{\varphi (n)}ax_i\equiv \prod_{i=1}^{\varphi (n)}x_i(modn)$</p>
+<p>$a^{\varphi (n)}\times [\prod_{i=1}^{\varphi (n)}x_i]\equiv \prod_{i=1}^{\varphi (n)}x_i(modn)$</p>
+<p>两边同时消去，得到 $a^{\varphi (n)} \equiv 1(modn)$</p>
+<h3 id="中国剩余定理"><a href="#中国剩余定理" class="anchor-link">#</a><a href="#contents:中国剩余定理" class="headings">中国剩余定理</a></h3>
+<p>中国余数定理 CRT 说明某一范围内的整数可通过它对两两互素的整数取模所得的余数来重构。</p>
+<p>例如：$Z_{10}(0,1,…,9)$ 中的 10 个整数可通过它们对 2 和 5 (10 的素因子)取模所得的两个余数来重构. 假设数 $x$ 的余数 $r_2=0$ 且 $r_5=3$, 即 $x\ mod\ 2=0$, $x\ mod\ 5=3$, 则 $x$ 是 $Z_{10}$ 中的偶数且被 5 除余 3, 唯一解 $x=8$。</p>
+<h4 id="一种-crt-的表示形式"><a href="#一种-crt-的表示形式" class="anchor-link">#</a><a href="#contents:一种-crt-的表示形式" class="headings">一种 CRT 的表示形式</a></h4>
+<p>令 $M=\prod_{i=1}^{k}m_i$,  其中 $m_i$ 两两互素, $1\leqslant i, j\leqslant k, i≠j, gcd(m_i, m_j)=1$。将 $Z_M$ 中的任一整数对应一个 $k $元组，该 $k$ 元组的元素均在 $Z_{m_i}$ 中, 对应关系为 $A\leftrightarrow (a_1,a_2,…,a_k)$, 其中 $A∈Z_M$, 对 $1\leqslant i\leqslant k, a_i∈Z_{m_i}$，且 $a_i = A\ mod\ m_i$。</p>
+<h4 id="计算例子"><a href="#计算例子" class="anchor-link">#</a><a href="#contents:计算例子" class="headings">计算例子</a></h4>
+<p>今有物不知其数, 三三数之剩二, 五五数之剩三, 七七数之剩二, 问物几何。</p>
+<p>(1) 计算 $n=3\times 5\times 7$，记 $d_1=3,d_2=5,d_3=7$; $r_1=2,r_2=3,r_3=2$</p>
+<p>(2) 根据 $(\frac{n}{d_i})y_i\ mod\ d_i=1$，计算 $y_i$</p>
+<p>$(\frac{105}{3})y_i\ mod\ 3=1 $，得 $y_1=2$</p>
+<p>$(\frac{105}{5})y_i\ mod\ 5=1 $，得 $y_2=1$</p>
+<p>$(\frac{105}{7})y_i\ mod\ 7=1 $，得 $y_3=1$</p>
+<p>(3) $x=[\prod (\frac{n}{d_i})y_ir_i]\ mod\ n$</p>
+<p>$x=(35\times 2\times 2+21\times 1\times 3+15\times 1\times 2)\ mod\ 105=23$</p>
+<h2 id="第九章"><a href="#第九章" class="anchor-link">#</a><a href="#contents:第九章" class="headings">第九章</a></h2>
+<h3 id="对称密码与非对称密码"><a href="#对称密码与非对称密码" class="anchor-link">#</a><a href="#contents:对称密码与非对称密码" class="headings">对称密码与非对称密码</a></h3>
+<h4 id="对称密码体制的问题"><a href="#对称密码体制的问题" class="anchor-link">#</a><a href="#contents:对称密码体制的问题" class="headings">对称密码体制的问题</a></h4>
+<p>加密能力与解密能力是捆绑在一起的。</p>
+<p>密钥更换、传递和交换需要可靠信道，密钥分发困难。</p>
+<p>如有 N 用户，则需要 $C=\frac {N\times (N-1)}{2}$ 个密钥，n=1000 时，C(1000, 2) ≈ 500000, 密钥管理困难。</p>
+<p>无法满足不相识的人之间通信的保密要求。</p>
+<p>不能实现数字签名。</p>
+<h4 id="非对称密码体制的基本特点"><a href="#非对称密码体制的基本特点" class="anchor-link">#</a><a href="#contents:非对称密码体制的基本特点" class="headings">非对称密码体制的基本特点</a></h4>
+<p>加密能力与解密能力是分开的。</p>
+<p>密钥分发简单。</p>
+<p>需要保存的密钥量大大减少，N 个用户只需要 N 个密钥。</p>
+<p>可满足不相识的人之间保密通信。</p>
+<p>可以实现数字签名。</p>
+<h3 id="公钥密码体制的应用"><a href="#公钥密码体制的应用" class="anchor-link">#</a><a href="#contents:公钥密码体制的应用" class="headings">公钥密码体制的应用</a></h3>
+<p>加密/解密：发送方用接收方的公钥对消息加密。</p>
+<p>数字签名：发送方用其私钥对消息签名，可以对整体消息签名或对消息的摘要签名。</p>
+<p>密钥交换：通信双方交换会话密钥。</p>
+<h3 id="rsa"><a href="#rsa" class="anchor-link">#</a><a href="#contents:rsa" class="headings">RSA</a></h3>
+<h4 id="算法流程"><a href="#算法流程" class="anchor-link">#</a><a href="#contents:算法流程" class="headings">算法流程</a></h4>
+<p>随机选择两个秘密大素数 $p$ 和 $q$</p>
+<p>计算公开模数 $n = p\times q$</p>
+<p>计算秘密的欧拉指数函数 $\varphi (n) = (p-1)(q-1)$</p>
+<p>选择一个与 $\varphi (n)$ 互素的数，作为 $e$ 或 $d$</p>
+<p>用 <em>Euclid</em> 算法计算模 $\varphi (n)$ 的乘法逆元素，即根据 $ed\ mod\ φ(n)=1$, 求 $d$ 或 $e$</p>
+<p>加密：$C=M^e\ mod\ n$</p>
+<p>解密：$M=C^d\ mod\ n = (M^e\ mod\ n)^d\ mod\ n=M^{ed}\ mod\ n=M$</p>
+<p>公钥：$PU=\lbrace e,n\rbrace$ 私钥：$PR=\lbrace d,n\rbrace$</p>
+<h4 id="需要满足的条件"><a href="#需要满足的条件" class="anchor-link">#</a><a href="#contents:需要满足的条件" class="headings">需要满足的条件</a></h4>
+<p>有可能找到 e, d, n 的值, 使得对所有 $M&lt;n$ 有 $M^{ed}\ mod\ n = M$。</p>
+<p>对于所有 $M&lt;n$ 的值, 要计算 $M^e$ 和 $C^d$ 是相对容易的。</p>
+<p>在给定 e 和 n 时, 计算 d 是不可行的。</p>
+<h4 id="证明"><a href="#证明" class="anchor-link">#</a><a href="#contents:证明" class="headings">证明</a></h4>
+<p>已知：$ed\ mod\  \varphi (n)=1$，$M&lt;n$，$p$ 和 $q$ 是素数</p>
+<p>求证：$M^{ed}\ mod\ n=M$</p>
+<p><img src="RSA.jpg" alt="RSA的证明"></p>
+<h4 id="可能的攻击方式"><a href="#可能的攻击方式" class="anchor-link">#</a><a href="#contents:可能的攻击方式" class="headings">可能的攻击方式</a></h4>
+<p>穷举攻击：尝试所有可能的密钥</p>
+<p>数学攻击：对两个素数乘积的因子分解(FAC 问题)</p>
+<p>计时攻击：依赖于解密算法的运行时间</p>
+<p>RSA 的安全性问题依赖于大合数的素因子分解。</p>
+<h2 id="第十章"><a href="#第十章" class="anchor-link">#</a><a href="#contents:第十章" class="headings">第十章</a></h2>
+<h3 id="几种公钥分配方法"><a href="#几种公钥分配方法" class="anchor-link">#</a><a href="#contents:几种公钥分配方法" class="headings">几种公钥分配方法</a></h3>
+<p>公开发布、公开可访问的目录、公钥授权、公钥证书</p>
+<h4 id="公开发布"><a href="#公开发布" class="anchor-link">#</a><a href="#contents:公开发布" class="headings">公开发布</a></h4>
+<p><img src="public-release.png" alt=""></p>
+<h4 id="公开可访问的目录"><a href="#公开可访问的目录" class="anchor-link">#</a><a href="#contents:公开可访问的目录" class="headings">公开可访问的目录</a></h4>
+<p><img src="publicly-accessible-directories.png" alt=""></p>
+<p>一个可信实体或组织负责这个公开目录的维护和分配。</p>
+<ul>
+<li>目录包含 {name, public-key} 等项。</li>
+<li>每一通信方通过目录管理员以安全的方式注册一个公钥。</li>
+<li>通信方在任何时刻可以用新的密钥替代当前的密钥。</li>
+</ul>
+<p>目录定期更新。</p>
+<p>目录可通过电子方式访问。</p>
+<p>安全问题：一旦攻击者获得目录管理员私钥，则可传递伪造的公钥，可以假冒任何通信方以窃取消息，或者修改已有的记录。</p>
+<h4 id="公钥授权"><a href="#公钥授权" class="anchor-link">#</a><a href="#contents:公钥授权" class="headings">公钥授权</a></h4>
+<p><img src="public-key-authorization.png" alt=""></p>
+<p>(1) A 发送带有时间戳的消息给公钥管理员, 请求 B 的当前公钥。</p>
+<p>(2) 管理员给 A 发送用其私钥 $KR_{auth}$ 加密的消息, A 用管理员的公钥解密，可以确信该消息来自管理员。</p>
+<font color="red" >
+<p>B 的公钥 $KU_b$，用来加密；</p>
+<p>原始请求 $Request$，A 可以验证其请求未被修改；</p>
+<p>原始时间戳 $Time_1$, A 可以确定收到的不是来自管理员的旧消息。</p>
+</font>
+<p>(3) A 保存 B 的公钥, 并用它对包含 A 的标识 $ID_A$ 和 $N_1$ 的消息加密, 然后发送给 B。</p>
+<p>(4、5) B 以同样方式从管理员处得到 A 的公钥。</p>
+<p>(6) B 用 $KUa$ 对 A 的 $N_1$ 和B的 $N_2$ 加密, 发送给 A。</p>
+<p>(7) A 用 B 的公钥对 $N_2$ 加密并发送给 B, 使 B 相信其通信伙伴是 A。</p>
+<h4 id="公钥证书"><a href="#公钥证书" class="anchor-link">#</a><a href="#contents:公钥证书" class="headings">公钥证书</a></h4>
+<p><img src="public-key-certificate.png" alt=""></p>
+<p>有了公钥证书使得不通过实时访问公钥授权部门而实现公钥交换成为可能。</p>
+<p>公钥证书将一个通信方的身份与他的公开密钥绑定在一起，通常还包括有效期和使用方法等。</p>
+<p>证书的所有内容必须经由可信公钥授权方或者证书授权方签名后方可生效。</p>
+<p>知道公钥授权当局公开密钥的任何人都可以验证一个用户的公开密钥证书的有效性。</p>
+<p>对于申请者 A，管理员提供的证书为：</p>
+<p>$$C_A = E_{KR_{auth}} [Time_1, ID_A, KU_a]$$</p>
+<p>其他人读取并验证：</p>
+<p>$$D_{KU_{auth}}[C_A]=D_{KU_{auth}} [E_{KR_{auth}} [Time_1, ID_A, KU_a]]=(Time_1, ID_A, KU_a)$$</p>
+<h3 id="公钥密码分配传统密码体制密码"><a href="#公钥密码分配传统密码体制密码" class="anchor-link">#</a><a href="#contents:公钥密码分配传统密码体制密码" class="headings">公钥密码分配传统密码体制密码</a></h3>
+<p>公钥密码算法速度较慢，因此更适合作为传统密码中实现秘密密钥分配的一种手段。</p>
+<p>下图是一个利用公钥密码体制分配（传输）对称式密码（会话密钥 $K_s$）的例子：</p>
+<p><img src="traditional-key-distribution.png" alt="传统密钥分配"></p>
+<p>(1) A 用 $KU_b$ 加密消息 $N_1$ 和 $ID_A$ 发送给 B。</p>
+<p>(2) 只有 B 拥有B的私钥，即 $N_1$ 只有 B 可见，B 产生随机值 $N_2$，和 $N_1$ 一起加密后发送给 A，A 看到 $N_1$ 后即可确定消息是 B 发来的。</p>
+<p>(3) 同理，$N_2$ 只有 A 可见，B 可以确定消息是 A 发来的。</p>
+<p>(4) A 产生本次会话的密钥，先用自己的私钥加密再用 B 的公钥加密发送给 B。</p>
+<p>上述过程中存在的安全问题：消息(4)可以进行重放攻击。在下次会话时上次的会话密钥可能已经泄露，攻击者可以重放上次的消息(4)进行攻击。解决方案是将消息(3)和消息(4)合并发送，即(3)$E_{KU_b}[N_2 || E_{KR_a}[K_s]]$。</p>
+<h3 id="diffie-hellman-密钥交换"><a href="#diffie-hellman-密钥交换" class="anchor-link">#</a><a href="#contents:diffie-hellman-密钥交换" class="headings">Diffie-Hellman 密钥交换</a></h3>
+<p>Diffie-Hellman 密钥交换算法是一种公钥分发机制。它不是用来加密消息的，所生成的是通信双方共享的会话密钥，必须保密，其值取决于通信双方的私钥和公钥信息。</p>
+<h4 id="流程"><a href="#流程" class="anchor-link">#</a><a href="#contents:流程" class="headings">流程</a></h4>
+<p>通信双方约定一个大素数(或多项式) p, 和模 p 的一个素根 $\alpha$（p 与 $\alpha$ 是公开的）</p>
+<p>双方分别选择一个秘密钥(整数值)，如 $x_A &lt; p， x_B &lt; p$</p>
+<p>计算公钥, 如 $y_A = \alpha ^{x_A}\ mod\ p, y_B = \alpha ^{x_B}\ mod\ p$, 并相互交换</p>
+<p>双方共享的会话密钥 $K_{AB}$ 可以如下算出</p>
+<p>$K_{AB} = \alpha ^{x_Ax_B}\ mod\ p= y_A^{x_B}\ mod\ p  (which\ B\ can\ compute) = y_B^{x_A}\ mod\ p  (which\ A\ can\ compute)$</p>
+<p>$K_{AB}$ 是双方用对称密码通信时共享的密钥</p>
+<p>如果双方继续通信，可以继续使用这个密钥，除非他们要选择新的密钥</p>
+<h4 id="安全性"><a href="#安全性" class="anchor-link">#</a><a href="#contents:安全性" class="headings">安全性</a></h4>
+<p>攻击者如果想要获得 x, 则必须解决 DLP(离散对数)问题。$X_B=dlog_{\alpha,p}Y_B$，即求 $Y_B$ 的以 $\alpha$ 为底的模 $p$ 的离散对数。</p>
+<h4 id="中间人攻击"><a href="#中间人攻击" class="anchor-link">#</a><a href="#contents:中间人攻击" class="headings">中间人攻击</a></h4>
+<p><img src="man-in-the-middle-attack.png" alt=""></p>
+<p><img src="mid-attack.jpg" alt=""></p>
+<h3 id="elgamal-概率密码系统"><a href="#elgamal-概率密码系统" class="anchor-link">#</a><a href="#contents:elgamal-概率密码系统" class="headings">ELGamal 概率密码系统</a></h3>
+<h4 id="流程-1"><a href="#流程-1" class="anchor-link">#</a><a href="#contents:流程-1" class="headings">流程</a></h4>
+<p>假设 A 和 B 互相通信，共享大素数 $p$，本原元素 $\alpha，1≤m≤p-1$</p>
+<p>加密：</p>
+<p>A 选择 $k∈[1, p-1]$, $k$ 的作用其实即为 $x_A$, A 访问公共区域找到 B 的公开密钥 $Y_B = α^{x_B}\ mod\ p$, 计算：$K = (Y_B)^k\ mod\ p, 即K = α^{x_Bk}\ mod\ p$</p>
+<p>$c1 = α^k\ mod\ p$</p>
+<p>$c2 = mK\ mod\ p$</p>
+<p>密文即为 $(c1, c2)$</p>
+<p>解密：</p>
+<p>B 首先恢复 K：K $= c1^{x_B}\ mod\ p = α^{kx_B}\ mod\ p$</p>
+<p>然后恢复 m：m $=c2K^{-1}\ mod\ p$。这里的 $K^{-1}$ 指 $KK^{-1}\ mod\ p=1$</p>
+<h4 id="效率及安全性"><a href="#效率及安全性" class="anchor-link">#</a><a href="#contents:效率及安全性" class="headings">效率及安全性</a></h4>
+<p>ElGamal 密码体制加密效率是 50%，因为密文大小是明文的两倍。</p>
+<p>ElGamal 密码体制是概率密码体制，同样的明文每次加密得到不同的密文, 因为每次随机选择 k。</p>
+<p>ElGamal 密码体制的破译难度同 Diffie-Hellman 的方法，即基于 DLP，离散对数问题，最快的算法需要 T=exp((ln(p)lnln(p)1/2) 次运算。</p>
+<h2 id="第十一章"><a href="#第十一章" class="anchor-link">#</a><a href="#contents:第十一章" class="headings">第十一章</a></h2>
+<h3 id="消息认证"><a href="#消息认证" class="anchor-link">#</a><a href="#contents:消息认证" class="headings">消息认证</a></h3>
+<p>消息认证就是验证接受的消息确实来自真正的发送方，且是未经修改过的消息，并且可以认证消息的顺序和及时性。</p>
+<h3 id="消息认证函数"><a href="#消息认证函数" class="anchor-link">#</a><a href="#contents:消息认证函数" class="headings">消息认证函数</a></h3>
+<h4 id="消息加密"><a href="#消息加密" class="anchor-link">#</a><a href="#contents:消息加密" class="headings">消息加密</a></h4>
+<p>消息加密本身提供了一种认证手段。</p>
+<p><strong>对称加密</strong></p>
+<p><img src="symmetric-encryption.png" alt=""></p>
+<ul>
+<li>
+<p>保密性：如果除了源和宿没有其他人知道密码，那么就保证了保密性。</p>
+</li>
+<li>
+<p>认证：宿可以确信消息是由源产生的，因为除了宿以外只有源拥有加密密钥，产生出用此密钥可以解密的密文。因此宿如果可以恢复出明文，则可以认为每一位都没有被修改过，建立在明文具有可读性的基础上。</p>
+</li>
+</ul>
+<p>如果消息可以是任意的位模式，接收方无法确定收到的消息是合法明文的密文（不具有可读性）。因此要求明文具有某种易于识别的结构，如在加密前对每个消息附加一个帧校验序列 FCS。</p>
+<p><img src="FCS.png" alt="FCS"></p>
+<p>FCS 和加密函数E执行的顺序很重要。图中(a)为内部错误控制，攻击者很难产生密文使得控制码仍为正确，所以可以提供认证。图中(b)为外部错误控制，攻击者可以构造出具有正确控制码的消息，虽然不知道解密后的消息是什么，但是可以混淆破坏通信。</p>
+<p><strong>公钥加密</strong></p>
+<p><img src="public-key-encryption.png" alt=""></p>
+<p>(b) 保密性：只有接受方具有私钥可以解密消息，因此具有保密性；但公钥是公开的，任何人都可以假冒发送方给接收方发送消息，不能保证消息的真实性，因此没有认证。</p>
+<p>(c) 认证和签名：接收方接收到密文并可以解密出明文（如果明文是具有某种结构的，即具有可读性以区分真实的明文和随机串）就可以确定发送方是真实的。只有发送方有自己的私钥，加密后就相当于是一个签名。</p>
+<p>(d) 保密性、认证和签名：发送方先用自己的私钥加密以作为签名，再用接收方的公钥加密实现保密性，同时明文具有某种结构的情况下实现了认证。缺点是一次通信执行四次公钥算法（两次加密两次解密）。</p>
+<h4 id="消息认证码-mac"><a href="#消息认证码-mac" class="anchor-link">#</a><a href="#contents:消息认证码-mac" class="headings">消息认证码 MAC</a></h4>
+<p>利用密钥产生一个固定长度的短数据块。假如通信双方共享密钥 K，则 MAC=C(K,M)。如果接收方通过密钥和消息计算的 MAC 与收到的一致，那么可以确信(1)消息未被修改过(2)消息来自真正的发送方(3)如果消息中含有序列号，那么可以确定消息顺序是正确的。</p>
+<p>因为 MAC 是定长的，而消息数远大于 MAC 的取值范围，因此 MAC 是一个多对一的函数。</p>
+<p>因为 K 是通信双方所共有的，所以 MAC 不是数字签名。同时 MAC 不需要解密，因此不需要具有可逆性，使得 MAC 比加密更加难以破解。</p>
+<p><img src="MAC.png" alt=""></p>
+<p>(a) 消息认证：整个消息以明文发送，没有保密性，但有消息认证。</p>
+<p>(b) 与明文捆绑的消息认证和保密性：对明文做 MAC 然后与明文一起加密。</p>
+<p>(c) 与密文捆绑的消息认证和保密性：对明文加密，然后对密文做 MAC，与密文一起发送。</p>
+<p><strong>MAC 函数应具有满足以下需求：</strong></p>
+<ol>
+<li>若攻击者已知 $M$ 和 $C(K,M)$，则构造满足 $C(K,M')=C(K,M)$ 的消息 $M'$ 在计算上是不可行的</li>
+<li>$C(K,M)$ 应该是均匀分布的，即对任何随机选择的消息 $M$ 和 $M'$，$C(K,M')=C(K,M)$的概率是 $2^{-n}$，其中 n 是 MAC 的位数</li>
+<li>设 M' 是 M 的某个已知的变换，即 M'=f(M)，如 f 可能表示逆转 M 的一位或多位，那么 $C(K,M)=C(K,M')$ 的概率是 $2^{-n}$</li>
+</ol>
+<h4 id="散列函数-hash"><a href="#散列函数-hash" class="anchor-link">#</a><a href="#contents:散列函数-hash" class="headings">散列函数 HASH</a></h4>
+<p>一个散列函数以变长的报文 M 作为输入，产生定长的散列码 H(M) 作为输出，亦称作报文摘要。 散列码是报文所有比特的函数值，具有差错检测能力，报文任意一比特的改变都将引起散列码的改变。</p>
+<p><strong>Hash 函数的安全性需求</strong></p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>需求</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入长度可变</td>
+<td>H可以应用于任意大小的数据块</td>
+</tr>
+<tr>
+<td>输出长度固定</td>
+<td>H产生固定长度的输出</td>
+</tr>
+<tr>
+<td>效率</td>
+<td>对任意给定的明文x，计算H(x)容易，可由硬件或软件实现</td>
+</tr>
+<tr>
+<td>抗原像攻击（单向性）</td>
+<td>对任意给定的散列码h，找到满足H(x)=h的x，在计算上不可行</td>
+</tr>
+<tr>
+<td>抗第二原像攻击（抗弱碰撞性）</td>
+<td>对任何给定的分组x，找到满足y≠x且H(x)=H(y)的y，在计算上不可行</td>
+</tr>
+<tr>
+<td>抗强碰撞性</td>
+<td>找到任何满足H(x)=H(y)的偶对(x, y)，在计算上不可行</td>
+</tr>
+<tr>
+<td>伪随机性</td>
+<td>H的输出满足伪随机性测试标准</td>
+</tr>
+</tbody>
+</table></div>
+<p>满足前五条的称为弱哈希函数，如果第六条也满足则称为强哈希函数。</p>
+<p>应用在数字签名上的Hash函数必须是强哈希函数。</p>
+<p><strong>三个安全特性之间的关系</strong></p>
+<p>抗强碰撞那么一定抗弱碰撞，反之不成立。</p>
+<p>抗强碰撞不一定抗原像，反之亦然。</p>
+<p>抗弱碰撞不一定抗原像，反之亦然。</p>
+<p>抗强碰撞可以看作是在人群中寻找两个名字相同的人，抗弱碰撞性可以看作是给定一个名字，然后在人群中找一个和这个名字相同的人。</p>
+<h4 id="hash-函数提供的消息认证方式"><a href="#hash-函数提供的消息认证方式" class="anchor-link">#</a><a href="#contents:hash-函数提供的消息认证方式" class="headings">Hash 函数提供的消息认证方式</a></h4>
+<p><img src="Hash1.PNG" alt=""></p>
+<p>(a) 使用对称密码加密消息和 Hash 码。对称式密钥保证了保密性，并且可以确定发送方的真实性；Hash 码提供了消息认证的功能。</p>
+<p>(b) 使用对称式密码仅加密 Hash 码。对于无需保密性的应用，减少了加解密的负担。实现了消息认证。</p>
+<p>(c) 不使用加密算法，双方共享秘密值 s，并且 s 不在信道上传输，仅实现了消息认证。</p>
+<p>(d) 在(c)的基础上提供保密性。</p>
+<h4 id="hash-函数提供的数字签名方式"><a href="#hash-函数提供的数字签名方式" class="anchor-link">#</a><a href="#contents:hash-函数提供的数字签名方式" class="headings">Hash 函数提供的数字签名方式</a></h4>
+<p><img src="digital-signature.PNG" alt="数字签名"></p>
+<p>(a) 使用发送方的私钥，仅对 Hash 码进行加密。实现了消息认证和数字签名。</p>
+<p>(b) 在(a)的基础上使用对称式密码加密，同时实现保密性。</p>
+<h2 id="第十三章"><a href="#第十三章" class="anchor-link">#</a><a href="#contents:第十三章" class="headings">第十三章</a></h2>
+<h3 id="数字签名概述"><a href="#数字签名概述" class="anchor-link">#</a><a href="#contents:数字签名概述" class="headings">数字签名概述</a></h3>
+<h4 id="数字签名实现方法"><a href="#数字签名实现方法" class="anchor-link">#</a><a href="#contents:数字签名实现方法" class="headings">数字签名实现方法</a></h4>
+<p>数字签名是一种<strong>认证</strong>机制，它使得消息的产生者可以添加一个起签名作用的码字。通过<strong>计算消息的散列值并用产生者的私钥加密</strong>散列值来生成签名。签名保证了消息的来源和完整性。</p>
+<p>数字签名标准(DSS)是 NIST 标准，它使用安全散列算法(SHA)。</p>
+<h4 id="数字签名的要求"><a href="#数字签名的要求" class="anchor-link">#</a><a href="#contents:数字签名的要求" class="headings">数字签名的要求</a></h4>
+<p>在收发双方不能完全信任的情况下，需要除认证之外的其他方法来解决假冒和否认的问题，数字签名则是解决办法；</p>
+<p>签名接收者能容易地验证签字者对消息所做的数字签名，包括日期和时间；</p>
+<p>任何人，包括签名接收者，都不能伪造签名者的签字；</p>
+<p>发生争议时，可由第三方解决。</p>
+<h4 id="数字签名与消息认证的区别"><a href="#数字签名与消息认证的区别" class="anchor-link">#</a><a href="#contents:数字签名与消息认证的区别" class="headings">数字签名与消息认证的区别</a></h4>
+<p>消息认证使收方能验证消息发送者及所发消息内容是否被窜改过。当收发者之间没有利害冲突时，这对于防止第三者的破坏来说是足够了。但当收者和发者之间有利害冲突时，就无法解决他们之间的纠纷，此时须借助满足前述要求的数字签名技术。</p>
+<h3 id="直接数字签名"><a href="#直接数字签名" class="anchor-link">#</a><a href="#contents:直接数字签名" class="headings">直接数字签名</a></h3>
+<p>用共享的密钥（对称密钥）对明文及签名一起加密。注意先进行签名，然后执行外层的加密，这样在发生争执时，第三方可以查看消息及其签名。若先加密再签名，则第三方必须知道解密密钥才能查看消息。先签名再加密，接收方可以保留消息及其签名留作争执时使用。</p>
+<p>直接数字签名的有效性依赖于发送方私钥的安全性。发送方如果想要否认一条消息，他可以声称自己的私钥丢失或被盗用。可以使用加入时间戳的方式减少这种威胁。另一种威胁是，攻击者在T时刻盗用了发送方的私钥，并发送了一条签名的消息加盖T时刻之前的时间戳。解决上述问题的方法是使用数字证书的证书管理中心。</p>
+<h3 id="elgamal-数字签名方案"><a href="#elgamal-数字签名方案" class="anchor-link">#</a><a href="#contents:elgamal-数字签名方案" class="headings">ELGamal 数字签名方案</a></h3>
+<p>首先，基本元素是素数 p 和原根 $\alpha$</p>
+<p>A 用户生成随机整数 $X_A\in (1,p-1)$，计算$Y_A= \alpha ^{X_A}\ mod\ p$</p>
+<p>计算消息的 Hash 码，m=H(M)</p>
+<p><strong>产生签名</strong></p>
+<p>选择整数 $K\in [1,p-1]$，并且 K 与 p-1 互素</p>
+<p>计算 $S_1 = \alpha ^K\ mod\ p$</p>
+<p>计算 K 模 p-1 的逆，即 $K^{-1}\ mod\ (p-1)$</p>
+<p>计算 $S_2=K^{-1}(m-X_AS_1)\ mod\ (p-1)$</p>
+<p>签名即为 $(S_1,S_2)$</p>
+<p><strong>验证签名</strong></p>
+<p>计算 $V_1=\alpha ^m\ mod\ p$</p>
+<p>计算 $V_2=(Y_A)^{S_1}(S_1)^{S_2}\ mod\ p$</p>
+<p>如果 $V_1=V_2$，那么签名合法。</p>
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-06 11:39:56 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-06</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-06</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/" rel="tag" class="post-tag-link">#网络信息安全</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/python-tkinter/" rel="prev">&lt; Pyhton GUI 编程之 tkinter</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/python-syntax/" rel="next">[Python learning] 词法结构 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha256-gPJfuwTULrEAAcI3X4bALVU/2qBU+QY/TpoD3GO+Exw=" crossorigin="anonymous">
+<script>
+    if (typeof renderMathInElement === 'undefined') {
+        var getScript = (options) => {
+            var script = document.createElement('script');
+            script.defer = true;
+            script.crossOrigin = 'anonymous';
+            Object.keys(options).forEach((key) => {
+                script[key] = options[key];
+            });
+            document.body.appendChild(script);
+        };
+        getScript({
+            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js',
+            integrity: 'sha256-YTW9cMncW/ZQMhY69KaUxIa2cPTxV87Uh627Gf5ODUw=',
+            onload: () => {
+                getScript({
+                    src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js',
+                    integrity: 'sha256-yzSfYeVsWJ1x+2g8CYHsB/Mn7PcSp8122k5BM4T3Vxw=',
+                    onload: () => {
+                        getScript({
+                            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js',
+                            integrity: 'sha256-fxJzNV6hpc8tgW8tF0zVobKa71eTCRGTgxFXt1ZpJNM=',
+                            onload: () => {
+                                renderKaTex();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } else {
+        renderKaTex();
+    }
+    function renderKaTex() {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+            }
+        );
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>java学习笔记 [3] 继承 &amp; 多态篇 | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="java学习笔记的第三篇，内容主要有继承和多态" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/java-learn-note-3/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2018-08-06T13:36:10+08:00",
+        "dateModified": "2022-05-03T22:40:41+08:00",
+        "url": "https://wheliosc.github.io/tech/java-learn-note-3/",
+        "headline": "java学习笔记 [3] 继承 \u0026 多态篇",
+        "description": "java学习笔记的第三篇，内容主要有继承和多态",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  1558 ,
+        "image": "https://wheliosc.github.io/icons/favicon.png",
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary" />
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="java学习笔记 [3] 继承 &amp; 多态篇" />
+<meta property="og:description" content="java学习笔记的第三篇，内容主要有继承和多态" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/java-learn-note-3/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-08-06T13:36:10&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-03T22:40:41&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">java学习笔记 [3] 继承 &amp; 多态篇</h1>
+
+            
+
+            
+                <div class="post-description p-summary">java学习笔记的第三篇，内容主要有继承和多态</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2018-08-06T13:36:10&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2018.8.6</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;1558</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:继承" href="#继承">继承</a>
+      <ol>
+        <li><a id="contents:关键字" href="#关键字">关键字</a></li>
+        <li><a id="contents:覆盖方法override" href="#覆盖方法override">覆盖方法（override）</a></li>
+        <li><a id="contents:子类构造器" href="#子类构造器">子类构造器</a></li>
+        <li><a id="contents:接口" href="#接口">接口</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:多态" href="#多态">多态</a></li>
+    <li><a id="contents:方法调用的过程" href="#方法调用的过程">方法调用的过程</a></li>
+    <li><a id="contents:final-修饰符" href="#final-修饰符">final 修饰符</a></li>
+    <li><a id="contents:抽象类" href="#抽象类">抽象类</a></li>
+  </ol>
+</nav><div class="post-body e-content">
+                <p></p>
+<h2 id="继承"><a href="#继承" class="anchor-link">#</a><a href="#contents:继承" class="headings">继承</a></h2>
+<h3 id="关键字"><a href="#关键字" class="anchor-link">#</a><a href="#contents:关键字" class="headings">关键字</a></h3>
+<p>关键字 <code>extends</code> 表示继承，继承是一个 <code>is-a</code> 关系，java 中只有公有继承</p>
+<h3 id="覆盖方法override"><a href="#覆盖方法override" class="anchor-link">#</a><a href="#contents:覆盖方法override" class="headings">覆盖方法（override）</a></h3>
+<p>将父类中的方法在子类中重新定义，以 Employee 类和 Manager 类为例，Manager 继承 Employee 类，Employee 有方法 <code>getSalary()</code>; Manager 类需要重写这个方法，加上经理所特有的奖金。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Employee</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kt">double</span> <span class="n">salary</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSalary</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">salary</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Manager</span> <span class="kd">extends</span> <span class="n">Employee</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kt">double</span> <span class="n">bonus</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSalary</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">//return salary + bonus;  // 错误，不能访问超类的私有域
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">//return getSalary() + bonus;  // 错误，调用自身直至崩溃
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">getSalary</span><span class="o">()</span> <span class="o">+</span> <span class="n">bonus</span><span class="o">;</span>  <span class="c1">// 正确
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//super关键字表示调用父类的方法
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><h3 id="子类构造器"><a href="#子类构造器" class="anchor-link">#</a><a href="#contents:子类构造器" class="headings">子类构造器</a></h3>
+<p>必须调用父类的构造器，并且应将这一过程放在程序的第一句</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">Manager</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">id</span><span class="o">,</span> <span class="kt">double</span> <span class="n">salary</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">super</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">id</span><span class="o">,</span> <span class="n">salary</span><span class="o">);</span>  <span class="c1">// 置于第一句，如果没有这句，系统自动调用父类的默认构造函数；如果没有默认构造函数有没有显式调用其他构造器就会产生错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">bonus</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h3 id="接口"><a href="#接口" class="anchor-link">#</a><a href="#contents:接口" class="headings">接口</a></h3>
+<p>java不支持多继承，即每一个类都只能继承最多一个类。但每一个类可以实现多个接口，这也是引入接口的一个考虑。</p>
+<h2 id="多态"><a href="#多态" class="anchor-link">#</a><a href="#contents:多态" class="headings">多态</a></h2>
+<p>java 实现多态的两种方式：重载(overloading)和覆盖(override)</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/* override */</span>
+</span></span><span class="line"><span class="cl"><span class="n">Manager</span> <span class="n">boss</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Manager</span><span class="o">(</span><span class="s">&#34;lihui&#34;</span><span class="o">,</span> <span class="n">201822</span><span class="o">,</span> <span class="n">50000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">boss</span><span class="o">.</span><span class="na">setBonus</span><span class="o">(</span><span class="n">20000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Empolyee</span><span class="o">[]</span> <span class="n">staff</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Empolyee</span><span class="o">[</span><span class="n">2</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">staff</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">boss</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">staff</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="s">&#34;chengle&#34;</span><span class="o">,</span> <span class="n">201833</span><span class="o">,</span> <span class="n">60000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">staff</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">setBonus</span><span class="o">(</span><span class="n">20000</span><span class="o">);</span>  <span class="c1">// 错误，staff声明为Employee类型，Employee没有setBonus方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="o">(</span><span class="n">staff</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="k">instanceof</span> <span class="n">Manager</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">	<span class="o">((</span><span class="n">Manager</span><span class="o">)</span><span class="n">staff</span><span class="o">[</span><span class="n">0</span><span class="o">]).</span><span class="na">setBonus</span><span class="o">(</span><span class="n">20000</span><span class="o">);</span>  <span class="c1">// 正确，将staff[0]强制转换为Manager类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="o">(</span><span class="n">Employee</span> <span class="n">aEmpolyee</span><span class="o">:</span> <span class="n">staff</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">aEmpolyee</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; &#34;</span> <span class="o">+</span> <span class="n">aEmpolyee</span><span class="o">.</span><span class="na">getSalary</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// aEmpolyee定义为Empolyee类型，但在执行的时候，aEmpolyee引用的Empolyee和Manager调用不同的getSalary函数
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 一个对象变量可以指示多种实际类型的现象称为多态。
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 在运行的时候自动选择调用哪个方法称为动态绑定。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* overloading */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Manager</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSalary</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">){...}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">float</span> <span class="nf">getSalary</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">){...}</span>  <span class="c1">//错误，已经存在getSalary(String name)方法,即签名相同，说明重载与返回值无关
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSalary</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">id</span><span class="o">){...}</span>  <span class="c1">//正确的重载
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><blockquote>
+<p>方法的签名：方法的名字和参数列表称为方法的签名，返回类型不是签名的一部分。</p>
+</blockquote>
+<p>override 的规则：</p>
+<ul>
+<li>子类覆盖父类中具有相同签名的方法。</li>
+<li>返回类型是被重写方法的返回类型的子类型。</li>
+<li>访问权限不能比父类中被重写的方法的访问权限更低。例如：如果父类的一个方法被声明为 public，那么在子类中重写该方法就不能声明为 <code>protected</code>。</li>
+<li>父类的成员方法只能被它的子类重写。</li>
+<li>声明为 <code>final</code> 的方法不能被重写。</li>
+<li>声明为 <code>static</code>、<code>private</code>、<code>final</code>的方法不能被重写。(<code>private</code> 的方法本身就被定义成了<code>final</code> 的)</li>
+<li>构造器不能被重写。</li>
+<li>重写的方法能够抛出任何非强制异常，无论被重写的方法是否抛出异常。但是，重写的方法不能抛出新的强制性异常，或者比被重写方法声明的更广泛的强制性异常，反之则可以。</li>
+</ul>
+<p>overloading 的规则：方法名相同，参数列表必须不同，返回值可同可不同，修饰符可同可不同。</p>
+<h2 id="方法调用的过程"><a href="#方法调用的过程" class="anchor-link">#</a><a href="#contents:方法调用的过程" class="headings">方法调用的过程</a></h2>
+<p>1）假设调用 <code>x.f(param)</code>, 编译器一一列举 <code>x</code> 所属类中的名为 <code>f</code> 的方法以及其父类中访问属性为 <code>public</code> 的名为 <code>f</code> 的方法（超类的私有方法不可访问）。</p>
+<p>2）查看调用方法提供的参数类型。如果第一步中列举出的方法中有一个方法的参数列表与提供的参数类型完全匹配，就选择这个方法。如果没有找到与参数类型匹配的方法或者经过类型转换后有多个方法与之匹配，就会产生错误。</p>
+<p>3）如果是 <code>static</code>、<code>private</code>、<code>final</code> 方法或者构造器，编译器可以准确的知道应该调用哪个方法，静态绑定。</p>
+<p>4）动态绑定时，先查看子类中是否定义了这个方法，是则调用，否则调用父类的这个方法。</p>
+<h2 id="final-修饰符"><a href="#final-修饰符" class="anchor-link">#</a><a href="#contents:final-修饰符" class="headings">final 修饰符</a></h2>
+<p>定义类的时候加上 <code>final</code> 修饰符表示类不允许被继承，其中的方法自动的成为 <code>final</code>，但是域不会变成 <code>final</code>。一个方法或者一个域也可以加上 final 表示不可被覆盖或者不可改变域的值。</p>
+<h2 id="抽象类"><a href="#抽象类" class="anchor-link">#</a><a href="#contents:抽象类" class="headings">抽象类</a></h2>
+<p>关键字 <code>abstract</code> 表示抽象类，包含有一个或多个抽象函数的类需要声明为抽象类（为了代码清晰），抽象类里的抽象方法不需要实现，在子类中对其进行实现。</p>
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-03 22:40:41 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-03</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-03</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/tech/lexical-analysis/" class="related-link">词法分析器</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/zxing-qrcode/" class="related-link">利用ZXing工具生成二维码以及解析二维码</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/java-learn-note-2/" class="related-link">java学习笔记 [2] 数组 &amp; 运算符 &amp; 权限篇</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/java-learn-note-1/" class="related-link">java学习笔记 [1] 数据类型 &amp; 函数篇</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/java-series-catalogue/" class="related-link">java学习笔记 全系列内容提要篇</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/java/" rel="tag" class="post-tag-link">#java</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/zxing-qrcode/" rel="prev">&lt; 利用ZXing工具生成二维码以及解析二维码</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/java-learn-note-2/" rel="next">java学习笔记 [2] 数组 &amp; 运算符 &amp; 权限篇 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

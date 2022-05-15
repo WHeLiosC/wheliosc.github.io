@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>运行时存储空间的组织与管理 | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="包括局部存储分配（活动记录等）、运行时内存分配策略、非局部名字的访问和参数传递等内容" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/organization-and-management-of-runtime-storage-space/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2018-12-09T20:24:55+08:00",
+        "dateModified": "2022-05-06T11:59:04+08:00",
+        "url": "https://wheliosc.github.io/tech/organization-and-management-of-runtime-storage-space/",
+        "headline": "运行时存储空间的组织与管理",
+        "description": "包括局部存储分配（活动记录等）、运行时内存分配策略、非局部名字的访问和参数传递等内容",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  2487 ,
+        "image": "https://wheliosc.github.io/icons/favicon.png",
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary" />
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="运行时存储空间的组织与管理" />
+<meta property="og:description" content="包括局部存储分配（活动记录等）、运行时内存分配策略、非局部名字的访问和参数传递等内容" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/organization-and-management-of-runtime-storage-space/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-12-09T20:24:55&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-06T11:59:04&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">运行时存储空间的组织与管理</h1>
+
+            
+
+            
+                <div class="post-description p-summary">包括局部存储分配（活动记录等）、运行时内存分配策略、非局部名字的访问和参数传递等内容</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2018-12-09T20:24:55&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2018.12.9</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;2487</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:几个概念" href="#几个概念">几个概念</a></li>
+    <li><a id="contents:局部存储分配" href="#局部存储分配">局部存储分配</a>
+      <ol>
+        <li><a id="contents:名字的作用域" href="#名字的作用域">名字的作用域</a></li>
+        <li><a id="contents:名字到存储单元的绑定" href="#名字到存储单元的绑定">名字到存储单元的绑定</a></li>
+        <li><a id="contents:活动记录" href="#活动记录">活动记录</a></li>
+        <li><a id="contents:局部数据的布局" href="#局部数据的布局">局部数据的布局</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:全局栈式存储分配" href="#全局栈式存储分配">全局栈式存储分配</a>
+      <ol>
+        <li><a id="contents:运行时内存空间的划分" href="#运行时内存空间的划分">运行时内存空间的划分</a></li>
+        <li><a id="contents:内存分配策略" href="#内存分配策略">内存分配策略</a>
+          <ol>
+            <li><a id="contents:静态分配策略" href="#静态分配策略">静态分配策略</a></li>
+            <li><a id="contents:栈式分配策略活动树和运行栈" href="#栈式分配策略活动树和运行栈">栈式分配策略——活动树和运行栈</a>
+              <ol>
+                <li><a id="contents:活动树" href="#活动树">活动树</a></li>
+                <li><a id="contents:运行栈" href="#运行栈">运行栈</a></li>
+                <li><a id="contents:栈上可变长数据" href="#栈上可变长数据">栈上可变长数据</a></li>
+                <li><a id="contents:悬空引用" href="#悬空引用">悬空引用</a></li>
+              </ol>
+            </li>
+            <li><a id="contents:堆式分配策略" href="#堆式分配策略">堆式分配策略</a></li>
+            <li><a id="contents:三种分配策略的比较" href="#三种分配策略的比较">三种分配策略的比较</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a id="contents:非局部名字的访问" href="#非局部名字的访问">非局部名字的访问</a>
+      <ol>
+        <li><a id="contents:静态作用域" href="#静态作用域">静态作用域</a>
+          <ol>
+            <li><a id="contents:无过程嵌套的静态作用域" href="#无过程嵌套的静态作用域">无过程嵌套的静态作用域</a></li>
+            <li><a id="contents:有过程嵌套的静态作用域" href="#有过程嵌套的静态作用域">有过程嵌套的静态作用域</a>
+              <ol>
+                <li><a id="contents:过程嵌套深度" href="#过程嵌套深度">过程嵌套深度</a></li>
+                <li><a id="contents:访问链静态链" href="#访问链静态链">访问链（静态链）</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a id="contents:动态作用域" href="#动态作用域">动态作用域</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:参数传递" href="#参数传递">参数传递</a>
+      <ol>
+        <li><a id="contents:值调用" href="#值调用">值调用</a></li>
+        <li><a id="contents:引用调用" href="#引用调用">引用调用</a></li>
+        <li><a id="contents:换名调用" href="#换名调用">换名调用</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav><div class="post-body e-content">
+                <p></p>
+<h2 id="几个概念"><a href="#几个概念" class="anchor-link">#</a><a href="#contents:几个概念" class="headings">几个概念</a></h2>
+<p>过程：是一个声明，最简单的形式是将一个名字和一个语句联系起来。名字是过程名，语句是程序体。</p>
+<p>过程的活动：过程的一次执行被称为过程的一次活动。</p>
+<p>活动记录：过程的每次活动所需信息的存储空间。</p>
+<p>生存期：从过程体开始执行到执行结束的时间，包括消耗在其调用过程和调用过程中调用其它过程所花费的时间。</p>
+<h2 id="局部存储分配"><a href="#局部存储分配" class="anchor-link">#</a><a href="#contents:局部存储分配" class="headings">局部存储分配</a></h2>
+<h3 id="名字的作用域"><a href="#名字的作用域" class="anchor-link">#</a><a href="#contents:名字的作用域" class="headings">名字的作用域</a></h3>
+<p>作用域：一个声明起作用的程序部分。</p>
+<p>即使一个名字在程序中只声明一次，该名字在程序运行时也可能表示不同的数据对象。比如对函数的一个形参，每次赋不同的值，形参的名字只声明了一次，但可以表示不同的保存值的存储单元。</p>
+<h3 id="名字到存储单元的绑定"><a href="#名字到存储单元的绑定" class="anchor-link">#</a><a href="#contents:名字到存储单元的绑定" class="headings">名字到存储单元的绑定</a></h3>
+<p>环境把名字映射到左值（存储单元），而状态把左值映射到右值（值）。</p>
+<p>赋值改变状态，但不改变环境。</p>
+<p>如果环境将名字 x 映射到存储单元 s，就说 x 被绑定到 s。</p>
+<p><font color="red">名字</font> -- <font color="gold">环境</font> --&gt; <font color="red">存储单元</font> -- <font color="gold">状态</font> --&gt; <font color="red">值</font></p>
+<h3 id="活动记录"><a href="#活动记录" class="anchor-link">#</a><a href="#contents:活动记录" class="headings">活动记录</a></h3>
+<p>一般的活动记录包括以下内容：</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>域</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>临时数据</td>
+<td>保存临时值，比如寄存器不足时，将计算的中间结果存放在这</td>
+</tr>
+<tr>
+<td>局部数据</td>
+<td>保存本过程内部定义的局部变量</td>
+</tr>
+<tr>
+<td>保存的机器状态</td>
+<td>用于保存本过程调用前的机器状态</td>
+</tr>
+<tr>
+<td>访问链</td>
+<td>通过访问链访问非局部数据</td>
+</tr>
+<tr>
+<td>控制链</td>
+<td>指向调用者的活动记录</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>存放本过程返回给调用过程的值</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>存放调用过程提供的实在参数</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="局部数据的布局"><a href="#局部数据的布局" class="anchor-link">#</a><a href="#contents:局部数据的布局" class="headings">局部数据的布局</a></h3>
+<p>字节是可编址内存的最小单位。</p>
+<p>一个过程所声明的局部变量，按这些变量声明时出现的次序，在活动记录的局部数据区中依次分配空间。</p>
+<p>局部数据的地址可以用相对于某个位置（本过程对应的活动记录的起始位置）的偏移来表示。</p>
+<p>数据对象的存储安排深受目标机器寻址方式的影响，存在对齐问题。例如，要求整数（int，long）的相对地址可以被 4 整除。</p>
+<p>由于对齐而引起的无用空间称为衬垫空白区。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 对于以下两个结构体，因为衬垫区的存在，其size不同
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="n">s1</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span>   <span class="n">c1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span>   <span class="n">c2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span>    <span class="n">i1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">d1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">s2</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span>   <span class="n">c1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span>    <span class="n">i1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">d1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span>   <span class="n">c2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h2 id="全局栈式存储分配"><a href="#全局栈式存储分配" class="anchor-link">#</a><a href="#contents:全局栈式存储分配" class="headings">全局栈式存储分配</a></h2>
+<h3 id="运行时内存空间的划分"><a href="#运行时内存空间的划分" class="anchor-link">#</a><a href="#contents:运行时内存空间的划分" class="headings">运行时内存空间的划分</a></h3>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>区</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码</td>
+<td>存放目标代码（.exe）</td>
+</tr>
+<tr>
+<td>静态区</td>
+<td>全局变量，静态变量等</td>
+</tr>
+<tr>
+<td>堆</td>
+<td>动态分配的内存</td>
+</tr>
+<tr>
+<td>空闲内存</td>
+<td>为堆和栈提供动态支持</td>
+</tr>
+<tr>
+<td>栈</td>
+<td>活动记录</td>
+</tr>
+</tbody>
+</table></div>
+<p>堆和栈是动态的，在它们占用的存储空间不断变化时，相向增长。在实际机器中，堆向高地址增长，栈向低地址增长。</p>
+<h3 id="内存分配策略"><a href="#内存分配策略" class="anchor-link">#</a><a href="#contents:内存分配策略" class="headings">内存分配策略</a></h3>
+<h4 id="静态分配策略"><a href="#静态分配策略" class="anchor-link">#</a><a href="#contents:静态分配策略" class="headings">静态分配策略</a></h4>
+<p>名字在程序被<strong>编译时绑定</strong>到存储单元，不需要运行时的任何支持。</p>
+<p>绑定的生存期是程序的<strong>整个运行时间</strong>。</p>
+<p>控制再次进入该过程时，局部变量的值和控制上一次<strong>离开时的一样</strong>。</p>
+<p>每个活动记录的大小是固定的。</p>
+<p>过程调用时保存信息的地址在编译时也是已知的。</p>
+<h4 id="栈式分配策略活动树和运行栈"><a href="#栈式分配策略活动树和运行栈" class="anchor-link">#</a><a href="#contents:栈式分配策略活动树和运行栈" class="headings">栈式分配策略——活动树和运行栈</a></h4>
+<p>栈式分配主要用于管理过程的活动记录。</p>
+<p>局部变量的生存期是<strong>过程活动的时间</strong>。</p>
+<p>控制进入该过程时，局部变量绑定到存储单元，过程活动结束后，<strong>局部变量的空间释放</strong>。</p>
+<h5 id="活动树"><a href="#活动树" class="anchor-link">#</a><a href="#contents:活动树" class="headings">活动树</a></h5>
+<ul>
+<li>每个结点代表某过程的一个活动</li>
+<li>根结点代表主程序的活动</li>
+<li>结点a是结点b的父结点，当且仅当控制流从a的活动进入b的活动</li>
+<li>结点a 处于结点b 的左边，当且仅当a的生存期先于b的生存期</li>
+</ul>
+<p>活动的执行顺序（程序的控制流）对应活动树的后根遍历（深度优先）。</p>
+<h5 id="运行栈"><a href="#运行栈" class="anchor-link">#</a><a href="#contents:运行栈" class="headings">运行栈</a></h5>
+<p>把控制栈中的信息拓广到包括过程活动所需的所有<strong>局部信息</strong>（即活动记录）。不要把静态的数据画在运行栈里。</p>
+<h5 id="栈上可变长数据"><a href="#栈上可变长数据" class="anchor-link">#</a><a href="#contents:栈上可变长数据" class="headings">栈上可变长数据</a></h5>
+<p>活动记录的长度在编译时不能确定的情况。🌰局部数组的大小要等到过程激活时才能确定。</p>
+<p>解决方案：</p>
+<p>编译时，在活动记录中为这样的数组分配存放数组指针的单元。</p>
+<p>运行时，这些指针指向分配在栈顶的数组存储空间。</p>
+<p>运行时，对数组的访问都要通过相应指针来间接访问。</p>
+<h5 id="悬空引用"><a href="#悬空引用" class="anchor-link">#</a><a href="#contents:悬空引用" class="headings">悬空引用</a></h5>
+<p>引用某个已被释放的存储单元</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="nf">dangle</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>  <span class="c1">// return之后，i的存储单元被释放掉了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">*</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">dangle</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h4 id="堆式分配策略"><a href="#堆式分配策略" class="anchor-link">#</a><a href="#contents:堆式分配策略" class="headings">堆式分配策略</a></h4>
+<p>内存分配与释放按照任意次序进行。</p>
+<p>堆中可能包含交错的正在使用的和已经释放的区域。</p>
+<h4 id="三种分配策略的比较"><a href="#三种分配策略的比较" class="anchor-link">#</a><a href="#contents:三种分配策略的比较" class="headings">三种分配策略的比较</a></h4>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>\</th>
+<th>静态分配</th>
+<th>栈式分配</th>
+<th>堆式分配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使用范围</td>
+<td>外部变量、静态局部变量、常量</td>
+<td>局部变量、形参</td>
+<td>动态变量</td>
+</tr>
+<tr>
+<td>分配时间</td>
+<td>程序开始前</td>
+<td>进入过程前</td>
+<td>用户决定</td>
+</tr>
+<tr>
+<td>释放时间</td>
+<td>程序结束后</td>
+<td>过程结束</td>
+<td>用户决定</td>
+</tr>
+<tr>
+<td>地址计算时间</td>
+<td>编译时</td>
+<td>运行时</td>
+<td>运行时</td>
+</tr>
+<tr>
+<td>存取速度</td>
+<td>快</td>
+<td>慢</td>
+<td>慢</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="非局部名字的访问"><a href="#非局部名字的访问" class="anchor-link">#</a><a href="#contents:非局部名字的访问" class="headings">非局部名字的访问</a></h2>
+<h3 id="静态作用域"><a href="#静态作用域" class="anchor-link">#</a><a href="#contents:静态作用域" class="headings">静态作用域</a></h3>
+<h4 id="无过程嵌套的静态作用域"><a href="#无过程嵌套的静态作用域" class="anchor-link">#</a><a href="#contents:无过程嵌套的静态作用域" class="headings">无过程嵌套的静态作用域</a></h4>
+<p>由于没有过程嵌套，声明在过程外的所有变量都可以分配在静态区。过程体中的非局部引用可以直接使用静态确定的地址（非局部数据此时就是全局数据）。</p>
+<h4 id="有过程嵌套的静态作用域"><a href="#有过程嵌套的静态作用域" class="anchor-link">#</a><a href="#contents:有过程嵌套的静态作用域" class="headings">有过程嵌套的静态作用域</a></h4>
+<h5 id="过程嵌套深度"><a href="#过程嵌套深度" class="anchor-link">#</a><a href="#contents:过程嵌套深度" class="headings">过程嵌套深度</a></h5>
+<p>设主程序的嵌套深度为 1，从一个过程进入一个被包围的过程时，嵌套深度加 1。</p>
+<p>变量的嵌套深度：它的声明所在过程的嵌套深度作为该名字的嵌套深度。</p>
+<h5 id="访问链静态链"><a href="#访问链静态链" class="anchor-link">#</a><a href="#contents:访问链静态链" class="headings">访问链（静态链）</a></h5>
+<p>如果过程 p 直接嵌在过程 q 中，那么过程 p 的活动记录的访问链直接指向<strong>最靠近的</strong>属于过程 q 的活动记录的访问链。</p>
+<p>假定过程 p 的嵌套深度为 $n_p$，它调用嵌套深度为 $n_x$ 的过程 x:</p>
+<p>(1) $n_p &lt; n_x$。表明被调用过程比 p 嵌的更深，而且过程 x 肯定嵌在过程 p 里，否则无法调用。这种情况下需要追踪访问链 $n_x-n_p$ 次。</p>
+<p>(1) $n_p \geq n_x$。追踪访问链 $n _ { p } - n _ { x } + 1$ 次到达了静态包围 x 和 p 的且离它们最近的那个过程的最新活动记录。所到达的访问链就是 x 的活动记录中的访问链应该指向的那个访问链。</p>
+<h3 id="动态作用域"><a href="#动态作用域" class="anchor-link">#</a><a href="#contents:动态作用域" class="headings">动态作用域</a></h3>
+<p>被调用过程的非局部名字a和它在调用过程中引用的是<strong>同样的</strong>存储单元。</p>
+<p>新的绑定仅为被调用过程的局部名字建立，这些名字在被调用过程的活动记录中<strong>占用</strong>存储单元。</p>
+<p>总结的说，动态作用域就是<strong>谁调用的找谁</strong>。</p>
+<h2 id="参数传递"><a href="#参数传递" class="anchor-link">#</a><a href="#contents:参数传递" class="headings">参数传递</a></h2>
+<h3 id="值调用"><a href="#值调用" class="anchor-link">#</a><a href="#contents:值调用" class="headings">值调用</a></h3>
+<p>实参的右值传给被调用过程。把形参当作所在过程的局部名看待，形参的存储单元在该过程的活动记录中。调用过程计算实参，并把右值放入形参的存储单元中。</p>
+<p><font color="red">对形参的任何操作不会影响调用者实参的值。</font></p>
+<h3 id="引用调用"><a href="#引用调用" class="anchor-link">#</a><a href="#contents:引用调用" class="headings">引用调用</a></h3>
+<p>实参的左值传给被调用过程。把实参的左值放入形参的存储单元。在被调用过程的目标代码中，任何对形参的引用都是通过传给该过程的指针来间接引用实参的。</p>
+<p><font color="red">对形参的任何赋值都会影响调用者实参的值。</font></p>
+<h3 id="换名调用"><a href="#换名调用" class="anchor-link">#</a><a href="#contents:换名调用" class="headings">换名调用</a></h3>
+<p>用实参表达式对形参进行正文替换。</p>
+<pre tabindex="0"><code class="language-pascal" data-lang="pascal">program main(input,output);
+    var a,b: integer;
+    procedure p(x,y,z: integer);
+        begin
+        y:＝y+1;
+        z:＝z+x;
+        end;
+    begin
+        a:＝2;
+        b:＝3;
+        p(a+b, a, a);
+        print a;
+    end．
+{值调用结果为2，不改变实参值}
+{引用调用结果为8，a+b的结果5放在临时变量中，传参时将临时变量地址传过去}
+{换名调用可以看作是执行a=a+1;a=a+(a+b);注意在第二条语句中右边的每一个a都等于3}
+</code></pre>
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-06 11:59:04 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-06</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-06</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/tech/intermediate-language-representation/" class="related-link">中间语言表示</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/computation-of-l-attribute-definition/" class="related-link">L 属性定义的计算</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/syntax-directed-definition/" class="related-link">语法制导的定义</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/bottom-up-parsing/" class="related-link">自下而上的语法分析</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/top-down-parsing/" class="related-link">自上而下的语法分析</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag" class="post-tag-link">#编译原理</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/computation-of-l-attribute-definition/" rel="prev">&lt; L 属性定义的计算</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/syntax-directed-definition/" rel="next">语法制导的定义 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha256-gPJfuwTULrEAAcI3X4bALVU/2qBU+QY/TpoD3GO+Exw=" crossorigin="anonymous">
+<script>
+    if (typeof renderMathInElement === 'undefined') {
+        var getScript = (options) => {
+            var script = document.createElement('script');
+            script.defer = true;
+            script.crossOrigin = 'anonymous';
+            Object.keys(options).forEach((key) => {
+                script[key] = options[key];
+            });
+            document.body.appendChild(script);
+        };
+        getScript({
+            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js',
+            integrity: 'sha256-YTW9cMncW/ZQMhY69KaUxIa2cPTxV87Uh627Gf5ODUw=',
+            onload: () => {
+                getScript({
+                    src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js',
+                    integrity: 'sha256-yzSfYeVsWJ1x+2g8CYHsB/Mn7PcSp8122k5BM4T3Vxw=',
+                    onload: () => {
+                        getScript({
+                            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js',
+                            integrity: 'sha256-fxJzNV6hpc8tgW8tF0zVobKa71eTCRGTgxFXt1ZpJNM=',
+                            onload: () => {
+                                renderKaTex();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } else {
+        renderKaTex();
+    }
+    function renderKaTex() {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+            }
+        );
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>机器学习与数据挖掘 | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="机器学习与数据挖掘复习" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/ml-dm/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2020-12-19T21:03:16+08:00",
+        "dateModified": "2022-05-06T11:59:56+08:00",
+        "url": "https://wheliosc.github.io/tech/ml-dm/",
+        "headline": "机器学习与数据挖掘",
+        "description": "机器学习与数据挖掘复习",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  12917 ,
+        "image": "https://wheliosc.github.io/icons/favicon.png",
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary" />
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="机器学习与数据挖掘" />
+<meta property="og:description" content="机器学习与数据挖掘复习" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/ml-dm/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2020-12-19T21:03:16&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-06T11:59:56&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">机器学习与数据挖掘</h1>
+
+            
+
+            
+                <div class="post-description p-summary">机器学习与数据挖掘复习</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2020-12-19T21:03:16&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2020.12.19</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;12917</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <div class="post-body e-content">
+                <p></p>
+<h1 id="第一章-引言"><a href="#第一章-引言" class="anchor-link">#</a>第一章 引言</h1>
+<h2 id="0-什么是数据挖掘"><a href="#0-什么是数据挖掘" class="anchor-link">#</a>0. 什么是数据挖掘</h2>
+<p>数据挖掘是从大量数据中挖掘出有趣模式和知识的过程或方法，其中涉及机器学习、统计数据和数据库系统交叉处的方法。</p>
+<h2 id="1-数据中的知识发现包括哪几个步骤"><a href="#1-数据中的知识发现包括哪几个步骤" class="anchor-link">#</a>1. 数据中的知识发现包括哪几个步骤</h2>
+<ul>
+<li>business understanding（业务理解）</li>
+<li>data understanding（数据理解）</li>
+<li>data preparation（数据准备）</li>
+<li>modeling（建模）</li>
+<li>evaluation（评估）</li>
+<li>development（部署）</li>
+</ul>
+<h2 id="2-数据挖掘的应用"><a href="#2-数据挖掘的应用" class="anchor-link">#</a>2. 数据挖掘的应用</h2>
+<p>商务智能、Web 搜索、生物信息学、卫生保健信息学、金融、数字图书馆和数字政府等。</p>
+<h1 id="第二章-学习的可行性"><a href="#第二章-学习的可行性" class="anchor-link">#</a>第二章 学习的可行性</h1>
+<h2 id="1-hoeffdings-inequality霍夫汀不等式"><a href="#1-hoeffdings-inequality霍夫汀不等式" class="anchor-link">#</a>1. Hoeffding's Inequality（霍夫汀不等式）</h2>
+<p>$P(| v- \mu | &gt; \epsilon) \leq 2 e^{-2 \epsilon^2 N}$</p>
+<p>霍夫丁不等式说明，抽样比例 $v$ 与总体比例 $\mu$ 的差距大于某个边距值 $\epsilon$ 的概率，小于等于一个由 $\epsilon$ 和样本大小 $N$ 得到的关系式的值。</p>
+<h2 id="2-用霍夫汀不等式说明学习的可行性"><a href="#2-用霍夫汀不等式说明学习的可行性" class="anchor-link">#</a>2. 用霍夫汀不等式说明学习的可行性</h2>
+<p>在统计学中我们通过霍夫丁不等式来限定抽样集与总体集中的频率与概率关系。通过将其推广到机器学习中，可以得到类似的单个 hypothesis 的 $E_{in}$ 与 $E_{out}$ 差距限定不等式。然而当考虑到一组 hypothesis 数量多的假设集时，即使对单个 hypothesis 遇到 bad data 使其 $E_{in}$ 与 $E_{out}$ 差别比较大的概率十分低，但总体而言其中有一个或几个 hypothesis 遇到 bad data 使其 $E_{in}$ 与 $E_{out}$ 差别较大。我们将假设集中假设的数量 $M$ 通过 union bound 引入不等式中，最终得到 $P_D(BAD D) \leq 2M e^{-2 \epsilon^2 N}$。在<strong>有限的</strong>假设数量时，只要样本数量 $N$ 足够，我们依然能让这组 data 保证取到的 hypothesis 的 $E_{in}$ 与 $E_{out}$ 差距不大，从而可以挑选 $E_{in}$ 最小的 hypothesis，也即 $E_{out}$ 最小的 hypothesis，作为结果。</p>
+<h1 id="第三章-数据和数据预处理"><a href="#第三章-数据和数据预处理" class="anchor-link">#</a>第三章 数据和数据预处理</h1>
+<h2 id="1-属性类型和可进行的操作"><a href="#1-属性类型和可进行的操作" class="anchor-link">#</a>1. 属性类型和可进行的操作</h2>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>属性类型</th>
+<th>描述</th>
+<th>操作</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标称属性（nominal）</td>
+<td>仅仅是不同的名字，用于区分属性（$=, \neq$）</td>
+<td>众数，熵，列联相关，$\chi^2$ 检验</td>
+<td>邮政编码，员工 ID，性别</td>
+</tr>
+<tr>
+<td>序数属性（ordinal）</td>
+<td>序数属性的值可以确定对象的序（$&lt;, &gt;$）</td>
+<td>中值，百分位</td>
+<td>矿石硬度（好，较好，最好）</td>
+</tr>
+<tr>
+<td>区间属性（interval）</td>
+<td>值之间的差是有意义的（$+, -$）</td>
+<td>均值，标准差，皮尔逊相关</td>
+<td>日历日期，摄氏温度</td>
+</tr>
+<tr>
+<td>比率属性（ratio）</td>
+<td>差和比率都有意义（$\times, \div$）</td>
+<td>几何平均，调和平均，百分比变差</td>
+<td>质量，长度，绝对温度</td>
+</tr>
+</tbody>
+</table></div>
+<p>标称属性和序数属性统称为分类的或定性的属性，区间属性和比率属性统称为定量的或数值属性。</p>
+<h2 id="2-非对称属性"><a href="#2-非对称属性" class="anchor-link">#</a>2. 非对称属性</h2>
+<p>属性只有两个类别或状态，用 0 和 1 编码。如果他的两种状态具有同等的价值并且有相同的权重，则称为对称的二元属性，比如男女性别。如果其状态的结果不是同样重要的，其中更关注1编码的结果（通常是稀疏的），称其为非对称的二元属性，比如 covid-19 核酸检测的阴阳性结果。</p>
+<h2 id="3-相似性和相异性度量"><a href="#3-相似性和相异性度量" class="anchor-link">#</a>3. 相似性和相异性度量</h2>
+<h3 id="31-数据对象之间的相异度"><a href="#31-数据对象之间的相异度" class="anchor-link">#</a>3.1 数据对象之间的相异度</h3>
+<ul>
+<li>
+<p>欧几里得距离 $d=\sqrt {\Sigma_{k=1}^{n}(p_k-q_k)^2}$。</p>
+</li>
+<li>
+<p>闵可夫斯基距离 $d=\lgroup \Sigma_{k=1}^{n}|(p_k-q_k)|^r\rgroup^{\frac{1}{r}}$ 是欧氏距离的推广。当 $r=1$ 时，称为曼哈顿距离（$L_1$ 范数）；当 $r=2$ 时，称为欧几里得距离（$L_2$ 范数）；当 $r=\infty$ 时，称为切比雪夫距离（上确界距离，$L_{max}$ 范数，$L_\infty$ 范数），它是对象属性间的最大距离。</p>
+</li>
+<li>
+<p>马氏距离 $d_m(x) = \sqrt{(x-\mu) \Sigma^{-1} (x-\mu)^T}$，其中 $x$ 是一个均值为 $\mu$ 的协方差矩阵为 $\Sigma$ 的多变量矢量。对两个服从统一分布并且协方差矩阵为 $\Sigma$ 的变量（样本） $p$ 和 $q$ 来说，其差异程度可以由马氏距离表示为 $d_m(p,q)= \sqrt{(p-q) \Sigma^{-1} (p-q)^T}$。马氏距离排除了变量之间的相关性的干扰，且尺度无关（不受量纲影响）。</p>
+</li>
+</ul>
+<h3 id="32-二元数据的相似性度量"><a href="#32-二元数据的相似性度量" class="anchor-link">#</a>3.2 二元数据的相似性度量</h3>
+<ul>
+<li>
+<p>简单匹配系数（SMC）：$SMC = \frac{f_{11}+f_{00}}{f_{00}+f_{10}+f_{01}+f_{11}}$</p>
+</li>
+<li>
+<p>Jaccard 系数：$J = \frac{f_{11}}{f_{10}+f_{01}+f_{11}}$</p>
+</li>
+<li>
+<p>广义 Jaccard 系数（Tinamoto 系数）：$EJ(p,q) = \frac{p \cdot q}{\parallel p \parallel ^2 + \parallel q \parallel ^2 - p \cdot q}$</p>
+</li>
+<li>
+<p>余弦相似度：$cos(x,y) = \frac{x \cdot y}{\parallel p \parallel \times \parallel q \parallel}$</p>
+</li>
+<li>
+<p>相关系数：$r(X, Y)=\frac{Cov(X, Y)}{\sigma_X \sigma_Y}$。</p>
+</li>
+</ul>
+<h3 id="33-组合异种属性的相似度"><a href="#33-组合异种属性的相似度" class="anchor-link">#</a>3.3 组合异种属性的相似度</h3>
+<ul>
+<li>
+<p>在第 $k$ 个属性上，计算相似度 $s_k(p,q)$，在区间 $[0,1]$ 中。</p>
+</li>
+<li>
+<p>对于第 $k$ 个属性，定义一个指示变量 $\delta_k$，如果第 $k$ 个属性是非对称属性，并且两个对象在该属性的值都是 0，或者如果有一个对象的第 $k$ 个属性具有缺失值，则 $\delta_k = 0$，否则 $\delta_k = 1$。</p>
+</li>
+<li>
+<p>总相似度为 $similarity(p,q) = \frac{\Sigma_{k=1}^{n}\delta_k s_k (p,q)}{\Sigma_{k=1}^{n}\delta_k}$。</p>
+</li>
+<li>
+<p>当某些属性更重要时，可以使用不同权值对不同属性的相似度进行加权，则上式变为 $similarity(p,q) = \frac{\Sigma_{k=1}^{n} w_k \delta_k s_k (p,q)}{\Sigma_{k=1}^{n}\delta_k}$。</p>
+</li>
+</ul>
+<h2 id="4-数据预处理"><a href="#4-数据预处理" class="anchor-link">#</a>4. 数据预处理</h2>
+<p>主要任务：数据清理（data cleaning）、数据集成（data integration）、数据规约（data reduction）、数据变换（data transformation）、数据离散化（data discretization）。</p>
+<h3 id="41-数据清理"><a href="#41-数据清理" class="anchor-link">#</a>4.1 数据清理</h3>
+<h4 id="411-填充缺失值missing-data"><a href="#411-填充缺失值missing-data" class="anchor-link">#</a>4.1.1 填充缺失值（missing data）</h4>
+<ul>
+<li>忽略元组</li>
+<li>人工填写缺失值</li>
+<li>使用一个全局常量填充缺失值</li>
+<li>使用属性的中心度量（如均值和中位数）填充缺失值</li>
+<li>使用与给定元组属同一类的所有样本的属性均值或中位数填充缺失值</li>
+<li>使用最可能的值填充缺失值</li>
+</ul>
+<h4 id="412-光滑噪声noise"><a href="#412-光滑噪声noise" class="anchor-link">#</a>4.1.2 光滑噪声（noise）</h4>
+<ul>
+<li>
+<p>分箱（binning）</p>
+<ul>
+<li>等宽分箱：将变量的取值范围分为$k$个等宽的区间，每个区间当作一个分箱。</li>
+<li>等频（深）分箱：分为$k$个区间，每个区间中的样本数大体相同。</li>
+<li>分箱之后，可以使用箱均值平滑，箱中位数平滑，箱边界平滑（箱中的每一个值取离它最近的边界值，即最大值或最小值，与最小值的差小则取最小值，与最大值的差小则取最大值）。</li>
+</ul>
+</li>
+<li>
+<p>回归（regression）</p>
+<ul>
+<li>用一个函数拟合数据来光滑数据</li>
+</ul>
+</li>
+</ul>
+<h4 id="413-识别离群点outlier"><a href="#413-识别离群点outlier" class="anchor-link">#</a>4.1.3 识别离群点（outlier）</h4>
+<ul>
+<li>
+<p>聚类（cluster）</p>
+<ul>
+<li>落在簇之外的值为离群点</li>
+</ul>
+</li>
+<li>
+<p>曲线拟合</p>
+</li>
+<li>
+<p>给定模型上的假设检验</p>
+</li>
+</ul>
+<h4 id="414-纠正数据中的不一致"><a href="#414-纠正数据中的不一致" class="anchor-link">#</a>4.1.4 纠正数据中的不一致</h4>
+<h3 id="42-数据集成"><a href="#42-数据集成" class="anchor-link">#</a>4.2 数据集成</h3>
+<p>数据集成将多个数据源的数据合并，存放在一个一致的数据存储中，如数据仓库中。</p>
+<h4 id="421-实体识别问题"><a href="#421-实体识别问题" class="anchor-link">#</a>4.2.1 实体识别问题</h4>
+<p>数据分析者或计算机如何才能确信一个数据库中的某个属性与另一个数据库中的某个属性指的是相同的属性。</p>
+<h4 id="422-冗余和相关分析"><a href="#422-冗余和相关分析" class="anchor-link">#</a>4.2.2 冗余和相关分析</h4>
+<p>一个属性如果可以由另一个或另一组属性导出，则这个属性可能就是冗余的。有些冗余可以被相关分析检测到。对于分类的属性，使用 $\chi ^2$（卡方）检验。对于数值属性（numerical），使用相关系数和协方差。</p>
+<ul>
+<li>
+<p>$\chi ^2$ 检验</p>
+<ul>
+<li>假设对两个属性 $A$ 和 $B$，$A$ 有 $c$ 个不同的值，$B$ 有 $r$ 个不同的值，可以得到一个 $c \times r$ 的列联表。令 $(A_i,B_j)$ 表示属性 $A$ 取值 $a_i$、属性 $B$ 取值 $b_j$ 的联合事件，$\chi ^2$ 值可以通过公式计算</li>
+<li>$\chi ^2 = \Sigma_{i=1}^{c} \Sigma_{j=1}^{r} \frac{(o_{ij} - e_{ij})^2}{e_{ij}}$。其中，$o_{ij}$ 是联合事件 $(A_i,B_j)$ 的观测频度（即实际计数），$e_{ij}$ 是 $(A_i,B_j)$ 的期望频度。</li>
+<li>$e_{ij}$ 的计算公式为 $e_{ij} = \frac{count(A=a_i) \times count(B=b_j)}{n}$。其中，$n$ 是元组的个数，$count(A=a_i)$ 是 $A$ 上具有值 $a_i$ 的元组个数，$count(B=b_j)$ 是 $B$ 上具有值 $b_i$ 的元组个数。</li>
+<li>对卡方值贡献最大的单元是实际计数和期望计数很不相同的单元。</li>
+<li>卡方检验假设 $A$ 和 $B$ 是独立的，检测基于显著水平，具有自由度 $(c-1) \times (r-1)$。</li>
+</ul>
+</li>
+<li>
+<p>协方差</p>
+<ul>
+<li>$cov(A,B) = E((A-\overline{A})(B-\overline{B})) = \frac{\Sigma_{i=1}^{n} (a_i - \overline{A}) ((b_i - \overline{B})}{n} = E(A \cdot B) - \overline{A} \overline{B}$</li>
+</ul>
+</li>
+<li>
+<p>相关系数（皮尔森相关系数）</p>
+<ul>
+<li>公式为 $r_{A,B} = \frac{\Sigma_{i=1}^{n} (a_i - \overline{A}) ((b_i - \overline{B})}{n \sigma_A \sigma_B}=\frac{\Sigma_{i=1}^{n} (a_i b_i) - n \overline{A} \overline{B}}{n \sigma_A \sigma_B}$</li>
+<li>通过协方差的定义，相关系数公式还可以写为 $r_{A,B}=\frac{\operatorname{Cov}(A, B)}{\sigma_A \sigma_B}$</li>
+<li>$r_{A,B} \in [-1,+1]$。如果$r_{A,B}&gt;0$，则 $A$ 和 $B$ 是正相关的，该值越大，相关性越强。如果 $r_{A,B}=0$，则 $A$ 和 $B$ 是不相关的。</li>
+<li>独立可推出不相关，但不相关并不能推出独立。不相关是指两个随机变量没有近似的线性关系，而独立是指两个变量没有任何关系。</li>
+</ul>
+</li>
+</ul>
+<h3 id="43-数据归约"><a href="#43-数据归约" class="anchor-link">#</a>4.3 数据归约</h3>
+<p>数据归约可以得到数据集的简约表示，它小得多，在规约后的数据集上挖掘将产生相同或几近相同的分析结果。</p>
+<p>可以使用的策略：数据聚合（data aggregation）、数据压缩（data compression）、数量规约（numerosity reduction）、维归约（dimensionality reduction）、离散化和概念层次生成（Discretization and concept hierarchy generation）等。</p>
+<h4 id="431-数据聚合"><a href="#431-数据聚合" class="anchor-link">#</a>4.3.1 数据聚合</h4>
+<p>把两个或者多个属性组合成单个属性。</p>
+<h4 id="432-数据压缩"><a href="#432-数据压缩" class="anchor-link">#</a>4.3.2 数据压缩</h4>
+<p>使用变换得到原数据的规约表示或压缩表示。如果原数据可以从压缩后的数据中重构而不损失信息则称该数据归约是无损的，如果只能近似的重构原数据，则该数据归约称为有损的。</p>
+<h4 id="433-数量规约"><a href="#433-数量规约" class="anchor-link">#</a>4.3.3 数量规约</h4>
+<p>用替代的、较小的数据表示替换原数据，分为参数化方法和非参数化方法。参数方法使用模型估计数据，因此只需要存放模型参数（离群点可能也需要存放），回归模型就是一个例子。非参数化方法包括直方图（histograms）、聚类（clustering）、抽样（sampling）等。</p>
+<h4 id="434-维归约"><a href="#434-维归约" class="anchor-link">#</a>4.3.4 维归约</h4>
+<h3 id="44-数据变换与数据离散化"><a href="#44-数据变换与数据离散化" class="anchor-link">#</a>4.4 数据变换与数据离散化</h3>
+<p>数据变换策略包括：光滑（smoothing）、属性构造、聚集、规范化、离散化等。数据预处理任务之间存在着重叠，因此这一部分只讨论规范化和离散化。</p>
+<h4 id="441-规范化"><a href="#441-规范化" class="anchor-link">#</a>4.4.1 规范化</h4>
+<p>规范化可以避免对度量单位选择的依赖性。对于基于距离的方法，规范化可以帮助防止具有较大初始值域的属性和具有较小初始值域的属性相比权重过大。</p>
+<ul>
+<li>
+<p>最小-最大规范化</p>
+<ul>
+<li>假设 $min_A$ 和 $max_A$ 是属性 $A$ 的最小值和最大值，要将属性 $A$ 规范化到区间 $[ new _ min_A, new _ max_A]$ 中，$a_i$ 的规范后结果为</li>
+<li>$a_i \prime = \frac{a_i - min_A}{max_A - min_A} \times (new _ max_A - new _ min_A) + new _ min_A$</li>
+</ul>
+</li>
+<li>
+<p>$z-score$ 规范化</p>
+<ul>
+<li>$a_i \prime = \frac{a_i - \overline{A}}{\sigma_A}$</li>
+</ul>
+</li>
+<li>
+<p>小数定标规范化</p>
+<ul>
+<li>$a_i \prime = \frac{a_i}{10^j}$，其中$j$是使得$max(|a_i \prime |)&lt;1$的最小整数。</li>
+</ul>
+</li>
+</ul>
+<h4 id="442-离散化"><a href="#442-离散化" class="anchor-link">#</a>4.4.2 离散化</h4>
+<p>对数值数据进行离散化，根据不同的标准可以划分为监督的和非监督的、自顶向下的和自底向上的（分裂的和合并的）。</p>
+<p>常用的方法有：</p>
+<ul>
+<li>直方图分析（自顶向下的，分裂的，非监督的）</li>
+<li>聚类分析（自顶向下的或自底向上的、分裂的或合并的，非监督的）</li>
+<li>基于熵的离散化（自顶向下的，分裂的，监督的）</li>
+<li>通过$\chi ^2$ 分析合并区间（<strong>自底向上的</strong>，合并的，监督的）</li>
+<li>自然分割（自顶向下的，分裂的，非监督的）
+<ul>
+<li>3-4-5 规则可以用于将数值数据划分成相对一致、“自然的”区间。一般地，该规则根据最重要的数字上（比如数字的最高位）的值区域，递归地、逐层地将给定的数据区域划分为 3、4 或 5 个等长的区间。</li>
+<li>以最高位数字举例来说，如果在所有数字的最高位覆盖 3, 6, 7 或 9 个不同的值，则将数据分成 3 段；如果在所有数字的最高位覆盖 2, 4, 8 个不同的值，则将数据分成 4 段；如果在所有数字的最高位覆盖 1, 5, 10 个不同的值，则将数据分成 5 段。</li>
+</ul>
+</li>
+</ul>
+<h1 id="第四章-决策树学习"><a href="#第四章-决策树学习" class="anchor-link">#</a>第四章 决策树学习</h1>
+<h2 id="1-决策树学习的基本思想"><a href="#1-决策树学习的基本思想" class="anchor-link">#</a>1. 决策树学习的基本思想</h2>
+<p>决策树是一个树结构，其每一个非叶节点表示一个属性上的测试，每个分支代表该测试的一个输出，每个叶节点存放一个类别。决策树学习的基本思想是对所有的属性进行评估，选择一个最好的属性作为树的根节点，然后为该属性的每个可能值创建划分节点，并将数据集按取值划分到不同的节点上，然后用与每个子结点相关联的训练实例重复整个过程，以选择树中该点处要测试的最佳属性。</p>
+<h2 id="2-如何选择最佳划分"><a href="#2-如何选择最佳划分" class="anchor-link">#</a>2. 如何选择最佳划分</h2>
+<p>为了决定一个最佳划分，需要对节点进行不纯性度量，理想的情况是每个分区应当是纯的（落在一个给定分区的所有元组都属于相同的类）。</p>
+<p>不纯性度量包括基尼（Gini Index）指数、熵（Entropy）和分类错误率（Misclassification error）等。</p>
+<ul>
+<li>
+<p>基尼指数</p>
+<ul>
+<li>一个节点的基尼指数定义为 $Gini(node) = 1 - \Sigma_{i=1}^{n} p_i^2$，其中 $p_i$ 是 $node$ 中元组属于 $Class_i$ 类的概率。</li>
+<li>如果将一个节点 $D$ 分裂成了 $k$ 个部分（子节点），对这个划分来说，$D$ 的基尼指数为 $Gini_{split}(D) = \Sigma_{i=1}^{k} \frac{n_i}{n}Gini(i)$，其中 $n_i$ 是属于某一个子节点的元组的个数，$n$ 是属于节点 $D$ 的元组数。</li>
+<li>对于离散属性来说，选择分裂后的基尼指数小于未分裂的基尼指数且基尼指数最小的划分。</li>
+<li>对于连续属性来说，对属性的可能取值进行排序，然后将每对相邻值的中点作为可能的分裂点，如果是二元划分，则选择产生最小基尼指数的点作为该属性的分裂点。对于分裂点 $split _ point$ 来说，它产生的两个数据子集是 $\leq split _ point$和$&gt; split _ point$。</li>
+<li>基尼指数应用于 CART（Classification and Regression Trees）算法中。</li>
+</ul>
+</li>
+<li>
+<p>熵</p>
+<ul>
+<li>$Entropy(node) = - \Sigma_{i=1}^{n} p_i log_2(p_i)$，其中 $p_i$ 是 $node$ 中元组属于 $Class_i$ 类的概率。</li>
+<li>熵越大表示区分类别需要的信息越多，则节点内的纯度越低。</li>
+<li>信息增益：$Gain_{split}(A) = Entropy(node) - (\Sigma_{i=1}^k \frac{n_i}{n} Entropy(i))$，表示将一个节点按属性 $A$ 分为 $k$ 个部分后得到的信息增益，选择具有最大信息增益的属性进行划分。信息增益应用于 ID3 算法中。（倾向于产生大量的分区，使每一个值有一个分区，这样每一个分区都是纯的，但这种划分没用。）</li>
+<li>信息增益率：$GainRate(A) = \frac{Gain(A)}{SplitInfo_A(D)}$，其中 $SplitInfo_A(D) = -\Sigma_{i=1}^k \frac{n_i}{n} log_2(\frac{n_i}{n})$。信息增益率应用于 C4.5 算法中。</li>
+</ul>
+</li>
+<li>
+<p>分类错误率</p>
+<ul>
+<li>$Error = 1 - max(p_i)$，其中 $p_i $是 $node$ 中元组属于 $Class_i$ 类的概率。</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-过拟合和欠拟合"><a href="#3-过拟合和欠拟合" class="anchor-link">#</a>3. 过拟合和欠拟合</h2>
+<ul>
+<li>
+<p>过拟合</p>
+<ul>
+<li>过拟合是指模型把数据学习的太彻底，以至于把噪声或没有代表性的数据的特征也学习到了，这样就会导致在后期测试的时候不能够很好的识别数据，即不能正确的分类，模型的泛化能力差。</li>
+<li>引起过拟合的原因包括数据集中有噪声数据或训练样例太少以至于不能产生目标函数的有代表性的采样。</li>
+<li>解决决策树学习中过拟合的方法：预剪枝（及早停止树增长）和后剪枝（允许树过度拟合数据，之后对树进行修剪）。</li>
+</ul>
+</li>
+<li>
+<p>欠拟合</p>
+<ul>
+<li>欠拟合是指模型的拟合程度不高，模型没有很好地捕捉到数据特征，不能够很好地拟合数据。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-缺失值对决策树的影响"><a href="#4-缺失值对决策树的影响" class="anchor-link">#</a>4. 缺失值对决策树的影响</h2>
+<p>决策树对缺失值不敏感。</p>
+<ul>
+<li>删除有缺失值的数据，或者不考虑有缺失值的属性来生成决策树。</li>
+<li>默认将含有缺失值的实例划分到某一子树。</li>
+</ul>
+<h2 id="5-混淆矩阵confusion-matrix"><a href="#5-混淆矩阵confusion-matrix" class="anchor-link">#</a>5. 混淆矩阵（confusion matrix）</h2>
+<p>简记 Actual Class 为 AC，Predicted Class 为 PC</p>
+<ul>
+<li>TP: (true positive)  AC = yes, PC = yes</li>
+<li>FN: (false negative) AC = yes, PC = no</li>
+<li>FP: (fasle positive) AC = no, PC = yes</li>
+<li>TN: (true negative)  AC = no, PC = no</li>
+</ul>
+<p>准确率：$Accuracy = \frac{TP+TN}{TP+FN+FP+TN}$</p>
+<p>精确率：$Precision = \frac{TP}{TP+FP}$</p>
+<p>召回率：$Recall = \frac{TP}{TP+FN}$</p>
+<p>$F_1$ 分数：$F_1 = 2 \times \frac{Precision \times Recall}{Precision + Recall}$</p>
+<h2 id="6-评估分类器性能的方法"><a href="#6-评估分类器性能的方法" class="anchor-link">#</a>6. 评估分类器性能的方法</h2>
+<ul>
+<li>保持方法（holdout），将数据集按比例划分为不相交的训练集和验证集</li>
+<li>随机二次抽样（random subsampling），多次重复保持方法</li>
+<li>交叉验证（cross validation）
+<ul>
+<li>$k$ 折交叉验证，把数据集分为大小相同的 $k$ 份，在每次运行时，选择其中的一份作为验证集，而其余的全作为训练集，该过程重复 $k$ 次，使得每份数据都用于验证恰好一次。</li>
+<li>多次 $k$ 折交叉验证，将 $k$ 折交叉验证重复多次，比如十次十折交叉验证。</li>
+<li>留一法（leave-one-out），令 $k$ 为数据集的大小，验证集中只有一个记录。优点是使用尽可能多的训练数据并且有效的覆盖了整个数据集；缺点是整个过程重复数据集大小次数，计算开销大，而且由于验证集中只有一个记录，所以性能估计的方差较大。</li>
+</ul>
+</li>
+<li>分层抽样（stratified sampling）</li>
+<li>自助法（bootstrap）</li>
+</ul>
+<p>ROC 曲线，横坐标为假阳率 $FPR = \frac{FP}{N}$，纵坐标为真阳率 $TPR = \frac{TP}{P}$。AUC 面积是 ROC 曲线下的面积，ROC 曲线一般位于 $y=x$ 之上，所以 AUC 取值一般在 $0.5 \sim 1$ 之间，值越大说明模型的性能越好。</p>
+<h1 id="第五章-神经网络"><a href="#第五章-神经网络" class="anchor-link">#</a>第五章 神经网络</h1>
+<h2 id="1-神经网络如何学习"><a href="#1-神经网络如何学习" class="anchor-link">#</a>1. 神经网络如何学习</h2>
+<p>神经网络通过调整权值进行学习，从而能够正确的对训练数据进行分类，然后在测试阶段对未知数据进行分类。</p>
+<p>特点：</p>
+<ul>
+<li>神经网络需要很长时间的训练。</li>
+<li>神经网络对噪声数据和不完整数据有很高的容忍度。</li>
+<li>神经网络的可解释性较差。</li>
+</ul>
+<h2 id="2-梯度下降算法"><a href="#2-梯度下降算法" class="anchor-link">#</a>2. 梯度下降算法</h2>
+<hr>
+<ul>
+<li>初始化每个$w_i$为某个小的随机值</li>
+<li>遇到终止条件之前做以下操作
+<ul>
+<li>初始化每个$\Delta w_i$为0</li>
+<li>对于每个训练样例$(\vec{x}, t)$，做
+<ul>
+<li>把实例$\vec{x}$输入到此单元，计算输出$o$</li>
+<li>对于线性单元的每个权$w_i$做：$\Delta w_i \leftarrow \Delta w_i + \eta(t-o) x_i$</li>
+</ul>
+</li>
+<li>对于线性单元的每个权$w_i$，做$w_i \leftarrow w_i + \Delta w_i$</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>批量梯度下降（BGD）：在每一次迭代时计算完所有的样本后进行梯度的更新。</p>
+<p>随机梯度下降（SGD）：在每一次迭代时每计算完一个样本后都进行梯度的更新。</p>
+<h2 id="3-反向传播算法bp-算法"><a href="#3-反向传播算法bp-算法" class="anchor-link">#</a>3. 反向传播算法（BP 算法）</h2>
+<p>逐层求出目标函数对各神经元权值的偏导数，构成目标函数对权值向量的梯度，作为修改权值的依据，网络的学习在权值修改过程中完成。误差达到所期望值时，网络学习结束。</p>
+<h1 id="第六章-贝叶斯分类方法"><a href="#第六章-贝叶斯分类方法" class="anchor-link">#</a>第六章 贝叶斯分类方法</h1>
+<h2 id="1-根据贝叶斯理论如何计算一个假设h成立的后验概率"><a href="#1-根据贝叶斯理论如何计算一个假设h成立的后验概率" class="anchor-link">#</a>1. 根据贝叶斯理论，如何计算一个假设h成立的后验概率？</h2>
+<p>$P(h|D) = \frac{P(D|h)P(h)}{P(D)}$</p>
+<ul>
+<li>$P(h)$ 和 $P(D)$ 是先验概率， $P(h)$ 表示假设 $h$ 是一个正确假设的概率，$P(D)$ 表示在没有确定某一假设成立时 $D$ 的概率。</li>
+<li>$P(D|h)$ 表示假设 $h$ 成立的情况下，观察到数据 $D$ 的概率。</li>
+<li>$P(h|D)$ 是要求的后验概率，即给定数据集 $D$ 上，$h$ 成立的概率。</li>
+</ul>
+<h2 id="2-极大后验假设和极大似然假设"><a href="#2-极大后验假设和极大似然假设" class="anchor-link">#</a>2. 极大后验假设和极大似然假设</h2>
+<ul>
+<li>
+<p>极大后验假设（MAP）</p>
+<ul>
+<li>在假设集 $H$ 中寻找给定数据集 $D$ 时，最可能的假设 $h$，这样具有最大可能性的假设称为极大后验假设，$h_{MAP} = \underset{h \in H}{\arg \max } P(D \mid h) P(h)$。</li>
+</ul>
+</li>
+<li>
+<p>极大似然假设（ML）</p>
+<ul>
+<li>假定 $H$ 中每个假设具有相同的先验概率，使 $P(D \mid h)$ 最大的假设称为极大似然假设，$h_{ML} = \underset{h \in H}{\arg \max } P(D \mid h)$。</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-最小描述长度的基本思想"><a href="#3-最小描述长度的基本思想" class="anchor-link">#</a>3. 最小描述长度的基本思想</h2>
+<p>为随机传送的消息设计一个编码，其中遇到消息 $i$ 的概率为 $p_i$，为了传输随机消息所需的传送位数最小，需要为可能性较大的消息赋予较短的编码。用最小描述长度解释极大后验假设就是使假设描述长度和给定假设下数据描述长度之和最小化的假设。$h_{max} = \underset{h \in H}{\arg \min } L_{C_H}(h) L_{C_{D \mid h}}(h)$，其中$C_H$和$C_{D \mid h}$ 是 $H$ 的最优编码和给定 $h$ 时 $D$ 的最优编码。</p>
+<h2 id="4-贝叶斯最优分类器"><a href="#4-贝叶斯最优分类器" class="anchor-link">#</a>4. 贝叶斯最优分类器</h2>
+<p>新实例的最可能分类可通过合并所有假设的预测得到，用后验概率加权。如果新实例的可能分类可取集合 $V$ 中的任一值 $v_j$，那么概率 $P(v_j \mid D)$ 表示新实例的正确分类为 $v_j$ 的概率：$P(v_j \mid D) = \Sigma_{h_i \in H} P(v_j \mid h_i)P(h_i \mid D)$。新实例的最优分类为使 $P(v_j \mid D)$ 最大的 $v_j$ 值，即 $\underset{v_j \in V}{\arg \max } \Sigma_{h_i \in H} P(v_j \mid h_i)P(h_i \mid D)$。</p>
+<p>贝叶斯最优分类器开销很大，需要计算每个假设的后验概率，一个可替代的、非最优的方法是 Gibbs 算法：按照当前的后验概率分布使用一随机抽取的假设。Gibbs 算法的误分类率的期望值最多为贝叶斯最优分类器的两倍。</p>
+<h2 id="5-朴素贝叶斯分类器"><a href="#5-朴素贝叶斯分类器" class="anchor-link">#</a>5. 朴素贝叶斯分类器</h2>
+<p>贝叶斯方法的新实例的分类目标是在给定描述实例的属性值 $&lt;a_1,a_2,...,a_n&gt;$ 下，得到最可能的目标值 $v_{MAP} = \underset{v_j \in V}{\arg \max } P(v_j \mid a_1,a_2,...,a_n)$，利用贝叶斯公式可以重写为 $v_{MAP} = \underset{v_j \in V}{\arg \max } \frac{P(a_1,a_2,...,a_n \mid v_j)P(v_j)}{P(a_1,a_2,...,a_n)}=\underset{v_j \in V}{\arg \max } P(a_1,a_2,...,a_n \mid v_j)P(v_j)$。</p>
+<p>朴素贝叶斯方法就是假设给定目标值时属性值之间相互条件独立，即 $P(a_1,a_2,...,a_n \mid v_j) = \prod_{i=1}^n P(a_i \mid v_j)$。朴素贝叶斯使用的方法即为 $v_{NB} = \underset{v_j \in V}{\arg \max } \prod_{i=1}^n P(a_i \mid v_j) P(v_j)$。</p>
+<h2 id="6-贝叶斯信念网络的预测与诊断"><a href="#6-贝叶斯信念网络的预测与诊断" class="anchor-link">#</a>6. 贝叶斯信念网络的预测与诊断</h2>
+<h2 id="7-偏差-方差分析"><a href="#7-偏差-方差分析" class="anchor-link">#</a>7. 偏差-方差分析</h2>
+<h1 id="第七章-基于实例的学习"><a href="#第七章-基于实例的学习" class="anchor-link">#</a>第七章 基于实例的学习</h1>
+<h2 id="1-k-近邻学习算法"><a href="#1-k-近邻学习算法" class="anchor-link">#</a>1. k 近邻学习算法</h2>
+<p>假定所有的实例对应于 n 维空间 $R^n$ 中的点，一个实例的最近邻是根据标准欧式距离定义的。在最近邻学习中，目标函数值可以是离散值也可以是实值。</p>
+<hr>
+<p>训练算法：</p>
+<ul>
+<li>对于每个训练样例$&lt;x,f(x)&gt;$，把这个样例加入列表$training _ examples$</li>
+</ul>
+<p>分类算法：</p>
+<ul>
+<li>给定一个要分类的查询实例$x_q$
+<ul>
+<li>在$training _ examples$中选出最靠近$x_q$的$k$个实例，并用$x_1,x_2,...,x_k$表示</li>
+<li>返回$\hat{f}(x_q) \leftarrow \underset{v \in V}{\arg \max } \Sigma_{i=1}^{k} \delta(v,f(x_i))$</li>
+</ul>
+</li>
+</ul>
+<p>其中，如果a=b，那么$\delta(a,b) = 1$，否则$\delta(a,b) = 0$。在实值目标函数中将公式变为$\hat{f}(x_q) \leftarrow \frac{\Sigma_{i=1}^{k} f(x_i)}{k}$。</p>
+<hr>
+<p>距离加权最近邻算法：将较大的权值赋给较近的近邻。</p>
+<ul>
+<li>$\hat{f}(x_q) \leftarrow \underset{v \in V}{\arg \max } \Sigma_{i=1}^{k} w_i \delta(v,f(x_i))$</li>
+<li>$\hat{f}(x_q) \leftarrow \frac{\Sigma_{i=1}^{k} w_i f(x_i)}{\Sigma_{i=1}^{k} w_i}$</li>
+</ul>
+<h2 id="2-k近邻学习时为什么距离要归一化"><a href="#2-k近邻学习时为什么距离要归一化" class="anchor-link">#</a>2. k近邻学习时为什么距离要归一化</h2>
+<p>如果各个维度的量纲差距很大，那么在计算距离时模长大的维度会支配模长小的维度，造成距离失去意义。</p>
+<h2 id="3-局部加权线性回归"><a href="#3-局部加权线性回归" class="anchor-link">#</a>3. 局部加权线性回归</h2>
+<p>给定一个新的查询实例 $x_q$，局部加权回归的一般做法是建立一个逼近 $\hat{f}$ ，使 $\hat{f}$ 拟合环绕 $x_q$ 的邻域内的训练样例。然后用这个逼近来计算 $\hat{f} (x_q)$ 的值，也就是为查询实例估计的目标值输出。</p>
+<ul>
+<li>误差函数为 $E(x_{q}) = \frac{1}{2} \sum (f(x)-\hat{f}(x))^{2} K(d(x_{q}, x))$，其中 $x$ 是 $x_q$ 的 $k$ 个近邻，$K(d(x_{q}, x))$ 是权值，是关于相距 $x_q$ 距离的某个递减函数 $K$。</li>
+<li>训练法则为 $\Delta w_{i}=\eta \sum K(d(x_{q}, x))(f(x)-\hat{f}(x)) a_{j}(x)$，其中 $x$ 是 $x_q$ 的 $k$ 个近邻，$a_j(x)$ 是 $x$ 的第 $j$ 个属性。</li>
+</ul>
+<h2 id="4-基于案例的推理cbr与-k-nn-的异同"><a href="#4-基于案例的推理cbr与-k-nn-的异同" class="anchor-link">#</a>4. 基于案例的推理（CBR）与 k-NN 的异同</h2>
+<p>同：</p>
+<ul>
+<li>都是懒惰学习的方法，把在训练数据之外的泛化推迟到遇到一个新的查询实例进行。</li>
+<li>通过分析相似的实例来分类新的查询实例，忽略与查询极其不同的实例。</li>
+</ul>
+<p>异：</p>
+<ul>
+<li>CBR 不把实例表示为 n 维空间中的实数点，而是采用更丰富的符号描述。</li>
+<li>CBR 检索相似实例的方法更加复杂。</li>
+<li>CBR 合并多个检索到的案例的过程与 k-NN 有很大的不同，它依赖于知识推理而不是统计方法。</li>
+</ul>
+<h2 id="5-懒惰学习与积极学习的区别"><a href="#5-懒惰学习与积极学习的区别" class="anchor-link">#</a>5. 懒惰学习与积极学习的区别</h2>
+<p>懒惰（消极）学习：延迟了如何从训练数据中泛化的决策，直到遇到一个新的查询实例时才进行泛化。懒惰学习<strong>可以</strong>通过很多局部逼近的组合表示目标函数（局部逼近或全局逼近）。懒惰学习在训练时需要较少的计算，但在预测新查询的目标值时需要较多的计算时间。</p>
+<p>积极学习：在见到新的查询之前就做好了泛化的工作。积极学习<strong>必须</strong>在训练时提交单个的全局逼近（必须全局逼近）。积极学习在训练时需要较多的时间，在预测新查询的目标值时需要较少的时间。</p>
+<h1 id="第八章-集成学习"><a href="#第八章-集成学习" class="anchor-link">#</a>第八章 集成学习</h1>
+<h2 id="1-集成学习的定义"><a href="#1-集成学习的定义" class="anchor-link">#</a>1. 集成学习的定义</h2>
+<p>集成学习是指将许多弱学习器组合起来以获得一个强学习器的技术。</p>
+<h2 id="2-集成学习的两个主要问题"><a href="#2-集成学习的两个主要问题" class="anchor-link">#</a>2. 集成学习的两个主要问题</h2>
+<ul>
+<li>如何产生基学习器（基学习器要尽量准确并且多样）</li>
+<li>如何合并基学习器
+<ul>
+<li>加权投票（Weighted voteing）</li>
+<li>加权平均（Weighted averaging）</li>
+<li>学习组合器（learning combiner）
+<ul>
+<li>Stacking(Wolpert)</li>
+<li>RegionBoost(Maclin)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>同质（homogeneous）集成：所有的个体学习器都是同一个种类的。</p>
+<p>异质（heterogeneous）集成：所有的个体学习器不全是一个种类的。</p>
+<h2 id="3-stacking基本思想和伪代码"><a href="#3-stacking基本思想和伪代码" class="anchor-link">#</a>3. Stacking基本思想和伪代码</h2>
+<p>Stacking 算法分为两层，第一层是用不同的算法（因此Stacking一般是异质集成）形成多个弱分类器，然后将其输出用于训练第二层的元分类器，使用元分类器对第一层分类器进行组合。</p>
+<p>伪代码</p>
+<hr>
+<p><strong>Input:</strong></p>
+<p>DataSet $D = {(x_1,y_1),(x_2,y_2),...,(x_m,y_m)}$</p>
+<p>First-level learning algorithm $L_1, L_2,...,L_T$</p>
+<p>second-level learning algorithm $L$</p>
+<p><strong>Process:</strong></p>
+<p>for $t = 1,...,T$:</p>
+<p>    $h_t = L_t(D)$   %在数据集 D 上使用不同的学习算法训练第一层的分类器</p>
+<p>end;</p>
+<p>$D \prime = \emptyset$  %创建一个新的数据集用来训练元分类器</p>
+<p>for $i=1,...,m$:</p>
+<p>    for $t = 1,...,T$:</p>
+<p>        $z_{it}=h_t(x_i)$  % 用 $h_t$ 对实例 $x_i$ 进行分类</p>
+<p>    end;</p>
+<p>    $D \prime = D \prime \bigcup \lbrace ((z_{i1},z_{i2},...,z_{it}),y_i) \rbrace$</p>
+<p>end;</p>
+<p>$h \prime = L(D \prime)$   %在数据集 $D \prime$ 上使用算法 $L$ 训练元分类器 $h \prime$</p>
+<p><strong>Output:</strong></p>
+<p>$H(x) = h \prime (h_1(x), h_2(x), ..., h_T(x))$</p>
+<hr>
+<h2 id="4-bagging-基本思想和伪代码"><a href="#4-bagging-基本思想和伪代码" class="anchor-link">#</a>4. Bagging 基本思想和伪代码</h2>
+<p>对训练样本随机抽样，让基学习器在不同的训练集进行训练而得到不同的弱分类器，最后通过投票的方式或平均的方式进行集成。（同质集成）</p>
+<p>伪代码</p>
+<hr>
+<p>Getting $L$ samples by bootstrap sampling</p>
+<p>From whice we derive:</p>
+<p>    $L$ classifiers $\in \lbrace -1, 1 \rbrace:c^1,c^2,...,c^L$ or</p>
+<p>    $L$ Estimated probabilites $\in \lbrack -1, 1 \rbrack:p^1,p^2,...,p^L$</p>
+<p>The aggregate classifier becomes</p>
+<p>$c_{bag} = sign(\frac{1}{L} \Sigma_{b=1}^L c^b(x))$ or $c_{bag} = \frac{1}{L} \Sigma_{b=1}^L p^b(x)$</p>
+<hr>
+<h2 id="5-boosting-基本思想和伪代码"><a href="#5-boosting-基本思想和伪代码" class="anchor-link">#</a>5. Boosting 基本思想和伪代码</h2>
+<p>首先从训练集用初始权重训练出一个弱学习器1，根据弱学习的学习误差率表现来更新训练样本的权重，使得之前弱学习器 1 学习误差率高的训练样本点的权重变高，使得这些误差率高的点在后面的弱学习器2中得到更多的重视。然后基于调整权重后的训练集来训练弱学习器 2，如此重复进行，直到弱学习器数达到事先指定的数目 T。对于训练好的弱分类器，如果是分类任务按照权重进行投票，而对于回归任务进行加权，得到最终的强学习器。（同质集成）</p>
+<p>伪代码</p>
+<hr>
+<p><strong>Input:</strong></p>
+<p>Instance distribution $D$</p>
+<p>Base learning algorithm $L$</p>
+<p>Number of learning round $T$</p>
+<p><strong>Process:</strong></p>
+<p>$D_1 = D$   %初始化分布</p>
+<p>for $t=1,2,...,T$</p>
+<p>     $h_t=L(D_t)$     % 在分布 $D_t$ 上训练弱分类器 $h_t$</p>
+<p>     $\epsilon_{t}=Pr_{x \sim D_{t}, y} I \lbrack h_{t}(x) \neq y \rbrack$    % 计算 $h_t$ 的错误</p>
+<p>     $D_{t+1}=Adjust _ Distribution\left(D_{t}, \epsilon_{t}\right)$    % 调整分布，对分类错误的数据加大权重</p>
+<p>end;</p>
+<p><strong>Output:</strong></p>
+<p>$H(x) = Combine \_ Outputs (\lbrace h_{t}(x) \rbrace )$</p>
+<hr>
+<h2 id="6-为什么集成学习有效"><a href="#6-为什么集成学习有效" class="anchor-link">#</a>6. 为什么集成学习有效</h2>
+<ul>
+<li>
+<p>统计上：当假设空间对于可用数据量来说太大时，数据上有许多相同精度的假设，学习算法只能够选择其中一个，这样有可能导致所选假设在未见数据上的准确性很差，把多个可能假设集合起来可以降低这种风险。</p>
+</li>
+<li>
+<p>计算上：许多学习算法是通过执行某种形式的局部搜索来工作的，这些搜索可能会陷入局部最优。通过从多个不同的起始点运行局部搜索构造的集成比任何单个分类器都能更好的逼近真实的目标函数。</p>
+</li>
+<li>
+<p>表示上：在大多数机器学习的应用场合中实际目标假设并不在假设空间之中，如果假设空间在某种集成运算下不封闭，那么我们通过把假设空间中的一系列假设集成起来就有可能表示出不在假设空间中的目标假设。</p>
+</li>
+</ul>
+<h1 id="第九章-分类技术"><a href="#第九章-分类技术" class="anchor-link">#</a>第九章 分类技术</h1>
+<h2 id="1-基于规则的分类器"><a href="#1-基于规则的分类器" class="anchor-link">#</a>1. 基于规则的分类器</h2>
+<p>基于规则的分类器是使用一组“if…then…”规则来对记录进行分类的技术。规则的左边称为规则前件或前提，规则右边称为规则后件。一般用覆盖率（coverage）和准确率（accuracy）度量规则的质量。</p>
+<h3 id="11-规则质量评估"><a href="#11-规则质量评估" class="anchor-link">#</a>1.1 规则质量评估</h3>
+<ul>
+<li>覆盖率：$coverage = \frac{|A|}{|D|}$，即满足规则前件的记录所占的比例。</li>
+<li>准确率：$accuracy = \frac{|A \bigcap y|}{|A|}$，即同时满足规则前件和后件的记录在满足规则前件的记录中所占的比例。</li>
+</ul>
+<h3 id="12-优点"><a href="#12-优点" class="anchor-link">#</a>1.2 优点</h3>
+<p>像决策树一样具有高度的表达能力；易于解释，易于生成；可以快速分类新实例，性能可与决策树相媲美。</p>
+<h3 id="13-需要解决的问题"><a href="#13-需要解决的问题" class="anchor-link">#</a>1.3 需要解决的问题</h3>
+<ul>
+<li>
+<p>一个记录可能触发多条规则（不满足互斥规则）</p>
+<ul>
+<li>对于有序规则集：基于规则的排序方案、基于类的排序方案</li>
+<li>对于无序规则集：采用投票的方式</li>
+</ul>
+</li>
+<li>
+<p>一条记录可能不会触发任何规则（不满足穷举规则）</p>
+<ul>
+<li>使用缺省类（通常被指定为没有被现存规则覆盖的训练记录的多数类）</li>
+</ul>
+</li>
+</ul>
+<h3 id="14-规则建立的方法"><a href="#14-规则建立的方法" class="anchor-link">#</a>1.4 规则建立的方法</h3>
+<p>规则的建立可以使用直接方法和间接方法。直接方法直接从数据中提取分类规则，如RIPPER，CN2；间接方法从其他分类模型（如决策树和神经网络）中提取分类规则，如C4.5rules。</p>
+<h2 id="2-顺序覆盖算法"><a href="#2-顺序覆盖算法" class="anchor-link">#</a>2. 顺序覆盖算法</h2>
+<p>直接从数据中提取规则，规则基于某种评估度量以贪心的方式增长。该算法从包含多个类的数据集中一次提取一个类的规则。</p>
+<p>算法开始时决策表（规则集）为空，接下来用Learn-One-Rule函数提取类C的覆盖当前训练记录集的最佳规则。如果一个规则覆盖大多数的类C训练记录，没有或仅覆盖极少的其他类训练记录（这样的规则具有高准确率，不必是高覆盖率的，因为每个类可以有多个规则），那么该规则是可取的。一旦找到这样的规则，就删掉它所覆盖的训练记录，并把新规则追加到决策表中。重复这个过程，直至满足终止条件。</p>
+<h2 id="3-支持向量机"><a href="#3-支持向量机" class="anchor-link">#</a>3. 支持向量机</h2>
+<h1 id="第十章-聚类分析"><a href="#第十章-聚类分析" class="anchor-link">#</a>第十章 聚类分析</h1>
+<h2 id="1-聚类的定义"><a href="#1-聚类的定义" class="anchor-link">#</a>1. 聚类的定义</h2>
+<p>聚类分析，简称聚类，是一个把数据对象划分成子集的过程。每个子集是一个簇，使得簇中的对象彼此相似，但与其他簇中的对象不相似。（非监督的）</p>
+<h2 id="2-聚类clustering的类型"><a href="#2-聚类clustering的类型" class="anchor-link">#</a>2. 聚类（clustering）的类型</h2>
+<ul>
+<li>
+<p>层次的与划分的</p>
+<ul>
+<li>层次聚类：允许簇有子簇</li>
+<li>划分聚类：简单的将数据对象划分为不重叠的子集（簇）</li>
+</ul>
+</li>
+<li>
+<p>互斥的、重叠的与模糊的</p>
+<ul>
+<li>互斥的：每个对象都指派到单个簇</li>
+<li>重叠的：一个对象同时属于不同的簇</li>
+<li>模糊聚类：每个对象以一个0（绝对不属于）和1（绝对属于）之间的隶属权值属于每个簇</li>
+</ul>
+</li>
+<li>
+<p>完全的与部分的</p>
+<ul>
+<li>完全聚类：将每个对象都指派到一个簇</li>
+<li>部分聚类：一些噪声、离群点等不被指派到任何一个簇</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-簇cluster的类型"><a href="#3-簇cluster的类型" class="anchor-link">#</a>3. 簇（cluster）的类型</h2>
+<ul>
+<li>明显分离的。每个点到同簇中任意点的距离比到不同簇中所有点的距离更近。</li>
+<li>基于中心的。每个点到其簇中心的距离比到任何其他簇中心的距离更近。</li>
+<li>基于邻近的。每个点到该簇中至少一个点的距离比到不同簇中任意点的距离更近。</li>
+<li>基于密度的。簇是被低密度区域分开的高密度区域。</li>
+<li>概念簇。簇中的点具有由整个点集导出的某种一般共同性质。</li>
+</ul>
+<h2 id="4-层次聚类"><a href="#4-层次聚类" class="anchor-link">#</a>4. 层次聚类</h2>
+<h3 id="41-层次聚类的两种主要类型"><a href="#41-层次聚类的两种主要类型" class="anchor-link">#</a>4.1 层次聚类的两种主要类型</h3>
+<ul>
+<li>凝聚的：从点作为个体簇开始，每一步合并两个最接近的簇。需要定义簇的邻近性的概念。</li>
+<li>分裂的：从包含所有点的某个簇开始，每一步分裂一个簇，直到只剩下单点簇。需要确定每一步分裂哪个簇，以及如何分裂。</li>
+</ul>
+<h3 id="42-定义簇之间的邻近性"><a href="#42-定义簇之间的邻近性" class="anchor-link">#</a>4.2 定义簇之间的邻近性</h3>
+<ul>
+<li>
+<p>单链（MIN）：两个簇的邻近度定义为两个不同簇中任意两点之间的最短距离（最大相似度）。</p>
+</li>
+<li>
+<p>全链（MAX）：两个簇的邻近度定义为两个不同簇中任意两点之间的最长距离（最小相似度）。</p>
+</li>
+<li>
+<p>组平均：两个簇的邻近度定义为不同簇的所有点对邻近度的平均值。</p>
+<ul>
+<li>$proximity(C_i,C_j)=\frac{\Sigma_{x \in C_i y \in C_j} proximity(x,y)}{m_i \times m_j}$</li>
+</ul>
+</li>
+<li>
+<p>Ward 方法：两个簇合并时导致的平方误差的增量。</p>
+<ul>
+<li>$\Delta(A, B)=\sum_{i \in A \cup B} \parallel \vec{x}<em>{i}-\vec{m}</em>{A \cup B} \parallel ^{2} - \sum_{i \in A} \parallel \vec{x}<em>{i}-\vec{m}</em>{A} \parallel ^{2}-\sum_{i \in B} \parallel \vec{x}<em>{i}-\vec{m}</em>{B} \parallel ^{2}$ $=\frac{n_{A} n_{B}}{n_{A}+n_{B}} \parallel \vec{m}<em>{A}-\vec{m}</em>{B} \parallel ^{2}$</li>
+</ul>
+</li>
+</ul>
+<p>单链擅长处理非椭圆形的簇，但对噪声和离群点很敏感。全链对噪声和离群点不太敏感，但是它可能使大的簇破裂，并偏好球形。</p>
+<h3 id="43-层次聚类的缺点"><a href="#43-层次聚类的缺点" class="anchor-link">#</a>4.3 层次聚类的缺点</h3>
+<ul>
+<li>一旦决定合并两个簇，就不能撤销</li>
+<li>没有直接最小化目标函数</li>
+<li>不同的方案存在以下一个或多个问题
+<ul>
+<li>对噪声和异常值的敏感性</li>
+<li>难以处理不同大小的簇和凸形状</li>
+<li>破坏大型的簇</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-k-均值和-k-中心点算法"><a href="#5-k-均值和-k-中心点算法" class="anchor-link">#</a>5. k 均值和 k 中心点算法</h2>
+<h3 id="51-k-means-算法"><a href="#51-k-means-算法" class="anchor-link">#</a>5.1 k-means 算法</h3>
+<p>首先，选择 k 个初始质心，其中k是用户指定的参数，即所期望的簇的个数。每个点指派到最近的质心，而指派到一个质心的点集为一个簇。然后，根据指派到簇的点，更新每个簇的质心。重复指派和更新步骤，直到质心不再发生变化。</p>
+<hr>
+<p>选择k个点作为初始质心</p>
+<p><strong>repeat</strong></p>
+<p>    将每个点指派到最近的质心，形成 k 个簇</p>
+<p>    重新计算每个簇的质心</p>
+<p><strong>until</strong></p>
+<p>    质心不再发生变化</p>
+<hr>
+<p>考虑邻近度度量为欧几里得距离的数据，使用误差的平方和（SSE）作为度量聚类质量的目标函数。假设簇划分为 $C_1,C_2,...,C_k$，则目标函数为 $SSE=\sum_{i=1}^{k} \sum_{x \in C_{i}} d i s t^{2}\left(c_{i}, x\right)$，其中 $c_i$ 表示第 $i$ 个簇的质心（均值），计算公式为 $c_i=\frac{1}{m_i} \sum_{x \in C_i} x$，例如 3 个二维点 $(1,1),(2,3),(6,2)$ 的质心是 $((1+2+6)/3, (1+3+2)/3)=(3,2)$。公式中 $x$ 是一个点，$C_i$ 是第 $i$ 个簇，$c_i$ 是簇 $C_i$ 的质心，$m_i$ 是第 $i$ 个簇中点的个数。</p>
+<p>k-means 算法的结果依赖于初始簇中心的随机选择，实践中为了得到好的结果，通常以不同的初始簇中心多次运行 k-means 算法，然后选取具有最小 SSE 的簇集。</p>
+<p>用后处理降低 SSE：</p>
+<p>总 SSE 只不过是每个簇 SSE 的和，通过在簇上进行诸如分裂和合并的操作，可以改变总 SSE。</p>
+<ul>
+<li>
+<p>通过增加簇的个数来降低总 SSE 的策略</p>
+<ul>
+<li>分裂一个簇，通常选择具有最大 SSE 的簇</li>
+<li>引进一个新的质心，通常选择离所有簇质心最远的点</li>
+</ul>
+</li>
+<li>
+<p>通过减少簇的个数来降低总 SSE 的策略</p>
+<ul>
+<li>拆散一个簇，删除簇的对应质心</li>
+<li>合并两个簇，通常选择质心最接近的两个簇</li>
+</ul>
+</li>
+</ul>
+<p>k-means 算法的缺点：</p>
+<ul>
+<li>通常停止在局部最优</li>
+<li>并不适合所有的数据类型（仅限于具有中心概念的数据）</li>
+<li>不能处理非球形簇、不同尺寸和不同密度的簇</li>
+<li>不能处理噪声和离群点</li>
+</ul>
+<h3 id="52-k-medoids-算法"><a href="#52-k-medoids-算法" class="anchor-link">#</a>5.2 k-medoids 算法</h3>
+<p>k-means 算法的改进，降低它对离群点的敏感性。不采用簇中对象的均值作为参照点，而是挑选实际对象来代表簇，每个簇使用一个代表对象，其余的每个对象被分配到与其最为相似的代表性对象所在的簇中。</p>
+<p>该算法的一个实现是围绕中心点（PAM）算法。随机选择代表对象，然后考虑用一个非代表对象替换一个代表对象是否能够提高聚类质量。尝试所有可能的替换，直到结果聚类的质量不可能被任何替换提高。</p>
+<h2 id="6-dbscan-算法"><a href="#6-dbscan-算法" class="anchor-link">#</a>6. DBSCAN 算法</h2>
+<p>DBSCAN is a <strong>D</strong>ensity <strong>B</strong>ased <strong>S</strong>patial <strong>C</strong>lustering of <strong>A</strong>pplications with <strong>N</strong>oise.具有噪声应用的基于密度的空间聚类。</p>
+<p>根据基于中心的密度进行点分类：</p>
+<ul>
+<li>核心点（core point）：这些点在基于密度的簇内部。点的邻域由距离函数和用户指定的距离参数 $Eps$ 决定。核心点的定义是，如果该点的给定邻域内的点的个数超过给定的阈值 $MinPts$ , 其中 $MinPts$ 也是一个用户指定的参数。</li>
+<li>边界点（border point）：边界点不是核心点，但它落在某个核心点的邻域内。边界点可能落在多个核心点的邻域内。</li>
+<li>噪声点（noise point）：噪声点是既非核心点也非边界点的任何点。</li>
+</ul>
+<hr>
+<p><strong>repeat:</strong></p>
+<p>从数据库中抽出一个未处理的点；</p>
+<p>IF 抽出的点是核心点 THEN 找出所有从该点 <em>密度可达</em> 的对象，形成一个簇；</p>
+<p>ELSE 抽出的点是边缘点(非核心对象)，跳出本次循环，寻找下一个点；</p>
+<p>UNTIL 所有的点都被处理。</p>
+<hr>
+<p>优点：</p>
+<ul>
+<li>可以对抗噪声</li>
+<li>能够处理任意形状和大小的簇</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>密度变化太大时不能处理</li>
+<li>对于高维数据也不能很好的工作</li>
+</ul>
+<h2 id="7-聚类评估"><a href="#7-聚类评估" class="anchor-link">#</a>7. 聚类评估</h2>
+<p>用于评估簇的各方面的评估度量或指标一般分成如下三类：</p>
+<ul>
+<li>非监督的。聚类结构的优良性度量，不考虑外部信息。例如，SSE。簇的有效性的非监督度量常常可以进一步分成两类: 簇的凝聚性（cluster cohesion）度量，确定簇中对象如何密切相关；簇的分离性（cluster separation）度量确定某个簇不同于其他簇的地方。非监督度量通常称为内部指标（internal index)，因为它们仅使用出现在数据集中的信息。</li>
+</ul>
+<h1 id="其他"><a href="#其他" class="anchor-link">#</a>其他</h1>
+<h2 id="1-协方差矩阵的计算"><a href="#1-协方差矩阵的计算" class="anchor-link">#</a>1. 协方差矩阵的计算</h2>
+<p>对于一组数据，比如 $x_1(1,2), x_2(2,6), x_3(4,2), x_4(5,2)$，因为数据是二维的（即两列），所以协方差矩阵是一个 $2 \times 2$ 的矩阵。协方差矩阵的元素 $(i,j)=$（第 $i$ 维的所有元素-第 $i$ 维的均值） $\cdot$ （第 $j$ 维的所有元素-第 $j$ 维的均值）$/$ 行数 $-1$（即样本数 $-1$）。</p>
+<ul>
+<li>协方差矩阵是一个对称矩阵</li>
+<li>对角线元素 $(i,i)$ 为第 $i$ 维数据的方差</li>
+<li>非对角线元素 $(i,j)$ 为第 $i$ 维和第 $j$ 维的协方差</li>
+</ul>
+<h2 id="2-标准差"><a href="#2-标准差" class="anchor-link">#</a>2. 标准差</h2>
+<p>总体标准差：$\sigma = \sqrt{\frac{\Sigma_{i=1}^{n}(x_i-\overline{x})^2}{n}}$</p>
+<p>样本标准差：$\sigma = \sqrt{\frac{\Sigma_{i=1}^{n}(x_i-\overline{x})^2}{n-1}}$</p>
+<h1 id="reference"><a href="#reference" class="anchor-link">#</a>Reference</h1>
+<p><a href="https://blog.csdn.net/inabaraku/article/details/51862151?utm_source=blogxgwz4" target="_blank" rel="noopener">由霍夫丁不等式论证机器学习的可行性</a></p>
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-06 11:59:56 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-06</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-06</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/tech/sparse-matrix/" class="related-link">稀疏矩阵</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag" class="post-tag-link">#机器学习</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/lamp/" rel="prev">&lt; LAMP</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/springboot-deploy/" rel="next">SpringBoot 项目部署到服务器 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha256-gPJfuwTULrEAAcI3X4bALVU/2qBU+QY/TpoD3GO+Exw=" crossorigin="anonymous">
+<script>
+    if (typeof renderMathInElement === 'undefined') {
+        var getScript = (options) => {
+            var script = document.createElement('script');
+            script.defer = true;
+            script.crossOrigin = 'anonymous';
+            Object.keys(options).forEach((key) => {
+                script[key] = options[key];
+            });
+            document.body.appendChild(script);
+        };
+        getScript({
+            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js',
+            integrity: 'sha256-YTW9cMncW/ZQMhY69KaUxIa2cPTxV87Uh627Gf5ODUw=',
+            onload: () => {
+                getScript({
+                    src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js',
+                    integrity: 'sha256-yzSfYeVsWJ1x+2g8CYHsB/Mn7PcSp8122k5BM4T3Vxw=',
+                    onload: () => {
+                        getScript({
+                            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js',
+                            integrity: 'sha256-fxJzNV6hpc8tgW8tF0zVobKa71eTCRGTgxFXt1ZpJNM=',
+                            onload: () => {
+                                renderKaTex();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } else {
+        renderKaTex();
+    }
+    function renderKaTex() {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+            }
+        );
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

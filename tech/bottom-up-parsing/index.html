@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>自下而上的语法分析 | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="自下而上语法分析，内容包括句柄、活前缀的概念，两种冲突，以及三种LR分析表的画法" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/bottom-up-parsing/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2018-12-01T21:50:25+08:00",
+        "dateModified": "2022-05-03T21:11:30+08:00",
+        "url": "https://wheliosc.github.io/tech/bottom-up-parsing/",
+        "headline": "自下而上的语法分析",
+        "description": "自下而上语法分析，内容包括句柄、活前缀的概念，两种冲突，以及三种LR分析表的画法",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  2129 ,
+        "image": "https://wheliosc.github.io/icons/favicon.png",
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary" />
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="自下而上的语法分析" />
+<meta property="og:description" content="自下而上语法分析，内容包括句柄、活前缀的概念，两种冲突，以及三种LR分析表的画法" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/bottom-up-parsing/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-12-01T21:50:25&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-03T21:11:30&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">自下而上的语法分析</h1>
+
+            
+
+            
+                <div class="post-description p-summary">自下而上语法分析，内容包括句柄、活前缀的概念，两种冲突，以及三种LR分析表的画法</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2018-12-01T21:50:25&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2018.12.1</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;2129</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:句柄" href="#句柄">句柄</a></li>
+    <li><a id="contents:两个冲突" href="#两个冲突">两个冲突</a></li>
+    <li><a id="contents:活前缀" href="#活前缀">活前缀</a></li>
+    <li><a id="contents:lr-分析表" href="#lr-分析表">LR 分析表</a>
+      <ol>
+        <li><a id="contents:构造-slr-分析表" href="#构造-slr-分析表">构造 SLR 分析表</a>
+          <ol>
+            <li><a id="contents:构建识别活前缀的-dfa" href="#构建识别活前缀的-dfa">构建识别活前缀的 DFA</a></li>
+            <li><a id="contents:根据-dfa-构建-slr-分析表" href="#根据-dfa-构建-slr-分析表">根据 DFA 构建 SLR 分析表</a></li>
+            <li><a id="contents:slr1-文法的问题" href="#slr1-文法的问题">SLR(1) 文法的问题</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:构造规范的-lr-分析表" href="#构造规范的-lr-分析表">构造规范的 LR 分析表</a>
+          <ol>
+            <li><a id="contents:构建识别活前缀的-dfa-1" href="#构建识别活前缀的-dfa-1">构建识别活前缀的 DFA</a></li>
+            <li><a id="contents:根据-dfa-构建-slr-分析表-1" href="#根据-dfa-构建-slr-分析表-1">根据 DFA 构建 SLR 分析表</a></li>
+            <li><a id="contents:lr1-文法的问题" href="#lr1-文法的问题">LR(1) 文法的问题</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:构造-lalr-分析表" href="#构造-lalr-分析表">构造 LALR 分析表</a>
+          <ol>
+            <li><a id="contents:lalr-的做法" href="#lalr-的做法">LALR 的做法</a></li>
+            <li><a id="contents:同心项目集" href="#同心项目集">同心项目集</a></li>
+            <li><a id="contents:合并同心集引起的冲突" href="#合并同心集引起的冲突">合并同心集引起的冲突</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a id="contents:安利" href="#安利">安利</a></li>
+  </ol>
+</nav><div class="post-body e-content">
+                <p></p>
+<h2 id="句柄"><a href="#句柄" class="anchor-link">#</a><a href="#contents:句柄" class="headings">句柄</a></h2>
+<p>右句型 $\gamma$ 的句柄是一个产生式的右部 $\beta$，并且该句柄 $\beta$ 通过产生式 $A\rightarrow\beta$ 归约后，得到的是最右推导中的前一个句型。</p>
+<p>右句型：所有在最右推导中出现的句型都是右句型。</p>
+<p>🌰$S \Rightarrow _ { r m }$ <strong>aABe</strong> $\Rightarrow _ { r m }$ aA<strong>d</strong>e $\Rightarrow _ { r m }$ a<strong>Abc</strong>de $\Rightarrow _ { r m }$ a<strong>b</strong>bcde</p>
+<p>文法为：</p>
+<p>$S \rightarrow$ aABe</p>
+<p>${ A \rightarrow A b c | b }$</p>
+<p>$B \rightarrow d$</p>
+<p>abbcde 中的第一个 b 通过$A\rightarrow b$归约后得到 aAbcde，是最右推导的前一个句型，所以第一个 b 是句柄。而第二个 b 通过$A\rightarrow b$归约后得到 aAAcde，不是最右推导的前一个句型，所以第二个 b 不是句柄。（栗子中加粗部分为句柄）</p>
+<ul>
+<li>句柄的右边仅含终结符。</li>
+<li>如果文法二义，那么句柄可能不唯一。</li>
+</ul>
+<h2 id="两个冲突"><a href="#两个冲突" class="anchor-link">#</a><a href="#contents:两个冲突" class="headings">两个冲突</a></h2>
+<p>移进-归约冲突：既可以移进又可以归约时，无法决定。</p>
+<p>归约-归约冲突：当不止一个产生式可以归约，无法决定对哪个产生式进行归约。</p>
+<h2 id="活前缀"><a href="#活前缀" class="anchor-link">#</a><a href="#contents:活前缀" class="headings">活前缀</a></h2>
+<p>活前缀：右句型的前缀，该前缀不超过最右句型句柄的右端。</p>
+<p>在移进-归约分析中，出现在栈中的串都是活前缀。</p>
+<p>🌰$\mathcal { S } \Rightarrow * _ { r m } \gamma A w \Rightarrow _ { r m } \gamma \beta w$</p>
+<p>$\gamma \beta$的任意前缀（包括$\varepsilon$和$\gamma \beta$本身）都是活前缀，这里的$\beta$是句柄。</p>
+<h2 id="lr-分析表"><a href="#lr-分析表" class="anchor-link">#</a><a href="#contents:lr-分析表" class="headings">LR 分析表</a></h2>
+<p>L 表示从左到右扫描输入串，R 表示最右推导。分为 LR(0)/SLR(1)、LR(1)、LALR 三种。</p>
+<h3 id="构造-slr-分析表"><a href="#构造-slr-分析表" class="anchor-link">#</a><a href="#contents:构造-slr-分析表" class="headings">构造 SLR 分析表</a></h3>
+<ul>
+<li>拓广文法，即添加产生式$S ^ { \prime } \rightarrow S$</li>
+<li>构建识别活前缀的DFA</li>
+<li>根据DFA构建SLR分析表</li>
+</ul>
+<h4 id="构建识别活前缀的-dfa"><a href="#构建识别活前缀的-dfa" class="anchor-link">#</a><a href="#contents:构建识别活前缀的-dfa" class="headings">构建识别活前缀的 DFA</a></h4>
+<p><strong>LR(0) 闭包函数 closure(I)</strong></p>
+<ul>
+<li>I中的所有项都属于 closure(I)</li>
+<li>如果$A \rightarrow \alpha \cdot B \beta$属于 closure(I)，并且$B \rightarrow \gamma$是产生式，那么如果$B \rightarrow \cdot \gamma$还不在 closure(I)中，则把它加入 closure(I) 中。</li>
+<li>重复上面两个步骤，直至 closure(I) 不再变化。</li>
+</ul>
+<p><strong>LR(0) 状态转换函数 goto(I, X)</strong></p>
+<p>I状态集中所有形如$[ A \rightarrow \alpha \cdot X \beta ]$的产生式对应的产生式$[ A \rightarrow \alpha X \cdot \beta ]$的<strong>LR(0)闭包</strong>。X为终结符或非终结符。</p>
+<p>🌰$S \rightarrow$ aABe ；${ A \rightarrow A b c | b }$ ；$B \rightarrow d$
+对于$I_0: S' \rightarrow S$；$S \rightarrow \cdot aABe$</p>
+<p>$I_1=goto(I_0, a):$ $S \rightarrow a \cdot ABe$；$A \rightarrow \cdot Abc$；$A \rightarrow \cdot b$</p>
+<p><strong>识别文法 G 活前缀的 DFA 通过下面的方式构造：</strong></p>
+<ul>
+<li>令 $C = \lbrace closure(S' \rightarrow S) \rbrace$</li>
+<li>对 $C$ 中的每一个项目集应用转换函数 $goto(I, X)$ 得到新的项目集 $I_n$，并把 $I_n$ 加入到 $C$ 中。</li>
+<li>重复第二步，直到 $C$ 不再增大为止。</li>
+</ul>
+<h4 id="根据-dfa-构建-slr-分析表"><a href="#根据-dfa-构建-slr-分析表" class="anchor-link">#</a><a href="#contents:根据-dfa-构建-slr-分析表" class="headings">根据 DFA 构建 SLR 分析表</a></h4>
+<p><strong>状态 i 从 $I_i$ 构造，它的 action 函数如下确定：</strong></p>
+<ul>
+<li>如果 $[ A \rightarrow \alpha \cdot a \beta ]$ 在 $I_i$ 中，并且 $goto(I_i,a )=I_j$，那么置 $action[i, a]$ 为 $s_j$。</li>
+<li>如果 $[ A \rightarrow \alpha \cdot ]$ 在 $I_i$ 中，那么对 FOLLOW(A) 中的所有终结符 $a$，置 $action[i, a]$ 为 $r_j$，$j$ 是产生式 $A \rightarrow \alpha \cdot$ 的编号。</li>
+<li>如果 $\left[ \mathcal { S } ^ { \prime } \rightarrow \mathcal { S } \cdot \right]$ 在 $I_i$ 中，那么置 $action[i,\$]$ 为接受 acc。</li>
+</ul>
+<p>如果出现动作冲突，那么该文法就不是 SLR(1) 的。</p>
+<p><strong>构造状态 i 的 goto 函数：</strong></p>
+<p>对所有的非终结符 $A$，如果 $goto(I_i,A) = I_j$, 那么 $goto[i, A] = j$。</p>
+<p><strong>不能由上面两步定义的条目都为 error。</strong></p>
+<h4 id="slr1-文法的问题"><a href="#slr1-文法的问题" class="anchor-link">#</a><a href="#contents:slr1-文法的问题" class="headings">SLR(1) 文法的问题</a></h4>
+<p>每个 SLR(1) 文法都不是二义的，但是，有许多非二义的文法不是 SLR(1)，文法描述能力弱。SLR(1) 是在构造完DFA的 LR(0) 项目集之后才应用预测符号的，即对需要归约的产生式，当其遇到产生式左部非终结符的 FOLLOW 集中的终结符时才进行归约，而在 LR(0) 的构造中没有考虑预测。</p>
+<h3 id="构造规范的-lr-分析表"><a href="#构造规范的-lr-分析表" class="anchor-link">#</a><a href="#contents:构造规范的-lr-分析表" class="headings">构造规范的 LR 分析表</a></h3>
+<p>基本步骤同 SLR 一样，只在第二步和第三步时有所不同，只说不同的地方。</p>
+<h4 id="构建识别活前缀的-dfa-1"><a href="#构建识别活前缀的-dfa-1" class="anchor-link">#</a><a href="#contents:构建识别活前缀的-dfa-1" class="headings">构建识别活前缀的 DFA</a></h4>
+<p>使用 LR(1) 文法，1 表示项目 $[A \rightarrow \alpha \cdot \beta , a]$ 中搜索符的长度。</p>
+<p><strong>LR(1) 闭包函数 closure(I)</strong></p>
+<ul>
+<li>I 中的所有项都属于 closure(I)</li>
+<li>若 $[A\rightarrow \alpha \cdot B \beta, a]$ 属于 closure(I)，$B\rightarrow \gamma$ 是产生式，则对于每个终结符 $b \in FIRST(\beta a)$，项 $[B\rightarrow \cdot \gamma ,b]$ 也加入到 closure(I) 中。</li>
+<li>重复上面两个步骤，直至 closure(I) 不再变化。</li>
+</ul>
+<p>搜索符 $b$ 的集合是 FOLLOW(B) 的一个子集。</p>
+<p><strong>LR(1) 状态转换函数 goto(I, X)</strong>
+I 状态集中所有形如 $[ A \rightarrow \alpha \cdot X \beta,b ]$ 的产生式对应的产生式 $[ A \rightarrow \alpha X \cdot \beta,b ]$ 的<strong>LR(1) 闭包</strong>。X 为终结符或非终结符。注意这里的搜索符集 $b$ 是直接由前面对应的项目抄过来的。</p>
+<p><strong>识别文法 G 活前缀的 DFA 通过下面的方式构造：</strong></p>
+<ul>
+<li>令 $C= \lbrace closure ( [S^\prime \rightarrow S, \$ ]) \rbrace$</li>
+<li>对 $C$ 中的每一个项目集应用转换函数 $goto(I, X)$ 得到新的项目集 $I_n$，并把$I_n$ 加入到 $C$ 中。</li>
+<li>重复第二步，直到 $C$ 不再增大为止。</li>
+</ul>
+<h4 id="根据-dfa-构建-slr-分析表-1"><a href="#根据-dfa-构建-slr-分析表-1" class="anchor-link">#</a><a href="#contents:根据-dfa-构建-slr-分析表-1" class="headings">根据 DFA 构建 SLR 分析表</a></h4>
+<p>基本同 SLR，不同点在于：在 action 函数中，如果有归约，SLR 是根据左部非终结符的<strong>FOLLOW集</strong>决定进行归约；LR(1) 是根据<strong>搜索符</strong>决定进行归约。</p>
+<h4 id="lr1-文法的问题"><a href="#lr1-文法的问题" class="anchor-link">#</a><a href="#contents:lr1-文法的问题" class="headings">LR(1) 文法的问题</a></h4>
+<p>LR(1) 文法描述能力较强，但是由于状态数目多，分析表较大。</p>
+<h3 id="构造-lalr-分析表"><a href="#构造-lalr-分析表" class="anchor-link">#</a><a href="#contents:构造-lalr-分析表" class="headings">构造 LALR 分析表</a></h3>
+<p>LALR 是在 SLR(1) 和 LR(1) 之间进行了文法描述能力与分析表紧凑程度之间做的折中。</p>
+<h4 id="lalr-的做法"><a href="#lalr-的做法" class="anchor-link">#</a><a href="#contents:lalr-的做法" class="headings">LALR 的做法</a></h4>
+<p>合并识别 LR(1) 文法的活前缀的 DFA 中的同心项目集。</p>
+<h4 id="同心项目集"><a href="#同心项目集" class="anchor-link">#</a><a href="#contents:同心项目集" class="headings">同心项目集</a></h4>
+<p>略去搜索符后相同的项目集。</p>
+<p>🌰$B \rightarrow \cdot b B$ 和 $B \rightarrow \cdot b B ,b / a$</p>
+<h4 id="合并同心集引起的冲突"><a href="#合并同心集引起的冲突" class="anchor-link">#</a><a href="#contents:合并同心集引起的冲突" class="headings">合并同心集引起的冲突</a></h4>
+<p><strong>同心集的合并不会引起新的移进-归约冲突。</strong></p>
+<p>🌰如果同心集中有移进-归约冲突 $\left[ A \rightarrow \alpha \cdot, a / b \right][ B \rightarrow \beta \cdot a \gamma , c / d ]$，当面对输入符号 a 时不知道该移进还是归约。合并前的项目集应该有 $\left[ A \rightarrow \alpha \cdot, x \right][ B \rightarrow \beta \cdot a \gamma , y ]$，肯定有个 x 为 a，所以一定存在移进-归约冲突，说明合并之前就存在移进-归约冲突了。</p>
+<p><strong>同心集的合并有可能产生新的归约-归约冲突。</strong></p>
+<p>🌰合并前项目集 $[A \rightarrow c \cdot, d][B \rightarrow c \cdot, e]$ 和 $[A \rightarrow c \cdot, e][B \rightarrow c \cdot, d]$，合并后为 
+$[A \rightarrow c \cdot, e/d][B \rightarrow c \cdot, d/e]$，此时就产生了新的归约-归约冲突。</p>
+<h2 id="安利"><a href="#安利" class="anchor-link">#</a><a href="#contents:安利" class="headings">安利</a></h2>
+<p>求LR分析表的工具：
+<a href="https://cyberzhg.github.io/toolbox/lr0" target="_blank" rel="noopener">LR(0)/SLR(1)</a>　　<a href="https://cyberzhg.github.io/toolbox/lr1" target="_blank" rel="noopener">SLR(1)</a>　　<a href="https://cyberzhg.github.io/toolbox/lalr" target="_blank" rel="noopener">LALR</a></p>
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-03 21:11:30 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-03</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-03</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/tech/intermediate-language-representation/" class="related-link">中间语言表示</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/computation-of-l-attribute-definition/" class="related-link">L 属性定义的计算</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/organization-and-management-of-runtime-storage-space/" class="related-link">运行时存储空间的组织与管理</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/syntax-directed-definition/" class="related-link">语法制导的定义</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/top-down-parsing/" class="related-link">自上而下的语法分析</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag" class="post-tag-link">#编译原理</a> <a href="/tags/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" rel="tag" class="post-tag-link">#词法分析</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/syntax-directed-definition/" rel="prev">&lt; 语法制导的定义</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/top-down-parsing/" rel="next">自上而下的语法分析 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha256-gPJfuwTULrEAAcI3X4bALVU/2qBU+QY/TpoD3GO+Exw=" crossorigin="anonymous">
+<script>
+    if (typeof renderMathInElement === 'undefined') {
+        var getScript = (options) => {
+            var script = document.createElement('script');
+            script.defer = true;
+            script.crossOrigin = 'anonymous';
+            Object.keys(options).forEach((key) => {
+                script[key] = options[key];
+            });
+            document.body.appendChild(script);
+        };
+        getScript({
+            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js',
+            integrity: 'sha256-YTW9cMncW/ZQMhY69KaUxIa2cPTxV87Uh627Gf5ODUw=',
+            onload: () => {
+                getScript({
+                    src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js',
+                    integrity: 'sha256-yzSfYeVsWJ1x+2g8CYHsB/Mn7PcSp8122k5BM4T3Vxw=',
+                    onload: () => {
+                        getScript({
+                            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js',
+                            integrity: 'sha256-fxJzNV6hpc8tgW8tF0zVobKa71eTCRGTgxFXt1ZpJNM=',
+                            onload: () => {
+                                renderKaTex();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } else {
+        renderKaTex();
+    }
+    function renderKaTex() {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+            }
+        );
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>
