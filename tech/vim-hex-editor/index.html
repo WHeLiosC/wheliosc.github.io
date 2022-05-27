@@ -15,7 +15,7 @@
     
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-    <title>稀疏矩阵 | LeeHui</title>
+    <title>vim 十六进制编辑器 | LeeHui</title>
 
     <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
 
@@ -30,7 +30,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
         <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
 
-    <meta name="author" content="LeeHui" /><meta name="description" content="三种稀疏矩阵的存储方式，包括COO、CSC和CSR" />
+    <meta name="author" content="LeeHui" /><meta name="description" content="vim 用作十六进制编辑器" />
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
@@ -49,22 +49,22 @@
     
 
     
-    <link rel="canonical" href="https://wheliosc.github.io/tech/sparse-matrix/" />
+    <link rel="canonical" href="https://wheliosc.github.io/tech/vim-hex-editor/" />
     
 
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "datePublished": "2021-09-03T17:31:35+08:00",
-        "dateModified": "2022-05-03T22:38:17+08:00",
-        "url": "https://wheliosc.github.io/tech/sparse-matrix/",
-        "headline": "稀疏矩阵",
-        "description": "三种稀疏矩阵的存储方式，包括COO、CSC和CSR",
+        "datePublished": "2022-05-27T16:40:10+08:00",
+        "dateModified": "2022-05-27T19:24:18+08:00",
+        "url": "https://wheliosc.github.io/tech/vim-hex-editor/",
+        "headline": "vim 十六进制编辑器",
+        "description": "vim 用作十六进制编辑器",
         "inLanguage" : "zh-CN",
         "articleSection": "tech",
-        "wordCount":  522 ,
-        "image": ["https://wheliosc.github.io/coo.gif","https://wheliosc.github.io/csr.gif","https://wheliosc.github.io/csc.gif"],
+        "wordCount":  199 ,
+        "image": "https://wheliosc.github.io/icons/favicon.png",
         "author": {
             "@type": "Person",
             "description": "星光即使微弱 也会为我照亮前程",
@@ -92,8 +92,7 @@
 
     
 
-<meta name="twitter:card" content="summary_large_image" />
-
+<meta name="twitter:card" content="summary" />
 
 <meta name="twitter:site" content="@reuixiy" />
 <meta name="twitter:creator" content="@leehui" />
@@ -102,14 +101,14 @@
 
 
 
-<meta property="og:title" content="稀疏矩阵" />
-<meta property="og:description" content="三种稀疏矩阵的存储方式，包括COO、CSC和CSR" />
-<meta property="og:url" content="https://wheliosc.github.io/tech/sparse-matrix/" />
+<meta property="og:title" content="vim 十六进制编辑器" />
+<meta property="og:description" content="vim 用作十六进制编辑器" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/vim-hex-editor/" />
 <meta property="og:site_name" content="LeeHui" />
-<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/coo.gif" />
-<meta property="og:type" content="article" />
-    <meta property="article:published_time" content="2021-09-03T17:31:35&#43;08:00" />
-    <meta property="article:modified_time" content="2022-05-03T22:38:17&#43;08:00" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2022-05-27T16:40:10&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-27T19:24:18&#43;08:00" />
     
     <meta property="article:section" content="tech" />
 
@@ -218,12 +217,12 @@
 
         <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
 
-            <h1 class="post-title p-name">稀疏矩阵</h1>
+            <h1 class="post-title p-name">vim 十六进制编辑器</h1>
 
             
 
             
-                <div class="post-description p-summary">三种稀疏矩阵的存储方式，包括COO、CSC和CSR</div>
+                <div class="post-description p-summary">vim 用作十六进制编辑器</div>
                 
             
 
@@ -233,14 +232,14 @@
 <div class="post-meta">
     
         
-        <time datetime="2021-09-03T17:31:35&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2021.9.3</time>
+        <time datetime="2022-05-27T16:40:10&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2022.5.27</time>
     
     
     
     
     
         
-        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;522</span>
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;199</span>
     
     
     
@@ -249,69 +248,20 @@
 
             
 
-            <nav class="contents">
-  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
-    <li><a id="contents:coo-matrix" href="#coo-matrix">COO Matrix</a></li>
-    <li><a id="contents:csr-matrix" href="#csr-matrix">CSR Matrix</a></li>
-    <li><a id="contents:csc-matrix" href="#csc-matrix">CSC Matrix</a></li>
-  </ol>
-</nav><div class="post-body e-content">
-                <p></p>
-<h2 id="coo-matrix"><a href="#coo-matrix" class="anchor-link">#</a><a href="#contents:coo-matrix" class="headings">COO Matrix</a></h2>
-<p><img src="coo.gif" alt="coo"></p>
-<p>最简单一种格式，每一个元素需要用一个三元组来表示，分别是（行号，列号，数值），这种方式简单，但是记录单信息多（行列），每个三元组自己可以定位，因此空间不是最优。</p>
-<p>优点：</p>
+            <div class="post-body e-content">
+                <p>使用 <code>vim -b file_name</code> 可以以二进制格式打开文件。</p>
+<p>在 Linux 下，使用 <code>xxd</code> 命令可以做 16 进制 和 2 进制之间的转换。</p>
+<blockquote>
+<p><em>xxd</em> creates a hex dump of a given file or standard input. It can also convert a hex dump back to its original binary form. Like <strong>uuencode</strong>(1) and <strong>uudecode</strong>(1) it allows the transmission of binary data in a ‘mail-safe’ ASCII representation, but has the advantage of decoding to standard output. Moreover, it can be used to perform binary file patching.</p>
+</blockquote>
+<p>因此，vim + xxd 就可以成为 Linux 下的一个 16 进制的编辑器。</p>
+<p>使用方法：</p>
 <ul>
-<li>
-<p>容易构造,比较容易转换成其他的稀疏矩阵存储格式（CSR等）</p>
-</li>
-<li>
-<p>写程序可以将 libsvm 格式的数据转换成 COO 比较容易，应该是充当 libsvm 与其他稀疏矩阵存储格式转换的媒介。</p>
-</li>
-<li>
-<p>支持相同的(row,col)坐标上存放多个值。</p>
-</li>
+<li>使用 <code>vim -b file</code> 二进制模式打开文件，</li>
+<li>执行命令 <code>:%!xxd</code>，将缓冲区内容使用 <code>xxd</code> 工具转换为 16 进制，</li>
+<li>可以使用 <code>:%!xxd -r</code> 转换回来。</li>
 </ul>
-<p>缺点：</p>
-<ul>
-<li>
-<p>构建完成后不允许再插入或删除元素。不能进行常规矩阵运算。</p>
-</li>
-<li>
-<p>不能直接进行科学计算和切片操作。</p>
-</li>
-</ul>
-<h2 id="csr-matrix"><a href="#csr-matrix" class="anchor-link">#</a><a href="#contents:csr-matrix" class="headings">CSR Matrix</a></h2>
-<p><img src="csr.gif" alt="csr"></p>
-<p>比较标准，数值，列号，以及行偏移。 (相当于每行的首个元素在 value 中的 index)
-row offset 的数值个数是 row + 1, 表示某行第一个元素在 values 中的位置，如 5 是第三行第一个元素，它在 values 中的 index 是 4。</p>
-<p>优点：</p>
-<ul>
-<li>
-<p>高效地按行切片。</p>
-</li>
-<li>
-<p>快速地计算矩阵与向量的内积。</p>
-</li>
-<li>
-<p>高效地进行矩阵的算术运行，CSR + CSR、CSR * CSR等。</p>
-</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>
-<p>按列切片很慢（考虑 CSC）</p>
-</li>
-<li>
-<p>一旦构建完成后，再往里面添加或删除元素成本很高</p>
-</li>
-<li>
-<p>CSR 格式在存储稀疏矩阵时非零元素平均使用的字节数(Bytes per Nonzero Entry)最为稳定（float 类型约为 8.5，double类型约为 12.5）。CSR 格式常用于读入数据后进行稀疏矩阵计算。</p>
-</li>
-</ul>
-<h2 id="csc-matrix"><a href="#csc-matrix" class="anchor-link">#</a><a href="#contents:csc-matrix" class="headings">CSC Matrix</a></h2>
-<p><img src="csc.gif" alt="csc"></p>
-<p>CSC 是和 CSR 相对应的一种方式，即按列压缩的意思。</p>
+
             </div>
 
             
@@ -323,9 +273,9 @@ row offset 的数值个数是 row + 1, 表示某行第一个元素在 values 中
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2022-05-03 22:38:17 CST" style="cursor:help">
+        <span title="Updated @ 2022-05-27 19:24:18 CST" style="cursor:help">
 
-<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-03</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-03</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-27</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-27</text></g></svg>
         </span></div>
 
 
@@ -339,17 +289,6 @@ row offset 的数值个数是 row + 1, 表示某行第一个元素在 values 中
         
     
     
-        <div class="related-posts">
-            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
-            <ul class="related-list">
-                
-                    <li class="related-item">
-                        <a href="/tech/ml-dm/" class="related-link">机器学习与数据挖掘</a>
-                    </li>
-                
-            </ul>
-        </div>
-    
 
 
 
@@ -359,7 +298,7 @@ row offset 的数值个数是 row + 1, 表示某行第一个元素在 values 中
         
     <footer class="minimal-footer">
         
-            <div class="post-tag"><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag" class="post-tag-link">#机器学习</a></div>
+            <div class="post-tag"><a href="/tags/vim/" rel="tag" class="post-tag-link">#vim</a></div>
         
         
             <div class="post-category">
@@ -385,12 +324,12 @@ row offset 的数值个数是 row + 1, 表示某行第一个元素在 values 中
         <ul class="post-nav">
             
                 <li class="post-nav-prev">
-                    <a href="/tech/data-link-layer/" rel="prev">&lt; 数据链路层</a>
+                    <a href="/tech/liunx-who-command/" rel="prev">&lt; Linux 查看登录用户信息</a>
                 </li>
             
             
                 <li class="post-nav-next">
-                    <a href="/tech/lamp/" rel="next">LAMP &gt;</a>
+                    <a href="/tech/data-link-layer/" rel="next">数据链路层 &gt;</a>
                 </li>
             
         </ul>

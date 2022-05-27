@@ -15,7 +15,7 @@
     
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-    <title>Ubuntu18.04 安装 tensorflow | LeeHui</title>
+    <title>Linux 查看登录用户信息 | LeeHui</title>
 
     <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
 
@@ -30,7 +30,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
         <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
 
-    <meta name="author" content="LeeHui" /><meta name="description" content="Ubuntu18.04 上使用 Anaconda 安装 tensorflow" />
+    <meta name="author" content="LeeHui" /><meta name="description" content="使用 who 命令查看用户的登录信息" />
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
@@ -49,21 +49,21 @@
     
 
     
-    <link rel="canonical" href="https://wheliosc.github.io/tech/ubuntu-install-tensorflow/" />
+    <link rel="canonical" href="https://wheliosc.github.io/tech/liunx-who-command/" />
     
 
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "datePublished": "2020-03-30T18:04:08+08:00",
-        "dateModified": "2022-05-04T19:20:32+08:00",
-        "url": "https://wheliosc.github.io/tech/ubuntu-install-tensorflow/",
-        "headline": "Ubuntu18.04 安装 tensorflow",
-        "description": "Ubuntu18.04 上使用 Anaconda 安装 tensorflow",
+        "datePublished": "2022-05-27T17:09:06+08:00",
+        "dateModified": "2022-05-27T19:28:01+08:00",
+        "url": "https://wheliosc.github.io/tech/liunx-who-command/",
+        "headline": "Linux 查看登录用户信息",
+        "description": "使用 who 命令查看用户的登录信息",
         "inLanguage" : "zh-CN",
         "articleSection": "tech",
-        "wordCount":  451 ,
+        "wordCount":  655 ,
         "image": "https://wheliosc.github.io/icons/favicon.png",
         "author": {
             "@type": "Person",
@@ -101,14 +101,14 @@
 
 
 
-<meta property="og:title" content="Ubuntu18.04 安装 tensorflow" />
-<meta property="og:description" content="Ubuntu18.04 上使用 Anaconda 安装 tensorflow" />
-<meta property="og:url" content="https://wheliosc.github.io/tech/ubuntu-install-tensorflow/" />
+<meta property="og:title" content="Linux 查看登录用户信息" />
+<meta property="og:description" content="使用 who 命令查看用户的登录信息" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/liunx-who-command/" />
 <meta property="og:site_name" content="LeeHui" />
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
     <meta property="og:type" content="article" />
-    <meta property="article:published_time" content="2020-03-30T18:04:08&#43;08:00" />
-    <meta property="article:modified_time" content="2022-05-04T19:20:32&#43;08:00" />
+    <meta property="article:published_time" content="2022-05-27T17:09:06&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-27T19:28:01&#43;08:00" />
     
     <meta property="article:section" content="tech" />
 
@@ -217,12 +217,12 @@
 
         <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
 
-            <h1 class="post-title p-name">Ubuntu18.04 安装 tensorflow</h1>
+            <h1 class="post-title p-name">Linux 查看登录用户信息</h1>
 
             
 
             
-                <div class="post-description p-summary">Ubuntu18.04 上使用 Anaconda 安装 tensorflow</div>
+                <div class="post-description p-summary">使用 who 命令查看用户的登录信息</div>
                 
             
 
@@ -232,14 +232,14 @@
 <div class="post-meta">
     
         
-        <time datetime="2020-03-30T18:04:08&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2020.3.30</time>
+        <time datetime="2022-05-27T17:09:06&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2022.5.27</time>
     
     
     
     
     
         
-        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;451</span>
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;655</span>
     
     
     
@@ -248,30 +248,76 @@
 
             
 
-            <nav class="contents">
-  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
-    <li><a id="contents:安装-anaconda" href="#安装-anaconda">安装 Anaconda</a></li>
-    <li><a id="contents:安装-tensorflow" href="#安装-tensorflow">安装 Tensorflow</a></li>
-  </ol>
-</nav><div class="post-body e-content">
-                <p></p>
-<h2 id="安装-anaconda"><a href="#安装-anaconda" class="anchor-link">#</a><a href="#contents:安装-anaconda" class="headings">安装 Anaconda</a></h2>
+            <div class="post-body e-content">
+                <h2 id="linux-查看登录用户信息"><a href="#linux-查看登录用户信息" class="anchor-link">#</a>Linux 查看登录用户信息</h2>
 <ul>
 <li>
-<p>官网下载 <code>https://www.anaconda.com/distribution/</code></p>
-</li>
+<p><code>whoami</code></p>
+<p>输出当前登录的账户的用户名。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ whoami
+</span></span><span class="line"><span class="cl">lh
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
 <li>
-<p>在下载目录下执行 <code>bash Anaconda3-2020.02-Linux-x86_64.sh</code>（根据自己的下载修改名字）</p>
-</li>
+<p><code>users</code></p>
+<p>列出所有当前登录的用户的用户名。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ users
+</span></span><span class="line"><span class="cl">gsj gsj gsj gsj lh liuwb lxy lxy
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
 <li>
-<p>执行 <code>export PATH=~/anaconda3/bin:$PATH</code> 和 <code>source ~/.bashrc</code> 将conda添加到环境变量中。</p>
-</li>
+<p><code>who</code></p>
+<p>没有添加任何选项时，<code>who</code>命令显示用户的登录名、终端线号、登录的时间以及远程主机名。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ who
+</span></span><span class="line"><span class="cl">gsj      pts/1        2022-05-24 19:51 <span class="o">(</span>10.181.7.40<span class="o">)</span>
+</span></span><span class="line"><span class="cl">gsj      pts/7        2022-05-24 19:52 <span class="o">(</span>10.181.7.40<span class="o">)</span>
+</span></span><span class="line"><span class="cl">lxy      pts/8        2022-05-24 19:53 <span class="o">(</span>10.181.7.40<span class="o">)</span>
+</span></span><span class="line"><span class="cl">lxy      pts/10       2022-05-24 20:16 <span class="o">(</span>10.181.7.40<span class="o">)</span>
+</span></span><span class="line"><span class="cl">liuwb    pts/11       2022-05-23 10:19 <span class="o">(</span>10.181.7.40<span class="o">)</span>
+</span></span><span class="line"><span class="cl">gsj      pts/15       2022-05-24 21:24 <span class="o">(</span>10.181.7.40<span class="o">)</span>
+</span></span><span class="line"><span class="cl">gsj      pts/16       2022-05-24 21:24 <span class="o">(</span>10.181.7.40<span class="o">)</span>
+</span></span><span class="line"><span class="cl">lh       pts/17       2022-05-24 21:51 <span class="o">(</span>10.181.7.40<span class="o">)</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
 <li>
-<p>测试安装是否成功 <code>conda info</code></p>
-<p>安装完成后,这个 Anaconda 默认的 python，在系统之外虚拟出来一个使用 python 的环境，叫做 base。在这个环境下面安装的库，不会与系统自带的 python 以及库冲突。</p>
-</li>
-<li>
-<p>添加镜像源：</p>
+<p><code>w</code></p>
+<p>没有添加任何选项时，显示八项信息，标记分别为：USER、TTY、FROM、LOGIN@、IDLE、JCPU、PCPU 和 WHAT。</p>
+<p>USER 是用户的登录名。</p>
+<p>TTY（现在代表<em>终端类型</em>，但最初代表<em>电传打字</em>）是用户登录的控制台或终端的名称，也可以使用<em>tty</em>命令找到。每次用户通过网络登录时，都会为该用户分配一个新的 tty。</p>
+<p>FROM 是用户登录的<em>远程主机</em>（即其他计算机的名称），如果有的话。</p>
+<p>LOGIN@ 是用户登录的时间。</p>
+<p>IDLE 是自用户上次在键盘上键入任何内容以来的小时数和分钟数。</p>
+<p>JCPU 是连接到 tty 的所有进程累积的分钟数。它不包括过去的<em>后台进程（即，仅在较高优先级**前台进程</em>之间的间隙中运行的低优先级进程），但它确实包括当前正在运行的后台进程。</p>
+<p>PCPU 是当前进程（在 WHAT 列中命名）消耗的时间。</p>
+<p>WHAT 列出了当前进程的名称以及与启动它的命令一起使用的任何选项和参数（即输入文件）。</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -285,51 +331,25 @@
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 清华源（清华镜像好像不支持conda包了，可以先使用默认源）</span>
-</span></span><span class="line"><span class="cl">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
-</span></span><span class="line"><span class="cl">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-</span></span><span class="line"><span class="cl">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-</span></span><span class="line"><span class="cl">conda config --append channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/fastai/
-</span></span><span class="line"><span class="cl">conda config --append channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
-</span></span><span class="line"><span class="cl">conda config --append channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">conda config --set show_channel_urls yes
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 中科大</span>
-</span></span><span class="line"><span class="cl">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/
-</span></span><span class="line"><span class="cl">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/
-</span></span><span class="line"><span class="cl">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/
-</span></span><span class="line"><span class="cl">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/msys2/
-</span></span><span class="line"><span class="cl">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/bioconda/
-</span></span><span class="line"><span class="cl">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/menpo/
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">conda config --set show_channel_urls yes
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 恢复默认源</span>
-</span></span><span class="line"><span class="cl">conda config --remove-key channels
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ w
+</span></span><span class="line"><span class="cl"> 21:55:18 up <span class="m">4</span> days,  2:44,  <span class="m">8</span> users,  load average: 6.37, 5.32, 5.51
+</span></span><span class="line"><span class="cl">USER     TTY      FROM           LOGIN@   IDLE   JCPU   PCPU WHAT
+</span></span><span class="line"><span class="cl">gsj      pts/1    10.181.7.40      19:51    2:03m  4:18   4:12  /home/gsj/.loca
+</span></span><span class="line"><span class="cl">gsj      pts/7    10.181.7.40      19:52    2:03m  0.03s  0.03s -bash
+</span></span><span class="line"><span class="cl">lxy      pts/8    10.181.7.40      19:53   35:28   1:19m  1:19m python train.py
+</span></span><span class="line"><span class="cl">lxy      pts/10   10.181.7.40      20:16    1:39m 41.36s 41.33s watch -n 0.1 nv
+</span></span><span class="line"><span class="cl">liuwb    pts/11   10.181.7.40      一10    2:01m  0.07s  0.07s -bash
+</span></span><span class="line"><span class="cl">gsj      pts/15   10.181.7.40      21:24   30:53   1:04   1:03  /home/gsj/.loca
+</span></span><span class="line"><span class="cl">gsj      pts/16   10.181.7.40      21:24   30:44   0.03s  0.03s -bash
+</span></span><span class="line"><span class="cl">lh       pts/17   10.181.7.40      21:51    1.00s  0.05s  0.01s w
 </span></span></code></pre></td></tr></table></div>
 </div>
-</div></li>
+</div><p><code>w</code> 命令可能很有用，但它提供的信息存在一些缺陷，因此它的输出应该只被视为近似值。</p>
+</li>
 </ul>
-<h2 id="安装-tensorflow"><a href="#安装-tensorflow" class="anchor-link">#</a><a href="#contents:安装-tensorflow" class="headings">安装 Tensorflow</a></h2>
-<ul>
-<li>首先，创建一个新的环境 <code>conda create -n tf python=3.6</code>（tf 是环境名，自定义；python的版本自己指定）</li>
-<li>激活环境 <code>conda activate tf</code>，或者<code>source activate tf</code>（停用当前环境 <code>conda deactivate</code>，移除环境 <code>conda remove -n tf --all</code>，展示当前存在的所有环境 <code>conda-env list</code> 或者 <code>conda info -e</code>）</li>
-<li>安装tensorflow <code>conda install tensorflow</code></li>
-</ul>
+
             </div>
 
             
@@ -341,9 +361,9 @@
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2022-05-04 19:20:32 CST" style="cursor:help">
+        <span title="Updated @ 2022-05-27 19:28:01 CST" style="cursor:help">
 
-<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-04</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-04</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-27</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-27</text></g></svg>
         </span></div>
 
 
@@ -362,11 +382,15 @@
             <ul class="related-list">
                 
                     <li class="related-item">
-                        <a href="/tech/liunx-who-command/" class="related-link">Linux 查看登录用户信息</a>
+                        <a href="/tech/ubuntu-install-zsh/" class="related-link">Ubuntu 安装 zsh 和 oh-my-zsh</a>
                     </li>
                 
                     <li class="related-item">
                         <a href="/tech/lamp/" class="related-link">LAMP</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/ubuntu-install-tensorflow/" class="related-link">Ubuntu18.04 安装 tensorflow</a>
                     </li>
                 
                     <li class="related-item">
@@ -389,7 +413,7 @@
         
     <footer class="minimal-footer">
         
-            <div class="post-tag"><a href="/tags/linux/" rel="tag" class="post-tag-link">#linux</a> <a href="/tags/tensorflow/" rel="tag" class="post-tag-link">#tensorflow</a></div>
+            <div class="post-tag"><a href="/tags/shell/" rel="tag" class="post-tag-link">#shell</a> <a href="/tags/linux/" rel="tag" class="post-tag-link">#linux</a></div>
         
         
             <div class="post-category">
@@ -415,12 +439,12 @@
         <ul class="post-nav">
             
                 <li class="post-nav-prev">
-                    <a href="/tech/springboot-create-project/" rel="prev">&lt; SpringBoot 项目开发</a>
+                    <a href="/tech/ubuntu-install-zsh/" rel="prev">&lt; Ubuntu 安装 zsh 和 oh-my-zsh</a>
                 </li>
             
             
                 <li class="post-nav-next">
-                    <a href="/tech/software-testing/" rel="next">软件测试与质量保证 &gt;</a>
+                    <a href="/tech/vim-hex-editor/" rel="next">vim 十六进制编辑器 &gt;</a>
                 </li>
             
         </ul>
