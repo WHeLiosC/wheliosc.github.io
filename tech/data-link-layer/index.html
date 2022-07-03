@@ -57,7 +57,7 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2022-05-15T19:37:43+08:00",
-        "dateModified": "2022-05-27T19:35:13+08:00",
+        "dateModified": "2022-05-27T19:40:54+08:00",
         "url": "https://wheliosc.github.io/tech/data-link-layer/",
         "headline": "数据链路层",
         "description": "计算机网络 TCP/IP 协议五层协议栈——数据链路层",
@@ -109,7 +109,7 @@
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/frame.png" />
 <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2022-05-15T19:37:43&#43;08:00" />
-    <meta property="article:modified_time" content="2022-05-27T19:35:13&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-27T19:40:54&#43;08:00" />
     
     <meta property="article:section" content="tech" />
 
@@ -389,7 +389,7 @@
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2022-05-27 19:35:13 CST" style="cursor:help">
+        <span title="Updated @ 2022-05-27 19:40:54 CST" style="cursor:help">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-27</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-27</text></g></svg>
         </span></div>
@@ -445,7 +445,7 @@
             
             
                 <li class="post-nav-next">
-                    <a href="/tech/sparse-matrix/" rel="next">稀疏矩阵 &gt;</a>
+                    <a href="/tech/java-string/" rel="next">Java String 类 &gt;</a>
                 </li>
             
         </ul>
@@ -483,6 +483,56 @@
         
 
         
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha256-gPJfuwTULrEAAcI3X4bALVU/2qBU+QY/TpoD3GO+Exw=" crossorigin="anonymous">
+<script>
+    if (typeof renderMathInElement === 'undefined') {
+        var getScript = (options) => {
+            var script = document.createElement('script');
+            script.defer = true;
+            script.crossOrigin = 'anonymous';
+            Object.keys(options).forEach((key) => {
+                script[key] = options[key];
+            });
+            document.body.appendChild(script);
+        };
+        getScript({
+            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js',
+            integrity: 'sha256-YTW9cMncW/ZQMhY69KaUxIa2cPTxV87Uh627Gf5ODUw=',
+            onload: () => {
+                getScript({
+                    src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js',
+                    integrity: 'sha256-yzSfYeVsWJ1x+2g8CYHsB/Mn7PcSp8122k5BM4T3Vxw=',
+                    onload: () => {
+                        getScript({
+                            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js',
+                            integrity: 'sha256-fxJzNV6hpc8tgW8tF0zVobKa71eTCRGTgxFXt1ZpJNM=',
+                            onload: () => {
+                                renderKaTex();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } else {
+        renderKaTex();
+    }
+    function renderKaTex() {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+            }
+        );
+    }
+</script>
+
+
 
 
 

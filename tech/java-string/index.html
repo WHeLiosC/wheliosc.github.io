@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.97.2" /><meta name="theme-color" content="#16171d" />
+    <meta name="color-scheme" content="light dark">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>Java String 类 | LeeHui</title>
+
+    <link rel="stylesheet" href="/css/meme.min.2edecd57f0aa6b852273843721cbd5cc568b278a6b78eb5f3e7e9b4d3591d0f0.css"/>
+
+    
+    
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+
+    <meta name="author" content="LeeHui" /><meta name="description" content="String 的不可变性 在 Java 8 源码中，对于 String 的定义为： 1 2 3 4 5 6 public final class String implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence { /** The value is used for……" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="LeeHui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="LeeHui" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://wheliosc.github.io/tech/java-string/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2022-03-19T16:45:24+08:00",
+        "dateModified": "2022-05-27T19:50:50+08:00",
+        "url": "https://wheliosc.github.io/tech/java-string/",
+        "headline": "Java String 类",
+        "description": "String 的不可变性 在 Java 8 源码中，对于 String 的定义为： 1 2 3 4 5 6 public final class String implements java.io.Serializable, Comparable\u003cString\u003e, CharSequence { /** The value is used for……",
+        "inLanguage" : "zh-CN",
+        "articleSection": "tech",
+        "wordCount":  2208 ,
+        "image": "https://wheliosc.github.io/icons/favicon.png",
+        "author": {
+            "@type": "Person",
+            "description": "星光即使微弱 也会为我照亮前程",
+            "email": "imleehui@hotmail.com",
+            "image": "https://wheliosc.github.io/icons/apple-touch-icon.png",
+            "url": "https://wheliosc.github.io/",
+            "name": "LeeHui"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeeHui",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wheliosc.github.io/icons/favicon.png"
+            },
+            "url": "https://wheliosc.github.io/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://wheliosc.github.io/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary" />
+
+<meta name="twitter:site" content="@reuixiy" />
+<meta name="twitter:creator" content="@leehui" />
+
+    
+
+
+
+<meta property="og:title" content="Java String 类" />
+<meta property="og:description" content="String 的不可变性 在 Java 8 源码中，对于 String 的定义为： 1 2 3 4 5 6 public final class String implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence { /** The value is used for……" />
+<meta property="og:url" content="https://wheliosc.github.io/tech/java-string/" />
+<meta property="og:site_name" content="LeeHui" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2022-03-19T16:45:24&#43;08:00" />
+    <meta property="article:modified_time" content="2022-05-27T19:50:50&#43;08:00" />
+    
+    <meta property="article:section" content="tech" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '');
+    </script>
+
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">LeeHui</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item active"><a href="/tech/"><span class="menu-item-name">技术</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/life/"><span class="menu-item-name">生活</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="tech" data-toc-num="true">
+
+            <h1 class="post-title p-name">Java String 类</h1>
+
+            
+
+            
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2022-03-19T16:45:24&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2022.3.19</time>
+    
+    
+    
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;2208</span>
+    
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:string-的不可变性" href="#string-的不可变性">String 的不可变性</a>
+      <ol>
+        <li><a id="contents:字符串的内部存储" href="#字符串的内部存储">字符串的内部存储</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:字符串常量池" href="#字符串常量池">字符串常量池</a>
+      <ol>
+        <li><a id="contents:字符串常量池位置的变化" href="#字符串常量池位置的变化">字符串常量池位置的变化</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:字符串的比较" href="#字符串的比较">字符串的比较</a>
+      <ol>
+        <li><a id="contents:-和-equals-以及-hashcode" href="#-和-equals-以及-hashcode"><code>==</code> 和 <code>equals()</code> 以及 <code>hashCode()</code></a></li>
+      </ol>
+    </li>
+    <li><a id="contents:stringbuilder-与-stringbuffer" href="#stringbuilder-与-stringbuffer">StringBuilder 与 StringBuffer</a></li>
+    <li><a id="contents:字符串的拼接" href="#字符串的拼接">字符串的拼接</a></li>
+    <li><a id="contents:参考资料" href="#参考资料">参考资料</a></li>
+  </ol>
+</nav><div class="post-body e-content">
+                <h2 id="string-的不可变性"><a href="#string-的不可变性" class="anchor-link">#</a><a href="#contents:string-的不可变性" class="headings">String 的不可变性</a></h2>
+<p>在 Java 8 源码中，对于 String 的定义为：</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">String</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">implements</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">Serializable</span><span class="o">,</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;,</span> <span class="n">CharSequence</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** The value is used for character storage. */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">value</span><span class="o">[];</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>在 String 类中，使用一个 char 类型的数组来保存字符串，<code>final</code> 修饰符使对象引用 value 的值不可再变，即数组的地址是不变的，但数组中的值是可以改变的。因此，String 不变性的原因是 value 的访问控制符 <code>private</code> 和String类的 <code>final</code> 修饰符，前者使字符数组是私有的且没有在类中暴露任何方法修改数组的值，后者保证了 String 类不可被继承，避免了子类破坏字符串的不变性。</p>
+<h3 id="字符串的内部存储"><a href="#字符串的内部存储" class="anchor-link">#</a><a href="#contents:字符串的内部存储" class="headings">字符串的内部存储</a></h3>
+<p>在 Java 8 中，String 类内使用 char 类型的数组存储字符串，自 Java 9 开始改为使用 byte 数组存储字符串。将字符存储在一个 char 数组中，每个字符使用两个字节（十六位）。从许多不同应用程序收集的数据表明，字符串是堆使用的主要组成部分，而且大多数 String 对象仅包含 Latin-1 字符。此类字符仅需要一个字节的存储空间，因此此类对象的内部 char 数组中的一半空间未使用。因此可以采用更节省空间的内部表示。我们建议将 String 类的内部表示从 UTF-16 char 数组更改为 byte 数组加上编码标志字段。新 String 类将根据字符串的内容存储编码为 ISO-8859-1/Latin-1（每个字符一个字节）或 UTF-16（每个字符两个字节）的字符。编码标志将指示使用哪种编码。</p>
+<p>在 Java 9 源码中，对于 String 的定义为：</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">String</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">implements</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">Serializable</span><span class="o">,</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;,</span> <span class="n">CharSequence</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Stable</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">value</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * The identifier of the encoding used to encode the bytes in
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * {@code value}. The supported values in this implementation are
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * LATIN1
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * UTF16
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">byte</span> <span class="n">coder</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h2 id="字符串常量池"><a href="#字符串常量池" class="anchor-link">#</a><a href="#contents:字符串常量池" class="headings">字符串常量池</a></h2>
+<p>为了提高性能并减少内存的开销，在JVM层面为字符串提供字符串常量池，避免了字符串的重复创建。创建一个新的字符串时，会先在字符串常量池中检查是否存在这个字符串，如果存在，则直接返回引用；如果不存在，则会在堆中实例化该字符串，并将该字符串放入到字符串常量池中，以便于之后的使用。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">&#34;123&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="s">&#34;123&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">str3</span> <span class="o">=</span> <span class="s">&#34;123&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">str4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&#34;123&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">str5</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&#34;123&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">str6</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&#34;123&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str1</span> <span class="o">==</span> <span class="n">str2</span><span class="o">);</span>  <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str2</span> <span class="o">==</span> <span class="n">str3</span><span class="o">);</span>  <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str3</span> <span class="o">==</span> <span class="n">str4</span><span class="o">);</span>  <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str4</span> <span class="o">==</span> <span class="n">str5</span><span class="o">);</span>  <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str5</span> <span class="o">==</span> <span class="n">str6</span><span class="o">);</span>  <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// intern()返回字符串在常量池中的引用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str1</span> <span class="o">==</span> <span class="n">str4</span><span class="o">.</span><span class="na">intern</span><span class="o">());</span>  <span class="c1">// true
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>在 <code>String str = new String(&quot;123)</code> 中，若常量池里没有 &quot;123&quot; 字符串，则创建了 2 个对象；若有该字符串，则创建了一个对象及对应的引用。</p>
+<h3 id="字符串常量池位置的变化"><a href="#字符串常量池位置的变化" class="anchor-link">#</a><a href="#contents:字符串常量池位置的变化" class="headings">字符串常量池位置的变化</a></h3>
+<ul>
+<li>在 JDK1.7 前，运行时常量池和字符串常量池是存放在方法区中，HotSpot VM 对方法区的实现称为永久代。</li>
+<li>在 JDK1.7 中，字符串常量池从方法区移到堆中，运行时常量池保留在方法区中。</li>
+<li>在 JDK1.8 中，HotSpot 移除永久代，使用元空间（Meta Space）代替，此时字符串常量池保留在堆中，运行时常量池保留在方法区中，只是实现不一样了，JVM 内存变成了直接内存。</li>
+</ul>
+<h2 id="字符串的比较"><a href="#字符串的比较" class="anchor-link">#</a><a href="#contents:字符串的比较" class="headings">字符串的比较</a></h2>
+<p>使用 <code>==</code> 运算符只会检测两个字符串是否放置在同一个位置，有时候两个内容相同的字符串其地址并不在同一个位置。因此要比较字符串的内容是否相同需要使用 <code>equals()</code>。String 中的 equals 方法是被重写过的，比较的是 String 字符串的值是否相等；Object 的 equals 方法是比较的对象的内存地址。</p>
+<h3 id="-和-equals-以及-hashcode"><a href="#-和-equals-以及-hashcode" class="anchor-link">#</a><a href="#contents:-和-equals-以及-hashcode" class="headings"><code>==</code> 和 <code>equals()</code> 以及 <code>hashCode()</code></a></h3>
+<ul>
+<li><code>==</code> 运算符比较的是值，对于基本数据类型，比较的是值；对于对象引用比较的也是值，只不过对象引用的值是对象的地址。</li>
+<li><code>equals()</code> 是类中的方法，因此不能用于基本数据类型的比较。在 Object 类中，<code>equals()</code> 是通过 <code>==</code> 实现的，因此如果没有重写 <code>equals()</code>，那么 <code>equals()</code> 等价于 <code>==</code>。</li>
+<li>重写的 <code>equals()</code> 一般是比较对象的内容，即实例域来判断两个对象是否相同。</li>
+<li><code>hashCode()</code> 用来获取对象的哈希码，从而确定其在哈希表中的位置。Object 的 <code>hashCode()</code> 是本地方法，也就是用 C 语言或 C++ 实现的，该方法通常用来将对象的内存地址转换为整数之后返回。</li>
+</ul>
+<p>重写 <code>equals()</code> 时必须重写 <code>hashCode()</code>，因为 hashCode 的常规协定声明相等的两个对象必须拥有相同的 hashCode。</p>
+<ul>
+<li>如果两个对象的 hashCode 值不相等，就可以直接认为这两个对象不相等。</li>
+<li>如果两个对象的 hashCode 值相等，那这两个对象不一定相等（哈希碰撞）。</li>
+<li>如果两个对象的 hashCode 值相等并且 equals() 也返回 true，才认为这两个对象相等。</li>
+</ul>
+<p>当你把对象加入 HashSet 时，HashSet 会先计算对象的 hashCode 值来判断对象加入的位置，同时也会与其他已经加入的对象的 hashCode 值作比较，如果没有相符的 hashCode，HashSet 会假设对象没有重复出现。但是如果发现有相同 hashCode 值的对象，这时会调用 equals() 方法来检查 hashCode 相等的对象是否真的相同。如果两者相同，HashSet 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。这样我们就大大减少了 equals() 的次数，相应就大大提高了执行速度。</p>
+<p>如果重写了 equals() 方法但没有重写 hashCode() 方法，那么相等的两个对象在加入哈希表时因为 hashCode 不同而都被存储了，从而造成混淆。</p>
+<h2 id="stringbuilder-与-stringbuffer"><a href="#stringbuilder-与-stringbuffer" class="anchor-link">#</a><a href="#contents:stringbuilder-与-stringbuffer" class="headings">StringBuilder 与 StringBuffer</a></h2>
+<ul>
+<li>String 适⽤于字符串不经常变化的场景中，例如常量的声明、少量的变量声明运算等。</li>
+<li>StringBuffer 适⽤于在频繁的进⾏字符串的操作(如拼接、替换、删除等)，并且是运⾏在<strong>多线程</strong>的环境（线程安全）下，例如 XML 解析、HTTP 参数解析和封装等。</li>
+<li>StringBulider 适⽤于频繁的对字符串进⾏操作但是在<strong>单线程</strong>的环境（线程不安全）下，如 SQL 语句拼接、JSON 封装等。</li>
+</ul>
+<h2 id="字符串的拼接"><a href="#字符串的拼接" class="anchor-link">#</a><a href="#contents:字符串的拼接" class="headings">字符串的拼接</a></h2>
+<p>Java 语言本身并不支持运算符重载，“+” 和 “+=” 是专门为 String 类重载过的运算符，也是 Java 中仅有的两个重载过的元素符。使用 “+” 运算符进行字符串拼接实际上是使用 StringBuilder 的 append() 和 toString() 实现的。在循环中使用 “+” 运算符会重复创建 StringBuilder，而不会重用同一个 StringBuilder，因此在循环中应当避免使用 “+” 运算符。</p>
+<h2 id="参考资料"><a href="#参考资料" class="anchor-link">#</a><a href="#contents:参考资料" class="headings">参考资料</a></h2>
+<p><a href="https://www.zhihu.com/question/20618891/answer/114125846" target="_blank" rel="noopener">如何理解 String 类型值的不可变？ - 知乎提问</a></p>
+<p><a href="https://openjdk.java.net/jeps/254" target="_blank" rel="noopener">JEP 254: Compact Strings</a></p>
+<p><a href="https://www.cnblogs.com/Andya/p/14067618.html" target="_blank" rel="noopener">JVM——字符串常量池详解</a></p>
+<p><a href="https://javaguide.cn/java/basis/java-basic-questions-01.html#hashcode-%E4%B8%8E-equals" target="_blank" rel="noopener">hashCode与equals</a></p>
+
+            </div>
+
+            
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2022-05-27 19:50:50 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-05-27</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-05-27</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/tech/springboot-deploy/" class="related-link">SpringBoot 项目部署到服务器</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/springboot-create-project/" class="related-link">SpringBoot 项目开发</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/lexical-analysis/" class="related-link">词法分析器</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/zxing-qrcode/" class="related-link">利用ZXing工具生成二维码以及解析二维码</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/tech/java-learn-note-3/" class="related-link">java学习笔记 [3] 继承 &amp; 多态篇</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+
+
+        
+    <footer class="minimal-footer">
+        
+            <div class="post-tag"><a href="/tags/java/" rel="tag" class="post-tag-link">#java</a></div>
+        
+        
+            <div class="post-category">
+                <a href="/tech/" class="post-category-link active">tech</a>
+            </div>
+        
+        
+    </footer>
+
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/data-link-layer/" rel="prev">&lt; 数据链路层</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/tech/sparse-matrix/" rel="next">稀疏矩阵 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;LeeHui</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>
