@@ -2,26 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wheliosc.github.io/tags/java/</loc>
+    <lastmod>2022-07-19T23:01:29+08:00</lastmod>
+  </url><url>
+    <loc>https://wheliosc.github.io/tech/java-interface-method/</loc>
+    <lastmod>2022-07-19T22:58:40+08:00</lastmod>
+  </url><url>
     <loc>https://wheliosc.github.io/</loc>
-    <lastmod>2022-07-18T23:12:18+08:00</lastmod>
+    <lastmod>2022-07-19T23:22:30+08:00</lastmod>
+  </url><url>
+    <loc>https://wheliosc.github.io/tags/</loc>
+    <lastmod>2022-07-19T23:22:30+08:00</lastmod>
+  </url><url>
+    <loc>https://wheliosc.github.io/tech/</loc>
+    <lastmod>2022-07-19T23:22:30+08:00</lastmod>
+  </url><url>
+    <loc>https://wheliosc.github.io/tech/java-class-loading/</loc>
+    <lastmod>2022-07-19T23:01:29+08:00</lastmod>
+  </url><url>
+    <loc>https://wheliosc.github.io/tags/jvm/</loc>
+    <lastmod>2022-07-19T23:01:29+08:00</lastmod>
+  </url><url>
+    <loc>https://wheliosc.github.io/tags/linux/</loc>
+    <lastmod>2022-07-19T23:22:30+08:00</lastmod>
+  </url><url>
+    <loc>https://wheliosc.github.io/tech/linux-ftp-server/</loc>
+    <lastmod>2022-07-19T23:15:54+08:00</lastmod>
+  </url><url>
+    <loc>https://wheliosc.github.io/tech/the-difference-between-single-bracket-and-double-bracket/</loc>
+    <lastmod>2022-07-19T23:22:30+08:00</lastmod>
+  </url><url>
+    <loc>https://wheliosc.github.io/tags/shell/</loc>
+    <lastmod>2022-07-19T23:22:30+08:00</lastmod>
+  </url><url>
+    <loc>https://wheliosc.github.io/tech/jvm-visual-tools/</loc>
+    <lastmod>2022-07-19T22:55:58+08:00</lastmod>
   </url><url>
     <loc>https://wheliosc.github.io/tags/liunx/</loc>
     <lastmod>2022-05-27T19:32:48+08:00</lastmod>
   </url><url>
-    <loc>https://wheliosc.github.io/tags/shell/</loc>
-    <lastmod>2022-05-27T19:32:48+08:00</lastmod>
-  </url><url>
-    <loc>https://wheliosc.github.io/tags/</loc>
-    <lastmod>2022-07-18T23:12:18+08:00</lastmod>
-  </url><url>
-    <loc>https://wheliosc.github.io/tech/</loc>
-    <lastmod>2022-07-18T23:12:18+08:00</lastmod>
-  </url><url>
     <loc>https://wheliosc.github.io/tech/ubuntu-install-zsh/</loc>
     <lastmod>2022-05-27T19:32:48+08:00</lastmod>
-  </url><url>
-    <loc>https://wheliosc.github.io/tags/linux/</loc>
-    <lastmod>2022-05-27T19:28:01+08:00</lastmod>
   </url><url>
     <loc>https://wheliosc.github.io/tech/liunx-who-command/</loc>
     <lastmod>2022-05-27T19:28:01+08:00</lastmod>
@@ -46,9 +67,6 @@
   </url><url>
     <loc>https://wheliosc.github.io/about/</loc>
     <lastmod>2022-07-03T23:51:14+08:00</lastmod>
-  </url><url>
-    <loc>https://wheliosc.github.io/tags/java/</loc>
-    <lastmod>2022-07-18T23:12:18+08:00</lastmod>
   </url><url>
     <loc>https://wheliosc.github.io/tech/java-generic/</loc>
     <lastmod>2022-07-18T23:12:18+08:00</lastmod>
