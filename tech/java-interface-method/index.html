@@ -57,7 +57,7 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2022-07-19T21:44:31+08:00",
-        "dateModified": "2022-07-19T22:58:40+08:00",
+        "dateModified": "2022-07-19T23:35:45+08:00",
         "url": "https://wheliosc.github.io/tech/java-interface-method/",
         "headline": "Java 接口方法",
         "description": "默认方法 解决的问题：接口升级的问题。（从 Java 8 开始可以使用 default 关键字来定义默认方法） 因为……",
@@ -108,7 +108,7 @@
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
     <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2022-07-19T21:44:31&#43;08:00" />
-    <meta property="article:modified_time" content="2022-07-19T22:58:40&#43;08:00" />
+    <meta property="article:modified_time" content="2022-07-19T23:35:45&#43;08:00" />
     
     <meta property="article:section" content="tech" />
 
@@ -247,14 +247,8 @@
 
             
 
-            <nav class="contents">
-  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
-    <li><a id="contents:默认方法" href="#默认方法">默认方法</a></li>
-    <li><a id="contents:静态方法" href="#静态方法">静态方法</a></li>
-    <li><a id="contents:私有方法" href="#私有方法">私有方法</a></li>
-  </ol>
-</nav><div class="post-body e-content">
-                <h2 id="默认方法"><a href="#默认方法" class="anchor-link">#</a><a href="#contents:默认方法" class="headings">默认方法</a></h2>
+            <div class="post-body e-content">
+                <h2 id="默认方法"><a href="#默认方法" class="anchor-link">#</a>默认方法</h2>
 <ul>
 <li>解决的问题：接口升级的问题。（从 Java 8 开始可以使用 default 关键字来定义默认方法）</li>
 </ul>
@@ -319,7 +313,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1">// 示例代码来自于 on-java-8
 </span></span></span></code></pre></td></tr></table></div>
 </div>
-</div><h2 id="静态方法"><a href="#静态方法" class="anchor-link">#</a><a href="#contents:静态方法" class="headings">静态方法</a></h2>
+</div><h2 id="静态方法"><a href="#静态方法" class="anchor-link">#</a>静态方法</h2>
 <p>从 Java 8 开始可以在接口中定义静态方法，使用静态方法，可以恰当地把工具功能置于接口中，从而操作接口，或者使其成为通用的工具。使用静态方法就是将接口方法的 <code>abstract</code> 或者 <code>default</code> 换成 <code>static</code>。要使用接口名调用接口中的静态方法，不能使用接口的实现类的对象来调用接口的静态方法。</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
@@ -353,7 +347,7 @@
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table></div>
 </div>
-</div><h2 id="私有方法"><a href="#私有方法" class="anchor-link">#</a><a href="#contents:私有方法" class="headings">私有方法</a></h2>
+</div><h2 id="私有方法"><a href="#私有方法" class="anchor-link">#</a>私有方法</h2>
 <ul>
 <li>解决问题：接口内多个<strong>默认方法</strong>之间存在重复代码的问题。静态私有方法解决多个<strong>静态方法</strong>中重复代码的问题。（从 Java 9 开始可以在接口中定义私有方法）</li>
 </ul>
@@ -454,7 +448,7 @@
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2022-07-19 22:58:40 CST" style="cursor:help">
+        <span title="Updated @ 2022-07-19 23:35:45 CST" style="cursor:help">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-07-19</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-07-19</text></g></svg>
         </span></div>
@@ -475,6 +469,10 @@
             <ul class="related-list">
                 
                     <li class="related-item">
+                        <a href="/tech/jvm-class-loader/" class="related-link">JVM 类加载器</a>
+                    </li>
+                
+                    <li class="related-item">
                         <a href="/tech/java-class-loading/" class="related-link">Java 虚拟机类加载过程</a>
                     </li>
                 
@@ -488,10 +486,6 @@
                 
                     <li class="related-item">
                         <a href="/tech/java-string/" class="related-link">Java String 类</a>
-                    </li>
-                
-                    <li class="related-item">
-                        <a href="/tech/springboot-deploy/" class="related-link">SpringBoot 项目部署到服务器</a>
                     </li>
                 
             </ul>
@@ -530,6 +524,10 @@
     
     
         <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/jvm-class-loader/" rel="prev">&lt; JVM 类加载器</a>
+                </li>
             
             
                 <li class="post-nav-next">

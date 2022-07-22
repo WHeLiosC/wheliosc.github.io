@@ -57,7 +57,7 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2022-07-18T09:25:16+08:00",
-        "dateModified": "2022-07-19T23:01:29+08:00",
+        "dateModified": "2022-07-19T23:35:23+08:00",
         "url": "https://wheliosc.github.io/tech/java-class-loading/",
         "headline": "Java 虚拟机类加载过程",
         "description": "类加载的过程：加载（Loading）、验证（Verification）、准备（Pre……",
@@ -109,7 +109,7 @@
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/constant_pool.png" />
 <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2022-07-18T09:25:16&#43;08:00" />
-    <meta property="article:modified_time" content="2022-07-19T23:01:29&#43;08:00" />
+    <meta property="article:modified_time" content="2022-07-19T23:35:23&#43;08:00" />
     
     <meta property="article:section" content="tech" />
 
@@ -248,19 +248,10 @@
 
             
 
-            <nav class="contents">
-  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
-    <li><a id="contents:加载" href="#加载">加载</a></li>
-    <li><a id="contents:验证" href="#验证">验证</a></li>
-    <li><a id="contents:准备" href="#准备">准备</a></li>
-    <li><a id="contents:解析" href="#解析">解析</a></li>
-    <li><a id="contents:初始化" href="#初始化">初始化</a></li>
-    <li><a id="contents:参考" href="#参考">参考</a></li>
-  </ol>
-</nav><div class="post-body e-content">
+            <div class="post-body e-content">
                 <p>类加载的过程：加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）、初始化（Initialization）。</p>
 <p>验证、准备和解析合称为链接（Linking）阶段。</p>
-<h2 id="加载"><a href="#加载" class="anchor-link">#</a><a href="#contents:加载" class="headings">加载</a></h2>
+<h2 id="加载"><a href="#加载" class="anchor-link">#</a>加载</h2>
 <ul>
 <li>通过一个类的全限定名获得定义此类的二进制字节流</li>
 <li>将二进制字节流代表的静态存储结构转化为<strong>方法区</strong>的运行时数据结构</li>
@@ -268,14 +259,14 @@
 </ul>
 <p>二进制字节流可以从 Class 文件中获得，也可以从压缩包（jar 包、war 包）、JSP 文件生成的对应的 Class 文件以及运行时计算生成（动态代理）。</p>
 <p>📌 Class 对象是存放在堆区的，不是方法区；类的元数据（元数据并不是类的 Class 对象！Class 对象是加载的最终产品，类的方法代码，变量名，方法名，访问权限，返回值等等都是在方法区的）才是存在方法区的。</p>
-<h2 id="验证"><a href="#验证" class="anchor-link">#</a><a href="#contents:验证" class="headings">验证</a></h2>
+<h2 id="验证"><a href="#验证" class="anchor-link">#</a>验证</h2>
 <p>验证阶段的目的是确保 Class 文件的字节流中包含的信息符合虚拟机规范的全部约束要求，保证这些信息被当作代码运行后不会危害虚拟机自身的安全。包括文件格式验证、元数据验证、字节码验证和符号引用验证。</p>
 <p>文件格式验证是检查字节流是否符合 Class 文件的格式规范；元数据验证是对字节码描述的信息进行语义分析，比如类是否具有父类，父类是否继承了不该继承的类、如果不是抽象类是否实现了所有的方法、类中的字段和方法是否与父类矛盾等；字节码验证通过数据流和控制流分析程序语义是正确的；符号引用验证该类是否缺少或者被禁止访问它依赖的外部类、方法或者字段等资源。</p>
-<h2 id="准备"><a href="#准备" class="anchor-link">#</a><a href="#contents:准备" class="headings">准备</a></h2>
+<h2 id="准备"><a href="#准备" class="anchor-link">#</a>准备</h2>
 <p>准备阶段是正式为类变量（即静态变量，被 static 修饰的变量）分配内存并设置类变量初始值的阶段，概念上是在方法区中为类变量分配内存，JDK 8 及之后类变量随着 Class 对象一起存放在 Java 堆中，在方法区中为类变量分配内存是一种逻辑概念的表述。准备阶段要在初始化阶段开始前完成。</p>
 <p>📌 准备阶段进行内存分配的是类变量，不包括实例变量，实例变量在对象实例化的时候随着对象一起分配在 Java 堆中。</p>
 <p>📌 设置的初始值一般是 0，如果变量定义为 <code>public static int value = 123;</code>，那么在准备阶段 value 的值为 0，（把 123 赋值给 value 的操作在初始化阶段）；如果变量定义为 <code>public static final int value = 123;</code>，那么类字段的字段属性表中就会存在 ConstantValue 属性，从而在准备阶段就会赋值为 123。</p>
-<h2 id="解析"><a href="#解析" class="anchor-link">#</a><a href="#contents:解析" class="headings">解析</a></h2>
+<h2 id="解析"><a href="#解析" class="anchor-link">#</a>解析</h2>
 <p>解析阶段是 Java 虚拟机将常量池内的符号引用替换为直接引用的过程。符号引用就是 Class 文件中的 <code>CONSTANT_Class_info</code>、<code>CONSTANT_Fieldref_info</code>、<code>CONSTANT_Methodref_info</code> 等类型的常量。常量池表中的常量都以一个 tag 开头，其后跟着两个或更多的字节表示这个常量的信息。</p>
 <p>CONSTANT_Class_info 的结构：</p>
 <pre tabindex="0"><code>CONSTANT_Class_info {
@@ -413,7 +404,7 @@
 <p>在 JDK 9 中的接口中添加了私有方法，因此需要检查访问权限，如果接口方法对 D 不可见也会抛出 IllegalAccessError。</p>
 </li>
 </ul>
-<h2 id="初始化"><a href="#初始化" class="anchor-link">#</a><a href="#contents:初始化" class="headings">初始化</a></h2>
+<h2 id="初始化"><a href="#初始化" class="anchor-link">#</a>初始化</h2>
 <p>初始化阶段是执行类构造器 <code>&lt;client&gt;()</code> 方法的过程。<code>&lt;client&gt;()</code> 方法是由编译器自动收集类中的类变量的赋值操作和静态语句块（static{} 块）中的语句合并而成的。虚拟机会保证子 <code>&lt;client&gt;()</code> 方法执行之前，父类的 <code>&lt;client&gt;()</code> 方法已经执行完毕，如果一个类中没有对静态变量赋值也没有静态语句块，那么编译器可以不为这个类生成 <code>&lt;client&gt;()</code> 方法。</p>
 <p>静态语句块中只能访问到定义在静态语句块之前的变量，定义在它之后的变量，在前面的静态语句块可以赋值，但是不能访问。</p>
 <div class="highlight"><div class="chroma">
@@ -445,7 +436,7 @@
 <li>虚拟机启动时会初始化主类（含有 main() 方法的类），还有一些特定的类也是虚拟机内部初始化的（如 Object, String, Class 等）</li>
 <li>使用 MethodHandle 返回静态方法的句柄时，对应的类会做初始化。</li>
 </ul>
-<h2 id="参考"><a href="#参考" class="anchor-link">#</a><a href="#contents:参考" class="headings">参考</a></h2>
+<h2 id="参考"><a href="#参考" class="anchor-link">#</a>参考</h2>
 <p>[1] 深入理解 Java 虚拟机: JVM 高级特性与最佳实践（第 3 版）. 周志明. 机械工业出版社.</p>
 <p>[2] Java 虚拟机规范（Java SE 8版）. 蒂姆·林霍尔姆（Tim Lindholm）等. 机械工业出版社.</p>
 
@@ -460,7 +451,7 @@
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2022-07-19 23:01:29 CST" style="cursor:help">
+        <span title="Updated @ 2022-07-19 23:35:23 CST" style="cursor:help">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-07-19</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-07-19</text></g></svg>
         </span></div>
@@ -481,6 +472,10 @@
             <ul class="related-list">
                 
                     <li class="related-item">
+                        <a href="/tech/jvm-class-loader/" class="related-link">JVM 类加载器</a>
+                    </li>
+                
+                    <li class="related-item">
                         <a href="/tech/jvm-visual-tools/" class="related-link">JVM 可视化监视及诊断工具</a>
                     </li>
                 
@@ -494,10 +489,6 @@
                 
                     <li class="related-item">
                         <a href="/tech/java-string/" class="related-link">Java String 类</a>
-                    </li>
-                
-                    <li class="related-item">
-                        <a href="/tech/springboot-deploy/" class="related-link">SpringBoot 项目部署到服务器</a>
                     </li>
                 
             </ul>

@@ -58,7 +58,7 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2022-06-15T21:43:00+08:00",
-        "dateModified": "2022-07-19T23:15:54+08:00",
+        "dateModified": "2022-07-19T23:37:23+08:00",
         "url": "https://wheliosc.github.io/tech/linux-ftp-server/",
         "headline": "Linux FTP 服务器搭建",
         "description": "\n……",
@@ -110,7 +110,7 @@
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
     <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2022-06-15T21:43:00&#43;08:00" />
-    <meta property="article:modified_time" content="2022-07-19T23:15:54&#43;08:00" />
+    <meta property="article:modified_time" content="2022-07-19T23:37:23&#43;08:00" />
     
     <meta property="article:section" content="tech" />
 
@@ -249,21 +249,12 @@
 
             
 
-            <nav class="contents">
-  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
-    <li><a id="contents:configure-vsftpd-server" href="#configure-vsftpd-server">Configure vsftpd server</a></li>
-    <li><a id="contents:create-an-ftp-user" href="#create-an-ftp-user">Create an FTP user</a></li>
-    <li><a id="contents:connect-to-ftp-server-via-command-line" href="#connect-to-ftp-server-via-command-line">Connect to FTP server via command line</a></li>
-    <li><a id="contents:change-default-ftp-port-number" href="#change-default-ftp-port-number">Change default FTP port number</a></li>
-    <li><a id="contents:限制可访问的目录" href="#限制可访问的目录">限制可访问的目录</a></li>
-    <li><a id="contents:参考" href="#参考">参考</a></li>
-  </ol>
-</nav><div class="post-body e-content">
+            <div class="post-body e-content">
                 <p></p>
 <p>FTP or the File Transfer Protocol is the most popular network protocol that is used to transfer files and information between two systems over a network. However, the FTP by default does not encrypt the traffic, which is not a secure method and can result in an attack on a server. This is where VSFTPD comes which stands for Very Secure FTP Daemon and is a secure, stable, and fast FTP server. VSFTPD is licensed under GNU GPL. For most of the Linux distributions, VSFTPD is used as a default FTP server.</p>
 <p>Install vsftpd on your Ubuntu system by typing this command into the terminal:</p>
 <pre tabindex="0"><code>$ sudo apt install vsftpd
-</code></pre><h2 id="configure-vsftpd-server"><a href="#configure-vsftpd-server" class="anchor-link">#</a><a href="#contents:configure-vsftpd-server" class="headings">Configure vsftpd server</a></h2>
+</code></pre><h2 id="configure-vsftpd-server"><a href="#configure-vsftpd-server" class="anchor-link">#</a>Configure vsftpd server</h2>
 <ol>
 <li>
 <p>It’s always best practice to keep a backup copy of the original config file, just in case something goes wrong later. Let’s rename the default config file:</p>
@@ -343,7 +334,7 @@ To verify if the VSFTPD is active and running, issue the following command in Te
 $ sudo systemctl status vsftpd.service
 </code></pre></li>
 </ol>
-<h2 id="create-an-ftp-user"><a href="#create-an-ftp-user" class="anchor-link">#</a><a href="#contents:create-an-ftp-user" class="headings">Create an FTP user</a></h2>
+<h2 id="create-an-ftp-user"><a href="#create-an-ftp-user" class="anchor-link">#</a>Create an FTP user</h2>
 <p>Our FTP server is ready to receive incoming connections, so now it’s time to create a new user account that we’ll use to connect to the FTP service.</p>
 <ol>
 <li>
@@ -359,15 +350,15 @@ passwd: password updated successfully
 <pre tabindex="0"><code>$ sudo bash -c &#34;echo FTP TESTING &gt; /home/ftpuser/FTP-TEST&#34;
 </code></pre></li>
 </ol>
-<h2 id="connect-to-ftp-server-via-command-line"><a href="#connect-to-ftp-server-via-command-line" class="anchor-link">#</a><a href="#contents:connect-to-ftp-server-via-command-line" class="headings">Connect to FTP server via command line</a></h2>
+<h2 id="connect-to-ftp-server-via-command-line"><a href="#connect-to-ftp-server-via-command-line" class="anchor-link">#</a>Connect to FTP server via command line</h2>
 <p>You should now be able to connect to your FTP server either by IP address or hostname. First, ensure that the default FTP client utility is installed on your system by running the following command. It will either install the software or tell you that it already exists on the system.</p>
 <pre tabindex="0"><code>$ sudo apt install ftp
 </code></pre><p>To connect from command line and verify that everything is working, open a terminal and use Ubuntu’s ftp command to connect to your loopback address (127.0.0.1).</p>
 <pre tabindex="0"><code>$ ftp 127.0.0.1
-</code></pre><h2 id="change-default-ftp-port-number"><a href="#change-default-ftp-port-number" class="anchor-link">#</a><a href="#contents:change-default-ftp-port-number" class="headings">Change default FTP port number</a></h2>
+</code></pre><h2 id="change-default-ftp-port-number"><a href="#change-default-ftp-port-number" class="anchor-link">#</a>Change default FTP port number</h2>
 <p>By default, the FTP protocol listens on port 21 for user authentication and port 20 for data transfer. However, we can change this behavior by making a small edit to the <code>/etc/vsftpd.conf</code> file. At the bottom of the file, use the <code>listen_port</code> directive to specify a different port for vsftpd to use. For example, adding the following line will instruct vsftpd to listen on port 2121:</p>
 <pre tabindex="0"><code>listen_port=2121
-</code></pre><h2 id="限制可访问的目录"><a href="#限制可访问的目录" class="anchor-link">#</a><a href="#contents:限制可访问的目录" class="headings">限制可访问的目录</a></h2>
+</code></pre><h2 id="限制可访问的目录"><a href="#限制可访问的目录" class="anchor-link">#</a>限制可访问的目录</h2>
 <p>如新建一个 admin 用户，若指定 admin 只能访问 /home /uftp 目录下的 administer 目录。则：</p>
 <ol>
 <li>首先要存在 administer 目录，并且保证 administer 目录不具备可写的权限，否则将造成登录失败。可使用“chmod a-w + 目录”进行权限的修改。</li>
@@ -377,7 +368,7 @@ passwd: password updated successfully
 <li>在文件里添加“admin”用户。</li>
 <li>重启 FTP 服务器 <code>sudo systemctl restart vsftpd.service</code>。</li>
 </ol>
-<h2 id="参考"><a href="#参考" class="anchor-link">#</a><a href="#contents:参考" class="headings">参考</a></h2>
+<h2 id="参考"><a href="#参考" class="anchor-link">#</a>参考</h2>
 <p><a href="https://linuxconfig.org/how-to-setup-and-use-ftp-server-in-ubuntu-linux" target="_blank" rel="noopener">https://linuxconfig.org/how-to-setup-and-use-ftp-server-in-ubuntu-linux</a></p>
 <p><a href="https://linuxhint.com/installing_ftp_server_linux_mint/" target="_blank" rel="noopener">https://linuxhint.com/installing_ftp_server_linux_mint/</a></p>
             </div>
@@ -391,7 +382,7 @@ passwd: password updated successfully
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2022-07-19 23:15:54 CST" style="cursor:help">
+        <span title="Updated @ 2022-07-19 23:37:23 CST" style="cursor:help">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-07-19</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-07-19</text></g></svg>
         </span></div>
