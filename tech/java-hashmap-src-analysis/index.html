@@ -27,8 +27,8 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
-        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,500;0,700;1,500;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,500;0,700;1,500;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;family=Water&#43;Brush&amp;display=swap" /></noscript>
 
     <meta name="author" content="LeeHui" /><meta name="description" content="……" />
 
@@ -57,7 +57,7 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2022-07-23T17:21:24+08:00",
-        "dateModified": "2022-07-24T18:37:15+08:00",
+        "dateModified": "2022-07-24T18:50:12+08:00",
         "url": "https://wheliosc.github.io/tech/java-hashmap-src-analysis/",
         "headline": "Java HashMap 源码阅读笔记",
         "description": "……",
@@ -108,7 +108,7 @@
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/icons/favicon.png" />
     <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2022-07-23T17:21:24&#43;08:00" />
-    <meta property="article:modified_time" content="2022-07-24T18:37:15&#43;08:00" />
+    <meta property="article:modified_time" content="2022-07-24T18:50:12&#43;08:00" />
     
     <meta property="article:section" content="tech" />
 
@@ -247,13 +247,8 @@
 
             
 
-            <nav class="contents">
-  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
-    <li><a id="contents:java-18-hashmap" href="#java-18-hashmap">Java 1.8 HashMap</a></li>
-    <li><a id="contents:参考" href="#参考">参考</a></li>
-  </ol>
-</nav><div class="post-body e-content">
-                <h2 id="java-18-hashmap"><a href="#java-18-hashmap" class="anchor-link">#</a><a href="#contents:java-18-hashmap" class="headings">Java 1.8 HashMap</a></h2>
+            <div class="post-body e-content">
+                <h2 id="java-18-hashmap"><a href="#java-18-hashmap" class="anchor-link">#</a>Java 1.8 HashMap</h2>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
@@ -1164,7 +1159,7 @@
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table></div>
 </div>
-</div><h2 id="参考"><a href="#参考" class="anchor-link">#</a><a href="#contents:参考" class="headings">参考</a></h2>
+</div><h2 id="参考"><a href="#参考" class="anchor-link">#</a>参考</h2>
 <p><a href="https://stackoverflow.com/questions/51118300/hashmap-tablesizefor-how-does-this-code-round-up-to-the-next-power-of-2" target="_blank" rel="noopener">HashMap.tableSizeFor(...). How does this code round up to the next power of 2?</a></p>
 <p><a href="https://javamana.com/2022/04/202204030456447890.html" target="_blank" rel="noopener">HashMap source code analysis</a></p>
 <p><a href="https://mikechen.cc/974.html" target="_blank" rel="noopener">HashMap的实现原理，源码深度剖析！</a></p>
@@ -1182,7 +1177,7 @@
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2022-07-24 18:37:15 CST" style="cursor:help">
+        <span title="Updated @ 2022-07-24 18:50:12 CST" style="cursor:help">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-07-24</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-07-24</text></g></svg>
         </span></div>
@@ -1203,6 +1198,10 @@
             <ul class="related-list">
                 
                     <li class="related-item">
+                        <a href="/tech/java-thread-threadpoolexecutor/" class="related-link">Java 线程与线程池</a>
+                    </li>
+                
+                    <li class="related-item">
                         <a href="/tech/jvm-class-loader/" class="related-link">JVM 类加载器</a>
                     </li>
                 
@@ -1216,10 +1215,6 @@
                 
                     <li class="related-item">
                         <a href="/tech/jvm-visual-tools/" class="related-link">JVM 可视化监视及诊断工具</a>
-                    </li>
-                
-                    <li class="related-item">
-                        <a href="/tech/java-generic/" class="related-link">Java 泛型</a>
                     </li>
                 
             </ul>
@@ -1258,6 +1253,10 @@
     
     
         <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/java-thread-threadpoolexecutor/" rel="prev">&lt; Java 线程与线程池</a>
+                </li>
             
             
                 <li class="post-nav-next">
