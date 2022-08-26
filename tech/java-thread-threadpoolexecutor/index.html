@@ -57,13 +57,13 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2022-07-26T14:07:26+08:00",
-        "dateModified": "2022-08-21T11:53:49+08:00",
+        "dateModified": "2022-08-21T12:04:19+08:00",
         "url": "https://wheliosc.github.io/tech/java-thread-threadpoolexecutor/",
         "headline": "Java 线程与线程池",
         "description": "线程 创建线程的方法 继承 Thread 类，重写 run() 方法。 实现 Runnable 接口，重写 run() 方法。 实现 Callable 接口，重写 call() 方……",
         "inLanguage" : "zh-CN",
         "articleSection": "tech",
-        "wordCount":  7442 ,
+        "wordCount":  7430 ,
         "image": ["https://wheliosc.github.io/threadStatus.png","https://wheliosc.github.io/ThreadPoolState.png","https://wheliosc.github.io/execute.png","https://wheliosc.github.io/FutureTask.png"],
         "author": {
             "@type": "Person",
@@ -109,7 +109,7 @@
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://wheliosc.github.io/threadStatus.png" />
 <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2022-07-26T14:07:26&#43;08:00" />
-    <meta property="article:modified_time" content="2022-08-21T11:53:49&#43;08:00" />
+    <meta property="article:modified_time" content="2022-08-21T12:04:19&#43;08:00" />
     
     <meta property="article:section" content="tech" />
 
@@ -239,7 +239,7 @@
     
     
         
-        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;7442</span>
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;7430</span>
     
     
     
@@ -387,7 +387,7 @@
 <td>带参数为 TIMED_WAITING；不带参数为 WAITING</td>
 <td>需要</td>
 <td>会</td>
-<td>可以通过 notify() 或者 notifyAll() 唤醒，但是要在 wait() 之后，否则会丢失唤醒信号。notify() 是**<u>随机</u>**唤醒一个线程。必须获得对象上的锁才能执行对象的 wait() 方法。</td>
+<td>可以通过 notify() 或者 notifyAll() 唤醒，但是要在 wait() 之后，否则会丢失唤醒信号。notify() 是<u><strong>随机</strong></u>唤醒一个线程。必须获得对象上的锁才能执行对象的 wait() 方法。</td>
 </tr>
 <tr>
 <td style="text-align:left">LockSupport.park()</td>
@@ -398,7 +398,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>🔖 <code>park()</code> 方法是等待许可，许可是一个二元的信号量，要么为 0 要么为 1。如果此时没有许可，那么线程需要阻塞等待，调用 <code>unpark(Thread)</code> 可以解除阻塞；如果在 <code>park()</code> 之前调用了 <code>unpark(Thread)</code>，那么**<u>下一次</u><strong>的 <code>park()</code> 不会被阻塞。多次调用 <code>unpark(Thread)</code> 也只能是下</strong><u>一次</u>**不被阻塞！</p>
+<p>🔖 <code>park()</code> 方法是等待许可，许可是一个二元的信号量，要么为 0 要么为 1。如果此时没有许可，那么线程需要阻塞等待，调用 <code>unpark(Thread)</code> 可以解除阻塞；如果在 <code>park()</code> 之前调用了 <code>unpark(Thread)</code>，那么<u><strong>下一次</strong></u>的 <code>park()</code> 不会被阻塞。多次调用 <code>unpark(Thread)</code> 也只能是下<u><strong>一次</strong></u>不被阻塞！</p>
 <h3 id="start-方法与-run-方法的区别"><a href="#start-方法与-run-方法的区别" class="anchor-link">#</a><a href="#contents:start-方法与-run-方法的区别" class="headings">start() 方法与 run() 方法的区别</a></h3>
 <p>start 方法启用一个线程，并使其进入就绪状态，当获得处理器时间片之后就可以开始运行 run 方法。结果是两个线程同时运行：当前线程（从对 start 方法的调用返回，不需要等待 run 的执行）和另一个线程（执行其 run 方法）。如果在主线程中直接调用 run 方法将会把它当做是主线程下的一个函数去运行，不会以多线程的方式去执行。</p>
 <h3 id="线程的优先级"><a href="#线程的优先级" class="anchor-link">#</a><a href="#contents:线程的优先级" class="headings">线程的优先级</a></h3>
@@ -636,7 +636,7 @@
 <p>workQueue 的类型为 <code>BlockingQueue&lt;Runnable&gt;</code>，它用来存放等待执行的任务。</p>
 <p>排队策略有以下三种：</p>
 <ol>
-<li><em>Direct handoffs.（直接移交）</em> 在这种策略中使用的是 <code>SynchronousQueue</code>，它没有容量，每个插入操作必须等待另一个线程的删除操作，反之亦然。它将任务直接交给工作线程，本身不存储任务；如果没有空闲的线程可以执行任务，那么任务排队失败，就会创建一个新的线程。通常需要将 maximumPoolSize 设置为 <code>Integer.MAX_VALUE</code> 来避免拒绝新提交的任务。在处理可能具有内部依赖关系的任务集时，此策略可避免死锁。如果任务的平均到达速度超过线程的处理速度的话，可能会导致**<u>线程无限增长</u>**。</li>
+<li><em>Direct handoffs.（直接移交）</em> 在这种策略中使用的是 <code>SynchronousQueue</code>，它没有容量，每个插入操作必须等待另一个线程的删除操作，反之亦然。它将任务直接交给工作线程，本身不存储任务；如果没有空闲的线程可以执行任务，那么任务排队失败，就会创建一个新的线程。通常需要将 maximumPoolSize 设置为 <code>Integer.MAX_VALUE</code> 来避免拒绝新提交的任务。在处理可能具有内部依赖关系的任务集时，此策略可避免死锁。如果任务的平均到达速度超过线程的处理速度的话，可能会导致<u><strong>线程无限增长</strong></u>。</li>
 <li><em>Unbounded queues.（无界队列）</em> 使用无界队列（例如<u><strong>没有预定义容量</strong></u>的 <code>LinkedBlockingQueue</code>，默认为 <code>Integer.MAX_VALUE</code>）在核心线程池中的线程都在繁忙时将新任务都放在队列中，线程池中的线程数最大为 corePoolSize，因此 maximumPoolSize 的没有任何影响。每个任务之间相互独立时，使用这种策略是合适的。这种排队方式有助于平滑瞬间的请求突发，但是当任务继续以超过处理速度的速度到达时，可能会<u><strong>导致队列无限增长</strong></u>。</li>
 <li><em>Bounded queues.（有界队列）</em> 使用有界队列（例如 <code>ArrayBlockingQueue</code>）和有限的 maximumPoolSize 可以防止资源耗尽。使用时需要权衡最大线程数和队列的大小：使用大型队列和小型池可以最大限度地减少 CPU 使用、操作系统资源和上下文切换开销，但可能会导致人为的低吞吐量；使用小队列通常需要更大的池大小，这使 CPU 更繁忙，但可能会遇到无法接受的调度开销，这也会降低吞吐量。</li>
 </ol>
@@ -1004,7 +1004,7 @@
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2022-08-21 11:53:49 CST" style="cursor:help">
+        <span title="Updated @ 2022-08-21 12:04:19 CST" style="cursor:help">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-08-21</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-08-21</text></g></svg>
         </span></div>
@@ -1025,6 +1025,10 @@
             <ul class="related-list">
                 
                     <li class="related-item">
+                        <a href="/tech/java-interrupt/" class="related-link">Java 中断机制</a>
+                    </li>
+                
+                    <li class="related-item">
                         <a href="/tech/java-hashmap-src-analysis/" class="related-link">Java HashMap 源码阅读笔记</a>
                     </li>
                 
@@ -1038,10 +1042,6 @@
                 
                     <li class="related-item">
                         <a href="/tech/java-class-loading/" class="related-link">Java 虚拟机类加载过程</a>
-                    </li>
-                
-                    <li class="related-item">
-                        <a href="/tech/jvm-visual-tools/" class="related-link">JVM 可视化监视及诊断工具</a>
                     </li>
                 
             </ul>
@@ -1080,6 +1080,10 @@
     
     
         <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/tech/java-interrupt/" rel="prev">&lt; Java 中断机制</a>
+                </li>
             
             
                 <li class="post-nav-next">
@@ -1121,6 +1125,53 @@
         
 
         
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
+<script>
+    if (typeof renderMathInElement === 'undefined') {
+        const getScript = (options) => {
+            const script = document.createElement('script');
+            script.defer = true;
+            script.crossOrigin = 'anonymous';
+            Object.keys(options).forEach((key) => {
+                script[key] = options[key];
+            });
+            document.body.appendChild(script);
+        };
+        getScript({
+            src: 'https:\/\/cdn.jsdelivr.net\/npm\/katex@0.13.0\/dist\/katex.min.js',
+            onload: () => {
+                getScript({
+                    src: 'https:\/\/cdn.jsdelivr.net\/npm\/katex@0.13.0\/dist\/contrib\/mhchem.min.js',
+                    onload: () => {
+                        getScript({
+                            src: 'https:\/\/cdn.jsdelivr.net\/npm\/katex@0.13.0\/dist\/contrib\/auto-render.min.js',
+                            onload: () => {
+                                renderKaTex();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } else {
+        renderKaTex();
+    }
+    function renderKaTex() {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+            }
+        );
+    }
+</script>
+
+
 
 
 
